@@ -24,7 +24,7 @@ public final class BackportRegistration {
     private static final String DIR = "/backmod/fabric/26.2-to-26.1.2/";
 
     /** What one registration added, for the CLI summary. */
-    public record Counts(int classMoves, int methodRenames, int fieldRenames, int classSplits) {
+    public record Counts(int classMoves, int methodRenames, int fieldRenames, int classSplits, int bridges) {
     }
 
     private BackportRegistration() {
@@ -88,7 +88,19 @@ public final class BackportRegistration {
         if (!selfTypes.isEmpty()) {
             transformer.registerSyntheticClass(SplitSelfHelper.NAME, SplitSelfHelper.build(selfTypes));
         }
-        return new Counts(classes, methods, fields, splits);
+
+        // Members 26.2 put on Gui become calls through the Minecraft singleton.
+        List<BridgeHelper.Bridge> bridges = new ArrayList<>();
+        for (String[] row : rows("bridges.tsv", 7)) {
+            BridgeHelper.Bridge b = BridgeHelper.Bridge.of(row);
+            transformer.registerMethodRedirect(b.newOwner(), b.name(), b.desc(), BridgeHelper.NAME,
+                    b.helperName(), b.helperDesc(), true);
+            bridges.add(b);
+        }
+        if (!bridges.isEmpty()) {
+            transformer.registerSyntheticClass(BridgeHelper.NAME, BridgeHelper.build(bridges));
+        }
+        return new Counts(classes, methods, fields, splits, bridges.size());
     }
 
     /** Reads a tab-separated table, skipping comments and requiring at least {@code columns} columns. */

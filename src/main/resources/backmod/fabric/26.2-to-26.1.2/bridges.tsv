@@ -1,0 +1,9 @@
+# Backmod: members 26.2 put on Gui that 26.1.2 reaches through the Minecraft singleton.
+# Each row becomes a static helper: helper(gui, args...) = Minecraft.getInstance().<old member>(args...).
+# Every row was checked by hand against both client jars. BackportDiffTool re-checks them on each run.
+# columns: NEW_OWNER	NAME	DESC	OLD_OWNER	KIND	OLD_NAME	OLD_DESC	EVIDENCE
+net/minecraft/client/gui/Gui	setScreen	(Lnet/minecraft/client/gui/screens/Screen;)V	net/minecraft/client/Minecraft	method	setScreen	(Lnet/minecraft/client/gui/screens/Screen;)V	hop-finder
+net/minecraft/client/gui/Gui	setOverlay	(Lnet/minecraft/client/gui/screens/Overlay;)V	net/minecraft/client/Minecraft	method	setOverlay	(Lnet/minecraft/client/gui/screens/Overlay;)V	hop-finder
+net/minecraft/client/gui/Gui	openChatScreen	(Lnet/minecraft/client/gui/components/ChatComponent$ChatMethod;)V	net/minecraft/client/Minecraft	method	openChatScreen	(Lnet/minecraft/client/gui/components/ChatComponent$ChatMethod;)V	hop-finder
+net/minecraft/client/gui/Gui	screen	()Lnet/minecraft/client/gui/screens/Screen;	net/minecraft/client/Minecraft	field	screen	Lnet/minecraft/client/gui/screens/Screen;	curated
+net/minecraft/client/gui/Gui	toastManager	()Lnet/minecraft/client/gui/components/toasts/ToastManager;	net/minecraft/client/Minecraft	method	getToastManager	()Lnet/minecraft/client/gui/components/toasts/ToastManager;	curated

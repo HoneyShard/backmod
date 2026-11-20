@@ -140,6 +140,49 @@ class BackportRegistrationTest {
     }
 
     @Test
+    void guiMembersMovedFromMinecraftBecomeHelperCalls() {
+        // gui.setScreen(screen) in 26.2 is minecraft.setScreen(screen) in 26.1.2.
+        List<AbstractInsnNode> out = run(mod(mv -> {
+            mv.visitInsn(Opcodes.ACONST_NULL);
+            mv.visitTypeInsn(Opcodes.CHECKCAST, GUI);
+            mv.visitInsn(Opcodes.ACONST_NULL);
+            mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, GUI, "setScreen",
+                    "(Lnet/minecraft/client/gui/screens/Screen;)V", false);
+        }));
+        MethodInsnNode call = out.stream().filter(MethodInsnNode.class::isInstance)
+                .map(MethodInsnNode.class::cast).filter(m -> !m.owner.equals("java/lang/Object"))
+                .findFirst().orElseThrow();
+        assertEquals(BridgeHelper.NAME, call.owner);
+        assertEquals(Opcodes.INVOKESTATIC, call.getOpcode());
+        assertEquals("(Lnet/minecraft/client/gui/Gui;Lnet/minecraft/client/gui/screens/Screen;)V", call.desc);
+
+        byte[] helper = transformer.getSyntheticClasses().get(BridgeHelper.NAME);
+        assertNotNull(helper);
+        ClassNode cn = new ClassNode();
+        new ClassReader(helper).accept(cn, 0);
+        MethodNode bridge = cn.methods.stream().filter(m -> m.name.equals(call.name)).findFirst().orElseThrow();
+        List<String> calls = new ArrayList<>();
+        for (AbstractInsnNode insn : bridge.instructions) {
+            if (insn instanceof MethodInsnNode m) {
+                calls.add(m.owner + "." + m.name);
+            }
+        }
+        assertEquals(List.of("net/minecraft/client/Minecraft.getInstance", "net/minecraft/client/Minecraft.setScreen"),
+                calls);
+    }
+
+    @Test
+    void fieldBackedBridgeReadsTheOlderField() {
+        byte[] helper = transformer.getSyntheticClasses().get(BridgeHelper.NAME);
+        ClassNode cn = new ClassNode();
+        new ClassReader(helper).accept(cn, 0);
+        MethodNode screen = cn.methods.stream().filter(m -> m.name.equals("Gui$screen")).findFirst().orElseThrow();
+        assertTrue(java.util.stream.StreamSupport.stream(screen.instructions.spliterator(), false)
+                .anyMatch(i -> i instanceof FieldInsnNode f && f.owner.equals("net/minecraft/client/Minecraft")
+                        && f.name.equals("screen")));
+    }
+
+    @Test
     void onlyFabricAndQuiltFrom262To2612AreSupported() {
         assertTrue(BackportRegistration.supports("fabric", "26.2", "26.1.2"));
         assertTrue(BackportRegistration.supports("quilt", "26.2.1", "26.1.2"));

@@ -724,14 +724,22 @@ public class RetromodCli {
         Path outputPath = modPath.resolveSibling(
                 modPath.getFileName().toString().replace(".jar", "-backported.jar"));
         Path mcJarPath = null;
+        double lossThreshold = 0.5;
         for (int i = 2; i < args.length; i++) {
             if ("--output".equals(args[i]) && i + 1 < args.length) {
                 outputPath = Path.of(args[++i]);
             } else if ("--mc-jar".equals(args[i]) && i + 1 < args.length) {
                 mcJarPath = Path.of(args[++i]);
+            } else if ("--mixin-loss-threshold".equals(args[i]) && i + 1 < args.length) {
+                lossThreshold = Double.parseDouble(args[++i]);
             }
         }
         requireDistinctPaths(modPath, outputPath, "transform output");
+        if (mcJarPath == null) {
+            System.err.println("Backport mode needs --mc-jar <" + com.retromod.backport.BackportRegistration.TARGET
+                    + " client jar>. Backmod checks mixins and references against it.");
+            System.exit(1);
+        }
 
         // The default target is the newest version, which is the wrong end for a backport.
         if (!targetMcVersionExplicit) {
@@ -772,7 +780,8 @@ public class RetromodCli {
                 com.retromod.backport.BackportRegistration.register(transformer);
         System.out.println("Registered " + counts.classMoves() + " class move(s), "
                 + counts.methodRenames() + " method rename(s), " + counts.fieldRenames()
-                + " field rename(s), " + counts.classSplits() + " class split(s).");
+                + " field rename(s), " + counts.classSplits() + " class split(s), " + counts.bridges()
+                + " bridge(s).");
 
         backportMinecraftPin = TARGET_MC_VERSION;
         try {
@@ -784,8 +793,49 @@ public class RetromodCli {
                 modPath.getFileName().toString(), transformer,
                 com.retromod.core.SyntheticLibraries.NONE);
         com.retromod.core.ModuleInfoRepair.dropInvalid(outputPath);
+        writeBackportReport(modPath, outputPath, mcJarPath, source, counts, lossThreshold);
         System.out.println("Backported: " + outputPath);
         verifyIfRequested(outputPath, modPath.getFileName().toString(), args);
+    }
+
+    /** Audits the output against the target game jar, drops mixins with no target, and writes the report. */
+    private static void writeBackportReport(Path modPath, Path outputPath, Path mcJarPath, String source,
+            com.retromod.backport.BackportRegistration.Counts counts, double lossThreshold) throws Exception {
+        com.retromod.backport.ClassSet hostClasses = com.retromod.backport.ClassSet.fromJar(mcJarPath,
+                "net/minecraft/", "com/mojang/");
+        com.retromod.backport.HostIndex host = new com.retromod.backport.HostIndex(hostClasses);
+
+        List<com.retromod.backport.MixinAudit.Finding> mixins =
+                com.retromod.backport.MixinAudit.audit(outputPath, host);
+
+        // A mixin whose target class is gone does nothing, so it leaves the config. Others stay.
+        Map<String, java.util.Set<String>> toStrip = new LinkedHashMap<>();
+        for (var f : mixins) {
+            if (f.status() == com.retromod.backport.MixinAudit.Status.TARGET_MISSING) {
+                toStrip.computeIfAbsent(f.config(), k -> new java.util.HashSet<>()).add(f.mixinClass());
+            }
+        }
+        Map<String, byte[]> patched = new LinkedHashMap<>();
+        try (JarFile jar = new JarFile(outputPath.toFile())) {
+            for (var entry : toStrip.entrySet()) {
+                byte[] bytes = jar.getInputStream(jar.getEntry(entry.getKey())).readAllBytes();
+                patched.put(entry.getKey(), com.retromod.backport.MixinAudit.stripFromConfig(
+                        new String(bytes, java.nio.charset.StandardCharsets.UTF_8), null, entry.getValue())
+                        .getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            }
+        }
+        com.retromod.backport.JarPatcher.replace(outputPath, patched);
+
+        var missing = com.retromod.backport.ReferenceAudit.scan(outputPath, host);
+        var report = new com.retromod.backport.BackportReport(modPath.getFileName().toString(), source,
+                TARGET_MC_VERSION, counts, mixins, missing, lossThreshold);
+        Path reportPath = outputPath.resolveSibling(
+                outputPath.getFileName().toString().replaceAll("\\.jar$", "") + ".report.md");
+        Files.writeString(reportPath, report.render());
+        System.out.println("Verdict: " + report.verdict() + " (" + report.stripped().size()
+                + " mixin(s) removed, " + missing.size() + " reference(s) with no " + TARGET_MC_VERSION
+                + " counterpart)");
+        System.out.println("Report: " + reportPath);
     }
 
     /** The version a mod was built for: {@code --source}, else its declared floor, else 26.2. */

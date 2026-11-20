@@ -59,7 +59,7 @@ public final class SyntheticEmbedder {
      * Retromod's own packages under com/retromod: its sources, the classes it generates, and the
      * copies it embeds. The test mods and the test library live under com/retromod too, as mods.
      */
-    static final List<String> OWN_PACKAGES = List.of("agent", "aot", "archive", "boot", "cli", "compat", "core",
+    static final List<String> OWN_PACKAGES = List.of("agent", "aot", "archive", "backport", "boot", "cli", "compat", "core",
             "embedded", "embedder", "generated", "gui", "inplace", "legacy", "legacyapi", "loaderapi", "locator",
             "mapping", "mixin", "polyfill", "resources", "security", "shim", "util", "virtual");
 

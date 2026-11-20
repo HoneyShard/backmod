@@ -49,6 +49,16 @@ public final class BackportDiffTool {
 
         writeTables(result.findings(), out);
         writeSplits(SplitFinder.find(older, newer, classMap), out);
+        List<HopFinder.Hop> hops = HopFinder.find(older, newer, classMap, result.findings());
+        try (PrintWriter w = writer(out.resolve("hops.tsv"),
+                "NEW_OWNER\tNAME\tDESC\tOLD_OWNER\tKIND\tOLD_STATIC")) {
+            for (HopFinder.Hop h : hops) {
+                w.println(String.join("\t", h.newOwner(), h.name(), h.desc(), h.oldOwner(),
+                        h.method() ? "method" : "field", String.valueOf(h.oldIsStatic())));
+            }
+        }
+        System.out.println("member hops: " + hops.size());
+        verifyBridges(older, newer);
         summarize(result);
     }
 
@@ -126,6 +136,30 @@ public final class BackportDiffTool {
             }
         }
         System.out.println("class splits: " + splits.size());
+    }
+
+    /** Re-checks bridges.tsv against both jars so a stale row is caught when the data is regenerated. */
+    private static void verifyBridges(ClassSet older, ClassSet newer) {
+        int bad = 0;
+        for (String[] row : BackportRegistration.rows("bridges.tsv", 7)) {
+            BridgeHelper.Bridge b = BridgeHelper.Bridge.of(row);
+            boolean onNew = has(newer, b.newOwner(), b.name(), b.desc(), true);
+            boolean goneFromNew = !has(newer, b.oldOwner(), b.oldName(), b.oldDesc(), !b.field());
+            boolean onOld = has(older, b.oldOwner(), b.oldName(), b.oldDesc(), !b.field());
+            boolean absentOnOldOwner = !has(older, b.newOwner(), b.name(), b.desc(), true);
+            boolean singleton = has(older, b.oldOwner(), "getInstance", "()L" + b.oldOwner() + ";", true);
+            if (!(onNew && goneFromNew && onOld && absentOnOldOwner && singleton)) {
+                bad++;
+                System.err.println("BRIDGE CHECK FAILED: " + b + " new=" + onNew + " goneFromNew=" + goneFromNew
+                        + " old=" + onOld + " absentOld=" + absentOnOldOwner + " singleton=" + singleton);
+            }
+        }
+        System.out.println("bridge rows failing the jar check: " + bad);
+    }
+
+    private static boolean has(ClassSet set, String owner, String name, String desc, boolean method) {
+        ClassSet.Entry cls = set.get(owner);
+        return cls != null && cls.members().containsKey((method ? "M:" : "F:") + name + desc);
     }
 
     private static String renameKey(Finding f) {
