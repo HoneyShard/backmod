@@ -57,6 +57,13 @@ public class RetromodCli {
             Pattern.CASE_INSENSITIVE);
     private static final long MAX_VERSION_JSON_BYTES = 2L * 1024 * 1024;
     
+    /** True after {@code --direction backport}: rewrite a newer mod for an older host. */
+    private static boolean backport = false;
+    /** The Minecraft version the mod was built for, from {@code --source}, or null to detect it. */
+    private static String backportSource = null;
+    /** Minecraft version a backported fabric.mod.json requires, or null outside backport mode. */
+    private static String backportMinecraftPin = null;
+
     private static ShimRegistry shimRegistry;
     private static ModVersionDetector detector;
     private static ApiArchiveManager archiveManager;
@@ -65,7 +72,9 @@ public class RetromodCli {
         // The loader API flag may sit anywhere, so it is removed before commands read positions.
         String[] loaderApiFlag = new String[1];
         args = com.retromod.loaderapi.LoaderApiSetting.stripCliFlag(args, loaderApiFlag);
-        com.retromod.loaderapi.LoaderApiRuntime.configureForCli(loaderApiFlag[0]);
+        args = stripBackportFlags(args);
+        // The loader API runtime rebuilds old Fabric API for newer hosts, so it has no role going back.
+        com.retromod.loaderapi.LoaderApiRuntime.configureForCli(backport ? "false" : loaderApiFlag[0]);
 
         // No arguments, or help, prints the full command list.
         if (args.length == 0) {
@@ -131,6 +140,10 @@ public class RetromodCli {
             }
         }
 
+        if (backport && !"transform".equals(command)) {
+            System.err.println("--direction backport only works with the transform command.");
+            System.exit(2);
+        }
         try {
             switch (command) {
                 case "analyze" -> analyzeCommand(args);
@@ -586,6 +599,10 @@ public class RetromodCli {
 
     /** Transform a mod using JIT-style transformation (writes to a new JAR). */
     private static void transformCommand(String[] args) throws Exception {
+        if (backport) {
+            backportTransformCommand(args);
+            return;
+        }
         if (args.length < 2) {
             System.err.println("Usage: transform <mod.jar> [--output <output.jar>] "
                     + "[--mc-jar <target.jar>]");
@@ -670,6 +687,127 @@ public class RetromodCli {
         reportMissingFabricApi(outputPath, modPath, info);
         System.out.println("Updated: " + outputPath);
         verifyIfRequested(outputPath, modPath.getFileName().toString(), args);
+    }
+
+    /** Reads and removes {@code --direction <value>} and {@code --source <version>}. */
+    static String[] stripBackportFlags(String[] args) {
+        List<String> rest = new ArrayList<>();
+        for (int i = 0; i < args.length; i++) {
+            if ("--direction".equals(args[i])) {
+                if (i + 1 >= args.length || !"backport".equals(args[i + 1])) {
+                    System.err.println("--direction takes one value: backport.");
+                    System.exit(2);
+                }
+                backport = true;
+                i++;
+            } else if ("--source".equals(args[i]) && i + 1 < args.length) {
+                backportSource = args[++i].trim();
+            } else {
+                rest.add(args[i]);
+            }
+        }
+        if (backportSource != null && !backport) {
+            System.err.println("--source only applies together with --direction backport.");
+            System.exit(2);
+        }
+        return rest.toArray(String[]::new);
+    }
+
+    /** Rewrites one Fabric mod built for 26.2 so it loads on 26.1.2. */
+    private static void backportTransformCommand(String[] args) throws Exception {
+        if (args.length < 2) {
+            System.err.println("Usage: transform <mod.jar> --direction backport [--target 26.1.2] "
+                    + "[--source 26.2] [--output <output.jar>] [--mc-jar <26.1.2 client.jar>]");
+            System.exit(1);
+        }
+        Path modPath = Path.of(args[1]);
+        Path outputPath = modPath.resolveSibling(
+                modPath.getFileName().toString().replace(".jar", "-backported.jar"));
+        Path mcJarPath = null;
+        for (int i = 2; i < args.length; i++) {
+            if ("--output".equals(args[i]) && i + 1 < args.length) {
+                outputPath = Path.of(args[++i]);
+            } else if ("--mc-jar".equals(args[i]) && i + 1 < args.length) {
+                mcJarPath = Path.of(args[++i]);
+            }
+        }
+        requireDistinctPaths(modPath, outputPath, "transform output");
+
+        // The default target is the newest version, which is the wrong end for a backport.
+        if (!targetMcVersionExplicit) {
+            TARGET_MC_VERSION = com.retromod.backport.BackportRegistration.TARGET;
+            com.retromod.core.RetromodVersion.TARGET_MC_VERSION = TARGET_MC_VERSION;
+        }
+        configureTargetFromMinecraftJar(mcJarPath);
+
+        ModVersionInfo info = detector.detectVersion(modPath);
+        if (info == null) {
+            System.err.println("Backmod could not read supported mod metadata from this jar.");
+            System.exit(1);
+        }
+        String source = backportSourceFor(info);
+        if (!com.retromod.backport.BackportRegistration.supports(info.modLoaderType(), source,
+                TARGET_MC_VERSION)) {
+            System.err.println("Backmod cannot backport this mod: " + info.modLoaderType() + " "
+                    + source + " to " + TARGET_MC_VERSION + " is not supported.");
+            System.err.println("The only supported case is a Fabric or Quilt mod built for "
+                    + com.retromod.backport.BackportRegistration.SOURCE + ", for Minecraft "
+                    + com.retromod.backport.BackportRegistration.TARGET + ".");
+            System.exit(1);
+        }
+
+        System.out.println("Backporting " + modPath.getFileName() + " from Minecraft " + source
+                + " to " + TARGET_MC_VERSION);
+        System.out.println("Output: " + outputPath.getFileName());
+
+        RetromodTransformer transformer = RetromodTransformer.getInstance();
+        transformer.resetOfflineRegistrations();
+        initializeMixinTargetIndex(transformer, mcJarPath);
+        transformer.setSrgSourceVersion(null);
+        transformer.setModSourceVersion(source);
+        transformer.setModSourceJar(modPath);
+
+        // Only the reverse tables register. The forward shims and polyfills would rewrite 26.x names.
+        com.retromod.backport.BackportRegistration.Counts counts =
+                com.retromod.backport.BackportRegistration.register(transformer);
+        System.out.println("Registered " + counts.classMoves() + " class move(s), "
+                + counts.methodRenames() + " method rename(s), " + counts.fieldRenames()
+                + " field rename(s), " + counts.classSplits() + " class split(s).");
+
+        backportMinecraftPin = TARGET_MC_VERSION;
+        try {
+            transformJar(modPath, outputPath, transformer, info);
+        } finally {
+            backportMinecraftPin = null;
+        }
+        com.retromod.core.SyntheticEmbedder.embedIntoJarOrDiscard(outputPath,
+                modPath.getFileName().toString(), transformer,
+                com.retromod.core.SyntheticLibraries.NONE);
+        com.retromod.core.ModuleInfoRepair.dropInvalid(outputPath);
+        System.out.println("Backported: " + outputPath);
+        verifyIfRequested(outputPath, modPath.getFileName().toString(), args);
+    }
+
+    /** The version a mod was built for: {@code --source}, else its declared floor, else 26.2. */
+    private static String backportSourceFor(ModVersionInfo info) {
+        if (backportSource != null) {
+            return backportSource;
+        }
+        String declared = info.targetMcVersion();
+        if (isUnknownSourceVersion(declared)
+                || !com.retromod.core.RetromodVersion.mcVersionExceeds(declared,
+                        com.retromod.backport.BackportRegistration.SOURCE)
+                && !declared.equals(com.retromod.backport.BackportRegistration.SOURCE)) {
+            System.err.println(declared == null
+                    ? "The mod does not declare a Minecraft version."
+                    : "The mod declares Minecraft " + declared + ", which reads as older than "
+                            + com.retromod.backport.BackportRegistration.SOURCE + ".");
+            System.err.println("Declared versions are often a floor, so Backmod treats it as built for "
+                    + com.retromod.backport.BackportRegistration.SOURCE
+                    + ". Pass --source to choose.");
+            return com.retromod.backport.BackportRegistration.SOURCE;
+        }
+        return declared;
     }
 
     /** Registers matching-loader shims whose target is not newer than the requested host. */
@@ -1677,7 +1815,11 @@ public class RetromodCli {
                 "$1\"*\""
             );
 
-            return json.getBytes(java.nio.charset.StandardCharsets.UTF_8);
+            byte[] relaxed = json.getBytes(java.nio.charset.StandardCharsets.UTF_8);
+            // A backported jar names the one host it was checked on. Forward transforms leave it open.
+            return backportMinecraftPin == null ? relaxed : com.retromod.backport.BackportMetadata.apply(
+                    relaxed, backportSource != null ? backportSource
+                            : com.retromod.backport.BackportRegistration.SOURCE, backportMinecraftPin);
         } catch (Exception e) {
             return jsonData;
         }

@@ -1,0 +1,4 @@
+# NEW_CLASS	OLD_CLASS	CONTAINMENT	MEMBERS	HOLDER_OWNER	HOLDER_FIELD
+net/minecraft/client/gui/Hud	net/minecraft/client/gui/Gui	0.950	160	net/minecraft/client/gui/Gui	hud
+net/minecraft/world/entity/EntityTypes	net/minecraft/world/entity/EntityType	0.994	166		
+net/minecraft/world/level/block/entity/BlockEntityTypes	net/minecraft/world/level/block/entity/BlockEntityType	0.943	53		

@@ -48,6 +48,7 @@ public final class BackportDiffTool {
         MemberDiff.Result result = MemberDiff.diff(older, newer, classMap);
 
         writeTables(result.findings(), out);
+        writeSplits(SplitFinder.find(older, newer, classMap), out);
         summarize(result);
     }
 
@@ -113,6 +114,18 @@ public final class BackportDiffTool {
                 }
             }
         }
+    }
+
+    private static void writeSplits(List<SplitFinder.Split> splits, Path out) throws IOException {
+        try (PrintWriter w = writer(out.resolve("splits.tsv"),
+                "NEW_CLASS\tOLD_CLASS\tCONTAINMENT\tMEMBERS\tHOLDER_OWNER\tHOLDER_FIELD")) {
+            for (SplitFinder.Split sp : splits) {
+                w.println(String.join("\t", sp.newClass(), sp.oldClass(),
+                        String.format(java.util.Locale.ROOT, "%.3f", sp.containment()),
+                        String.valueOf(sp.members()), sp.holderOwner(), sp.holderField()));
+            }
+        }
+        System.out.println("class splits: " + splits.size());
     }
 
     private static String renameKey(Finding f) {
