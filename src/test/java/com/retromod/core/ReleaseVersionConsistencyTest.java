@@ -45,7 +45,8 @@ class ReleaseVersionConsistencyTest {
                 .contains("<version>" + version + "</version>"));
         assertTrue(unixBuilder.contains("VERSION=\"" + version + "\""));
         assertTrue(windowsBuilder.contains("set \"VERSION=" + version + "\""));
-        assertTrue(Files.readString(Path.of("README.md"))
+        // Backmod's README carries no release badge; the upstream one is kept under docs-dev.
+        assertTrue(Files.readString(Path.of("docs-dev/UPSTREAM_README.md"))
                 .contains("Version-" + version.replace("-", "--") + "-blueviolet"));
         assertTrue(Files.readString(Path.of("CHANGELOG.md"))
                 .contains("## [" + version + "]"));
@@ -147,7 +148,7 @@ class ReleaseVersionConsistencyTest {
         Pattern loaderJarCount = Pattern.compile("\\b(\\d+) loader jars\\b");
         Pattern artifactCount = Pattern.compile("\\b(\\d+) artifacts\\b");
 
-        for (String docName : List.of("README.md", "docs/installation.md", "docs/contributing.md",
+        for (String docName : List.of("docs-dev/UPSTREAM_README.md", "docs/installation.md", "docs/contributing.md",
                 "docs/authenticity.md", "AGENTS.md", "CLAUDE.md")) {
             String doc = Files.readString(Path.of(docName));
             int quoted = 0;

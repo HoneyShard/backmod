@@ -155,7 +155,7 @@ public class RetromodCli {
                 case "loader-api-coverage" -> loaderApiCoverageCommand(args);
                 case "help", "-h", "--help" -> printUsage();
                 case "version", "-v", "--version" -> 
-                    System.out.println("Retromod CLI v" + VERSION + " (Target: MC " + TARGET_MC_VERSION + ")");
+                    System.out.println("Backmod CLI v" + VERSION + " (Target: MC " + TARGET_MC_VERSION + ")");
                 default -> {
                     System.err.println("Unknown command: " + command);
                     printUsage();
@@ -163,7 +163,7 @@ public class RetromodCli {
                 }
             }
         } catch (Exception e) {
-            System.err.println("Retromod could not finish: " + describeFailure(e));
+            System.err.println("Backmod could not finish: " + describeFailure(e));
             if (System.getenv("RETROMOD_DEBUG") != null) {
                 e.printStackTrace();
             } else {
@@ -269,7 +269,7 @@ public class RetromodCli {
             System.exit(1);
         }
         
-        System.out.println("Retromod analysis");
+        System.out.println("Backmod analysis");
         System.out.println("File: " + modPath.getFileName());
         System.out.println("Size: " + Files.size(modPath) / 1024 + " KB");
         
@@ -277,7 +277,7 @@ public class RetromodCli {
         
         if (info == null) {
             System.out.println();
-            System.out.println("Retromod could not read supported mod metadata from this jar.");
+            System.out.println("Backmod could not read supported mod metadata from this jar.");
             System.out.println("Check that it is a Fabric, Quilt, NeoForge, or Forge mod.");
             return;
         }
@@ -313,7 +313,7 @@ public class RetromodCli {
             );
             
             if (chain.isEmpty()) {
-                System.out.println("Retromod does not have a complete version path for this combination.");
+                System.out.println("Backmod does not have a complete version path for this combination.");
             } else {
                 System.out.println("Version path:");
                 for (VersionShim shim : chain) {
@@ -614,7 +614,7 @@ public class RetromodCli {
         
         ModVersionInfo info = detector.detectVersion(modPath);
         if (info == null) {
-            System.err.println("Retromod could not read supported mod metadata from this jar.");
+            System.err.println("Backmod could not read supported mod metadata from this jar.");
             System.exit(1);
         }
 
@@ -631,7 +631,7 @@ public class RetromodCli {
         boolean sourceUnknown = isUnknownSourceVersion(sourceMcVersion);
         List<VersionShim> versionShims;
         if (sourceUnknown) {
-            System.err.println("Retromod could not determine the source Minecraft version.");
+            System.err.println("Backmod could not determine the source Minecraft version.");
             System.err.println("It will try every shim that applies to the target.");
             versionShims = unknownSourceShims(info.modLoaderType());
         } else {
@@ -715,7 +715,7 @@ public class RetromodCli {
         
         ModVersionInfo info = detector.detectVersion(modPath);
         if (info == null) {
-            System.err.println("Retromod could not read supported mod metadata from this jar.");
+            System.err.println("Backmod could not read supported mod metadata from this jar.");
             System.exit(1);
         }
         
@@ -803,7 +803,7 @@ public class RetromodCli {
         
         Files.createDirectories(outputFolder);
         
-        System.out.println("Retromod batch");
+        System.out.println("Backmod batch");
         System.out.println("Input:  " + modsFolder);
         System.out.println("Output: " + outputFolder);
         System.out.println("Mode:   " + (useAot ? "precompile" : "transform"));
@@ -1136,7 +1136,7 @@ public class RetromodCli {
     /** Consent prompt for a single archive download; --yes skips it for scripted/CI use. */
     private static boolean promptForDownloadConsent(String loader, String version, boolean autoYes) {
         System.out.println();
-        System.out.println("Retromod needs to download one API archive.");
+        System.out.println("Backmod needs to download one API archive.");
         System.out.println();
         System.out.println("Loader: " + loader);
         System.out.println("Minecraft: " + version);
@@ -1161,7 +1161,7 @@ public class RetromodCli {
     /** Consent prompt for the bulk preload action; --yes skips it for scripted/CI use. */
     private static boolean promptForPreloadConsent(boolean autoYes) {
         System.out.println();
-        System.out.println("Retromod will download API archives for every known Minecraft version.");
+        System.out.println("Backmod will download API archives for every known Minecraft version.");
         System.out.println("This is about 22 jars from the loaders' official Maven repositories.");
 
         if (autoYes) {
@@ -1496,7 +1496,7 @@ public class RetromodCli {
                 String companionEntry = companion.getKey() + ".class";
                 if (inJar.getEntry(companionEntry) != null || !outputEntryNames.add(
                         com.retromod.util.ZipSecurity.canonicalEntryName(companionEntry))) {
-                    System.err.println("Retromod: " + input.getFileName() + " already has " + companionEntry
+                    System.err.println("Backmod: " + input.getFileName() + " already has " + companionEntry
                             + ", so the event handler it would hook will not run on EventBus 7");
                     continue;
                 }
@@ -2442,7 +2442,7 @@ public class RetromodCli {
             }
         }
         
-        System.out.println("Retromod legacy transform");
+        System.out.println("Backmod legacy transform");
         System.out.println("Target: Minecraft " + TARGET_MC_VERSION);
         System.out.println();
 
@@ -2497,7 +2497,7 @@ public class RetromodCli {
      */
     private static void overridesCommand(String[] args) throws Exception {
         if (args.length < 2) {
-            System.err.println("Usage: retromod overrides <minecraft-dir> [target-version]");
+            System.err.println("Usage: backmod overrides <minecraft-dir> [target-version]");
             System.err.println("  minecraft-dir: Path to .minecraft folder");
             System.err.println("  target-version: Target MC version (default: " + TARGET_MC_VERSION + ")");
             return;
@@ -2521,7 +2521,7 @@ public class RetromodCli {
         
         Files.createDirectories(configDir);
         
-        System.out.println("Retromod dependency overrides");
+        System.out.println("Backmod dependency overrides");
         System.out.println("Scanning mods folder: " + modsDir);
         System.out.println("Target Minecraft version: " + targetVersion);
         System.out.println();
@@ -2595,13 +2595,13 @@ public class RetromodCli {
         System.out.println("File: " + overridesFile);
         System.out.println();
         System.out.println("These overrides only let Fabric inspect the mods. They do not repair");
-        System.out.println("incompatible APIs. Use `retromod prepare` to update the jars too.");
+        System.out.println("incompatible APIs. Use `backmod prepare` to update the jars too.");
     }
     
     /** Translates the old mods of an instance and installs them in its mods folder. */
     private static void prepareCommand(String[] args) throws Exception {
         if (args.length < 2) {
-            System.err.println("Usage: retromod prepare <minecraft-dir> --target <version> "
+            System.err.println("Usage: backmod prepare <minecraft-dir> --target <version> "
                     + "[--target-loader <loader>] [--aot] [--mc-jar <target.jar>] [--verify]");
             System.err.println("  minecraft-dir: the game directory that holds mods/");
             System.err.println("  --target: the game's Minecraft version (or --mc-jar with its client jar)");
@@ -2853,8 +2853,8 @@ public class RetromodCli {
             System.err.println("Scans a mod and reports source changes for a newer Minecraft version.");
             System.err.println();
             System.err.println("Examples:");
-            System.err.println("  retromod devhelp mymod-1.21.4.jar");
-            System.err.println("  retromod devhelp mymod.jar --to " + TARGET_MC_VERSION);
+            System.err.println("  backmod devhelp mymod-1.21.4.jar");
+            System.err.println("  backmod devhelp mymod.jar --to " + TARGET_MC_VERSION);
             System.exit(1);
         }
 
@@ -2867,7 +2867,7 @@ public class RetromodCli {
         String targetVersion = devhelpTarget(args, TARGET_MC_VERSION);
 
         System.out.println();
-        System.out.println("Retromod source migration guide");
+        System.out.println("Backmod source migration guide");
 
         ModVersionInfo info = detector.detectVersion(modPath);
         if (info == null) {
@@ -3056,7 +3056,7 @@ public class RetromodCli {
                 : "unknown";
 
         System.out.println();
-        System.out.println("Retromod compatibility score");
+        System.out.println("Backmod compatibility score");
         System.out.println("Mod: " + modName.trim());
         System.out.println("Source: " + sourceLine);
         System.out.println("Target: Minecraft " + TARGET_MC_VERSION);
@@ -3198,8 +3198,8 @@ public class RetromodCli {
             System.err.println("  --apply      Apply fixes to the transformer (registers redirects)");
             System.err.println();
             System.err.println("Examples:");
-            System.err.println("  retromod autofix logs/latest.log");
-            System.err.println("  retromod autofix crash-reports/crash-2026-04-07.txt --apply");
+            System.err.println("  backmod autofix logs/latest.log");
+            System.err.println("  backmod autofix crash-reports/crash-2026-04-07.txt --apply");
             System.exit(1);
         }
 
@@ -3212,7 +3212,7 @@ public class RetromodCli {
         }
 
         System.out.println();
-        System.out.println("Retromod log analysis");
+        System.out.println("Backmod log analysis");
         System.out.println("Log file: " + logFile);
         System.out.println("Mode: " + (apply ? "apply fixes" : "dry run"));
         System.out.println();
@@ -3267,11 +3267,11 @@ public class RetromodCli {
         if (apply) {
             System.out.println(fixes.size() + " fix(es) applied.");
             System.out.println("Run this to rebuild the affected mods:");
-            System.out.println("  retromod batch <mods-folder> --aot");
+            System.out.println("  backmod batch <mods-folder> --aot");
         } else {
             System.out.println(fixes.size() + " fix(es) suggested.");
             System.out.println("To apply them, run:");
-            System.out.println("  retromod autofix " + logFile + " --apply");
+            System.out.println("  backmod autofix " + logFile + " --apply");
         }
         System.out.println();
     }
@@ -3329,11 +3329,11 @@ public class RetromodCli {
     }
 
     private static void printUsage() {
-        System.out.println("Retromod CLI " + VERSION);
-        System.out.println("Update older Fabric, NeoForge, and Forge mods for newer Minecraft versions.");
+        System.out.println("Backmod CLI " + VERSION);
+        System.out.println("Backport newer Fabric mods to older Minecraft versions (experimental fork of Retromod).");
         System.out.println("Default target: Minecraft " + DEFAULT_TARGET_MC_VERSION);
         System.out.println();
-        System.out.println("Usage: retromod <command> [options]");
+        System.out.println("Usage: backmod <command> [options]");
         System.out.println();
         System.out.println("Commands:");
         System.out.println("  analyze <mod.jar>              Inspect metadata and scan the jar");
@@ -3373,14 +3373,14 @@ public class RetromodCli {
         System.out.println("  --loader-api-runtime <value>   auto, true or false for the loader API runtime");
         System.out.println();
         System.out.println("Examples:");
-        System.out.println("  retromod prepare ~/.minecraft --target " + TARGET_MC_VERSION
+        System.out.println("  backmod prepare ~/.minecraft --target " + TARGET_MC_VERSION
                 + " --target-loader neoforge");
-        System.out.println("  retromod batch ./mods --aot --verify");
-        System.out.println("  retromod transform oldmod.jar --target " + TARGET_MC_VERSION
+        System.out.println("  backmod batch ./mods --aot --verify");
+        System.out.println("  backmod transform oldmod.jar --target " + TARGET_MC_VERSION
                 + " --mc-jar minecraft-client.jar");
-        System.out.println("  retromod resourcepack old-pack.zip --target "
+        System.out.println("  backmod resourcepack old-pack.zip --target "
                 + TARGET_MC_VERSION);
-        System.out.println("  retromod devhelp mymod.jar " + TARGET_MC_VERSION);
+        System.out.println("  backmod devhelp mymod.jar " + TARGET_MC_VERSION);
     }
 
     /** Writes the loader API runtime coverage report. */
@@ -3410,8 +3410,8 @@ public class RetromodCli {
             System.exit(1);
         }
         if (!Files.isRegularFile(status)) {
-            System.err.println("Retromod could not find the status table at " + status + ".");
-            System.err.println("Run this from a Retromod source checkout, or pass --status <file>.");
+            System.err.println("Backmod could not find the status table at " + status + ".");
+            System.err.println("Run this from a Backmod source checkout, or pass --status <file>.");
             System.exit(1);
         }
         var rows = com.retromod.loaderapi.coverage.LoaderApiCoverage.readStatus(status);
@@ -3532,7 +3532,7 @@ public class RetromodCli {
             if (result.removed().isEmpty()) {
                 System.out.println("There are no translated mods to clear.");
             } else {
-                System.out.println("Cleared Retromod's translated mods. The next launch "
+                System.out.println("Cleared Backmod's translated mods. The next launch "
                         + "translates old mods again and asks for one restart.");
             }
             return;

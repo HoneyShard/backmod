@@ -1,104 +1,37 @@
-# Retromod
+# Backmod
 
-[![Minecraft 1.20-26.3](https://img.shields.io/badge/Minecraft-1.20--26.3-green.svg)](https://minecraft.net/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.4.0--snapshot.4-blueviolet.svg)](https://github.com/Bownlux/Retromod/releases)
-[![Modrinth](https://img.shields.io/badge/Download-Modrinth-00AF5C.svg)](https://modrinth.com/mod/retromod)
-[![CurseForge](https://img.shields.io/badge/Download-CurseForge-F16436.svg)](https://www.curseforge.com/minecraft/mc-mods/retromod)
-[![wakatime](https://wakatime.com/badge/github/Bownlux/Retromod.svg)](https://wakatime.com/badge/github/Bownlux/Retromod)
+Backmod is an experimental tool that rewrites a Minecraft mod built for a newer version so it can load on an older one. It is an unofficial fork of [Retromod](https://github.com/Bownlux/Retromod) by Bownlux, which does the opposite (old mod, new game). It is not published, endorsed, or supported by the Retromod authors.
 
-[Download on Modrinth](https://modrinth.com/mod/retromod) · [CurseForge](https://www.curseforge.com/minecraft/mc-mods/retromod) · [Docs](https://bownlux.github.io/Retromod/) · [Compatibility database](https://bownlux.github.io/Retromod/compatdb/)
+## Status
 
-Retromod runs older Minecraft mods on newer versions of the game, without waiting for the mod's author to update it. It works on Fabric, Quilt, and Forge for Minecraft 1.20 through 26.3, and on NeoForge 1.20.1 through 26.3. Mods built around their own renderer or deep loader internals, such as Create or OptiFine, still need a real port.
+Work in progress. Nothing is backported yet. The first milestone covers one case only:
 
-Also, Retromod translates with fixed rules and mapping tables, It does not use AI. It updates a mod's names, mixins, and metadata for your Minecraft version, fills in removed APIs where it can, and reports anything it could not resolve. Everything runs on your computer with no network requests. AI tools helped build Retromod, but no AI runs when a mod is translated.
+- Direction: newer to older.
+- Versions: Minecraft 26.2 mods on 26.1.2.
+- Loader: Fabric.
+- Interface: an offline CLI, `in.jar` to `out.jar`, plus a report.
 
-## 📥 Downloads
+Mods with their own renderer, heavy mixins, native code, or shaders are out of scope. Quilt, Forge, NeoForge, and other version pairs come later, if at all. Read [docs-dev/BACKPORT_FINDINGS.md](docs-dev/BACKPORT_FINDINGS.md) for what the upstream code can and cannot do in this direction.
 
-You can Download Retromod from [Modrinth](https://modrinth.com/mod/retromod) or [CurseForge](https://www.curseforge.com/minecraft/mc-mods/retromod). Pick the jar that matches both your loader and your Minecraft version. Quilt uses the Fabric jar, which carries both `fabric.mod.json` and `quilt.mod.json`.
+## Build
 
-
-## 🖥️ Installation
-
-Put Retromod in `mods/`. On Forge and NeoForge, put old mods in `mods/` too, launch, and restart when prompted. Retromod translates each old jar into `retromod-cache/translated/` and loads that copy, so the files in `mods/` never change. Later launches load the cached copy with no restart. Set `write_translated_jars` to `true` in `config/retromod/config.json` to write translated jars into `mods/` instead, as earlier versions did.
-
-On Fabric and Quilt, also install Fabric API, then launch once and close the game. Put old mods in `retromod-input/`, launch, and restart when prompted. Fabric and Quilt check mod versions before Retromod runs, so an old jar in `mods/` stops the game. Retromod moves each translated jar to `mods/` and keeps the original in `retromod-input/processed/`.
-
-Back up your worlds first, because Retromod keeps mod jars, not saves. The [installation guide](https://bownlux.github.io/Retromod/installation) covers resource packs, data packs, sharing translated mods, updating, and uninstalling.
-
-## 🙇 Getting Help
-
-Start with `logs/latest.log`. The first Retromod, loader, or mixin error usually explains more than the final crash. The [troubleshooting guide](https://bownlux.github.io/Retromod/troubleshooting) covers common errors, and the [FAQ](https://bownlux.github.io/Retromod/faq) covers servers, modpacks, and safety. The full [documentation](https://bownlux.github.io/Retromod/) also covers configuration, the CLI, and internals.
-
-## 📬 Reporting Issues
-
-Please open a [bug report](https://github.com/Bownlux/Retromod/issues/new?template=bug_report.yml) when a mod fails to transform, crashes, or behaves incorrectly after Retromod runs. Attach `logs/latest.log`, any report in `config/retromod/verify-reports/`, and `config/retromod/config.json`. Include a link to the exact mod version and the Minecraft version it was built for. Also name your loader and give your Minecraft, loader, Java, and Retromod versions. On Quilt, pick Fabric in the loader field and mention Quilt in the description.n.
-
-Report security problems privately through [GitHub's private vulnerability reporting](https://github.com/Bownlux/Retromod/security/advisories/new), as [SECURITY.md](SECURITY.md) describes. Do not open a public issue for them.
-
-## 💬 Join the Community
-
-Ask questions and propose designs in [GitHub Discussions](https://github.com/Bownlux/Retromod/discussions). Small, focused pull requests are welcome. Open a discussion before you start a large new subsystem (I have Broken this rule Multiple times on other Repos and I Wasted a lot of time). See [Contributing](https://bownlux.github.io/Retromod/contributing).
-
-After you test a mod, file a [compatibility report](https://github.com/Bownlux/Retromod/issues/new?template=compat_report.yml), including partial results. Merged reports appear in the compatibility database.
-
-## ✅ Compatibility
-
-Retromod ships one jar per loader and Minecraft version.
-
-| Loader | Host Minecraft | Mods built for |
-|---|---|---|
-| Fabric | 1.20 through 26.3 | 1.14.4 and newer |
-| Quilt | 1.20 through 26.3, using the Fabric jar | 1.18.2 and newer |
-| Forge | 1.20 through 26.3 | 1.12.2 and newer |
-| NeoForge | 1.20.1 through 26.3 | 1.20.1 and newer |
-
-Content mods, libraries, and quality-of-life mods work best. Test each mod in game: the [compatibility database](https://bownlux.github.io/Retromod/compatdb/) lists reported results, and [Mods That Can't Be Translated](https://bownlux.github.io/Retromod/incompatible-mods) lists the known gaps.
-
-## ⌨️ Command-Line Tool
-
-The standalone CLI runs the same transform core without launching Minecraft. Use it for servers, modpacks, CI, and compatibility checks.
+Backmod needs JDK 25 and Maven. The build targets Java 17 bytecode.
 
 ```bash
-java -jar retromod-1.4.0-snapshot.4-cli.jar batch path/to/mods \
-  --aot --mc-jar path/to/minecraft-26.3-client.jar --verify
+mvn package -q -DskipTests -Dexec.skip=true
+java -jar target/backmod-1.4.0-snapshot.4-all.jar --help
 ```
 
-`batch` writes to `<input>/retromod-output/` and leaves the source jars untouched. `--aot` prepares cached transforms. `--mc-jar` gives mixin repair the exact target jar. `--verify` writes unresolved-reference reports to `config/retromod/verify-reports/` in the working directory. `export <game-dir>` copies the translations a Forge or NeoForge game made, so you can share them with a game that runs the same loader, Minecraft version, and Retromod. Run `--help` for every command, or read the [CLI guide](https://bownlux.github.io/Retromod/cli).
+Always pass `-Dexec.skip=true`, or Maven runs the CLI entry point.
 
-## 🛠️ Building from Source
+## What Changed From Upstream
 
-Retromod builds with Maven, Not Gradle. You need JDK 25 and Maven 3.8 or newer. It compiles with Java 25 but emits Java 17 bytecode, so the same code runs on Java 17, 21, and 25. Each jar still needs the Java version its Minecraft requires.
+- The project name, CLI banner, usage text, and jar manifest title say Backmod.
+- The self-hash is empty and the authenticity check expects the title `Backmod`, so builds report an unknown hash instead of being labeled as a modified Retromod release.
+- The Java package is still `com.retromod`, and folders such as `retromod-input/` keep their names. This keeps upstream fixes mergeable. Treat those names as internal.
+- The Forge and NeoForge bootstrap scripts (`scripts/loader_bootstrap.py`, `build-all.sh`) still write the title `Retromod`. They are unused here and not updated.
+- The original README is kept at [docs-dev/UPSTREAM_README.md](docs-dev/UPSTREAM_README.md).
 
-Once You have Cloned the Repo, run this command in the root directory to build Retromod jars:
-```bash
-mvn package -Dexec.skip=true
-```
+## Credits and License
 
-Always pass `-Dexec.skip=true`. Without it, `mvn package` also runs `build-all.sh --skip-build` and rebuilds `dist/`. Add `-DskipTests` to skip the test suite, or run `mvn test -Dexec.skip=true` to run only the tests. The build writes `target/retromod-<version>.jar` and `target/retromod-<version>-all.jar`.
-
-To build the jars you install in a game, run the release script. It also needs Python 3, `zip`, and `unzip`.
-
-```bash
-bash build-all.sh
-```
-
-It writes 71 loader jars to `dist/{Fabric,Forge,NeoForge}/<mc>/retromod-<version>+<mc>.jar` and the CLI to `dist/CLI/retromod-<version>-cli.jar`. A complete build also writes `dist/SHA256SUMS.txt` for all 72 artifacts. Test in game with these jars, not the raw `-all.jar`. That jar bundles its own ASM, which conflicts with the copy every loader already provides. See [Contributing](https://bownlux.github.io/Retromod/contributing) for tests and release steps.
-
-## 📜 License
-
-Retromod is released under the [MIT License](LICENSE). Contributions are distributed under the same license. You still need to follow the licenses of Minecraft, your loader, and every mod you translate. Files adapted from Fabric API stay under the Apache License 2.0, and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) lists them.
-
-## 🙏 Credits
-
-Retromod is made by Bownlux, a developer of [RevivalSMP.net](https://revivalsmp.net). Thanks to every [GitHub contributor](https://github.com/Bownlux/Retromod/graphs/contributors).
-
-Retromod builds on open-source work, and thanks the people who keep it open:
-
-- [OW2 ASM](https://asm.ow2.io/), which reads and writes every class Retromod translates
-- [FabricMC](https://fabricmc.net/) for Fabric Loader, Fabric API, and the intermediary mappings
-- the [Quilt](https://quiltmc.org/) and [NeoForge](https://neoforged.net/), Teams for always innovating, improving loaders, and keeping them open source.
-- [Minecraft Forge](https://minecraftforge.net/) For starting a big Minecraft Modding Culture and keeping Forge open source.
-- [SpongePowered Mixin](https://github.com/SpongePowered/Mixin) and [MixinExtras](https://github.com/LlamaLad7/MixinExtras)
-- [Sinytra Connector](https://github.com/Sinytra/Connector), parts of which Retromod adapts under the MIT License
-- [Gson](https://github.com/google/gson), [Guava](https://github.com/google/guava), and [SLF4J](https://www.slf4j.org/)
+Backmod builds on Retromod, Copyright (c) 2026 Bownlux, under the MIT License. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The upstream docs live at https://bownlux.github.io/Retromod/.

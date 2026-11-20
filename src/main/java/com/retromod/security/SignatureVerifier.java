@@ -42,12 +42,12 @@ public final class SignatureVerifier {
      * <p>Empty in dev/source builds: status is then {@link Status#UNKNOWN} and the computed
      * hash is logged so a release build can embed it. See {@code docs/authenticity.md}.
      */
-    private static final String EXPECTED_SELF_HASH = "D42192272493F8C389995AB86AB196C6D81A4EB0FC9A2509038D07984343C38E";
+    private static final String EXPECTED_SELF_HASH = "";
 
     /** This class's own jar entry, excluded from the hash (it carries the hash). */
     private static final String SELF_ENTRY = "com/retromod/security/SignatureVerifier.class";
 
-    private static final String EXPECTED_IMPL_TITLE = "Retromod";
+    private static final String EXPECTED_IMPL_TITLE = "Backmod";
     private static final int MAX_JAR_ENTRIES = 100_000;
     private static final long MAX_MANIFEST_BYTES = 1024L * 1024;
 
@@ -254,12 +254,11 @@ public final class SignatureVerifier {
 
     // This is an informational notice, not a security boundary.
     private static final String FORK_NOTICE_TEMPLATE =
-        "This appears to be a modified %s build. If you expected the published %s, "
-        + "compare it with the files at github.com/Bownlux/%s.";
+        "This appears to be a modified %s build. Backmod is an unofficial fork of Retromod "
+        + "(github.com/Bownlux/Retromod, MIT) and is not published by its authors.";
 
     private static String forkNotice() {
-        return String.format(FORK_NOTICE_TEMPLATE,
-                EXPECTED_IMPL_TITLE, EXPECTED_IMPL_TITLE, EXPECTED_IMPL_TITLE);
+        return String.format(FORK_NOTICE_TEMPLATE, EXPECTED_IMPL_TITLE);
     }
 
     /**
