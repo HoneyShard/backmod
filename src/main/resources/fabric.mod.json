@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "retromod",
   "version": "${project.version}",
-  "name": "Retromod",
+  "name": "Backmod",
   "description": "Helps older Minecraft mods run on newer versions by updating their bytecode, mixins, and loader metadata.",
   "authors": ["Bownlux"],
   "contact": {
@@ -17,7 +17,7 @@
     "main": ["com.retromod.core.Retromod"],
     "client": ["com.retromod.core.RetromodClient"],
     "server": ["com.retromod.core.RetromodServer"],
-    "preLaunch": ["com.retromod.core.RetromodPreLaunch"]
+    "preLaunch": ["com.retromod.core.RetromodPreLaunch", "com.retromod.backport.BackportPreLaunch"]
   },
   "depends": {
     "fabricloader": ">=0.16.0",

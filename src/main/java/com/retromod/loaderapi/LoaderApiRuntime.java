@@ -100,6 +100,11 @@ public final class LoaderApiRuntime {
         return decided;
     }
 
+    /** Puts back a setting read earlier with {@link #effective()}, after a caller changed it for one task. */
+    public static void restore(LoaderApiSetting.Effective previous) {
+        effective = previous;
+    }
+
     private static void publish(LoaderApiSetting.Effective decided, boolean cli) {
         effective = decided;
         if (anyProviderOn()) {

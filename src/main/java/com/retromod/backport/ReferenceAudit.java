@@ -25,13 +25,21 @@ public final class ReferenceAudit {
     private ReferenceAudit() {
     }
 
-    /** One missing reference, as the report shows it. */
-    public record Missing(String what, String usedBy) {
+    /**
+     * One missing reference, as the report shows it. A structural one means a class that extends a
+     * game type cannot be built or used as written, so it fails when the class loads, not when a call runs.
+     */
+    public record Missing(String what, String usedBy, boolean structural) {
+        public Missing(String what, String usedBy) {
+            this(what, usedBy, false);
+        }
     }
 
     /** Scans every class in {@code jar} that is not under a Fabric, Mixin or embedded helper path. */
     public static Set<Missing> scan(Path jar, HostIndex host) throws IOException {
         Set<Missing> missing = new LinkedHashSet<>();
+        // Look at what the mod's own classes inherit from the game before the per-reference scan.
+        missing.addAll(HierarchyAudit.scan(ClassSet.fromJar(jar), host));
         try (JarFile file = new JarFile(jar.toFile())) {
             var entries = file.entries();
             while (entries.hasMoreElements()) {
@@ -62,6 +70,7 @@ public final class ReferenceAudit {
         private final HostIndex host;
         private final Set<Missing> missing;
         private String current = "?";
+        private String superName;
 
         Scanner(HostIndex host, Set<Missing> missing) {
             super(Opcodes.ASM9);
@@ -73,6 +82,7 @@ public final class ReferenceAudit {
         public void visit(int version, int access, String name, String signature, String superName,
                           String[] interfaces) {
             current = name;
+            this.superName = superName;
             type(superName);
             if (interfaces != null) {
                 for (String i : interfaces) {
@@ -90,6 +100,7 @@ public final class ReferenceAudit {
         @Override
         public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] ex) {
             descriptor(desc);
+            boolean constructor = name.equals("<init>");
             return new MethodVisitor(Opcodes.ASM9) {
                 @Override
                 public void visitTypeInsn(int opcode, String t) {
@@ -98,13 +109,16 @@ public final class ReferenceAudit {
 
                 @Override
                 public void visitFieldInsn(int opcode, String owner, String n, String d) {
-                    member(owner, n, null, false);
+                    member(owner, n, null, false, false);
                     descriptor(d);
                 }
 
                 @Override
                 public void visitMethodInsn(int opcode, String owner, String n, String d, boolean itf) {
-                    member(owner, n, d, true);
+                    // A super constructor the game lacks stops the class from loading, so it is structural.
+                    boolean superCall = constructor && opcode == Opcodes.INVOKESPECIAL && n.equals("<init>")
+                            && owner.equals(superName);
+                    member(owner, n, d, true, superCall);
                     descriptor(d);
                 }
 
@@ -147,7 +161,7 @@ public final class ReferenceAudit {
             }
         }
 
-        private void member(String owner, String name, String desc, boolean method) {
+        private void member(String owner, String name, String desc, boolean method, boolean structural) {
             if (owner.startsWith("[") || !isGame(owner)) {
                 return;
             }
@@ -156,7 +170,7 @@ public final class ReferenceAudit {
                 missing.add(new Missing("class " + owner, current));
             } else if (p == Presence.MISSING) {
                 missing.add(new Missing((method ? "method " : "field ") + owner + "." + name
-                        + (desc == null ? "" : desc), current));
+                        + (desc == null ? "" : desc), current, structural));
             }
         }
     }

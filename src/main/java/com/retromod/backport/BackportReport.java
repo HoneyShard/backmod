@@ -19,9 +19,17 @@ public final class BackportReport {
     private final List<Finding> mixins;
     private final Set<ReferenceAudit.Missing> missing;
     private final double lossThreshold;
+    private final List<BundledFabricApi.Module> bundledRemoved;
 
     public BackportReport(String modFile, String source, String target, BackportRegistration.Counts counts,
                           List<Finding> mixins, Set<ReferenceAudit.Missing> missing, double lossThreshold) {
+        this(modFile, source, target, counts, mixins, missing, lossThreshold, List.of());
+    }
+
+    public BackportReport(String modFile, String source, String target, BackportRegistration.Counts counts,
+                          List<Finding> mixins, Set<ReferenceAudit.Missing> missing, double lossThreshold,
+                          List<BundledFabricApi.Module> bundledRemoved) {
+        this.bundledRemoved = bundledRemoved;
         this.modFile = modFile;
         this.source = source;
         this.target = target;
@@ -45,8 +53,17 @@ public final class BackportReport {
         return mixins.isEmpty() ? 0 : (stripped().size() + memberMissing().size()) / (double) mixins.size();
     }
 
+    /** Missing references in classes that extend game types and so cannot load or run as written. */
+    private List<ReferenceAudit.Missing> structural() {
+        return missing.stream().filter(ReferenceAudit.Missing::structural).toList();
+    }
+
     public Verdict verdict() {
         if (!mixins.isEmpty() && lostFraction() >= lossThreshold) {
+            return Verdict.LIKELY_BROKEN;
+        }
+        // A class that cannot be built fails at load, wherever in the mod it sits.
+        if (!structural().isEmpty()) {
             return Verdict.LIKELY_BROKEN;
         }
         return stripped().isEmpty() && memberMissing().isEmpty() && missing.isEmpty()
@@ -86,13 +103,27 @@ public final class BackportReport {
             sb.append("None.\n");
         }
 
+        if (!bundledRemoved.isEmpty()) {
+            sb.append("\n## Bundled Fabric API modules removed\n\n");
+            sb.append("This mod carried ").append(source).append(" builds of these Fabric API modules. Fabric Loader would ")
+                    .append("have loaded them over the ").append(target).append(" builds in the installed Fabric API, ")
+                    .append("and their mixins do not match ").append(target).append(". They are removed, and the mod now ")
+                    .append("requires each one from the installed Fabric API.\n\n");
+            bundledRemoved.forEach(m -> sb.append("- ").append(m).append("\n"));
+        }
+
         sb.append("\n## Game references with no ").append(target).append(" counterpart\n\n");
         if (missing.isEmpty()) {
             sb.append("None found. Every class, method and field the mod uses from Minecraft exists in ")
                     .append(target).append(".\n");
         } else {
+            if (!structural().isEmpty()) {
+                sb.append("Entries marked (breaks the class) are classes that extend a game type whose shape changed. ")
+                        .append("They fail when the class loads, so the verdict is LIKELY_BROKEN.\n\n");
+            }
             for (ReferenceAudit.Missing m : missing) {
-                sb.append("- ").append(m.what()).append(" (used by ").append(m.usedBy()).append(")\n");
+                sb.append("- ").append(m.what()).append(" (used by ").append(m.usedBy()).append(m.structural() ? ", breaks the class" : "")
+                        .append(")\n");
             }
             sb.append("\nA missing reference fails only when that code runs. See docs-dev/backport/non-invertible-report.md for the known gaps.\n");
         }

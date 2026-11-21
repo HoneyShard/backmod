@@ -1,0 +1,8 @@
+# Backmod: redirects written by hand for 26.2 changes the diff tool cannot pair. BackportDiffTool never writes this file.
+# Each row was checked against both client jars (javap) and is exercised by a mod in docs-dev/backport/compatibility.md.
+# columns: KIND	OLD_OWNER(26.2)	NAME	DESC	NEW_OWNER(26.1.2)	NEW_NAME	NEW_DESC	REASON
+# KIND is "class" (NAME, DESC, NEW_NAME, NEW_DESC empty), "method", or "iface-method": the single abstract
+# method of a functional interface, renamed for direct calls and for lambdas (invokedynamic), which a plain "method" row misses.
+class	net/minecraft/client/OptionInstance$ValueUpdateListener			java/util/function/Consumer			26.2 added its own listener interface; 26.1.2's OptionInstance takes a Consumer. Same shape, one void method taking the value.
+iface-method	net/minecraft/client/OptionInstance$ValueUpdateListener	valueChanged	(Ljava/lang/Object;)V	java/util/function/Consumer	accept	(Ljava/lang/Object;)V	Pairs with the class row above.
+method	net/minecraft/client/renderer/ItemInHandRenderer	submitHandsWithItems	(FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/player/LocalPlayer;I)V	net/minecraft/client/renderer/ItemInHandRenderer	renderHandsWithItems	(FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/player/LocalPlayer;I)V	Name-only rename (render to submit). Bodies match instruction for instruction except that 26.1.2 ends by flushing the feature dispatcher and buffer source, which 26.2 moved into GameRenderer.renderItemInHand.

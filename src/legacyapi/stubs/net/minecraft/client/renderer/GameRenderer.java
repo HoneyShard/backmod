@@ -2,6 +2,7 @@
 package net.minecraft.client.renderer;
 
 import net.minecraft.client.Camera;
+import net.minecraft.client.renderer.feature.FeatureRenderDispatcher;
 import net.minecraft.client.renderer.state.GameRenderState;
 
 public class GameRenderer {
@@ -10,4 +11,6 @@ public class GameRenderer {
     public Camera mainCamera() { throw new UnsupportedOperationException(); }
 
     public GameRenderState gameRenderState() { throw new UnsupportedOperationException(); }
+
+    public FeatureRenderDispatcher getFeatureRenderDispatcher() { throw new UnsupportedOperationException(); }
 }

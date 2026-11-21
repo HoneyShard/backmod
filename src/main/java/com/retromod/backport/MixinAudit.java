@@ -183,7 +183,68 @@ public final class MixinAudit {
                     problems.add(shortName(a.desc) + " selector " + selector + " not found in " + targets);
                 }
             }
+            // An injection point that names a call or field the game no longer has is skipped just as silently.
+            for (String problem : missingAtTargets(a, host)) {
+                problems.add(shortName(a.desc) + " " + problem);
+            }
         }
+    }
+
+    /** Checks the {@code target} of each {@code @At(INVOKE...)} or {@code @At(FIELD)} an injector names. */
+    static List<String> missingAtTargets(AnnotationNode injector, HostIndex host) {
+        List<String> missing = new ArrayList<>();
+        if (injector.values == null) {
+            return missing;
+        }
+        for (int i = 0; i + 1 < injector.values.size(); i += 2) {
+            if (!"at".equals(injector.values.get(i))) {
+                continue;
+            }
+            Object value = injector.values.get(i + 1);
+            List<?> ats = value instanceof List<?> list ? list : List.of(value);
+            for (Object o : ats) {
+                if (!(o instanceof AnnotationNode at)) {
+                    continue;
+                }
+                String kind = stringValue(at, "value");
+                String target = stringValue(at, "target");
+                if (kind == null || target == null) {
+                    continue;
+                }
+                boolean field = kind.equals("FIELD");
+                if (!field && !kind.startsWith("INVOKE")) {
+                    continue;
+                }
+                String problem = checkAtTarget(kind, target, field, host);
+                if (problem != null) {
+                    missing.add(problem);
+                }
+            }
+        }
+        return missing;
+    }
+
+    /** Returns a problem line when the owner class or member of an @At target is not in the game jar, else null. */
+    private static String checkAtTarget(String kind, String target, boolean field, HostIndex host) {
+        // Both Lowner;name(desc)ret and owner.name(desc)ret are written in the wild.
+        java.util.regex.Matcher m = java.util.regex.Pattern
+                .compile("^L?([^;.:(]+)[;.]([^(:]+)(\\(.*|:.*)?$").matcher(target.trim());
+        if (!m.matches()) {
+            return null;
+        }
+        String owner = m.group(1);
+        String name = m.group(2);
+        String rest = m.group(3);
+        if (!(owner.startsWith("net/minecraft/") || owner.startsWith("com/mojang/"))) {
+            return null;
+        }
+        String desc = rest == null ? null : rest.startsWith(":") ? rest.substring(1) : rest;
+        Presence p = host.member(owner, name, field ? null : desc, !field);
+        if (p == Presence.FOUND || p == Presence.UNKNOWN) {
+            return null;
+        }
+        return "@At(" + kind + ") target " + owner.substring(owner.lastIndexOf('/') + 1) + "." + name
+                + (desc == null ? "" : desc) + (p == Presence.CLASS_MISSING ? " (class missing)" : " not found");
     }
 
     /** Splits {@code Lowner;name(desc)ret} into name and descriptor, or null when it is a pattern. */

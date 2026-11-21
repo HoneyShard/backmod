@@ -34,9 +34,61 @@ public final class HostIndex {
         if (method && desc != null && OBJECT_METHODS.contains(name + desc)) {
             return Presence.FOUND;
         }
+        // Constructors are not inherited, so a supertype outside the jar cannot supply one.
+        if (method && (name.equals("<init>") || name.equals("<clinit>"))) {
+            return declares(host.get(owner), name, desc) ? Presence.FOUND : Presence.MISSING;
+        }
         boolean[] unknownParent = {false};
         return search(owner, name, desc, method, new HashSet<>(), unknownParent)
                 ? Presence.FOUND : unknownParent[0] ? Presence.UNKNOWN : Presence.MISSING;
+    }
+
+    /** The class entry for a game class, or null when the jar has none. */
+    public ClassSet.Entry entry(String internalName) {
+        return host.get(internalName);
+    }
+
+    /** True for methods every class has through java.lang.Object. */
+    public static boolean isObjectMethod(String name, String desc) {
+        return OBJECT_METHODS.contains(name + desc);
+    }
+
+    /** Whether a JDK class has the member, or null when {@code owner} is not a JDK class this JVM can load. */
+    private static Boolean jdkHas(String owner, String name, String desc, boolean method) {
+        if (!owner.startsWith("java/") && !owner.startsWith("javax/")) {
+            return null;
+        }
+        try {
+            Class<?> type = Class.forName(owner.replace('/', '.'), false, ClassLoader.getPlatformClassLoader());
+            if (!method) {
+                for (java.lang.reflect.Field f : type.getFields()) {
+                    if (f.getName().equals(name)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            // getMethods covers public members of the class and everything it inherits.
+            for (java.lang.reflect.Method m : type.getMethods()) {
+                if (m.getName().equals(name) && (desc == null
+                        || java.lang.invoke.MethodType.methodType(m.getReturnType(), m.getParameterTypes())
+                        .toMethodDescriptorString().equals(desc))) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (ClassNotFoundException | LinkageError e) {
+            return null;
+        }
+    }
+
+    private static boolean declares(ClassSet.Entry cls, String name, String desc) {
+        for (Member m : cls.members().values()) {
+            if (m.method() && m.name().equals(name) && (desc == null || m.desc().equals(desc))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean search(String owner, String name, String desc, boolean method, Set<String> seen,
@@ -46,6 +98,11 @@ public final class HostIndex {
         }
         ClassSet.Entry cls = host.get(owner);
         if (cls == null) {
+            // A JDK supertype can be read from the running JDK, so a method it lacks is MISSING, not UNKNOWN.
+            Boolean jdk = jdkHas(owner, name, desc, method);
+            if (jdk != null) {
+                return jdk;
+            }
             // java/lang/Object has no members a game call needs, anything else may hold one.
             if (!owner.equals("java/lang/Object")) {
                 unknownParent[0] = true;

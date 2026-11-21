@@ -1,0 +1,33 @@
+# Backmod: 26.2 fields that hold a ColorCollection, and the suffix of the 16 per-color fields 26.1.2 has instead.
+# Each row was checked against both client jars: all 16 of <COLOR>_<SUFFIX> exist in 26.1.2, with the type in the last column.
+# A 26.2 read of OWNER.FIELD becomes a ColorCollection built from those 16 fields, in dye order (white to black).
+# columns: OWNER	FIELD	SUFFIX	ELEMENT_TYPE
+net/minecraft/world/item/Items	WOOL	WOOL	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	DYED_TERRACOTTA	TERRACOTTA	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	CARPET	CARPET	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	STAINED_GLASS	STAINED_GLASS	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	STAINED_GLASS_PANE	STAINED_GLASS_PANE	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	DYED_SHULKER_BOX	SHULKER_BOX	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	GLAZED_TERRACOTTA	GLAZED_TERRACOTTA	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	CONCRETE	CONCRETE	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	CONCRETE_POWDER	CONCRETE_POWDER	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	HARNESS	HARNESS	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	DYED_BUNDLE	BUNDLE	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	DYE	DYE	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	BED	BED	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	BANNER	BANNER	net/minecraft/world/item/Item
+net/minecraft/world/item/Items	DYED_CANDLE	CANDLE	net/minecraft/world/item/Item
+net/minecraft/world/level/block/Blocks	BED	BED	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	WOOL	WOOL	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	STAINED_GLASS	STAINED_GLASS	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	DYED_TERRACOTTA	TERRACOTTA	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	STAINED_GLASS_PANE	STAINED_GLASS_PANE	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	CARPET	CARPET	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	BANNER	BANNER	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	WALL_BANNER	WALL_BANNER	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	DYED_SHULKER_BOX	SHULKER_BOX	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	GLAZED_TERRACOTTA	GLAZED_TERRACOTTA	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	CONCRETE	CONCRETE	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	CONCRETE_POWDER	CONCRETE_POWDER	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	DYED_CANDLE	CANDLE	net/minecraft/world/level/block/Block
+net/minecraft/world/level/block/Blocks	DYED_CANDLE_CAKE	CANDLE_CAKE	net/minecraft/world/level/block/Block

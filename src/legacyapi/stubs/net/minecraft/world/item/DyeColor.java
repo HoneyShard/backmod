@@ -1,7 +1,6 @@
-// Compile-only stub of a 26.3 host type for src/legacyapi; never packaged.
+// Compile-only stub of a 26.1.2 host type for src/legacyapi; never packaged.
 package net.minecraft.world.item;
 
-// An enum on the host; only its type matters to rebuilt code.
-public final class DyeColor {
-    private DyeColor() {}
+public enum DyeColor {
+    WHITE, ORANGE, MAGENTA, LIGHT_BLUE, YELLOW, LIME, PINK, GRAY, LIGHT_GRAY, CYAN, PURPLE, BLUE, BROWN, GREEN, RED, BLACK
 }

@@ -73,6 +73,10 @@ public class RetromodCli {
         String[] loaderApiFlag = new String[1];
         args = com.retromod.loaderapi.LoaderApiSetting.stripCliFlag(args, loaderApiFlag);
         args = stripBackportFlags(args);
+        // The sync command always goes backward, so it needs no --direction flag.
+        if (args.length > 0 && "sync".equalsIgnoreCase(args[0])) {
+            backport = true;
+        }
         // The loader API runtime rebuilds old Fabric API for newer hosts, so it has no role going back.
         com.retromod.loaderapi.LoaderApiRuntime.configureForCli(backport ? "false" : loaderApiFlag[0]);
 
@@ -140,14 +144,15 @@ public class RetromodCli {
             }
         }
 
-        if (backport && !"transform".equals(command)) {
-            System.err.println("--direction backport only works with the transform command.");
+        if (backport && !"transform".equals(command) && !"sync".equals(command)) {
+            System.err.println("--direction backport only works with the transform and sync commands.");
             System.exit(2);
         }
         try {
             switch (command) {
                 case "analyze" -> analyzeCommand(args);
                 case "transform" -> transformCommand(args);
+                case "sync" -> syncCommand(args);
                 case "aot" -> aotCommand(args);
                 case "embed" -> embedCommand(args);
                 case "batch" -> batchCommand(args);
@@ -740,7 +745,164 @@ public class RetromodCli {
                     + " client jar>. Backmod checks mixins and references against it.");
             System.exit(1);
         }
+        try {
+            backportOne(modPath, outputPath, outputPath.resolveSibling(
+                    outputPath.getFileName().toString().replaceAll("\\.jar$", "") + ".report.md"),
+                    mcJarPath, lossThreshold, false);
+        } catch (BackportRefused refused) {
+            System.err.println(refused.getMessage());
+            System.exit(1);
+        }
+        verifyIfRequested(outputPath, modPath.getFileName().toString(), args);
+    }
 
+    /** Backports every jar in one folder into another, skipping jars that have not changed. */
+    private static void syncCommand(String[] args) throws Exception {
+        Path from = Path.of("mods-26.2");
+        Path to = Path.of("mods-backported");
+        Path mcJar = null;
+        boolean force = false;
+        double lossThreshold = 0.5;
+        for (int i = 1; i < args.length; i++) {
+            switch (args[i]) {
+                case "--from" -> from = Path.of(args[++i]);
+                case "--to" -> to = Path.of(args[++i]);
+                case "--mc-jar" -> mcJar = Path.of(args[++i]);
+                case "--force" -> force = true;
+                case "--mixin-loss-threshold" -> lossThreshold = Double.parseDouble(args[++i]);
+                default -> {
+                    // Flags other commands share (--target, --host-jar) were read earlier.
+                }
+            }
+        }
+        if (mcJar == null || !Files.isRegularFile(mcJar)) {
+            System.err.println("Usage: sync --mc-jar <" + com.retromod.backport.BackportRegistration.TARGET
+                    + " client jar> [--from mods-26.2] [--to mods-backported] [--force]");
+            System.exit(1);
+        }
+        if (!Files.isDirectory(from)) {
+            System.err.println("The folder " + from + " does not exist. Create it and put the "
+                    + com.retromod.backport.BackportRegistration.SOURCE + " mod jars in it.");
+            System.exit(1);
+        }
+        if (from.toAbsolutePath().normalize().equals(to.toAbsolutePath().normalize())) {
+            System.err.println("--from and --to must be different folders.");
+            System.exit(1);
+        }
+        // The index and reports live beside the output folder, because Fabric Loader warns about any
+        // file in a mod folder that is not a jar.
+        Path info = to.toAbsolutePath().normalize().resolveSibling(to.getFileName() + "-info");
+
+        SyncResult result = runSync(from, to, info, mcJar, force, lossThreshold);
+
+        System.out.println();
+        System.out.println("Sync finished: " + result.backported() + " backported, " + result.unchanged() + " unchanged, "
+                + result.problems().size() + " failed or refused.");
+        result.verdicts().forEach(v -> System.out.println("  " + v));
+        result.problems().forEach(p -> System.err.println("  " + p));
+        System.out.println("Reports: " + info.resolve("reports"));
+        System.out.println("Load them with the Java argument -Dfabric.addMods=" + to);
+        if (!result.problems().isEmpty()) {
+            System.exit(1);
+        }
+    }
+
+    /** What one folder sync did. {@code removed} counts outputs deleted because their input is gone. */
+    public record SyncResult(int backported, int unchanged, int removed, List<String> verdicts, List<String> problems) {
+    }
+
+    /**
+     * Backports the jars in {@code from} into {@code to} for the running game, as the {@code sync} command does.
+     * Called from the Fabric pre-launch hook, so it sets up the CLI state {@code main} would have and never exits.
+     *
+     * @param stateDir where the index and the reports go, which must not be a mod folder
+     */
+    public static SyncResult syncForGame(Path from, Path to, Path stateDir, Path mcJar) throws Exception {
+        if (detector == null) {
+            detector = new ModVersionDetector();
+        }
+        // The loader API runtime rebuilds old Fabric API for newer hosts, so it has no role going back.
+        // The game's own setting comes back afterwards, because the forward path still reads it.
+        var gameSetting = com.retromod.loaderapi.LoaderApiRuntime.effective();
+        com.retromod.loaderapi.LoaderApiRuntime.configureForCli("false");
+        try {
+            return runSync(from, to, stateDir, mcJar, false, 0.5);
+        } finally {
+            com.retromod.loaderapi.LoaderApiRuntime.restore(gameSetting);
+        }
+    }
+
+    private static SyncResult runSync(Path from, Path to, Path info, Path mcJar, boolean force,
+            double lossThreshold) throws Exception {
+        Files.createDirectories(to);
+        var index = com.retromod.backport.SyncIndex.open(info,
+                com.retromod.backport.BackportRegistration.tablesStamp());
+        var plan = index.plan(from, to, force);
+
+        // An output whose input is gone leaves the folder, or the game would keep loading a mod the user removed.
+        int removed = 0;
+        for (String name : plan.staleOutputs()) {
+            Files.deleteIfExists(to.resolve(name));
+            Files.deleteIfExists(info.resolve("reports").resolve(name.replaceAll("\\.jar$", "") + ".report.md"));
+            index.forget(name);
+            removed++;
+            System.out.println("Removed " + name + " (no longer in " + from + ")");
+        }
+
+        int backported = 0;
+        int unchanged = 0;
+        List<String> problems = new ArrayList<>();
+        List<String> verdicts = new ArrayList<>();
+        for (var item : plan.items()) {
+            String name = item.input().getFileName().toString();
+            if (item.action() == com.retromod.backport.SyncIndex.Action.UP_TO_DATE) {
+                unchanged++;
+                continue;
+            }
+            // The output folder may be mods/, which also holds native jars. A jar that is not ours is never overwritten.
+            if (Files.exists(to.resolve(name)) && !index.knows(name)) {
+                problems.add(name + ": a jar with this name is already in " + to.getFileName()
+                        + " and Backmod did not write it. Rename one of them.");
+                continue;
+            }
+            // One bad jar must not stop the others, so each is handled on its own.
+            try {
+                var verdict = backportOne(item.input(), to.resolve(name),
+                        info.resolve("reports").resolve(name.replaceAll("\\.jar$", "") + ".report.md"),
+                        mcJar, lossThreshold, true);
+                index.markDone(name, item.sha256());
+                verdicts.add(name + ": " + verdict);
+                backported++;
+            } catch (BackportRefused refused) {
+                // An older output of this jar would otherwise keep loading.
+                if (index.knows(name)) {
+                    Files.deleteIfExists(to.resolve(name));
+                }
+                index.forget(name);
+                problems.add(name + ": " + refused.getMessage().lines().findFirst().orElse("refused")
+                        + " If it is a native mod for this Minecraft version, put it in mods/ instead.");
+            } catch (Exception | StackOverflowError failed) {
+                index.forget(name);
+                Files.deleteIfExists(to.resolve(name));
+                problems.add(name + ": " + failed.getClass().getSimpleName() + ": " + failed.getMessage());
+            }
+            // Saved after each jar, so a crash later in the run keeps the work already done.
+            index.save();
+        }
+        index.save();
+        return new SyncResult(backported, unchanged, removed, verdicts, problems);
+    }
+
+    /** A mod Backmod will not backport, with the reason to show the user. */
+    private static final class BackportRefused extends Exception {
+        BackportRefused(String message) {
+            super(message);
+        }
+    }
+
+    /** Backports one jar and writes its report. Returns the verdict. */
+    private static com.retromod.backport.BackportReport.Verdict backportOne(Path modPath, Path outputPath,
+            Path reportPath, Path mcJarPath, double lossThreshold, boolean requireDeclaredSource) throws Exception {
         // The default target is the newest version, which is the wrong end for a backport.
         if (!targetMcVersionExplicit) {
             TARGET_MC_VERSION = com.retromod.backport.BackportRegistration.TARGET;
@@ -750,18 +912,23 @@ public class RetromodCli {
 
         ModVersionInfo info = detector.detectVersion(modPath);
         if (info == null) {
-            System.err.println("Backmod could not read supported mod metadata from this jar.");
-            System.exit(1);
+            throw new BackportRefused("Backmod could not read supported mod metadata from this jar.");
+        }
+        // A folder sync trusts the folder name, but not over a jar that says it is older: rewriting a mod that
+        // already runs on the target would only damage it. A jar that declares nothing is taken as 26.2.
+        if (requireDeclaredSource && backportSource == null && !isUnknownSourceVersion(info.targetMcVersion())
+                && declaresOlderThanSource(info.targetMcVersion())) {
+            throw new BackportRefused("This mod declares Minecraft " + info.targetMcVersion()
+                    + ", not " + com.retromod.backport.BackportRegistration.SOURCE + ".");
         }
         String source = backportSourceFor(info);
         if (!com.retromod.backport.BackportRegistration.supports(info.modLoaderType(), source,
                 TARGET_MC_VERSION)) {
-            System.err.println("Backmod cannot backport this mod: " + info.modLoaderType() + " "
-                    + source + " to " + TARGET_MC_VERSION + " is not supported.");
-            System.err.println("The only supported case is a Fabric or Quilt mod built for "
+            throw new BackportRefused("Backmod cannot backport this mod: " + info.modLoaderType() + " "
+                    + source + " to " + TARGET_MC_VERSION + " is not supported.\n"
+                    + "The only supported case is a Fabric or Quilt mod built for "
                     + com.retromod.backport.BackportRegistration.SOURCE + ", for Minecraft "
                     + com.retromod.backport.BackportRegistration.TARGET + ".");
-            System.exit(1);
         }
 
         System.out.println("Backporting " + modPath.getFileName() + " from Minecraft " + source
@@ -793,14 +960,27 @@ public class RetromodCli {
                 modPath.getFileName().toString(), transformer,
                 com.retromod.core.SyntheticLibraries.NONE);
         com.retromod.core.ModuleInfoRepair.dropInvalid(outputPath);
-        writeBackportReport(modPath, outputPath, mcJarPath, source, counts, lossThreshold);
+        com.retromod.backport.BackportReport.Verdict verdict =
+                writeBackportReport(modPath, outputPath, reportPath, mcJarPath, source, counts, lossThreshold);
         System.out.println("Backported: " + outputPath);
-        verifyIfRequested(outputPath, modPath.getFileName().toString(), args);
+        return verdict;
     }
 
     /** Audits the output against the target game jar, drops mixins with no target, and writes the report. */
-    private static void writeBackportReport(Path modPath, Path outputPath, Path mcJarPath, String source,
+    private static com.retromod.backport.BackportReport.Verdict writeBackportReport(Path modPath, Path outputPath,
+            Path reportPath, Path mcJarPath, String source,
             com.retromod.backport.BackportRegistration.Counts counts, double lossThreshold) throws Exception {
+        // First, so the audits below do not count code that is about to go.
+        List<com.retromod.backport.BundledFabricApi.Module> bundled =
+                com.retromod.backport.BundledFabricApi.strip(outputPath);
+        for (var module : bundled) {
+            System.out.println("Removed bundled Fabric API module " + module
+                    + ". The installed Fabric API must provide it.");
+        }
+
+        // Hooks the mod wraps at 26.2-only call sites are written again against 26.1.2, before the audits see them.
+        com.retromod.backport.SupplementalMixins.apply(outputPath);
+
         com.retromod.backport.ClassSet hostClasses = com.retromod.backport.ClassSet.fromJar(mcJarPath,
                 "net/minecraft/", "com/mojang/");
         com.retromod.backport.HostIndex host = new com.retromod.backport.HostIndex(hostClasses);
@@ -828,26 +1008,31 @@ public class RetromodCli {
 
         var missing = com.retromod.backport.ReferenceAudit.scan(outputPath, host);
         var report = new com.retromod.backport.BackportReport(modPath.getFileName().toString(), source,
-                TARGET_MC_VERSION, counts, mixins, missing, lossThreshold);
-        Path reportPath = outputPath.resolveSibling(
-                outputPath.getFileName().toString().replaceAll("\\.jar$", "") + ".report.md");
+                TARGET_MC_VERSION, counts, mixins, missing, lossThreshold, bundled);
+        Files.createDirectories(reportPath.toAbsolutePath().getParent());
         Files.writeString(reportPath, report.render());
         System.out.println("Verdict: " + report.verdict() + " (" + report.stripped().size()
                 + " mixin(s) removed, " + missing.size() + " reference(s) with no " + TARGET_MC_VERSION
                 + " counterpart)");
         System.out.println("Report: " + reportPath);
+        return report.verdict();
     }
 
     /** The version a mod was built for: {@code --source}, else its declared floor, else 26.2. */
+    /** True when the declared Minecraft version is unknown or reads as older than the source version. */
+    private static boolean declaresOlderThanSource(String declared) {
+        return isUnknownSourceVersion(declared)
+                || !com.retromod.core.RetromodVersion.mcVersionExceeds(declared,
+                        com.retromod.backport.BackportRegistration.SOURCE)
+                && !declared.equals(com.retromod.backport.BackportRegistration.SOURCE);
+    }
+
     private static String backportSourceFor(ModVersionInfo info) {
         if (backportSource != null) {
             return backportSource;
         }
         String declared = info.targetMcVersion();
-        if (isUnknownSourceVersion(declared)
-                || !com.retromod.core.RetromodVersion.mcVersionExceeds(declared,
-                        com.retromod.backport.BackportRegistration.SOURCE)
-                && !declared.equals(com.retromod.backport.BackportRegistration.SOURCE)) {
+        if (declaresOlderThanSource(declared)) {
             System.err.println(declared == null
                     ? "The mod does not declare a Minecraft version."
                     : "The mod declares Minecraft " + declared + ", which reads as older than "
@@ -3530,6 +3715,7 @@ public class RetromodCli {
         System.out.println("Commands:");
         System.out.println("  analyze <mod.jar>              Inspect metadata and scan the jar");
         System.out.println("  transform <mod.jar>            Update one mod");
+        System.out.println("  sync --mc-jar <client.jar>     Backport mods-26.2/ into mods-backported/");
         System.out.println("  aot <mod.jar>                  Prepare one mod ahead of launch");
         System.out.println("  batch <folder>                 Update every mod in a folder");
         System.out.println("  prepare <game-dir>             Translate the old mods in a game's mods folder");

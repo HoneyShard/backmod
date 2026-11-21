@@ -64,6 +64,28 @@ public final class BackportRegistration {
             fields++;
         }
 
+        // Hand-written rows for changes the diff cannot pair. After the generated tables, so they win a tie.
+        for (String[] row : rows("manual.tsv", 7)) {
+            boolean isClass = row[0].equals("class");
+            boolean complete = !row[1].isBlank() && !row[4].isBlank()
+                    && (isClass || (!row[2].isBlank() && !row[3].isBlank() && !row[5].isBlank() && !row[6].isBlank()));
+            if (!complete) {
+                throw new IllegalStateException("Incomplete row in manual.tsv: " + String.join(" | ", row));
+            }
+            if (isClass) {
+                transformer.registerClassRedirect(row[1], row[4]);
+                classes++;
+            } else if (row[0].equals("method")) {
+                transformer.registerMethodRedirect(row[1], row[2], row[3], row[4], row[5], row[6]);
+                methods++;
+            } else if (row[0].equals("iface-method")) {
+                transformer.registerInterfaceMethodRename(row[1], row[2], row[5]);
+                methods++;
+            } else {
+                throw new IllegalStateException("Unknown kind in manual.tsv: " + row[0]);
+            }
+        }
+
         // A class 26.2 split out of an older one is the older class again. If 26.2 reaches it through
         // a field on that class, the read becomes the object itself.
         int splits = 0;
@@ -100,7 +122,53 @@ public final class BackportRegistration {
         if (!bridges.isEmpty()) {
             transformer.registerSyntheticClass(BridgeHelper.NAME, BridgeHelper.build(bridges));
         }
+
+        // Builder.tooltip(Component) is new in 26.2. The helper sets the same private field 26.1.2 reads.
+        transformer.registerMethodRedirect(SpriteTooltipHelper.BUILDER, SpriteTooltipHelper.METHOD,
+                "(Lnet/minecraft/network/chat/Component;)L" + SpriteTooltipHelper.BUILDER + ";",
+                SpriteTooltipHelper.NAME, SpriteTooltipHelper.METHOD, SpriteTooltipHelper.DESC, true);
+        transformer.registerSyntheticClass(SpriteTooltipHelper.NAME, SpriteTooltipHelper.build());
+        methods++;
+
+        // Rendering API 26.2 reshaped: pipeline builders, bind groups, blend factors, draw modes.
+        methods += RenderBackport.register(transformer);
         return new Counts(classes, methods, fields, splits, bridges.size());
+    }
+
+    /**
+     * A short hash of every shipped table plus the Backmod version. A sync that finds a different stamp
+     * rebuilds all its jars, because the same input can now produce a different output.
+     */
+    public static String tablesStamp() {
+        try {
+            java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
+            digest.update(com.retromod.core.RetromodVersion.RETROMOD_VERSION.getBytes(StandardCharsets.UTF_8));
+            // The registration code and the rebuilt render classes change output as much as the tables do.
+            // Without this, a Backmod update that only changes code keeps every old conversion.
+            digest.update(codeIdentity().getBytes(StandardCharsets.UTF_8));
+            for (String table : List.of("classes.tsv", "methods.tsv", "fields.tsv", "splits.tsv", "bridges.tsv",
+                    "manual.tsv", "colors.tsv")) {
+                try (InputStream in = BackportRegistration.class.getResourceAsStream(DIR + table)) {
+                    if (in != null) {
+                        digest.update(in.readAllBytes());
+                    }
+                }
+            }
+            return java.util.HexFormat.of().formatHex(digest.digest()).substring(0, 16);
+        } catch (java.security.NoSuchAlgorithmException | IOException e) {
+            throw new IllegalStateException("Backmod could not read its own tables: " + e.getMessage(), e);
+        }
+    }
+
+    /** The self-hash of the running Backmod jar, or empty on an unpackaged development run. */
+    static String codeIdentity() {
+        try {
+            String hash = com.retromod.security.SignatureVerifier.verify().selfHash();
+            return hash == null ? "" : hash;
+        } catch (Throwable t) {
+            // A development classpath has no jar to hash. The stamp then follows the version and tables only.
+            return "";
+        }
     }
 
     /** Reads a tab-separated table, skipping comments and requiring at least {@code columns} columns. */

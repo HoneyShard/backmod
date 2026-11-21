@@ -7,3 +7,4 @@ net/minecraft/client/gui/Gui	setOverlay	(Lnet/minecraft/client/gui/screens/Overl
 net/minecraft/client/gui/Gui	openChatScreen	(Lnet/minecraft/client/gui/components/ChatComponent$ChatMethod;)V	net/minecraft/client/Minecraft	method	openChatScreen	(Lnet/minecraft/client/gui/components/ChatComponent$ChatMethod;)V	hop-finder
 net/minecraft/client/gui/Gui	screen	()Lnet/minecraft/client/gui/screens/Screen;	net/minecraft/client/Minecraft	field	screen	Lnet/minecraft/client/gui/screens/Screen;	curated
 net/minecraft/client/gui/Gui	toastManager	()Lnet/minecraft/client/gui/components/toasts/ToastManager;	net/minecraft/client/Minecraft	method	getToastManager	()Lnet/minecraft/client/gui/components/toasts/ToastManager;	curated
+net/minecraft/client/gui/Gui	overlay	()Lnet/minecraft/client/gui/screens/Overlay;	net/minecraft/client/Minecraft	method	getOverlay	()Lnet/minecraft/client/gui/screens/Overlay;	curated

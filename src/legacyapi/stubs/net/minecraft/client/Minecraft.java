@@ -9,6 +9,7 @@ import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.RenderBuffers;
 import net.minecraft.world.entity.Entity;
 
 public class Minecraft {
@@ -21,6 +22,8 @@ public class Minecraft {
     public GameRenderer gameRenderer;
 
     public static Minecraft getInstance() { throw new UnsupportedOperationException(); }
+    public RenderBuffers renderBuffers() { throw new UnsupportedOperationException(); }
+    public static boolean useShaderTransparency() { throw new UnsupportedOperationException(); }
     public ClientPacketListener getConnection() { throw new UnsupportedOperationException(); }
     public Entity getCameraEntity() { throw new UnsupportedOperationException(); }
     public Window getWindow() { throw new UnsupportedOperationException(); }

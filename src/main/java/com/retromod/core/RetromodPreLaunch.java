@@ -217,7 +217,7 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
      *
      * @param hostVersion the running MC version; gates 26.1-only remapping
      */
-    static void registerShimsForTransform(String hostVersion) {
+    public static void registerShimsForTransform(String hostVersion) {
         try {
             RetromodTransformer transformer = RetromodTransformer.getInstance();
 
