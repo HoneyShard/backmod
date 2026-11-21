@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 /** Bridges old 6-param Button constructor calls to the Builder API. */
 public class ButtonShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ButtonShim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ButtonShim");
 
     /** Builds a Button via the Builder API, standing in for the removed 6-param constructor. */
     public static Object create(int x, int y, int w, int h, Object text, Object onPress) {

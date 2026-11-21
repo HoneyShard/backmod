@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 /** Writes a JSON language file for each 1.12 {@code .lang} file, with the keys newer games ask for. */
 public final class LegacyLangMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
     /** The first host that reads JSON language files with lowercase codes and registry-id keys. */

@@ -75,7 +75,7 @@ public final class LegacyItemParser {
                 // Try the name an older or newer host uses.
             }
         }
-        throw new IllegalStateException("Retromod could not find " + String.join(" or ", names) + " to read an old item string");
+        throw new IllegalStateException("Backmod could not find " + String.join(" or ", names) + " to read an old item string");
     }
 
     private interface Reflective {
@@ -89,9 +89,9 @@ public final class LegacyItemParser {
         } catch (InvocationTargetException failed) {
             if (failed.getCause() instanceof CommandSyntaxException syntax) throw syntax;
             if (failed.getCause() instanceof RuntimeException runtime) throw runtime;
-            throw new IllegalStateException("Retromod could not read an old item string", failed.getCause());
+            throw new IllegalStateException("Backmod could not read an old item string", failed.getCause());
         } catch (ReflectiveOperationException missing) {
-            throw new IllegalStateException("Retromod could not read an old item string on this Minecraft version", missing);
+            throw new IllegalStateException("Backmod could not read an old item string on this Minecraft version", missing);
         }
     }
 }

@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 /** Updates Minecraft's own ids in a mod's data when a later release renamed or removed them. */
 final class VanillaIdRenames {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataMigrate");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataMigrate");
     // The game upgrades ids in worlds but never in a mod's data, such as minecraft:grass, which
     // became minecraft:short_grass in 1.20.3. One missing entry empties a whole tag, and from 26.3 a
     // recipe or loot table naming a missing item stops the world from loading.

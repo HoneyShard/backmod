@@ -174,12 +174,12 @@ public final class ForgeGui {
         } catch (LinkageError missing) {
             // Every frame would fail the same way, so the overlay is left out from now on.
             DISABLED.add(id);
-            LegacyLog.warn("Retromod stopped drawing the HUD overlay " + id + " of " + owner + ", which uses " + missing
+            LegacyLog.warn("Backmod stopped drawing the HUD overlay " + id + " of " + owner + ", which uses " + missing
                     + ". The rest of the HUD and the mod keep running. Report this line with the mod and its version.");
         } catch (RuntimeException failure) {
             // Forge 1.20.1 logged a failing overlay and went on with the rest of the HUD.
             LegacyLog.warnOnce("hud overlay " + id, "The HUD overlay " + id + " of " + owner + " threw while drawing: "
-                    + failure + ". Retromod went on with the rest of the HUD");
+                    + failure + ". Backmod went on with the rest of the HUD");
         } finally {
             pushHeights();
         }

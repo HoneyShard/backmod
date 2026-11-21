@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 /** Moves Forge 1.20 mods onto NeoForge 1.21. */
 public class Forge_1_20_to_NeoForge_1_21 implements VersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ForgeNeoMig");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ForgeNeoMig");
     /** The first Forge version with the rebuilt networking API. */
     static final String NETWORK_REWRITE = "1.20.2";
 

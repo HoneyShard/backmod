@@ -69,7 +69,7 @@ class FabricNetworkingV0BridgeTest {
         });
 
         // The test logger puts its thread, level, and logger name before each message.
-        List<String> lines = err.lines().filter(line -> line.contains("[Retromod]")).toList();
+        List<String> lines = err.lines().filter(line -> line.contains("[Backmod]")).toList();
         assertEquals(1, lines.size(), "a mod that registers channels gets one warning: " + err);
         assertTrue(lines.get(0).contains("WARN") && lines.get(0).contains("examplemod:sync"),
                 "the warning names the first channel: " + lines.get(0));

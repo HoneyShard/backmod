@@ -27,7 +27,7 @@ public final class LegacyBlockStates {
                     LegacyBlockStates.class.getClassLoader()).getField("STONE").get(null);
             return LegacyPublicMethods.method(stone.getClass(), "defaultBlockState").invoke(stone);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not find a base state for an old stair block", e);
+            throw new IllegalStateException("Backmod could not find a base state for an old stair block", e);
         }
     }
 }

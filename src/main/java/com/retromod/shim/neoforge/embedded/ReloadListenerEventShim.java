@@ -43,11 +43,11 @@ public final class ReloadListenerEventShim {
             if (two != null) {
                 two.invoke(event, id, listener);
             } else {
-                System.out.println("[Retromod] ReloadListenerEventShim: no two-arg addListener on "
+                System.out.println("[Backmod] ReloadListenerEventShim: no two-arg addListener on "
                         + event.getClass().getName() + "; reload listener not registered.");
             }
         } catch (Throwable t) {
-            System.out.println("[Retromod] ReloadListenerEventShim: could not bridge addListener ("
+            System.out.println("[Backmod] ReloadListenerEventShim: could not bridge addListener ("
                     + t + "); reload listener not registered.");
         }
     }

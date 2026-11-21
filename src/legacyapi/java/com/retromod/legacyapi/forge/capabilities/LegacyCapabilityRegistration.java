@@ -48,7 +48,7 @@ public final class LegacyCapabilityRegistration {
             String modId = ModLoadingContext.get().getContainer().getModId();
             owner = modId;
             if (posters().putIfAbsent(modId, LegacyCapabilityRegistration::postTo) != null) {
-                LegacyLog.warnOnce("register capabilities " + copy, "Retromod did not post the old RegisterCapabilitiesEvent"
+                LegacyLog.warnOnce("register capabilities " + copy, "Backmod did not post the old RegisterCapabilitiesEvent"
                         + " of " + copy + ", because another jar's copy is already listed under the mod " + modId);
             }
             // The first copy to get here listens for every copy. LOWEST, so the NewRegistryEvent listeners old mods
@@ -58,7 +58,7 @@ public final class LegacyCapabilityRegistration {
                 NewRegistryEvent.BUS.addListener(Priority.LOWEST, event -> postAll(posters()));
             }
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not post the old RegisterCapabilitiesEvent for " + owner + ": " + failure);
+            LegacyLog.warn("Backmod did not post the old RegisterCapabilitiesEvent for " + owner + ": " + failure);
         }
     }
 
@@ -93,7 +93,7 @@ public final class LegacyCapabilityRegistration {
             if (bus.hasListeners()) bus.post(new LegacyRegisterCapabilitiesEvent());
         } catch (RuntimeException | LinkageError failure) {
             // One mod's failing listener leaves the other mods' registrations in place.
-            LegacyLog.warn("A RegisterCapabilitiesEvent listener of " + mod.getModId() + " threw; Retromod went on with"
+            LegacyLog.warn("A RegisterCapabilitiesEvent listener of " + mod.getModId() + " threw; Backmod went on with"
                     + " the next mod. " + stackTrace(failure));
         }
     }

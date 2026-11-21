@@ -20,7 +20,7 @@ import java.util.function.Consumer;
  */
 public final class InGameScreenFactory {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-GUI");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-GUI");
 
     // Resolve Minecraft classes only when a screen is first needed.
     private static Class<?> screenClass;
@@ -77,7 +77,7 @@ public final class InGameScreenFactory {
         );
 
         if (screenClass == null || textClass == null || minecraftClientClass == null) {
-            LOGGER.warn("Retromod could not find the Minecraft screen classes for this version.");
+            LOGGER.warn("Backmod could not find the Minecraft screen classes for this version.");
             return false;
         }
 
@@ -213,7 +213,7 @@ public final class InGameScreenFactory {
         try {
             Object titleText = createText(title);
             if (titleText == null || messageText == null) {
-                LOGGER.warn("Retromod could not build the text of its restart screen.");
+                LOGGER.warn("Backmod could not build the text of its restart screen.");
                 return false;
             }
 
@@ -265,7 +265,7 @@ public final class InGameScreenFactory {
     /** Shows a message with one button that returns to {@code parentScreen}. */
     static void showAlert(Object parentScreen, String title, String message) {
         if (!resolveClasses() || alertScreenClass == null) {
-            LOGGER.warn("Retromod could not show its message screen on this Minecraft version. "
+            LOGGER.warn("Backmod could not show its message screen on this Minecraft version. "
                     + "The message was: {}", message);
             return;
         }
@@ -273,7 +273,7 @@ public final class InGameScreenFactory {
             Object titleText = createText(title);
             Object messageText = createText(message);
             if (titleText == null || messageText == null) {
-                LOGGER.warn("Retromod could not build its message text. The message was: {}", message);
+                LOGGER.warn("Backmod could not build its message text. The message was: {}", message);
                 return;
             }
             // AlertScreen(Runnable, title, message): its one button runs the Runnable.
@@ -309,7 +309,7 @@ public final class InGameScreenFactory {
             Class<?> noticeScreenClass = alertScreenClass;
 
             if (noticeScreenClass != null) {
-                Object titleText = createText("Retromod");
+                Object titleText = createText("Backmod");
                 Object messageText = createText(message);
                 Object buttonText = createText("Done");
 
@@ -337,16 +337,16 @@ public final class InGameScreenFactory {
             LOGGER.debug("NoticeScreen not available: {}", e.getMessage());
         }
 
-        LOGGER.info("Retromod notice: {}", message);
+        LOGGER.info("Backmod notice: {}", message);
     }
 
     /** Shows the update results over {@code parentScreen}; call on Minecraft's main thread. */
     public static void showUpdateResults(Object parentScreen, String message, boolean needsRestart) {
         if (needsRestart) {
             // The message ends with a question: Yes closes the game, No and Esc go back.
-            showRestartConfirm(parentScreen, "Retromod results", message, RestartPrompt::stopClient);
+            showRestartConfirm(parentScreen, "Backmod results", message, RestartPrompt::stopClient);
         } else {
-            showAlert(parentScreen, "Retromod results", message);
+            showAlert(parentScreen, "Backmod results", message);
         }
     }
 
@@ -358,11 +358,11 @@ public final class InGameScreenFactory {
      * @param onSaveQuit callback for "Save & Quit" action
      */
     public static void showCrashScreen(String modName, String errorMsg, Runnable onSaveQuit) {
-        String title = "Retromod found a mod error";
-        String message = "Retromod stopped after an updated mod failed:\n\n"
+        String title = "Backmod found a mod error";
+        String message = "Backmod stopped after an updated mod failed:\n\n"
             + "Mod: " + modName + "\n"
             + "Error: " + errorMsg + "\n\n"
-            + "Retromod will try to save the current world before exiting.";
+            + "Backmod will try to save the current world before exiting.";
 
         showConfirmScreen(title, message, onSaveQuit, onSaveQuit);
     }

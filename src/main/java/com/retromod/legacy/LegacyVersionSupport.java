@@ -27,7 +27,7 @@ import java.util.regex.*;
  */
 public class LegacyVersionSupport {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final long MAX_METADATA_SIZE = 2L * 1024 * 1024;
     
     public enum ModLoaderEra {
@@ -70,7 +70,7 @@ public class LegacyVersionSupport {
         try {
             Files.createDirectories(configPath.getParent());
             Files.writeString(configPath, """
-                # Retromod Legacy Support
+                # Backmod Legacy Support
                 # experimental_support: Enable Forge/Fabric 1.8-1.12.2 (most work)
                 experimental_support=false
                 # limited_support: Enable Forge/Fabric 1.6-1.7.10 (many issues)

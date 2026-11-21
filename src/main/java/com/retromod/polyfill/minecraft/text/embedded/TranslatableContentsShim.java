@@ -66,7 +66,7 @@ public class TranslatableContentsShim {
                     .invoke(null, key, args);
             } catch (Exception e2) {
                 throw new RuntimeException(
-                    "Retromod: Failed to create translatable text for key '" + key + "'", e);
+                    "Backmod: Failed to create translatable text for key '" + key + "'", e);
             }
         }
     }

@@ -185,9 +185,9 @@ public final class DiscoveryEngine {
         try {
             Object protocol = request.get("protocol");
             if (!(protocol instanceof Integer number) || number != PROTOCOL) {
-                log.accept("warn", "Retromod's bootstrap and runtime do not match (protocol "
+                log.accept("warn", "Backmod's bootstrap and runtime do not match (protocol "
                         + protocol + ", expected " + PROTOCOL + "). In-place loading is off for "
-                        + "this launch. Keep one Retromod file in mods/.");
+                        + "this launch. Keep one Backmod file in mods/.");
                 return Map.of("protocol", PROTOCOL, "mode", "error");
             }
             @SuppressWarnings("unchecked")
@@ -201,7 +201,7 @@ public final class DiscoveryEngine {
                     (Properties) request.get("properties"), log);
             return run(typed).toMap();
         } catch (Throwable failure) {
-            log.accept("error", "Retromod's in-place pass failed: " + failure
+            log.accept("error", "Backmod's in-place pass failed: " + failure
                     + ". The loader continues without it. Please report this with "
                     + "logs/latest.log." + System.lineSeparator() + stackTrace(failure));
             return Map.of("protocol", PROTOCOL, "mode", "error");
@@ -268,7 +268,7 @@ public final class DiscoveryEngine {
                 if (cache.state() == TranslatedModCache.State.UNAVAILABLE) {
                     warn("In-place loading is off for this launch: "
                             + cache.unavailableReason() + ". Old mods in mods/ load as if "
-                            + "Retromod were not installed. Set write_translated_jars to true "
+                            + "Backmod were not installed. Set write_translated_jars to true "
                             + "in config/retromod/config.json to use the older rewrite mode.");
                     return new Outcome(InPlaceStatus.MODE_UNAVAILABLE, hide, null, List.of(),
                             null, "cache unavailable");
@@ -299,7 +299,7 @@ public final class DiscoveryEngine {
                 try {
                     if (known.contains(TranslatedModCache.sha256(jar.path()))) {
                         hideOriginal(jar);
-                        info("Holding back " + jar.fileName() + " for this launch so Retromod "
+                        info("Holding back " + jar.fileName() + " for this launch so Backmod "
                                 + "can rewrite it into mods/. In-place mode handled it before.");
                     }
                 } catch (IOException e) {
@@ -320,14 +320,14 @@ public final class DiscoveryEngine {
                 if (jar.kind() == Kind.SERVER_ONLY) {
                     // Its client-only methods and fields are gone, so the client would fail on them later.
                     hideOriginal(jar);
-                    warn(jar.fileName() + " was translated by Retromod on a dedicated server, which "
+                    warn(jar.fileName() + " was translated by Backmod on a dedicated server, which "
                             + "leaves out client-only code, so this client does not load it. Put the "
-                            + "mod's original jar in mods/ instead, so Retromod translates it here.");
+                            + "mod's original jar in mods/ instead, so Backmod translates it here.");
                 }
                 if (jar.kind() != Kind.STALE_RETROMOD) continue;
                 hideOriginal(jar);
-                warn("Found an older Retromod file in mods/: " + jar.fileName()
-                        + ". Retromod now loads from its newer file, so this one is ignored. "
+                warn("Found an older Backmod file in mods/: " + jar.fileName()
+                        + ". Backmod now loads from its newer file, so this one is ignored. "
                         + "Delete it.");
             }
         }
@@ -429,7 +429,7 @@ public final class DiscoveryEngine {
                 // this jar back would only hide it while it waits for a translation that never
                 // comes. The loader gets it as it is.
                 info("Leaving " + name + " to the loader as it is: " + name + " is a link, and "
-                        + "Retromod only translates real files. Put the jar itself in "
+                        + "Backmod only translates real files. Put the jar itself in "
                         + location + "/ to have it translated.");
                 return ignored(path, location);
             }
@@ -450,10 +450,10 @@ public final class DiscoveryEngine {
             String version = target.trim();
             if (version.equals(request.minecraftVersion())) return;
             if (version.length() > 64) version = version.substring(0, 64);
-            warn(name + " was translated by Retromod for Minecraft " + version + ", not "
-                    + request.minecraftVersion() + ". Retromod leaves it as it is, so the loader "
+            warn(name + " was translated by Backmod for Minecraft " + version + ", not "
+                    + request.minecraftVersion() + ". Backmod leaves it as it is, so the loader "
                     + "may reject it or it may fail later. Put its original jar in mods/ "
-                    + "instead, so Retromod translates it for this game.");
+                    + "instead, so Backmod translates it for this game.");
         }
 
         private static boolean isForgeFamily(String loaderType) {
@@ -502,7 +502,7 @@ public final class DiscoveryEngine {
         Outcome run() {
             boolean ready = cache.state() == TranslatedModCache.State.READY;
             if (!ready) {
-                pass.warn("Another game is using Retromod's cache. Already translated mods "
+                pass.warn("Another game is using Backmod's cache. Already translated mods "
                         + "load as usual; new ones wait for a later launch.");
             }
             List<Candidate> candidates = describeCandidates();
@@ -548,7 +548,7 @@ public final class DiscoveryEngine {
                 status.write(statusFile);
             } catch (IOException e) {
                 pass.warn("Could not write " + statusFile + ": " + e.getMessage()
-                        + ". Retromod translates nothing this launch.");
+                        + ". Backmod translates nothing this launch.");
                 statusFile = null;
             }
             String summary = served.size() + " served, " + pending.size() + " waiting, "
@@ -642,7 +642,7 @@ public final class DiscoveryEngine {
                 failed.add(source(candidate, holdBack, entry.get().failure()));
                 pass.warn("Not translating " + jar.fileName() + " again: "
                         + Objects.requireNonNullElse(entry.get().failure(), "it failed before")
-                        + ". Retromod tries again after an update or when the file changes.");
+                        + ". Backmod tries again after an update or when the file changes.");
                 return;
             }
             if (cache.state() == TranslatedModCache.State.READY) {
@@ -660,7 +660,7 @@ public final class DiscoveryEngine {
                     // reason the prediction missed.
                     holdBack = true;
                     pass.warn(jar.fileName() + " was waiting for translation, but the game "
-                            + "stopped before Retromod could translate it. Retromod holds it "
+                            + "stopped before Backmod could translate it. Backmod holds it "
                             + "back this launch so it can be translated.");
                 }
                 // A STARTED entry proves the entry point runs, so showing the original to the
@@ -670,9 +670,9 @@ public final class DiscoveryEngine {
                     // Start the count over, so the next launch holds it back again.
                     cache.forget(sha);
                     holdBack = false;
-                    pass.warn("Retromod held back " + jar.fileName() + " for "
+                    pass.warn("Backmod held back " + jar.fileName() + " for "
                             + MAX_HIDDEN_LAUNCHES + " launches, but the game stopped before "
-                            + "Retromod could translate it each time. The loader sees it in "
+                            + "Backmod could translate it each time. The loader sees it in "
                             + "this launch so its own message names the problem. A mod that "
                             + "requires it can cause this: remove that mod for one launch.");
                 }
@@ -687,14 +687,14 @@ public final class DiscoveryEngine {
          */
         private void giveUpOnTranslation(Candidate candidate, boolean holdBack) {
             Classified jar = candidate.jar();
-            String reason = "The game stopped while Retromod translated this file, after "
+            String reason = "The game stopped while Backmod translated this file, after "
                     + InPlaceLaunch.MAX_TRANSLATION_ATTEMPTS + " launches without a result. "
                     + "The crash report or log of the last launch names the reason";
             cache.recordFailure(candidate.source(), reason);
             if (holdBack) pass.hideOriginal(jar);
             failed.add(source(candidate, holdBack, reason));
             pass.warn("Not translating " + jar.fileName() + " again: " + reason
-                    + ". Retromod tries again after an update or when the file changes.");
+                    + ". Backmod tries again after an update or when the file changes.");
         }
 
         private InPlaceStatus.Source source(Candidate candidate, boolean hidden, String reason) {
@@ -752,7 +752,7 @@ public final class DiscoveryEngine {
                             || dependency.requirement() != ForgeModMetadata.Requirement.REQUIRED) {
                         continue;
                     }
-                    pass.warn(jar.fileName() + " requires " + blocked + ", which Retromod "
+                    pass.warn(jar.fileName() + " requires " + blocked + ", which Backmod "
                             + "translates on its first launch. The loader may stop before "
                             + "that happens. If it does, move " + jar.fileName() + " out of "
                             + "mods/ for one launch, then put it back.");

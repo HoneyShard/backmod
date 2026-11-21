@@ -34,7 +34,7 @@ public final class LegacyHud {
             installHudElement(event);
         } catch (RuntimeException e) {
             // The mod's class setup reads this event, so a host refusal must not fail it.
-            HostGui.warnOnce("hud-element", "Retromod could not add the HUD element for old HUD "
+            HostGui.warnOnce("hud-element", "Backmod could not add the HUD element for old HUD "
                     + "callbacks ({}). They are kept but do not draw.", e.toString());
         }
         return event;
@@ -184,7 +184,7 @@ public final class LegacyHud {
             return new Shape(kind, handle);
         } catch (IllegalAccessException | RuntimeException e) {
             HostGui.infoOnce("hud-access:" + method.getDeclaringClass().getName(), "The old HUD "
-                    + "callback {} cannot be called from Retromod ({}), so it does not draw.",
+                    + "callback {} cannot be called from Backmod ({}), so it does not draw.",
                     method.getDeclaringClass().getName(), e.toString());
             return new Shape(Kind.NONE, null);
         }
@@ -213,7 +213,7 @@ public final class LegacyHud {
     private static void reportUnserved(Class<?> type, Shape shape) {
         String why = shape.kind == Kind.POSE_STACK
                 ? "draws with the pre-1.20 PoseStack, which no 26.x HUD element accepts"
-                : "has no onHudRender method Retromod recognizes";
+                : "has no onHudRender method Backmod recognizes";
         HostGui.infoOnce("hud-unserved:" + type.getName(), "The old HUD callback {} {}, so it does not draw.",
                 type.getName(), why);
     }

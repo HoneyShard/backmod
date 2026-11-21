@@ -28,7 +28,7 @@ public final class ItemGroupEventsBridge {
 
     private ItemGroupEventsBridge() {}
 
-    private static final String TAG = "[Retromod] ItemGroupEventsBridge: ";
+    private static final String TAG = "[Backmod] ItemGroupEventsBridge: ";
 
     private static final String CREATIVE_TAB_EVENTS = "net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents";
     private static final String EVENT_FACTORY       = "net.fabricmc.fabric.api.event.EventFactory";

@@ -52,7 +52,7 @@ public class VirtualMinecraftForge {
                     try {
                         handler.method.invoke(handler.target, event);
                     } catch (Exception e) {
-                        System.err.println("Retromod: Error in event handler: " + e.getMessage());
+                        System.err.println("Backmod: Error in event handler: " + e.getMessage());
                     }
                 }
             }

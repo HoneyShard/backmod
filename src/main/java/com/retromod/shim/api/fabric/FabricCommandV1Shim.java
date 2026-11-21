@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricCommandV1Shim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String OLD_V1  = "net/fabricmc/fabric/api/command/v1/CommandRegistrationCallback";
     private static final String NEW_SAM = "com/retromod/generated/legacycmd/CommandRegistrationCallbackV1";

@@ -54,7 +54,7 @@ public final class LegacyForgeItemHandlers {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not save the item handler " + handler.getClass().getName(), e);
+            throw new IllegalStateException("Backmod could not save the item handler " + handler.getClass().getName(), e);
         }
     }
 
@@ -84,7 +84,7 @@ public final class LegacyForgeItemHandlers {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not load the item handler " + handler.getClass().getName(), e);
+            throw new IllegalStateException("Backmod could not load the item handler " + handler.getClass().getName(), e);
         }
     }
 
@@ -148,7 +148,7 @@ public final class LegacyForgeItemHandlers {
             } catch (InvocationTargetException e) {
                 throw rethrow(e.getCause());
             } catch (ReflectiveOperationException e) {
-                throw new IllegalStateException("Retromod could not upgrade a saved item stack " + stack, e);
+                throw new IllegalStateException("Backmod could not upgrade a saved item stack " + stack, e);
             }
         }
 

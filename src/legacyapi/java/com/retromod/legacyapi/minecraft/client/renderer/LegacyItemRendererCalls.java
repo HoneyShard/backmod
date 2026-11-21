@@ -103,7 +103,7 @@ public final class LegacyItemRendererCalls {
         try {
             return getter.invoke(extensions);
         } catch (IllegalAccessException failure) {
-            LegacyLog.warnOnce("item renderer getter " + extensions.getClass().getName(), "Retromod could not call getCustomRenderer"
+            LegacyLog.warnOnce("item renderer getter " + extensions.getClass().getName(), "Backmod could not call getCustomRenderer"
                     + " on " + extensions.getClass().getName() + ", so it draws that item without its old renderer: " + failure);
             return NO_GETTER;
         } catch (InvocationTargetException failure) {
@@ -165,7 +165,7 @@ public final class LegacyItemRendererCalls {
                 }
             }
         } catch (LinkageError unreadable) {
-            LegacyLog.warnOnce("item renderer getter " + type.getName(), "Retromod could not read the methods of " + type.getName()
+            LegacyLog.warnOnce("item renderer getter " + type.getName(), "Backmod could not read the methods of " + type.getName()
                     + " while looking for getCustomRenderer: " + unreadable);
         }
         return null;
@@ -227,7 +227,7 @@ public final class LegacyItemRendererCalls {
                     if (buffers != null) return buffers.getBuffer((RenderType) args[0]);
                     // A renderer that kept the buffer source past its draw writes into nothing, as no draw is open.
                     LegacyLog.warnOnce("stale item renderer buffers " + method.getDeclaringClass().getName(), "An old item renderer"
-                            + " asked for a buffer after its draw had ended, so Retromod dropped what it wrote");
+                            + " asked for a buffer after its draw had ended, so Backmod dropped what it wrote");
                     return LegacyItemGeometry.discard();
                 case "hashCode":
                     if (count == 0) return System.identityHashCode(self);
@@ -236,7 +236,7 @@ public final class LegacyItemRendererCalls {
                     if (count == 1) return self == args[0];
                     break;
                 case "toString":
-                    if (count == 0) return "Retromod item renderer buffers";
+                    if (count == 0) return "Backmod item renderer buffers";
                     break;
                 default:
                     break;
@@ -260,7 +260,7 @@ public final class LegacyItemRendererCalls {
             try {
                 render(target, stack, displayContext, poseStack, bufferSource, packedLight, packedOverlay);
             } catch (ReflectiveOperationException failure) {
-                LegacyLog.warnOnce("foreign item renderer " + target.getClass().getName(), "Retromod could not run the item renderer "
+                LegacyLog.warnOnce("foreign item renderer " + target.getClass().getName(), "Backmod could not run the item renderer "
                         + target.getClass().getName() + " for another mod: " + failure);
             }
         }

@@ -42,7 +42,7 @@ import java.util.List;
  */
 public final class LegacyFoodPropertiesBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacyFoodApi";
 

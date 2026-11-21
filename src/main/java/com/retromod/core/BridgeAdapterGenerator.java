@@ -28,7 +28,7 @@ import java.util.*;
  */
 public class BridgeAdapterGenerator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Bridge");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Bridge");
 
     // 26.1 event types that replaced primitive params in the input event overhaul.
     private static final String MOUSE_EVENT = "net/minecraft/client/input/MouseButtonEvent";

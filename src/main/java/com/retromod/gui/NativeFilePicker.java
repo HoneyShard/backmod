@@ -25,8 +25,8 @@ import java.util.function.LongUnaryOperator;
 /** Shows the system file picker through the LWJGL that Minecraft ships, without AWT. */
 final class NativeFilePicker {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Screen");
-    private static final String TITLE = "Retromod: choose mod jars";
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Screen");
+    private static final String TITLE = "Backmod: choose mod jars";
     private static final String THREAD_NAME = "Retromod-FilePicker";
     // SDL ends its list with a NULL pointer. A longer list than this is not a real selection.
     private static final int MAX_LISTED_FILES = 4096;
@@ -128,7 +128,7 @@ final class NativeFilePicker {
         if (jars.isEmpty()) {
             // tinyfd answers a cancel and a Linux system without a dialog tool the same way.
             LOGGER.info("No mod jar was chosen. If no file picker appeared, drop the jars on the "
-                    + "Retromod screen or use Open retromod-input/ instead.");
+                    + "Backmod screen or use Open retromod-input/ instead.");
             return;
         }
         listener.chosen(jars);

@@ -76,7 +76,7 @@ import java.util.zip.ZipFile;
  */
 public final class SyntheticLibraries {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     /** Lists, one per line, the stand-in copies a translated jar reuses from other jars. */
     public static final String LINKS_ENTRY = "META-INF/retromod-synthetic-links.txt";

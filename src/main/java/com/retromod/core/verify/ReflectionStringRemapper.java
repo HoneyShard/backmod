@@ -52,7 +52,7 @@ import java.util.regex.Pattern;
  */
 public final class ReflectionStringRemapper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ReflectionRemapper");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ReflectionRemapper");
 
     /**
      * How far back to look for an LDC when we hit a reflection sink. 8 covers

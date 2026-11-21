@@ -54,7 +54,7 @@ public final class LegacyGuiCalls {
             }
             method.invoke(graphics, pipeline, sprite, x, y, width, height);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not draw a legacy GUI sprite", e);
+            throw new IllegalStateException("Backmod could not draw a legacy GUI sprite", e);
         }
     }
 

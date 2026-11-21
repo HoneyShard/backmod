@@ -46,7 +46,7 @@ public final class LegacyHudLayers {
             installed = HostGui.onClientStarted("legacy HUD layer registration",
                     () -> event.invoker().registerLegacyHudLayers(new Wrapper()));
         } catch (RuntimeException e) {
-            HostGui.warnOnce("hud-layers", "Retromod could not listen for the client start ({}). Old HUD "
+            HostGui.warnOnce("hud-layers", "Backmod could not listen for the client start ({}). Old HUD "
                     + "layer callbacks are kept but never fire.", e.toString());
             return event;
         }

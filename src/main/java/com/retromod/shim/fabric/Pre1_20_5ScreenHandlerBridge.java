@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20_5ScreenHandlerBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String API = "net/fabricmc/fabric/api/screenhandler/v1/";
     static final String HANDLER_TYPE = API + "ExtendedScreenHandlerType";

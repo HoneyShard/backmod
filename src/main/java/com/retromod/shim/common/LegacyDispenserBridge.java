@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class LegacyDispenserBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String OLD_SOURCE = "net/minecraft/core/BlockSource";
     static final String SOURCE = "net/minecraft/core/dispenser/BlockSource";

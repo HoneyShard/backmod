@@ -113,7 +113,7 @@ public class ApiArchiveManager {
         if (!Files.isRegularFile(archivePath, LinkOption.NOFOLLOW_LINKS)) {
             throw new IOException("API archive not present locally for "
                 + loaderType + " " + mcVersion + " at " + archivePath + ". "
-                + "Retromod does not auto-download archives - see "
+                + "Backmod does not auto-download archives - see "
                 + "ApiArchiveManager.downloadArchiveWithUserConsent for the "
                 + "explicit-consent download path, or manually place a JAR "
                 + "at the path above.");

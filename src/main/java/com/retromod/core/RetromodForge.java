@@ -28,14 +28,14 @@ import java.nio.file.Paths;
 @net.minecraftforge.fml.common.Mod("retromod")
 public class RetromodForge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     public RetromodForge() {
         RetromodVersion.logPresenceBanner(LOGGER);
         // Forge does not load the Fabric entry point that normally records this version.
         detectMcVersionForForge();
 
-        LOGGER.info("Starting Retromod {} on Forge for Minecraft {}",
+        LOGGER.info("Starting Backmod {} on Forge for Minecraft {}",
                 RetromodVersion.RETROMOD_VERSION, RetromodVersion.TARGET_MC_VERSION);
         // A jar built for several loaders is read through the metadata Forge reads.
         ModVersionDetector.setDefaultPreferredLoader("forge");
@@ -173,10 +173,10 @@ public class RetromodForge {
                     + "(see security notes in Retromod.java).");
         }
 
-        LOGGER.debug(RetromodLog.DETAIL, "Retromod initialized.");
+        LOGGER.debug(RetromodLog.DETAIL, "Backmod initialized.");
         
         if (isServer) {
-            LOGGER.debug(RetromodLog.DETAIL, "Retromod is running in server mode.");
+            LOGGER.debug(RetromodLog.DETAIL, "Backmod is running in server mode.");
             LOGGER.debug(RetromodLog.DETAIL, "Bytecode transforms and ahead-of-time compilation are enabled.");
             LOGGER.debug(RetromodLog.DETAIL, "GUI features are unavailable on a headless server.");
         }
@@ -232,7 +232,7 @@ public class RetromodForge {
         } catch (Throwable ignored) {}
 
         // The shim gate needs the host version to decide which API changes are safe to apply.
-        LOGGER.error("Retromod could not detect the Forge Minecraft version. It will use {} "
+        LOGGER.error("Backmod could not detect the Forge Minecraft version. It will use {} "
                 + "and skip shims for newer versions, so some mods may not work. Please report "
                 + "your Forge and FML versions.",
                 RetromodVersion.TARGET_MC_VERSION);
@@ -503,7 +503,7 @@ public class RetromodForge {
             }
         } catch (Exception e) {
             // The old jar stays in mods/, so latest.log has to say why it was not updated.
-            LOGGER.warn("Could not translate {} in mods/: {}. Retromod tries again on the next "
+            LOGGER.warn("Could not translate {} in mods/: {}. Backmod tries again on the next "
                     + "launch.", fileName, e.toString());
             return false;
         }

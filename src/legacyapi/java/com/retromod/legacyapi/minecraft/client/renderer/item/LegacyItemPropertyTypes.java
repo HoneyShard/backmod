@@ -46,7 +46,7 @@ public final class LegacyItemPropertyTypes {
             return true;
         } catch (ReflectiveOperationException | RuntimeException | LinkageError failure) {
             // Retromod's item definitions name the type, so the game reads those items without it.
-            LegacyLog.warn("Retromod did not add the item property type " + NAMESPACE + ":" + PATH
+            LegacyLog.warn("Backmod did not add the item property type " + NAMESPACE + ":" + PATH
                     + ", which its item definitions for old model overrides name: " + failure);
             return false;
         }

@@ -90,7 +90,7 @@ public class DataResultPolyfill {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException("DataResult.getOrThrow failed", cause);
         } catch (ReflectiveOperationException | IllegalStateException missing) {
-            throw new IllegalStateException("Retromod could not call " + dataResult.getClass().getName()
+            throw new IllegalStateException("Backmod could not call " + dataResult.getClass().getName()
                     + " for the old getOrThrow(boolean, Consumer)", missing);
         }
         throw new RuntimeException(message[0]);

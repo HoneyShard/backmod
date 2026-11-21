@@ -38,7 +38,7 @@ import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
  */
 public final class RetromodLoaderPreLaunch implements PreLaunchEntrypoint {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Loader");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Loader");
     private static final String SUBFOLDER = "Retromod";
 
     @Override

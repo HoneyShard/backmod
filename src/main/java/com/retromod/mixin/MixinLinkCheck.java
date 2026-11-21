@@ -151,14 +151,14 @@ final class MixinLinkCheck {
             if (bytes == null) {
                 // A library is there at run time. A class from another mod cannot be checked here.
                 if (isLibrary(name)) continue;
-                return name + ", which Retromod cannot read from this jar";
+                return name + ", which Backmod cannot read from this jar";
             }
-            if (checked.size() > MAX_JAR_CLASSES) return name + " and more classes than Retromod checks";
+            if (checked.size() > MAX_JAR_CLASSES) return name + " and more classes than Backmod checks";
             ClassReader reader;
             try {
                 reader = new ClassReader(bytes);
             } catch (RuntimeException unreadable) {
-                return name + ", which Retromod cannot read";
+                return name + ", which Backmod cannot read";
             }
             for (String named : namedClasses(reader)) {
                 if (absentHostClass(named)) return named + " (named by " + name + ")";

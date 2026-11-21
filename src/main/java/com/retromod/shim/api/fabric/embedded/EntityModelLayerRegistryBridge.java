@@ -26,7 +26,7 @@ public final class EntityModelLayerRegistryBridge {
 
     private EntityModelLayerRegistryBridge() {}
 
-    private static final String TAG = "[Retromod] EntityModelLayerRegistryBridge: ";
+    private static final String TAG = "[Backmod] EntityModelLayerRegistryBridge: ";
 
     private static final String MLR = "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry";
     private static final String NEW_PROVIDER = MLR + "$TexturedLayerDefinitionProvider";

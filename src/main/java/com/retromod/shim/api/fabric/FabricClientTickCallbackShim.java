@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricClientTickCallbackShim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String OLD    = "net/fabricmc/fabric/api/event/client/ClientTickCallback";
     private static final String SYNTH  = "com/retromod/generated/legacytick/ClientTickCallback";
@@ -51,7 +51,7 @@ public class FabricClientTickCallbackShim implements AuxiliaryVersionShim {
     public void registerRedirects(RetromodTransformer transformer) {
         if (!com.retromod.core.RetromodVersion.isUnobfuscatedTarget(
                 com.retromod.core.RetromodVersion.TARGET_MC_VERSION)) {
-            LOGGER.debug("[Retromod] ClientTickCallback bridge skipped (host {} < 26.1 - old API pre-remap names)",
+            LOGGER.debug("[Backmod] ClientTickCallback bridge skipped (host {} < 26.1 - old API pre-remap names)",
                     com.retromod.core.RetromodVersion.TARGET_MC_VERSION);
             return;
         }

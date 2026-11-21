@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 /** Points a mod's models at the vanilla templates and texture slots the host uses now. */
 public final class LegacyModelParentMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     // Mod models inherit their geometry from vanilla templates, such as block/half_slab for a slab
     // or block/pane_post for a pane. Releases renamed several, 1.13 most of them, and a missing
     // parent draws the missing model. This table pairs each removed template with the vanilla model

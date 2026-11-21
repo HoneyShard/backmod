@@ -16,7 +16,7 @@ import java.util.Map;
 /** Registers batch R1: old block render layers, color providers and their callback types on 26.x hosts. */
 public final class RenderRows {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
     private static final String SHARED = "com/retromod/loaderapi/fabric/v26/render/shared/";
     private static final String BRIDGES = "com/retromod/loaderapi/fabric/v26/synth/";
     private static final String OBJECT = "Ljava/lang/Object;";
@@ -71,7 +71,7 @@ public final class RenderRows {
         // These are Minecraft types, so a spec stands back if the Minecraft side ever redirects one.
         for (BoundaryTypeSpec spec : SHARED_TYPES) {
             if (!spec.register(registration)) {
-                LOGGER.debug("{} stays with Retromod's Minecraft side, which redirects it",
+                LOGGER.debug("{} stays with Backmod's Minecraft side, which redirects it",
                         spec.oldName());
             }
         }

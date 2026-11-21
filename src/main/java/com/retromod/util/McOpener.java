@@ -17,7 +17,7 @@ import java.util.Locale;
 /** Opens folders and web links through Minecraft's own openUri, the call launcher sandboxes route. */
 public final class McOpener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     // Before the client runs, calling Util or Blaze3D would initialize them too early, and a
     // dedicated server has no desktop to open anything on.
@@ -46,7 +46,7 @@ public final class McOpener {
         String instead = "Open this link in your browser: " + url;
         URI uri = webUri(url);
         if (uri == null) {
-            LOGGER.warn("Retromod opens only http and https links, so it did not open {}", url);
+            LOGGER.warn("Backmod opens only http and https links, so it did not open {}", url);
             return false;
         }
         return open(uri, instead);
@@ -54,7 +54,7 @@ public final class McOpener {
 
     private static boolean open(URI uri, String instead) {
         if (!clientRunning) {
-            LOGGER.info("Retromod opens folders and links only in a running Minecraft client. {}",
+            LOGGER.info("Backmod opens folders and links only in a running Minecraft client. {}",
                     instead);
             return false;
         }
@@ -69,9 +69,9 @@ public final class McOpener {
     static boolean openWith(URI uri, String instead, Class<?> blaze3d, Class<?> util) {
         try {
             if (callOpenUri(uri, blaze3d, util)) return true;
-            LOGGER.warn("This Minecraft version has no link opener Retromod knows. {}", instead);
+            LOGGER.warn("This Minecraft version has no link opener Backmod knows. {}", instead);
         } catch (ReflectiveOperationException | RuntimeException | LinkageError error) {
-            LOGGER.warn("Retromod could not open {}: {}. {}", uri, describe(error), instead);
+            LOGGER.warn("Backmod could not open {}: {}. {}", uri, describe(error), instead);
         }
         return false;
     }

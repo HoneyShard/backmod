@@ -183,7 +183,7 @@ public final class LegacyWorldgenStore {
         deleteTree(root);
         Files.createDirectories(root);
         String description = "Worldgen registered in code by " + String.join(", ", NAMESPACES)
-                + ", restored by Retromod";
+                + ", restored by Backmod";
         // 1.21.9 replaced pack_format with a format range; each version reads its own key.
         int format = with.packFormat();
         Files.writeString(root.resolve("pack.mcmeta"), "{\"pack\":{\"pack_format\":" + format

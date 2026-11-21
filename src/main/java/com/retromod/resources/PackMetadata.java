@@ -82,7 +82,7 @@ final class PackMetadata {
         } else {
             root = new JsonObject();
             JsonObject pack = new JsonObject();
-            pack.addProperty("description", "Transformed by Retromod");
+            pack.addProperty("description", "Transformed by Backmod");
             root.add("pack", pack);
         }
 

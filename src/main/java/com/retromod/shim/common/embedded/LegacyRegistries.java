@@ -25,7 +25,7 @@ public final class LegacyRegistries {
             ClassLoader loader = LegacyRegistries.class.getClassLoader();
             return keyClass(loader).getMethod("createRegistryKey", idClass(loader)).invoke(null, id(loader, namespace, path));
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not name the registry " + namespace + ":" + path, failure);
+            throw new IllegalStateException("Backmod could not name the registry " + namespace + ":" + path, failure);
         }
     }
 
@@ -59,12 +59,12 @@ public final class LegacyRegistries {
                 try {
                     register.invoke(event, registry);
                 } catch (ReflectiveOperationException failure) {
-                    throw new IllegalStateException("Retromod could not register the registry " + namespace + ":" + path, failure);
+                    throw new IllegalStateException("Backmod could not register the registry " + namespace + ":" + path, failure);
                 }
             });
             return registry;
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not rebuild the registry " + namespace + ":" + path, failure);
+            throw new IllegalStateException("Backmod could not rebuild the registry " + namespace + ":" + path, failure);
         }
     }
 

@@ -18,11 +18,11 @@ import java.nio.file.Paths;
 @Environment(EnvType.SERVER)
 public class RetromodServer implements DedicatedServerModInitializer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Server");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Server");
 
     @Override
     public void onInitializeServer() {
-        LOGGER.debug(RetromodLog.DETAIL, "Starting Retromod on the dedicated server.");
+        LOGGER.debug(RetromodLog.DETAIL, "Starting Backmod on the dedicated server.");
 
         EnvironmentDetector.setEnvironment(false, true);
 

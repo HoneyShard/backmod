@@ -174,7 +174,7 @@ public final class AotCacheStamp {
                     empty = s.findFirst().isEmpty();
                 }
                 if (!empty) {
-                    LOGGER.debug(RetromodLog.DETAIL, "Retromod build changed since the AOT cache was written, clearing {}",
+                    LOGGER.debug(RetromodLog.DETAIL, "Backmod build changed since the AOT cache was written, clearing {}",
                             cacheDir);
                     wipe(trustedRoot, cacheDir);
                     // A failed delete must leave the old stamp in place. Otherwise the

@@ -205,7 +205,7 @@ class FuzzyMatchReportTest {
                 .filter(l -> !l.startsWith("#") && l.contains("\tNEAR\t")).count();
         assertEquals(2, nearRows, "one NEAR row for the method and one for the field");
         assertFalse(log.contains("Possible"), "near misses must not reach the default log:\n" + log);
-        assertFalse(log.contains("WARN Retromod-Fuzzy"), "no fuzzy WARN lines expected:\n" + log);
+        assertFalse(log.contains("WARN Backmod-Fuzzy"), "no fuzzy WARN lines expected:\n" + log);
         assertEquals(1, log.split(java.util.regex.Pattern.quote(out.toString()), -1).length - 1,
                 "the log must name the report exactly once:\n" + log);
     }

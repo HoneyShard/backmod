@@ -34,7 +34,7 @@ import java.util.Map;
  */
 public final class LegacyHolderConstantBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacyHolderConstants";
     private static final String HOLDER = "net/minecraft/core/Holder";

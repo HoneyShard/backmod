@@ -120,7 +120,7 @@ public class VirtualOreDictionary {
         ITEM_NAMES.computeIfAbsent(ore, k -> new ArrayList<>()).add(name);
         
         String tagName = convertToTag(name);
-        System.out.println("Retromod: Bridging ore dict '" + name + "' to tag '" + tagName + "'");
+        System.out.println("Backmod: Bridging ore dict '" + name + "' to tag '" + tagName + "'");
     }
     
     public static List<Object> getOres(String name) {

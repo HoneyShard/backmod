@@ -36,7 +36,7 @@ public final class LegacyRendererTextures {
             return Class.forName("net.minecraft.client.renderer.texture.MissingTextureAtlasSprite", true,
                     renderer.getClass().getClassLoader()).getMethod("getLocation").invoke(null);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not find a texture for " + renderer.getClass().getName(), e);
+            throw new IllegalStateException("Backmod could not find a texture for " + renderer.getClass().getName(), e);
         }
     }
 }

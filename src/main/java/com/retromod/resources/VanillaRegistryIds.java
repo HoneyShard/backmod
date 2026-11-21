@@ -21,7 +21,7 @@ import java.util.Set;
 /** Lists the ids Minecraft registers in the registries mod data names most. */
 final class VanillaRegistryIds {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataLayout");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataLayout");
     // Items, blocks, entity types, potions, mob effects, enchantments, biomes, structures, recipes,
     // loot tables and predicates. scripts/harvest-vanilla-registry-ids.py reads the rows from the
     // newest client Retromod builds for.

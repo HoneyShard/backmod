@@ -176,12 +176,12 @@ public final class LegacyNumberProviders {
     }
 
     private static IllegalStateException failure(String action, Exception cause) {
-        return new IllegalStateException("Retromod could not " + action
+        return new IllegalStateException("Backmod could not " + action
                 + " for a mod's old loot number provider on this Minecraft version", cause);
     }
 
     private static IllegalArgumentException unsupported(Object provider) {
-        return new IllegalArgumentException("Retromod cannot convert the loot number provider "
+        return new IllegalArgumentException("Backmod cannot convert the loot number provider "
                 + provider.getClass().getName() + " to the int and float providers 26.3 uses. A mod that"
                 + " implements the old NumberProvider itself needs a version built for 26.3.");
     }

@@ -33,7 +33,7 @@ public final class LegacyNeoForgeBrewing {
             // Before the store writes, which listens at NORMAL, so this start's mixes are in the files.
             bus.addListener(EventPriority.HIGHEST, started, event -> post(bus, event));
         } catch (ReflectiveOperationException | LinkageError | RuntimeException failure) {
-            LegacyLog.warn("Retromod could not set up the old brewing event for the mod constructing now: " + failure);
+            LegacyLog.warn("Backmod could not set up the old brewing event for the mod constructing now: " + failure);
         }
     }
 

@@ -37,7 +37,7 @@ import java.util.List;
  */
 public final class Pre1_20_5ComponentJsonBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String SERIALIZER = "net/minecraft/class_2561$class_2562";
     static final String HELPER = "com/retromod/generated/LegacyComponentJson";
@@ -93,7 +93,7 @@ public final class Pre1_20_5ComponentJsonBridge {
     // NeoForge. A method redirect wins over its class redirect, so the helper stays out of its way.
     private static boolean standInAnswers(RetromodTransformer transformer) {
         if (!com.retromod.shim.common.LegacyComponentJsonBridge.answersIntermediaryCalls(transformer)) return false;
-        LOGGER.debug("Retromod's text stand-in answers the old JSON text helpers on this host");
+        LOGGER.debug("Backmod's text stand-in answers the old JSON text helpers on this host");
         return true;
     }
 

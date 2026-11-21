@@ -144,7 +144,7 @@ final class SamBridgeSynthetics {
         mv.visitInsn(Opcodes.SWAP);
         mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/Throwable", "toString",
                 "()Ljava/lang/String;", false);
-        mv.visitLdcInsn("[Retromod] Could not connect " + synth.substring(synth.lastIndexOf('/') + 1)
+        mv.visitLdcInsn("[Backmod] Could not connect " + synth.substring(synth.lastIndexOf('/') + 1)
                 + "." + field + " to " + ownerDot + "." + srcField + "; mods using this event will not receive it: ");
         mv.visitInsn(Opcodes.SWAP);
         mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/String", "concat",

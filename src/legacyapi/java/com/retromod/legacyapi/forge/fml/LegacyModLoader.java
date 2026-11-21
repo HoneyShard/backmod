@@ -43,7 +43,7 @@ public final class LegacyModLoader {
     /** {@code addWarning(warning)}: logged, because Forge 26.2 stops every game event once it shows a warning. */
     public static void addWarning(ModLoader ignored, ModLoadingWarning warning) {
         // Logged once per distinct line, since some mods add the same warning from several places.
-        String line = source(warning) + " reported a loading warning, which Retromod logged instead of passing "
+        String line = source(warning) + " reported a loading warning, which Backmod logged instead of passing "
                 + "to Forge: " + text(warning);
         LegacyLog.warnOnce(line, line);
     }

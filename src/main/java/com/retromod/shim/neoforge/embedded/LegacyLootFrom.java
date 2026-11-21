@@ -37,7 +37,7 @@ public final class LegacyLootFrom {
             if (cause instanceof RuntimeException runtime) throw runtime;
             throw new IllegalStateException(cause);
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not set a block's loot table from another block", failure);
+            throw new IllegalStateException("Backmod could not set a block's loot table from another block", failure);
         }
     }
 }

@@ -153,7 +153,7 @@ public class LegacyModSupport {
     
     /** Updates a legacy mod for the configured target version. */
     public Path transformMod(Path modJar, LegacyModAnalysis analysis) throws IOException {
-        System.out.println("Retromod legacy transform");
+        System.out.println("Backmod legacy transform");
         System.out.println("Source: " + modJar.getFileName());
         System.out.println("From:   " + analysis.targetMcVersion + " (" + analysis.sourceEpoch.name + ")");
         System.out.println("To:     " + targetMcVersion + " (" + targetEpoch.name + ")");

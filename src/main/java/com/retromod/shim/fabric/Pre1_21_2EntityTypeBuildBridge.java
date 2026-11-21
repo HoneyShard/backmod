@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 /** Bridges the old {@code EntityType.Builder.build(String)} for Fabric mods on pre-26.1 hosts. */
 public final class Pre1_21_2EntityTypeBuildBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String BUILDER = "net/minecraft/class_1299$class_1300";
     private static final String ENTITY_TYPE = "net/minecraft/class_1299";

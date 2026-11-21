@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricBlockRenderLayerBridge implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String SELF = "com/retromod/generated/legacyfabric/BlockRenderLayerMap";
     private static final String IMPL = "com/retromod/generated/legacyfabric/BlockRenderLayerMapImpl";
@@ -45,7 +45,7 @@ public class FabricBlockRenderLayerBridge implements AuxiliaryVersionShim {
     public void registerRedirects(RetromodTransformer transformer) {
         transformer.registerSyntheticClass(SELF, generateInterface());
         transformer.registerSyntheticClass(IMPL, generateImpl());
-        LOGGER.debug("[Retromod] BlockRenderLayerMap bridge - injected no-op stand-in");
+        LOGGER.debug("[Backmod] BlockRenderLayerMap bridge - injected no-op stand-in");
     }
 
     private static byte[] generateInterface() {

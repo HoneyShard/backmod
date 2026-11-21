@@ -35,7 +35,7 @@ import java.util.zip.ZipFile;
  */
 public final class SupplementalMixins {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String METADATA = "fabric.mod.json";
     private static final String CONFIG = "backmod-jacaranda.mixins.json";

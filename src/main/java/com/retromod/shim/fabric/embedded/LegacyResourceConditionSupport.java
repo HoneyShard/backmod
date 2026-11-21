@@ -84,7 +84,7 @@ public final class LegacyResourceConditionSupport implements InvocationHandler {
             typeHolder[0] = type;
             Class.forName(CONDITIONS, false, loader).getMethod("register", typeClass).invoke(null, type);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod could not register the pre-1.20.5 resource "
+            throw new IllegalStateException("Backmod could not register the pre-1.20.5 resource "
                     + "condition " + id + " with the installed Fabric API, so the mod that declares "
                     + "it cannot finish loading. Report this with your Fabric API version.", e);
         }

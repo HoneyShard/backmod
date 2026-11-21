@@ -23,7 +23,7 @@ import java.util.Map;
 /** Points a pack's own models at the textures after they move. */
 final class PackTextureReferences {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
 
     private PackTextureReferences() {}
 

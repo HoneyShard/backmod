@@ -38,7 +38,7 @@ import java.util.function.Function;
  */
 public final class SealedSupertypeUnsealer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Unseal");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Unseal");
     static final String CREATED_WIDENER = "retromod-unseal.accesswidener";
 
     private SealedSupertypeUnsealer() {}

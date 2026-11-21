@@ -212,7 +212,7 @@ public final class FinalBaseConstructionAdapter {
         body.add(new InsnNode(Opcodes.DUP));
         body.add(new LdcInsnNode(created.replace('/', '.') + " extends " + base.owner().replace('/', '.')
                 + ", which is final on this Minecraft version, so it cannot be built. "
-                + base.reason() + ". Retromod has no replacement for it yet. Report this with the "
+                + base.reason() + ". Backmod has no replacement for it yet. Report this with the "
                 + "mod and its version."));
         body.add(new MethodInsnNode(Opcodes.INVOKESPECIAL, "java/lang/UnsupportedOperationException",
                 "<init>", "(Ljava/lang/String;)V", false));

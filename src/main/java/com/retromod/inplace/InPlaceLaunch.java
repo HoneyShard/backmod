@@ -37,7 +37,7 @@ import java.util.function.Supplier;
  */
 public final class InPlaceLaunch {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-InPlace");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-InPlace");
 
     /** Set by the bootstrap that loaded Retromod. Absent when Retromod sits in mods/ alone. */
     static final String BOOT_OWNER_PROPERTY = InPlaceSettings.BOOT_OWNER_PROPERTY;
@@ -158,7 +158,7 @@ public final class InPlaceLaunch {
         }
         if (properties.getProperty(BOOT_OWNER_PROPERTY) == null) {
             return new InPlaceLaunch(Action.REWRITE, null,
-                    "Retromod was loaded without its bootstrap, which in-place loading needs");
+                    "Backmod was loaded without its bootstrap, which in-place loading needs");
         }
         return new InPlaceLaunch(Action.LEAVE_ALONE, null,
                 "the bootstrap did not finish its discovery pass");
@@ -200,7 +200,7 @@ public final class InPlaceLaunch {
     /** Logs the decision once, in words a player can act on. */
     public void logDecision() {
         switch (action) {
-            case REWRITE -> LOGGER.info("Retromod writes translated mods into mods/ this launch "
+            case REWRITE -> LOGGER.info("Backmod writes translated mods into mods/ this launch "
                     + "({})", reason);
             case TRANSLATE_INTO_CACHE -> LOGGER.info("In-place loading is on. Translated mods "
                     + "live in retromod-cache/, and mods/ is not changed.");
@@ -208,7 +208,7 @@ public final class InPlaceLaunch {
                 if (knownLimit) {
                     LOGGER.info(knownLimitMessage(RetromodVersion.TARGET_MC_VERSION));
                 } else {
-                    LOGGER.warn("In-place loading is on, but {}. Retromod leaves mods/ "
+                    LOGGER.warn("In-place loading is on, but {}. Backmod leaves mods/ "
                             + "unchanged this launch. Set write_translated_jars to true in "
                             + "config/retromod/config.json to use the rewrite mode instead, "
                             + "and please report this with logs/latest.log.", reason);
@@ -220,7 +220,7 @@ public final class InPlaceLaunch {
     /** What the log says on a host with no discovery pass, for a game on {@code minecraft}. */
     static String knownLimitMessage(String minecraft) {
         String message = "In-place loading is not available on this NeoForge version, so "
-                + "Retromod leaves mods/ unchanged.";
+                + "Backmod leaves mods/ unchanged.";
         // NeoForge 1.20.2 to 1.20.4 cannot see a jar the rewrite mode writes, so the advice
         // starts at 1.20.5, whose FML 3.0.18 builds read the renamed toml.
         if (minecraft != null && !RetromodVersion.mcVersionExceeds("1.20.5", minecraft)) {
@@ -252,7 +252,7 @@ public final class InPlaceLaunch {
             return 0;
         }
         if (!status.minecraft().equals(targetMinecraft)) {
-            LOGGER.warn("Retromod's loader reported Minecraft {} but the game reports {}. "
+            LOGGER.warn("Backmod's loader reported Minecraft {} but the game reports {}. "
                     + "Nothing is translated this launch. Please report this with "
                     + "logs/latest.log.", status.minecraft(), targetMinecraft);
             return 0;
@@ -261,7 +261,7 @@ public final class InPlaceLaunch {
         try (TranslatedModCache cache = TranslatedModCache.attach(status.gameDir(),
                 status.loader(), status.minecraft(), LOCK_WAIT)) {
             if (cache.state() != TranslatedModCache.State.READY) {
-                LOGGER.warn("Retromod cannot translate new mods this launch: {}. They are "
+                LOGGER.warn("Backmod cannot translate new mods this launch: {}. They are "
                         + "translated on a later launch.",
                         Objects.requireNonNullElse(cache.unavailableReason(),
                                 "another game is using the cache"));
@@ -416,13 +416,13 @@ public final class InPlaceLaunch {
         try {
             staging = cache.newStagingDirectory();
             cache.markStarted(described);
-            LOGGER.info("Translating {} into Retromod's cache", name);
+            LOGGER.info("Translating {} into Backmod's cache", name);
             Path translated = translator.translate(source, staging, libraries);
             if (translated == null || !Files.isRegularFile(translated, LinkOption.NOFOLLOW_LINKS)) {
-                cache.recordFailure(described, "Retromod could not translate this file. "
+                cache.recordFailure(described, "Backmod could not translate this file. "
                         + "logs/latest.log has the reason.");
-                LOGGER.warn("Retromod could not translate {}. It is not tried again until "
-                        + "Retromod or the file changes.", name);
+                LOGGER.warn("Backmod could not translate {}. It is not tried again until "
+                        + "Backmod or the file changes.", name);
                 return false;
             }
             Optional<ForgeModMetadata> metadata = ForgeModMetadata.readEffective(translated);
@@ -435,14 +435,14 @@ public final class InPlaceLaunch {
             int attempts = cache.entry(described.sha256()).map(CacheEntry::attempts).orElse(0);
             if (attempts >= MAX_TRANSLATION_ATTEMPTS) {
                 cache.recordFailure(described, e.toString());
-                LOGGER.warn("Retromod could not translate {} in {} launches: {}. It is not "
-                        + "tried again until Retromod or the file changes.", name, attempts,
+                LOGGER.warn("Backmod could not translate {} in {} launches: {}. It is not "
+                        + "tried again until Backmod or the file changes.", name, attempts,
                         e.getMessage());
                 return false;
             }
             // A full disk or a busy file clears up, so the next launch tries again.
             cache.recordRetry(described, e.toString());
-            LOGGER.warn("Could not translate {}: {}. Retromod tries again on the next launch.",
+            LOGGER.warn("Could not translate {}: {}. Backmod tries again on the next launch.",
                     name, e.getMessage());
             return false;
         } catch (RuntimeException | LinkageError | StackOverflowError e) {
@@ -450,8 +450,8 @@ public final class InPlaceLaunch {
             // unwinds cleanly and repeats on every attempt, so it is a failure like any other.
             // Other errors propagate; the STARTED record counts them on the next launch.
             cache.recordFailure(described, e.toString());
-            LOGGER.warn("Retromod could not translate {}: {}. It is not tried again until "
-                    + "Retromod or the file changes.", name, e.toString());
+            LOGGER.warn("Backmod could not translate {}: {}. It is not tried again until "
+                    + "Backmod or the file changes.", name, e.toString());
             return false;
         } finally {
             cache.deleteStaging(staging);

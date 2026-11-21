@@ -12,7 +12,7 @@ import java.lang.reflect.Constructor;
 public class GeckoLibShim {
     
     public static void initialize() {
-        System.out.println("[Retromod] GeckoLib legacy initialize() called - v4+ auto-initializes");
+        System.out.println("[Backmod] GeckoLib legacy initialize() called - v4+ auto-initializes");
     }
     
     public static void registerControllersCompat(Object animatable, Object dataOrRegistrar) {
@@ -31,7 +31,7 @@ public class GeckoLibShim {
                 }
             }
         } catch (Exception e) {
-            System.err.println("[Retromod] GeckoLib registerControllers compat failed: " + e.getMessage());
+            System.err.println("[Backmod] GeckoLib registerControllers compat failed: " + e.getMessage());
         }
     }
     

@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricClientNetworkingV1Shim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     // Class still exists in 26.1; only its removed methods are redirected, not the class itself.
     private static final String OLD_CPN = "net/fabricmc/fabric/api/client/networking/v1/ClientPlayNetworking";
@@ -72,7 +72,7 @@ public class FabricClientNetworkingV1Shim implements AuxiliaryVersionShim {
     public void registerRedirects(RetromodTransformer transformer) {
         String host = com.retromod.core.RetromodVersion.TARGET_MC_VERSION;
         if (com.retromod.core.RetromodVersion.compareMcVersions(host, "1.20.5") < 0) {
-            LOGGER.debug("[Retromod] client-networking v1 bridge skipped (host {} < 1.20.5)", host);
+            LOGGER.debug("[Backmod] client-networking v1 bridge skipped (host {} < 1.20.5)", host);
             return;
         }
         boolean mojRuntime = com.retromod.core.RetromodVersion.isUnobfuscatedTarget(host);

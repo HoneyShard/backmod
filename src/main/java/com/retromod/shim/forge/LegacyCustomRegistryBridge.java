@@ -41,7 +41,7 @@ import java.util.Map;
  */
 public final class LegacyCustomRegistryBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ForgeRegistries");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ForgeRegistries");
 
     static final String FORGE_BUILDER = "net/minecraftforge/registries/RegistryBuilder";
     static final String IFORGE_REGISTRY = "net/minecraftforge/registries/IForgeRegistry";

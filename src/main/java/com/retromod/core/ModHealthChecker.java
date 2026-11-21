@@ -23,7 +23,7 @@ import java.util.jar.*;
  */
 public final class ModHealthChecker {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Health");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Health");
 
     private static final String BACKUP_FOLDER = "retromod-backups";
 
@@ -67,7 +67,7 @@ public final class ModHealthChecker {
             }
 
         } catch (IOException e) {
-            LOGGER.error("Could not create Retromod folders", e);
+            LOGGER.error("Could not create Backmod folders", e);
         }
     }
 
@@ -75,16 +75,16 @@ public final class ModHealthChecker {
         try {
             Path readme = inputFolder.resolve("README.txt");
             Files.writeString(readme, """
-                Retromod input folder
+                Backmod input folder
 
-                Put old mod jars directly in this folder. Retromod updates them,
+                Put old mod jars directly in this folder. Backmod updates them,
                 installs the results in mods/, and keeps the originals in processed/.
 
                 On Fabric, do not put an old mod straight in mods/. Fabric may reject
-                its version before Retromod gets a chance to update it.
+                its version before Backmod gets a chance to update it.
 
                 Help and bug reports:
-                https://github.com/Bownlux/Retromod/issues
+                https://github.com/HoneyShard/backmod/issues
                 """);
         } catch (IOException e) {
             LOGGER.debug("Could not create README", e);
@@ -188,13 +188,13 @@ public final class ModHealthChecker {
             info.backupPath(), info.transformTime(), false
         ));
         
-        LOGGER.error("Retromod saw repeated errors from {} ({}). This may be a compatibility issue.",
+        LOGGER.error("Backmod saw repeated errors from {} ({}). This may be a compatibility issue.",
             info.modName(), modId);
         LOGGER.error("Recent errors:");
         for (String err : errors) {
             LOGGER.error("  - {}", err);
         }
-        LOGGER.error("Report the issue at https://github.com/Bownlux/Retromod/issues");
+        LOGGER.error("Report the issue at https://github.com/HoneyShard/backmod/issues");
 
         if (EnvironmentDetector.canShowGui()) {
             showBrokenModDialog(info, errors);
@@ -208,7 +208,7 @@ public final class ModHealthChecker {
             } catch (Exception ignored) {}
             
             StringBuilder message = new StringBuilder();
-            message.append("Retromod saw repeated errors from ")
+            message.append("Backmod saw repeated errors from ")
                 .append(info.modName()).append(".\n\n")
                 .append("The game launched, but this mod may not be working correctly.\n")
                 .append("You can report the issue or restore its backup.\n\n");
@@ -220,7 +220,7 @@ public final class ModHealthChecker {
             int choice = JOptionPane.showOptionDialog(
                 null,
                 message.toString(),
-                "Retromod found repeated mod errors",
+                "Backmod found repeated mod errors",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.WARNING_MESSAGE,
                 null,
@@ -268,7 +268,7 @@ public final class ModHealthChecker {
             JOptionPane.showMessageDialog(
                 null,
                 "The transformed jar was removed and the original was copied to retromod-input/.\n\n" +
-                "Restart Minecraft to let Retromod try it again. If it still fails, attach\n" +
+                "Restart Minecraft to let Backmod try it again. If it still fails, attach\n" +
                 "logs/latest.log to a GitHub issue.",
                 "Backup restored",
                 JOptionPane.INFORMATION_MESSAGE
@@ -293,7 +293,7 @@ public final class ModHealthChecker {
     
     /** Opens a new GitHub issue through Minecraft, or shows the link to copy when it cannot. */
     private static void openGitHub() {
-        String url = "https://github.com/Bownlux/Retromod/issues/new?title=Bug%20Report%20-%20Mod%20Not%20Working";
+        String url = "https://github.com/HoneyShard/backmod/issues/new?title=Bug%20Report%20-%20Mod%20Not%20Working";
         if (McOpener.openLink(url)) return;
         JOptionPane.showMessageDialog(null, "Please visit: " + url, "Report an issue",
                 JOptionPane.INFORMATION_MESSAGE);

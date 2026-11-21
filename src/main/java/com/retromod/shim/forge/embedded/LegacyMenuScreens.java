@@ -31,7 +31,7 @@ public final class LegacyMenuScreens {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException(cause);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod could not register the menu screen for "
+            throw new IllegalStateException("Backmod could not register the menu screen for "
                     + menuType + ". The mod's screen for this menu will not open.", e);
         }
     }

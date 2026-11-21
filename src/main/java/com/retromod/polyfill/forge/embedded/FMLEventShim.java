@@ -17,7 +17,7 @@ public class FMLEventShim {
         }
 
         public org.slf4j.Logger getModLog() {
-            return org.slf4j.LoggerFactory.getLogger("Retromod-LegacyCompat");
+            return org.slf4j.LoggerFactory.getLogger("Backmod-LegacyCompat");
         }
     }
 

@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Repoints vanilla texture paths that a mod's code binds by name after Minecraft moved the file. */
 public final class VanillaTexturePathConstants {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     private static final byte[] MARKER = "textures/".getBytes(StandardCharsets.UTF_8);
     private static final String VANILLA = "minecraft";
     private static final String QUALIFIED_PREFIX = VANILLA + ":textures/";

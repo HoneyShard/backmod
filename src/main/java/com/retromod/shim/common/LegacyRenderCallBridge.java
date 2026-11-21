@@ -26,7 +26,7 @@ public final class LegacyRenderCallBridge {
     static final String TARGETS = "com/retromod/polyfill/minecraft/RetroRenderTargets";
     static final String TEXTURES = "com/retromod/generated/LegacyDynamicTexture";
     static final String CAMERA = "com/retromod/generated/LegacyCameraOrientation";
-    static final String TEXTURE_LABEL = "Retromod legacy dynamic texture";
+    static final String TEXTURE_LABEL = "Backmod legacy dynamic texture";
 
     /** 1.21.5: RenderTarget.bindWrite(boolean), kept for the main target, and unbindWrite(). */
     public static void registerMainTargetBind(RetromodTransformer t) {

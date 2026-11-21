@@ -31,7 +31,7 @@ import java.util.function.UnaryOperator;
  */
 public final class MixinRefmapRemapper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Refmap");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Refmap");
 
     private MixinRefmapRemapper() {}
 
@@ -217,7 +217,7 @@ public final class MixinRefmapRemapper {
     /** Logs a refmap left unchanged, since its mixins then keep their old targets. */
     private static void warnUnchanged(Throwable failure) {
         LOGGER.warn("Could not remap a Mixin refmap, so its mixins keep their old targets and may not"
-                + " apply. If that mod fails to load, include this line in a Retromod bug report: {}",
+                + " apply. If that mod fails to load, include this line in a Backmod bug report: {}",
                 failure.toString());
         LOGGER.debug("Mixin refmap remap failure", failure);
     }

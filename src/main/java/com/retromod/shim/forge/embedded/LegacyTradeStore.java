@@ -374,7 +374,7 @@ public final class LegacyTradeStore {
     private static void writeMetadata() throws IOException {
         int format = LegacyDataPackSource.packFormat();
         write(root.resolve("pack.mcmeta"), "{\"pack\":{\"pack_format\":" + format + ",\"min_format\":"
-                + format + ",\"max_format\":" + format + ",\"description\":\"Retromod legacy trades\"}}");
+                + format + ",\"max_format\":" + format + ",\"description\":\"Backmod legacy trades\"}}");
     }
 
     /** Replaces the folder's data with these trades and returns how many there are. */

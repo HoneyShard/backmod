@@ -28,7 +28,7 @@ import java.util.function.Predicate;
 /** Drops an {@code addListener} lambda for an event class the running NeoForge no longer has. */
 public final class NeoForgeRemovedEventListeners {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-EventBus");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-EventBus");
     private static final String BUS = "net/neoforged/bus/api/IEventBus";
     private static final String EVENT_BASE = "net/neoforged/bus/api/Event";
     private static final String CONSUMER = "Ljava/util/function/Consumer;";

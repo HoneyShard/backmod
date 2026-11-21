@@ -161,7 +161,7 @@ public final class LegacyCancel {
         Object[] frame = innermost(event);
         if (frame != null && (Boolean) frame[READ_ONLY]) {
             warnOnce("monitor", event, "The old receiveCanceled listener in %s tried to change the cancel of %s "
-                    + "after EventBus 7 had settled the post, so Retromod left it cancelled");
+                    + "after EventBus 7 had settled the post, so Backmod left it cancelled");
             return;
         }
         // The cancel still stops later listeners below; only the DENY result stops the break itself.
@@ -178,7 +178,7 @@ public final class LegacyCancel {
         remember(event, cancel);
         if (cancel && !isCancelable(event)) {
             warnOnce("channel", event, "The old code in %s cancelled %s, which this Forge does not let a listener cancel, "
-                    + "so Retromod kept the cancel only for that mod's own isCanceled() reads");
+                    + "so Backmod kept the cancel only for that mod's own isCanceled() reads");
         }
     }
 

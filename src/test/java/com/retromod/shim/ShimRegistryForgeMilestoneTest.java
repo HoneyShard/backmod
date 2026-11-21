@@ -66,7 +66,7 @@ class ShimRegistryForgeMilestoneTest {
                 "the 1.20.x milestone is a fixed alias, not a guess, got:\n" + stderr);
         assertFalse(stderr.contains("com.retromod.shim.ShimRegistry findShimChain"),
                 "the alias line should not print a java.util.logging header, got:\n" + stderr);
-        assertFalse(stderr.contains(" INFO Retromod-Shim - "),
+        assertFalse(stderr.contains(" INFO Backmod-Shim - "),
                 "the alias line belongs at DEBUG, got:\n" + stderr);
         assertTrue(julRecords.isEmpty(),
                 "the alias line should not go through java.util.logging, got " + julRecords.size()

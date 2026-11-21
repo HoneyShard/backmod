@@ -25,7 +25,7 @@ import java.util.TreeSet;
 /** Adds the textures an old mod's models use to the atlases that stitch them on 1.19.3 and newer. */
 public final class ModTextureAtlasSources implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     // Before 1.19.3 the game stitched every texture a model named, wherever the file sat, so mods
     // kept art in textures/blocks/, textures/items/, and folders of their own for OBJ textures.
     // 1.19.3 added atlas definitions: the blocks atlas stitches only the block/ and item/ folders
@@ -167,7 +167,7 @@ public final class ModTextureAtlasSources implements ModResourceConverter {
             definition = ModModels.read(tree, atlas);
             JsonElement listed = definition == null ? null : definition.get("sources");
             if (listed == null || !listed.isJsonArray()) {
-                LOGGER.warn("Left {} unchanged: it is not an atlas definition Retromod can add to", atlas);
+                LOGGER.warn("Left {} unchanged: it is not an atlas definition Backmod can add to", atlas);
                 return 0;
             }
             sources = listed.getAsJsonArray();

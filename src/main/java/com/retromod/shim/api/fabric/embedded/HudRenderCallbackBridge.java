@@ -20,7 +20,7 @@ public final class HudRenderCallbackBridge {
 
     private HudRenderCallbackBridge() {}
 
-    private static final String TAG = "[Retromod] HudRenderCallbackBridge: ";
+    private static final String TAG = "[Backmod] HudRenderCallbackBridge: ";
 
     private static final String EVENT_FACTORY = "net.fabricmc.fabric.api.event.EventFactory";
     private static final String REGISTRY      = "net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry";

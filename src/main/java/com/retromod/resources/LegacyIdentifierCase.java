@@ -40,7 +40,7 @@ import java.util.stream.Stream;
 /** Lowercases the identifiers a 1.12 mod wrote in mixed case. */
 final class LegacyIdentifierCase implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
     /** The first host that rejects uppercase identifiers instead of lowercasing them. */

@@ -20,7 +20,7 @@ import java.util.Map;
 /** Loads the bundled Forge SRG to Mojang member names and registers them on the transformer. */
 public final class SrgToMojangMapper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-SrgMapper");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-SrgMapper");
 
     // Forge mods built with reobfJar name Minecraft members by SRG id, such as f_50069_ for STONE.
     // Hosts that run Mojang names (Forge 1.20.6 and newer, NeoForge 1.20.2 and newer, and 26.x)

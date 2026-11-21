@@ -93,7 +93,7 @@ public final class LegacyItemRendererModel implements ItemModel {
         } catch (RuntimeException | LinkageError failure) {
             // Noted once per properties class, which one mod shares across its items.
             LegacyLog.warnOnce("item renderer properties " + extensions.getClass().getName(), "The old renderer properties "
-                    + extensions.getClass().getName() + " threw " + failure + ", so Retromod draws their items' flat icons");
+                    + extensions.getClass().getName() + " threw " + failure + ", so Backmod draws their items' flat icons");
             return NONE;
         }
     }
@@ -157,7 +157,7 @@ public final class LegacyItemRendererModel implements ItemModel {
                 Class<?> type = draw.renderer().getClass();
                 BROKEN.add(type);
                 LegacyLog.warnOnce("item renderer " + type.getName(), "The old item renderer " + type.getName() + " threw " + failure
-                        + " while drawing " + draw.stack().getItem() + ", so Retromod draws the flat icons of its items until the"
+                        + " while drawing " + draw.stack().getItem() + ", so Backmod draws the flat icons of its items until the"
                         + " next resource reload");
             } finally {
                 // What a renderer that threw wrote is dropped, so a half-drawn item never reaches the frame.

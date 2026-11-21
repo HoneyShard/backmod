@@ -379,7 +379,7 @@ public final class RetroKeyMapping {
         try {
             constructors = Class.forName(KEY_MAPPING).getConstructors();
         } catch (ClassNotFoundException e) {
-            throw new IllegalStateException("Retromod: KeyMapping is not on this host", e);
+            throw new IllegalStateException("Backmod: KeyMapping is not on this host", e);
         }
         // Forge's conflict constructors end in an int sort order, which vanilla fills with 0, so
         // arguments that fit no constructor are tried once more with that order appended.
@@ -396,11 +396,11 @@ public final class RetroKeyMapping {
                     if (cause instanceof Error error) throw error;
                     throw new IllegalStateException(cause);
                 } catch (ReflectiveOperationException e) {
-                    throw new IllegalStateException("Retromod could not build keybind " + args[0], e);
+                    throw new IllegalStateException("Backmod could not build keybind " + args[0], e);
                 }
             }
         }
-        throw new IllegalStateException("Retromod found no KeyMapping constructor for keybind "
+        throw new IllegalStateException("Backmod found no KeyMapping constructor for keybind "
                 + args[0] + " on this host");
     }
 

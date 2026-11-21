@@ -29,7 +29,7 @@ import static com.retromod.loaderapi.fabric.v26.content.LegacyContentRegistries.
 /** Serves the old Fabric API TradeOfferHelper on 26.x, where villager and wandering trader trades are data. */
 public final class LegacyTrades {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     /** The world data pack the trades go into, and the namespace of the trades in it. */
@@ -199,7 +199,7 @@ public final class LegacyTrades {
     static int write(Path root, Map<String, List<Map<String, Object>>> byTag, int packFormat) throws IOException {
         LegacyWorldPacks.deleteTree(root.resolve("data"));
         if (byTag.isEmpty()) return 0;
-        LegacyWorldPacks.writePackMeta(root, packFormat, "Retromod: trades from old mods");
+        LegacyWorldPacks.writePackMeta(root, packFormat, "Backmod: trades from old mods");
         int count = 0;
         for (Map.Entry<String, List<Map<String, Object>>> tag : byTag.entrySet()) {
             String[] tagId = tag.getKey().split(":", 2);

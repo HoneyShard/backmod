@@ -48,7 +48,7 @@ import java.util.OptionalInt;
  */
 public final class GraphicsBackendCompat {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     /** {@code -Dretromod.graphics.noPreference=true} disables this entirely. */
     public static final String OPT_OUT_PROPERTY = "retromod.graphics.noPreference";

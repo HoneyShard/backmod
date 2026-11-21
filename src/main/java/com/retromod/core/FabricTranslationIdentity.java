@@ -32,7 +32,7 @@ import java.util.jar.Manifest;
 /** Rebuilds jars translated under another loader API runtime setting and swaps them in on exit. */
 public final class FabricTranslationIdentity {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final long MAX_MANIFEST_BYTES = 2L * 1024 * 1024;
 
     /**
@@ -103,7 +103,7 @@ public final class FabricTranslationIdentity {
             if (original == null) {
                 // The jar still runs: helpers ship in every build, so this is advice, not an error.
                 LOGGER.info("{} was translated with loader API runtime {}, but this launch uses {}. "
-                        + "Its original is not in retromod-input/processed/, so Retromod cannot "
+                        + "Its original is not in retromod-input/processed/, so Backmod cannot "
                         + "translate it again. Put the original jar in retromod-input/ to update it.",
                         jarName, describe(mismatch.found()), describe(expected));
                 continue;
@@ -128,7 +128,7 @@ public final class FabricTranslationIdentity {
     public static void installScheduledOnExit() {
         if (REPLACED_ON_EXIT.isEmpty() || !EXIT_HOOK_ADDED.compareAndSet(false, true)) return;
         Runtime.getRuntime().addShutdownHook(new Thread(FabricTranslationIdentity::installScheduled,
-                "Retromod rebuilt jars"));
+                "Backmod rebuilt jars"));
     }
 
     /**
@@ -159,7 +159,7 @@ public final class FabricTranslationIdentity {
             workDir = Files.createTempDirectory(gameDir, ".retromod-rebuild-");
             Path output = retranslator.retranslate(original, workDir);
             if (output == null || !output.getFileName().toString().equals(jarName)) {
-                LOGGER.warn("Retromod could not translate {} again; keeping the current jar. Put "
+                LOGGER.warn("Backmod could not translate {} again; keeping the current jar. Put "
                         + "its original in retromod-input/ to update it.", jarName);
                 return false;
             }
@@ -171,7 +171,7 @@ public final class FabricTranslationIdentity {
             REPLACED_ON_EXIT.put(staged.toAbsolutePath().normalize(), jar.toAbsolutePath().normalize());
             return true;
         } catch (IOException | RuntimeException e) {
-            LOGGER.warn("Retromod could not translate {} again ({}); keeping the current jar",
+            LOGGER.warn("Backmod could not translate {} again ({}); keeping the current jar",
                     jarName, e.getMessage());
             return false;
         } finally {
@@ -213,13 +213,13 @@ public final class FabricTranslationIdentity {
                     REPLACED_ON_EXIT.put(staged.toAbsolutePath().normalize(),
                             target.toAbsolutePath().normalize());
                     LOGGER.warn("mods/{} still runs the build from before the loader API runtime "
-                            + "setting changed. Retromod replaces it with {}/{} when the game "
+                            + "setting changed. Backmod replaces it with {}/{} when the game "
                             + "closes. If this message comes back after a restart, close the game, "
                             + "delete mods/{}, and start it again.", jarName, PENDING_FOLDER,
                             jarName, jarName);
                 }
             } catch (IOException e) {
-                LOGGER.warn("Retromod could not install the rebuilt {} ({}). Close the game and "
+                LOGGER.warn("Backmod could not install the rebuilt {} ({}). Close the game and "
                         + "move {}/{} into mods/.", jarName, e.getMessage(), PENDING_FOLDER, jarName);
             }
         }
@@ -266,7 +266,7 @@ public final class FabricTranslationIdentity {
             LOGGER.info("{} is still open, so the next launch skips it and installs the rebuilt "
                     + "copy from {}/", target.getFileName(), PENDING_FOLDER);
         } catch (IOException e) {
-            LOGGER.warn("Retromod could not replace {} ({}). Close the game and move {}/{} into "
+            LOGGER.warn("Backmod could not replace {} ({}). Close the game and move {}/{} into "
                     + "mods/.", target.getFileName(), e.getMessage(), PENDING_FOLDER,
                     target.getFileName());
         }

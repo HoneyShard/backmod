@@ -1,21 +1,21 @@
 {
-  "retromod.title_screen.button": "Retromod",
+  "retromod.title_screen.button": "Backmod",
   "retromod.title_screen.settings": "\u2699",
 
-  "retromod.main.title": "Retromod",
+  "retromod.main.title": "Backmod",
   "retromod.main.subtitle": "W\u00e4hle alte Mod-JARs aus, die für diese Minecraft-Version aktualisiert werden sollen",
   "retromod.main.add_mods": "Mods hinzuf\u00fcgen\u2026",
   "retromod.main.open_folder": "retromod-input/ \u00f6ffnen",
   "retromod.main.inplace_status": "%s aus dem Cache, %s nach Neustart, %s fehlgeschlagen",
 
-  "retromod.screen.title": "Retromod-Mod-Manager",
+  "retromod.screen.title": "Backmod-Mod-Manager",
   "retromod.screen.add_mods": "Mods ausw\u00e4hlen",
   "retromod.screen.full_aot": "Mods vorkompilieren (jetzt langsamer, sp\u00e4ter schneller)",
   "retromod.screen.transform_complete": "Deine Mods sind bereit. Starte Minecraft neu, um sie zu laden.",
   "retromod.screen.no_mods": "Keine Mods ausgew\u00e4hlt.",
   "retromod.screen.transforming": "Aktualisiere %s",
 
-  "retromod.settings.title": "Retromod-Einstellungen",
+  "retromod.settings.title": "Backmod-Einstellungen",
   "retromod.settings.done": "Fertig",
   "retromod.settings.add_mods": "Mods-Ordner \u00f6ffnen",
   "retromod.settings.on": "\u00a7aAn",
@@ -34,13 +34,13 @@
   "retromod.settings.next_launch": "Gilt ab dem n\u00e4chsten Start",
   "retromod.settings.status.verified": "\u00a7aVerifizierter Build\u00a7r",
   "retromod.settings.status.modified": "\u00a7eVer\u00e4nderter / inoffizieller Build\u00a7r",
-  "retromod.settings.status.impostor": "\u00a7cKein Retromod (Manifest passt nicht)\u00a7r",
+  "retromod.settings.status.impostor": "\u00a7cKein Backmod (Manifest passt nicht)\u00a7r",
   "retromod.settings.status.unknown": "\u00a77Echtheit unbekannt\u00a7r",
 
   "retromod.restart.converted": "F\u00fcr diese Minecraft-Version umgewandelte Mods: %s\nStarte Minecraft neu, um die umgewandelten Mods zu laden.\n\nKlicke auf Ja, um Minecraft zu schlie\u00dfen, und starte es dann \u00fcber deinen Launcher neu.",
   "retromod.restart.cache": "F\u00fcr diese Minecraft-Version \u00fcbersetzte Mods: %s\nStarte Minecraft neu, um die \u00fcbersetzten Mods zu laden. Deine Dateien in mods/ wurden nicht ver\u00e4ndert.\n\nKlicke auf Ja, um Minecraft zu schlie\u00dfen, und starte es dann \u00fcber deinen Launcher neu.",
 
-  "retromod.filepicker.title": "Retromod: Mod-JARs ausw\u00e4hlen",
+  "retromod.filepicker.title": "Backmod: Mod-JARs ausw\u00e4hlen",
 
   "retromod.result.success": "Aktualisiert",
   "retromod.result.skipped": "Keine Änderungen notwendig",

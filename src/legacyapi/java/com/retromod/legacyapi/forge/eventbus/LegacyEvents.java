@@ -156,7 +156,7 @@ public final class LegacyEvents {
             boolean receiveCanceled, Consumer<Object> listener) {
         if (type == null) {
             LegacyLog.warnOnce("generic listener " + listener.getClass().getName(), "The generic event listener "
-                    + listener.getClass().getName() + " names no event type Retromod can read, so it will not run");
+                    + listener.getClass().getName() + " names no event type Backmod can read, so it will not run");
             return;
         }
         if (isLegacyEvent(type)) {

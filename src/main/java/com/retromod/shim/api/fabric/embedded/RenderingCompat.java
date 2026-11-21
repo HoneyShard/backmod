@@ -20,7 +20,7 @@ import java.util.function.Supplier;
  */
 public class RenderingCompat {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-RenderCompat");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-RenderCompat");
 
     private static Method cachedGetTessellator = null;
     private static Method cachedBindTarget = null;

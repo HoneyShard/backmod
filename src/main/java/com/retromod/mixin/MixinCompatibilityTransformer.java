@@ -127,7 +127,7 @@ public final class MixinCompatibilityTransformer {
             if (neutralizeMixin(classNode)) {
                 ClassWriter w = new ClassWriter(0);
                 classNode.accept(w);
-                LOGGER.debug(RetromodLog.DETAIL, "Disabled Mixin {} because Retromod's mixin blocklist names it. Its "
+                LOGGER.debug(RetromodLog.DETAIL, "Disabled Mixin {} because Backmod's mixin blocklist names it. Its "
                     + "changes to the game are not applied.", classNode.name);
                 return w.toByteArray();
             }
@@ -160,7 +160,7 @@ public final class MixinCompatibilityTransformer {
             int removed = before - classNode.methods.size();
             if (removed > 0) {
                 modified = true;
-                LOGGER.debug(RetromodLog.DETAIL, "Removed {} handler(s) that Retromod's mixin blocklist names from {}. "
+                LOGGER.debug(RetromodLog.DETAIL, "Removed {} handler(s) that Backmod's mixin blocklist names from {}. "
                         + "Their changes to the game are not applied.", removed, classNode.name);
             }
         }

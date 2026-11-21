@@ -77,7 +77,7 @@ public final class HostSurface {
     private static HostSurface load(String line) {
         String resource = String.format(RESOURCE_PATTERN, line);
         try (InputStream in = HostSurface.class.getClassLoader().getResourceAsStream(resource)) {
-            if (in == null) throw new IllegalStateException(resource + " is missing from the Retromod jar");
+            if (in == null) throw new IllegalStateException(resource + " is missing from the Backmod jar");
             return parse(line, in);
         } catch (IOException e) {
             throw new UncheckedIOException("Could not read " + resource, e);

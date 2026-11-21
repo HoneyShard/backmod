@@ -43,7 +43,7 @@ import java.util.function.Function;
  */
 public final class LegacyBlockUseAdapter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     /** One namespace's spelling of the old and new methods. */
     record Names(String oldName, String oldDesc, String newName, String newDesc,

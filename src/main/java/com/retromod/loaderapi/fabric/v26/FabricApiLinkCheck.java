@@ -35,7 +35,7 @@ import java.util.zip.ZipInputStream;
 /** Logs the Fabric API references a translated mod still makes that the host lacks. */
 public final class FabricApiLinkCheck {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
     private static final String FABRIC_API = "net/fabricmc/fabric/";
     private static final int MAX_LINES = 25;
     private static final String NESTED_JARS = "META-INF/jars/";

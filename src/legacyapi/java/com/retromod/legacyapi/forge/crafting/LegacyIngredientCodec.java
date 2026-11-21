@@ -51,7 +51,7 @@ final class LegacyIngredientCodec<T extends Ingredient> extends MapCodec<T> {
             return DataResult.success(ingredient);
         } catch (RuntimeException | LinkageError failure) {
             // A read that throws, also on an API this host removed, becomes a read error rather than an exception.
-            LegacyLog.warnOnce("ingredient read " + name(), "Retromod returned a read error for the old ingredient"
+            LegacyLog.warnOnce("ingredient read " + name(), "Backmod returned a read error for the old ingredient"
                     + " serializer " + name() + ": its JSON read threw " + failure);
             return DataResult.error(() -> "The old ingredient serializer " + name() + " threw " + failure);
         }

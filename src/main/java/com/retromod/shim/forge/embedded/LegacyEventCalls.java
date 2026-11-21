@@ -49,7 +49,7 @@ public final class LegacyEventCalls {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException(cause);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not post " + event, e);
+            throw new IllegalStateException("Backmod could not post " + event, e);
         }
         return isCanceled(event);
     }
@@ -125,7 +125,7 @@ public final class LegacyEventCalls {
         try {
             return annotation.annotationType().getMethod(name).invoke(annotation);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read " + name + " from " + annotation, e);
+            throw new IllegalStateException("Backmod could not read " + name + " from " + annotation, e);
         }
     }
 
@@ -153,7 +153,7 @@ public final class LegacyEventCalls {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException(cause);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not call " + method, e);
+            throw new IllegalStateException("Backmod could not call " + method, e);
         }
     }
 
@@ -215,7 +215,7 @@ public final class LegacyEventCalls {
         } catch (NoSuchMethodException notADamageEvent) {
             // Any other uncancellable event runs on, as Forge's non-cancelable events did.
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not cancel the damage in " + event, e);
+            throw new IllegalStateException("Backmod could not cancel the damage in " + event, e);
         }
     }
 
@@ -234,7 +234,7 @@ public final class LegacyEventCalls {
                     .getMethod(name, types);
             return method.invoke(target, args);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not call " + name + " on " + target, e);
+            throw new IllegalStateException("Backmod could not call " + name + " on " + target, e);
         }
     }
 

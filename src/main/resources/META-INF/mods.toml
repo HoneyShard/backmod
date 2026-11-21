@@ -1,14 +1,14 @@
 modLoader = "javafml"
 loaderVersion = "[52,)"
 license = "MIT"
-issueTrackerURL = "https://github.com/Bownlux/Retromod/issues"
+issueTrackerURL = "https://github.com/HoneyShard/backmod/issues"
 
 [[mods]]
 modId = "retromod"
 version = "${version}"
-displayName = "Retromod"
+displayName = "Backmod"
 description = '''
-Retromod helps older Minecraft mods run on newer versions. It updates bytecode,
+Backmod helps older Minecraft mods run on newer versions. It updates bytecode,
 mixins, and loader metadata, then keeps a backup of the original mod.
 '''
 authors = "Bownlux"

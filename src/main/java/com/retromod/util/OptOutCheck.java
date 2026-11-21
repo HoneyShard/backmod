@@ -38,7 +38,7 @@ import java.util.zip.ZipEntry;
  */
 public final class OptOutCheck {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-OptOut");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-OptOut");
 
     /** Marker path inside a mod JAR; presence is the opt-out signal. */
     public static final String OPT_OUT_MARKER = "META-INF/retromod-opt-out";
@@ -133,7 +133,7 @@ public final class OptOutCheck {
             String renderer = rendererModId(jar);
             if (renderer != null && jar.getEntry(OPT_OUT_MARKER) == null) {
                 LOGGER.warn("Skipping {}: {} replaces Minecraft's renderer for one exact Minecraft "
-                        + "version, and Retromod does not translate renderer replacements.",
+                        + "version, and Backmod does not translate renderer replacements.",
                         modJar.getFileName(), renderer);
                 return;
             }

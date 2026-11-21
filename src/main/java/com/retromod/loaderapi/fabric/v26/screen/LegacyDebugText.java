@@ -38,7 +38,7 @@ public final class LegacyDebugText {
             installDebugEntry();
         } catch (RuntimeException e) {
             // The mod's class setup reads these events, so a host refusal must not fail it.
-            HostGui.warnOnce("debug-entry", "Retromod could not add the debug screen entry for old "
+            HostGui.warnOnce("debug-entry", "Backmod could not add the debug screen entry for old "
                     + "debug text ({}). The lines are kept but not shown.", e.toString());
         }
     }

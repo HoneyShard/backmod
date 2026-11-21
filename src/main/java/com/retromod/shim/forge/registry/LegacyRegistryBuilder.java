@@ -249,7 +249,7 @@ public class LegacyRegistryBuilder {
 
     private static RuntimeException rethrow(String action, Throwable cause) {
         if (cause instanceof RuntimeException runtime) return runtime;
-        return new IllegalStateException("Retromod could not " + action
+        return new IllegalStateException("Backmod could not " + action
                 + " for a Forge custom registry: " + cause, cause);
     }
 }

@@ -45,7 +45,7 @@ public final class LegacyItemColors {
             // Each mod that installs this copy gets its own tint type, before the first resource reload reads them.
             LegacyItemColorPost.addTintTypes();
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not set up the old item colors of " + LegacyClientRenderBootstrap.namespaces()
+            LegacyLog.warn("Backmod did not set up the old item colors of " + LegacyClientRenderBootstrap.namespaces()
                     + ": " + failure);
         }
     }

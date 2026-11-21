@@ -19,7 +19,7 @@ import java.util.Optional;
 /** Reads and writes Retromod's {@code config.json} for every loader. */
 public final class RetromodConfig {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Config");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Config");
 
     /** {@code config/retromod} relative to the game directory. */
     public static final Path CONFIG_DIR = Path.of("config", "retromod");
@@ -30,7 +30,7 @@ public final class RetromodConfig {
     /** Written when no config exists; kept here so every loader writes the same file. */
     static final String DEFAULT_CONFIG = """
             {
-              "_comment": "Retromod Configuration - https://github.com/Bownlux/Retromod",
+              "_comment": "Backmod Configuration - https://github.com/HoneyShard/backmod",
 
               "_install_comment": "Forge and NeoForge: false keeps translated copies in retromod-cache/ and never changes mods/. true writes translated jars into mods/ like earlier versions. Fabric and Quilt always use retromod-input/.",
               "write_translated_jars": false,
@@ -56,7 +56,7 @@ public final class RetromodConfig {
 
               "verify_transforms": true,
 
-              "_network_comment": "Retromod never initiates network downloads without user consent. The flag below is OFF by default - flip it to true to enable the optional Modrinth lookup (queries Modrinth's public API to suggest native versions of mods you're transforming). No JAR files are ever auto-downloaded; the CLI's 'archive download' command is the only path that fetches files, and it prompts before each download.",
+              "_network_comment": "Backmod never initiates network downloads without user consent. The flag below is OFF by default - flip it to true to enable the optional Modrinth lookup (queries Modrinth's public API to suggest native versions of mods you're transforming). No JAR files are ever auto-downloaded; the CLI's 'archive download' command is the only path that fetches files, and it prompts before each download.",
               "check_for_native_versions": false
             }
             """;
@@ -104,7 +104,7 @@ public final class RetromodConfig {
         try {
             if (configPath == null || !Files.exists(configPath)) return null;
             String json = JsonSecurity.readUtf8(configPath, MAX_CONFIG_BYTES,
-                    JsonSecurity.DEFAULT_MAX_DEPTH, "Retromod config");
+                    JsonSecurity.DEFAULT_MAX_DEPTH, "Backmod config");
             return parseConfig(json);
         } catch (Exception e) {
             LOGGER.warn("Could not load config {}: {}", configPath, e.getMessage());
@@ -114,7 +114,7 @@ public final class RetromodConfig {
 
     static JsonObject parseConfig(String json) throws IOException {
         JsonSecurity.validate(json, MAX_CONFIG_BYTES,
-                JsonSecurity.DEFAULT_MAX_DEPTH, "Retromod config");
+                JsonSecurity.DEFAULT_MAX_DEPTH, "Backmod config");
         return JsonParser.parseString(json).getAsJsonObject();
     }
 

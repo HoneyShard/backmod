@@ -45,7 +45,7 @@ import static org.objectweb.asm.Opcodes.ACC_STATIC;
  */
 public final class NeoForgeAutoSubscriberGuard {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-EventBus");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-EventBus");
     private static final String AUTO_SUBSCRIBER = "net/neoforged/fml/common/EventBusSubscriber";
     private static final String AUTO_SUBSCRIBER_DESC = "L" + AUTO_SUBSCRIBER + ";";
     private static final String SUBSCRIBE_DESC = "Lnet/neoforged/bus/api/SubscribeEvent;";

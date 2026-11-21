@@ -29,7 +29,7 @@ public final class LegacySpawnPlacements {
             throw new NoSuchMethodException("SpawnPlacements.register");
         } catch (ReflectiveOperationException | RuntimeException e) {
             Throwable cause = e.getCause() != null ? e.getCause() : e;
-            System.out.println("[Retromod] Could not register the spawn placement of " + entityType
+            System.out.println("[Backmod] Could not register the spawn placement of " + entityType
                     + ", so it uses the default: " + cause);
         }
     }

@@ -44,7 +44,7 @@ import java.util.List;
  */
 public final class LegacySynchedDataBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacySynchedData";
     static final String ENTITY = "net/minecraft/world/entity/Entity";
@@ -238,7 +238,7 @@ public final class LegacySynchedDataBridge {
         define.visitJumpInsn(Opcodes.IFNONNULL, active);
         define.visitTypeInsn(Opcodes.NEW, "java/lang/IllegalStateException");
         define.visitInsn(Opcodes.DUP);
-        define.visitLdcInsn("Retromod: a pre-1.20.5 entity defined synced data outside defineSynchedData; "
+        define.visitLdcInsn("Backmod: a pre-1.20.5 entity defined synced data outside defineSynchedData; "
                 + "1.20.5 and newer only accept entity data while the entity is constructed");
         define.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/IllegalStateException", "<init>",
                 "(Ljava/lang/String;)V", false);

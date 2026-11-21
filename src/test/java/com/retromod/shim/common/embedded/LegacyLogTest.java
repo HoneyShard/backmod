@@ -61,7 +61,7 @@ class LegacyLogTest {
         for (String name : referencedClasses(classBytes(LegacyLog.class))) {
             if (!name.startsWith("java/") && !name.equals(LEGACY_LOG)) outside.add(name);
         }
-        assertTrue(outside.isEmpty(), "a copied helper cannot reach Retromod's jar or any library: " + outside);
+        assertTrue(outside.isEmpty(), "a copied helper cannot reach Backmod's jar or any library: " + outside);
     }
 
     @Test
@@ -73,7 +73,7 @@ class LegacyLogTest {
                 if (constant.contains(pattern)) hits.add(constant);
             }
         }
-        assertTrue(hits.isEmpty(), "maven-shade would point these at Retromod's own SLF4J, which writes to "
+        assertTrue(hits.isEmpty(), "maven-shade would point these at Backmod's own SLF4J, which writes to "
                 + "standard error: " + hits);
     }
 
@@ -85,7 +85,7 @@ class LegacyLogTest {
             assertFalse(LegacyLog.warnOnce("LegacyLogTest:once", "second note"));
         });
 
-        assertTrue(output.contains("[Retromod] first note"), "the first call logs: " + output);
+        assertTrue(output.contains("[Backmod] first note"), "the first call logs: " + output);
         assertFalse(output.contains("second note"), "the second call for the key stays quiet: " + output);
     }
 
@@ -95,8 +95,8 @@ class LegacyLogTest {
         String output = captureErr(() -> LegacyLog.warn("routed note"));
 
         // The test classpath binds SLF4J to slf4j-simple, which marks the level and logger name.
-        assertTrue(output.contains("WARN Retromod - [Retromod] routed note"),
-                "the line must come from the Retromod SLF4J logger: " + output);
+        assertTrue(output.contains("WARN Backmod - [Backmod] routed note"),
+                "the line must come from the Backmod SLF4J logger: " + output);
     }
 
     @Test
@@ -113,7 +113,7 @@ class LegacyLogTest {
 
         String output = captureErr(() -> warn.invoke(null, "fallback note"));
 
-        assertEquals("[Retromod] fallback note", output.strip());
+        assertEquals("[Backmod] fallback note", output.strip());
     }
 
     @Test
@@ -157,7 +157,7 @@ class LegacyLogTest {
         String output = captureErr(() -> isolated.getMethod("debug", String.class).invoke(null, "quiet note"));
 
         assertEquals("", output, "nothing reaches standard error while SLF4J is there");
-        assertEquals(List.of("DEBUG Retromod [Retromod] quiet note"),
+        assertEquals(List.of("DEBUG Backmod [Backmod] quiet note"),
                 Class.forName("org.slf4j.LoggerFactory", true, host).getField("LINES").get(null));
     }
 
@@ -173,7 +173,7 @@ class LegacyLogTest {
 
         String output = captureErr(() -> isolated.getMethod("debug", String.class).invoke(null, "fallback debug"));
 
-        assertEquals("[Retromod] fallback debug", output.strip());
+        assertEquals("[Backmod] fallback debug", output.strip());
     }
 
     @Test
@@ -195,7 +195,7 @@ class LegacyLogTest {
                     "LegacyLog must be copied next to the store, or its first note fails to link");
             Set<String> storeRefs = referencedClasses(Files.readAllBytes(mod.resolve(base + store + ".class")));
             assertTrue(storeRefs.contains(base + LEGACY_LOG), "the store must call the mod's own copy");
-            assertFalse(storeRefs.contains(LEGACY_LOG), "no call may be left on Retromod's runtime copy");
+            assertFalse(storeRefs.contains(LEGACY_LOG), "no call may be left on Backmod's runtime copy");
         } finally {
             transformer.clearRedirectsForTesting();
         }

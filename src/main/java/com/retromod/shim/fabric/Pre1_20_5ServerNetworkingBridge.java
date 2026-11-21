@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20_5ServerNetworkingBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String SERVER_NETWORKING = "net/fabricmc/fabric/api/networking/v1/ServerPlayNetworking";
     static final String OLD_HANDLER = SERVER_NETWORKING + "$PlayChannelHandler";

@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class McReflect {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Reflect");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Reflect");
 
     private static final Map<String, Class<?>> CLASS_CACHE = new ConcurrentHashMap<>();
 

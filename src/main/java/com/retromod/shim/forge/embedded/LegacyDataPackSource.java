@@ -20,7 +20,7 @@ public final class LegacyDataPackSource {
 
     /** A {@code RepositorySource} that offers {@code root} as a required server data pack at the top. */
     public static Object create(String packId, Path root) {
-        return create(packId, root, "Retromod legacy worldgen");
+        return create(packId, root, "Backmod legacy worldgen");
     }
 
     /** As {@link #create(String, Path)}, with the title the pack list shows. */
@@ -44,7 +44,7 @@ public final class LegacyDataPackSource {
                 };
             });
         } catch (ReflectiveOperationException | LinkageError e) {
-            System.out.println("[Retromod] Legacy worldgen: this Minecraft version's pack API is not bridged: " + e);
+            System.out.println("[Backmod] Legacy worldgen: this Minecraft version's pack API is not bridged: " + e);
             return null;
         }
     }
@@ -65,7 +65,7 @@ public final class LegacyDataPackSource {
                         .invoke(version, serverData(loader));
             }
         } catch (ReflectiveOperationException | LinkageError | ClassCastException e) {
-            throw new IllegalStateException("Retromod could not read this game's data pack format", e);
+            throw new IllegalStateException("Backmod could not read this game's data pack format", e);
         }
     }
 

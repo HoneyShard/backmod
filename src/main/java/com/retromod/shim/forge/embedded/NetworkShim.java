@@ -30,7 +30,7 @@ import java.util.function.*;
  */
 public final class NetworkShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final Map<String, SimpleChannelWrapper> CHANNELS = new ConcurrentHashMap<>();
     private static volatile PayloadBridge bridge;
@@ -241,7 +241,7 @@ public final class NetworkShim {
                 try {
                     PayloadBridge.method(event.getClass(), "register", 2, false).invoke(event, type, handler);
                 } catch (ReflectiveOperationException | RuntimeException e) {
-                    LOGGER.warn("Retromod could not register the client side of Forge payload {}: {}", type, e.toString());
+                    LOGGER.warn("Backmod could not register the client side of Forge payload {}: {}", type, e.toString());
                 }
             });
         }
@@ -315,7 +315,7 @@ public final class NetworkShim {
         } catch (ClassNotFoundException e) {
             LOGGER.debug("No NeoForge payload registration on this host; Forge channels stay inert");
         } catch (ReflectiveOperationException | RuntimeException e) {
-            LOGGER.warn("Retromod could not listen for NeoForge payload registration, so "
+            LOGGER.warn("Backmod could not listen for NeoForge payload registration, so "
                     + "transformed Forge mods cannot send network messages: {}", e.toString());
         }
     }
@@ -325,7 +325,7 @@ public final class NetworkShim {
         try {
             registerPayloads(event, PayloadBridge.resolve(event.getClass().getClassLoader()));
         } catch (ReflectiveOperationException e) {
-            LOGGER.warn("Retromod could not reach NeoForge's payload API, so transformed Forge "
+            LOGGER.warn("Backmod could not reach NeoForge's payload API, so transformed Forge "
                     + "mods cannot send network messages: {}", e.toString());
         }
     }
@@ -342,7 +342,7 @@ public final class NetworkShim {
                 LOGGER.debug("Registered Forge network channel {} with {} message type(s)",
                         channel.channelId, channel.registrations.size());
             } catch (ReflectiveOperationException | RuntimeException e) {
-                LOGGER.warn("Retromod could not register Forge network channel {}: {}",
+                LOGGER.warn("Backmod could not register Forge network channel {}: {}",
                         channel.channelId, e.toString());
             }
         }
@@ -360,7 +360,7 @@ public final class NetworkShim {
                 PayloadBridge.method(event.getClass(), "register", 2, false)
                         .invoke(event, channel.payloadType(), channel.payloadHandler);
             } catch (ReflectiveOperationException | RuntimeException e) {
-                LOGGER.warn("Retromod could not register the client side of Forge network channel {}: {}",
+                LOGGER.warn("Backmod could not register the client side of Forge network channel {}: {}",
                         channel.channelId, e.toString());
             }
         }
@@ -1288,7 +1288,7 @@ public final class NetworkShim {
         }
 
         private static IllegalStateException failure(String action, ReflectiveOperationException e) {
-            return new IllegalStateException("Retromod could not " + action + " through Forge's networking API", e);
+            return new IllegalStateException("Backmod could not " + action + " through Forge's networking API", e);
         }
     }
 

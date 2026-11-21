@@ -473,24 +473,6 @@ class ReleaseArtifactValidationTest(unittest.TestCase):
             self.assertEqual("46", floors.get("1.20"))
             self.assertEqual("47", floors.get("1.20.1"))
 
-    def test_rolling_release_serializes_and_verifies_the_uploaded_asset(self):
-        workflow = (
-            REPOSITORY_ROOT / ".github" / "workflows" / "release.yml"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("group: rolling-github-release", workflow)
-        self.assertIn("cancel-in-progress: false", workflow)
-        self.assertIn("id: freshness", workflow)
-        self.assertIn('echo "publish=false" >> "$GITHUB_OUTPUT"', workflow)
-        self.assertIn("if: steps.freshness.outputs.publish == 'true'", workflow)
-        self.assertIn("id: rolling_release", workflow)
-        self.assertIn("overwrite_files: true", workflow)
-        self.assertIn("fail_on_unmatched_files: true", workflow)
-        self.assertIn("steps.rolling_release.outputs.assets", workflow)
-        self.assertIn("GitHub's asset digest does not match the staged jar", workflow)
-        self.assertIn("sha256sum --check", workflow)
-        self.assertIn("git/refs/tags/latest", workflow)
-
     def test_embedded_loader_jar_validators_reject_bad_archive_contents(self):
         unix_builder = (REPOSITORY_ROOT / "build-all.sh").read_text(encoding="utf-8")
         windows_builder = (REPOSITORY_ROOT / "build-all.bat").read_text(encoding="utf-8")

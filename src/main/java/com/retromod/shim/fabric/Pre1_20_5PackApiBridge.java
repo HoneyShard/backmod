@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20_5PackApiBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String FOLDER_SOURCE = "net/minecraft/class_3279";
     static final String PACK_TYPE = "net/minecraft/class_3264";

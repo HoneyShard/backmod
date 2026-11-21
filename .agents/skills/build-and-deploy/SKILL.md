@@ -1,6 +1,6 @@
 ---
 name: build-and-deploy
-description: Build Retromod and deploy the correct loader-specific jar for an in-game test. Use after code changes or before a release check.
+description: Build Backmod and deploy the correct loader-specific jar for an in-game test. Use after code changes or before a release check.
 argument-hint: "--skip-tests or --deploy"
 ---
 
@@ -57,10 +57,10 @@ mvn -f pom.xml exec:java \
 ## Build Requirements
 - Java 25 for compilation
 - Maven 3.8+
-- The build targets Java 17 bytecode so one Retromod jar can run across supported hosts
+- The build targets Java 17 bytecode so one Backmod jar can run across supported hosts
 
 ## Before Calling It Verified
 - Pass `-Dexec.skip=true` so Maven does not run the CLI entry point during the build.
 - Confirm the test-mod summary, then wait until the title screen or dedicated server is stable.
 - Check `crash-reports/` for a report created by the current run.
-- Test the mod or feature that originally failed, not only Retromod's own startup.
+- Test the mod or feature that originally failed, not only Backmod's own startup.

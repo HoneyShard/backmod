@@ -57,7 +57,7 @@ public final class ServerClientStandIns {
     public static final String FOLDER = "clientonly/";
     private static final String MIXIN = "Lorg/spongepowered/asm/mixin/Mixin;";
     private static final Map<String, Map<String, Row>> TABLES = new ConcurrentHashMap<>();
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ServerClient");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ServerClient");
     private static final AtomicBoolean NO_TABLE_LOGGED = new AtomicBoolean();
 
     /** One client class: its kind (class, abstract, or interface), its superclass, and its interfaces. */

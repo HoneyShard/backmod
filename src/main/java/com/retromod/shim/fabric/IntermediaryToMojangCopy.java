@@ -64,7 +64,7 @@ final class IntermediaryToMojangCopy {
             Map<String, String> strings) {
         String resource = helper.getName().replace('.', '/') + ".class";
         try (InputStream in = helper.getClassLoader().getResourceAsStream(resource)) {
-            if (in == null) throw new IllegalStateException("Retromod is missing " + resource);
+            if (in == null) throw new IllegalStateException("Backmod is missing " + resource);
             return translate(in.readAllBytes(), classes, members, strings);
         } catch (IOException e) {
             throw new IllegalStateException("Cannot read " + resource, e);

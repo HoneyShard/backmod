@@ -37,7 +37,7 @@ public class LegacyItemOverrides {
     private static void noteDropped(List<?> overrides) {
         if (overrides == null || overrides.isEmpty()) return;
         LegacyLog.warnOnce("legacy item overrides list " + LegacyItemOverrides.class.getName(), "An old mod built item overrides"
-                + " from a list; Minecraft 26.x reads them from item definitions, so Retromod kept the model it was given.");
+                + " from a list; Minecraft 26.x reads them from item definitions, so Backmod kept the model it was given.");
     }
 
     /** The model to draw for the stack; the stack's own item model already chose, so this is the model given. */

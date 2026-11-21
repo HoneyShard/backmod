@@ -21,7 +21,7 @@ import java.util.zip.ZipEntry;
 /** Reads loader metadata to determine which side should install a mod. */
 public final class ModEnvironmentDetector {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-EnvDetect");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-EnvDetect");
     private static final long MAX_METADATA_SIZE = 2L * 1024 * 1024;
 
     private ModEnvironmentDetector() {}
@@ -143,7 +143,7 @@ public final class ModEnvironmentDetector {
 
         switch (env) {
             case SERVER -> {
-                LOGGER.debug(RetromodLog.DETAIL, "{} is server-only. Joining clients do not need Retromod for it.",
+                LOGGER.debug(RetromodLog.DETAIL, "{} is server-only. Joining clients do not need Backmod for it.",
                     fileName);
             }
             case CLIENT -> {
@@ -154,7 +154,7 @@ public final class ModEnvironmentDetector {
                 LOGGER.debug(RetromodLog.DETAIL, "{} runs on both client and server", fileName);
             }
             default -> {
-                LOGGER.debug("{} does not declare a side, so Retromod will treat it as both.",
+                LOGGER.debug("{} does not declare a side, so Backmod will treat it as both.",
                     fileName);
             }
         }
@@ -162,10 +162,10 @@ public final class ModEnvironmentDetector {
 
     public static String getEnvironmentDescription(ModEnvironment env) {
         return switch (env) {
-            case SERVER -> "Server-only. Joining clients do not need Retromod for this mod.";
+            case SERVER -> "Server-only. Joining clients do not need Backmod for this mod.";
             case CLIENT -> "Client-only. Install it on the client.";
             case BOTH -> "Install on both the client and server.";
-            case UNKNOWN -> "No side declared. Retromod will treat it as both.";
+            case UNKNOWN -> "No side declared. Backmod will treat it as both.";
         };
     }
 }

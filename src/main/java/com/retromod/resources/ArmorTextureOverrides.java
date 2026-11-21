@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
 /** Finds the armor textures an old Forge mod chose in code, for 1.21.2's equipment assets. */
 final class ArmorTextureOverrides {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
 
     // The two layer types an equipment asset lists textures under.
     static final String HUMANOID = "humanoid";

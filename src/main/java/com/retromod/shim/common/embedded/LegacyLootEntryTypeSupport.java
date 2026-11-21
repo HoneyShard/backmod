@@ -38,7 +38,7 @@ public final class LegacyLootEntryTypeSupport {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the loot entry type minecraft:" + path, e);
+            throw new IllegalStateException("Backmod could not read the loot entry type minecraft:" + path, e);
         }
     }
 
@@ -51,7 +51,7 @@ public final class LegacyLootEntryTypeSupport {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the type of the loot entry " + entry, e);
+            throw new IllegalStateException("Backmod could not read the type of the loot entry " + entry, e);
         }
     }
 
@@ -75,7 +75,7 @@ public final class LegacyLootEntryTypeSupport {
                 Class<?> mapCodec = Class.forName(MAP_CODEC, false, standIn.getClassLoader());
                 return standIn.getConstructor(mapCodec).newInstance(value);
             } catch (ReflectiveOperationException e) {
-                throw new IllegalStateException("Retromod could not hold the loot entry codec " + value
+                throw new IllegalStateException("Backmod could not hold the loot entry codec " + value
                         + " as the type a mod built before 26.1 reads", e);
             }
         });

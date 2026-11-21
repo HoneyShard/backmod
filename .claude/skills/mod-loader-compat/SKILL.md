@@ -10,12 +10,12 @@ This workflow covers the loader-specific work that happens before transformed by
 
 ## Architecture
 
-Retromod runs as a mod on each loader and intercepts mod loading:
+Backmod runs as a mod on each loader and intercepts mod loading:
 
 ### Fabric
 - **PreLaunch** (`RetromodPreLaunch.java`). Runs BEFORE Fabric scans `mods/`. Transforms mods in `retromod-input/`, patches `fabric.mod.json`, moves to `mods/`.
 - **Main** (`Retromod.java`). Runs after mod scan. Initializes shims, AOT, polyfills.
-- Fabric checks version constraints before Retromod can run, so old mods must start in `retromod-input/`.
+- Fabric checks version constraints before Backmod can run, so old mods must start in `retromod-input/`.
 
 ### NeoForge
 - **Constructor** (`RetromodNeoForge.java`). Transforms from `retromod-input/` AND in-place in `mods/`. Patches `mods.toml`/`neoforge.mods.toml`.
@@ -35,9 +35,9 @@ Retromod runs as a mod on each loader and intercepts mod loading:
 | `FabricModTransformer.java` | Patches `fabric.mod.json`: version constraints, API deps |
 | `ForgeModTransformer.java` | Patches `mods.toml`/`neoforge.mods.toml` |
 | `ModVersionDetector.java` | Reads mod version from loader-specific metadata |
-| `fabric.mod.json` | Retromod's own Fabric metadata |
-| `META-INF/neoforge.mods.toml` | Retromod's own NeoForge metadata |
-| `META-INF/mods.toml` | Retromod's own Forge metadata |
+| `fabric.mod.json` | Backmod's own Fabric metadata |
+| `META-INF/neoforge.mods.toml` | Backmod's own NeoForge metadata |
+| `META-INF/mods.toml` | Backmod's own Forge metadata |
 
 ## Version Constraint Patching
 
@@ -79,9 +79,9 @@ Retromod runs as a mod on each loader and intercepts mod loading:
 
 ## Testing
 
-1. Build Retromod: `mvn package -DskipTests`
+1. Build Backmod: `mvn package -DskipTests`
 2. Put old mods in `retromod-input/` in the game directory
-3. Launch the game, then check `logs/latest.log` for Retromod messages
+3. Launch the game, then check `logs/latest.log` for Backmod messages
 4. Look for "Transformed X mod(s)" or error messages
 5. If a mod fails to load, check the exact error and trace it to the metadata patching code
 

@@ -27,7 +27,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /** The host Minecraft and Fabric API calls that serve old block and item colors, by 26.x name. */
 final class HostTints {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
 
     static final String BLOCK = "net/minecraft/world/level/block/Block";
     static final String BLOCK_STATE = "net/minecraft/world/level/block/state/BlockState";

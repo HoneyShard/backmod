@@ -43,7 +43,7 @@ import java.util.Map;
  */
 public final class LegacyCodecTypeBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacyCodecType";
 

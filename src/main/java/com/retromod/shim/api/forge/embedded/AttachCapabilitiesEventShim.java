@@ -7,7 +7,7 @@ public class AttachCapabilitiesEventShim {
             Method m = LegacyPublicMethods.method(event.getClass(), "addCapability", Class.forName("net.minecraft.resources.ResourceLocation"), Class.forName("net.minecraftforge.common.capabilities.ICapabilityProvider"));
             m.invoke(event, resourceLocation, provider);
         } catch (Exception e) {
-            System.out.println("[Retromod] Legacy capability attachment - may need data attachment conversion");
+            System.out.println("[Backmod] Legacy capability attachment - may need data attachment conversion");
         }
     }
 }

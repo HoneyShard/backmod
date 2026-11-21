@@ -22,7 +22,7 @@ import java.util.List;
 /** Builds the Retromod screen opened from the title menu. */
 public final class MainScreenFactory {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     // The alert stacks its text above its button, so a long list pushes the button off screen.
     private static final int MAX_NAMED_FILES = 5;
 
@@ -36,18 +36,18 @@ public final class MainScreenFactory {
     private MainScreenFactory() {}
 
     public static void open(Object parentScreen) {
-        LOGGER.debug("Opening the Retromod main screen");
+        LOGGER.debug("Opening the Backmod main screen");
         // This screen only opens on a running client, so Minecraft's own openers may run now.
         McOpener.markClientRunning();
         if (!resolveClasses()) {
-            LOGGER.warn("Cannot open the Retromod screen because the required Minecraft "
+            LOGGER.warn("Cannot open the Backmod screen because the required Minecraft "
                     + "GUI classes are unavailable");
             return;
         }
 
         Object title = McI18n.translatable("retromod.main.title");
         if (title == null) {
-            LOGGER.warn("Could not create the Retromod screen title");
+            LOGGER.warn("Could not create the Backmod screen title");
             return;
         }
 
@@ -60,7 +60,7 @@ public final class MainScreenFactory {
                 MainScreenFactory::takeDroppedFiles
         );
         if (screen == null) {
-            LOGGER.warn("Could not create the Retromod main screen");
+            LOGGER.warn("Could not create the Backmod main screen");
             return;
         }
         setScreen(screen);
@@ -129,7 +129,7 @@ public final class MainScreenFactory {
             addWidget(screen, doneBtn);
 
         } catch (Exception e) {
-            LOGGER.warn("Could not lay out Retromod main screen: {}", e.getMessage());
+            LOGGER.warn("Could not lay out Backmod main screen: {}", e.getMessage());
         }
     }
 
@@ -149,7 +149,7 @@ public final class MainScreenFactory {
     private static void openNativeFilePicker(Object parentScreen) {
         Object client = getClientInstance();
         if (client == null) {
-            LOGGER.warn("Retromod could not show a file picker because the Minecraft client "
+            LOGGER.warn("Backmod could not show a file picker because the Minecraft client "
                     + "was not found. It opens retromod-input/ instead.");
             showInputFolderInstead(parentScreen, true);
             return;
@@ -161,7 +161,7 @@ public final class MainScreenFactory {
     private static void takeDroppedFiles(Object screen, List<Path> dropped) {
         Object client = getClientInstance();
         if (client == null) {
-            LOGGER.warn("Retromod could not take the dropped files because the Minecraft client "
+            LOGGER.warn("Backmod could not take the dropped files because the Minecraft client "
                     + "was not found. Put them in retromod-input/ instead.");
             return;
         }
@@ -171,7 +171,7 @@ public final class MainScreenFactory {
     /** The folder button: opens retromod-input/ and shows its path, since no opener reports back. */
     private static void openAndShowInputFolder(Object parentScreen) {
         boolean opened = openInputFolder();
-        InGameScreenFactory.showAlert(parentScreen, "Retromod",
+        InGameScreenFactory.showAlert(parentScreen, "Backmod",
                 opened ? openedFolderMessage(inputDir()) : inputFolderMessage(false, inputDir()));
     }
 
@@ -179,22 +179,22 @@ public final class MainScreenFactory {
     static void showInputFolderInstead(Object parentScreen, boolean pickerFailed) {
         // A picker failure still opens the folder, so the player has somewhere to put the jars.
         if (pickerFailed) openInputFolder();
-        InGameScreenFactory.showAlert(parentScreen, "Retromod",
+        InGameScreenFactory.showAlert(parentScreen, "Backmod",
                 inputFolderMessage(pickerFailed, inputDir()));
     }
 
     /** Names the chosen jars Retromod cannot read, opens retromod-input/, and shows its path. */
     static void showUnreadableInstead(Object parentScreen, List<String> fileNames) {
         openInputFolder();
-        InGameScreenFactory.showAlert(parentScreen, "Retromod",
+        InGameScreenFactory.showAlert(parentScreen, "Backmod",
                 unreadableMessage(fileNames, inputDir()));
     }
 
     /** What the player reads when Retromod names retromod-input/ instead of picking or opening. */
     static String inputFolderMessage(boolean pickerFailed, Path folder) {
         String failure = pickerFailed
-                ? "Retromod could not show a file picker. Put the old mod jars in this folder"
-                : "Retromod could not open this folder. Put the old mod jars in it";
+                ? "Backmod could not show a file picker. Put the old mod jars in this folder"
+                : "Backmod could not open this folder. Put the old mod jars in it";
         return failure + ", then restart Minecraft:\n\n" + folder;
     }
 
@@ -209,7 +209,7 @@ public final class MainScreenFactory {
         int named = Math.min(fileNames.size(), MAX_NAMED_FILES);
         String files = String.join(", ", fileNames.subList(0, named));
         if (fileNames.size() > named) files += " and " + (fileNames.size() - named) + " more";
-        return "Retromod cannot read " + files + " where it is. Put the old mod jars in this "
+        return "Backmod cannot read " + files + " where it is. Put the old mod jars in this "
                 + "folder, then restart Minecraft:\n\n" + folder;
     }
 
@@ -219,7 +219,7 @@ public final class MainScreenFactory {
         try {
             Files.createDirectories(inputDir);
         } catch (IOException e) {
-            LOGGER.warn("Retromod could not create {}: {}", inputDir, e.getMessage());
+            LOGGER.warn("Backmod could not create {}: {}", inputDir, e.getMessage());
             return false;
         }
         return McOpener.openFolder(inputDir);

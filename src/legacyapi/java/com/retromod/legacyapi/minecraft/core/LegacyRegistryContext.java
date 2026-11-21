@@ -51,7 +51,7 @@ public final class LegacyRegistryContext {
         HolderLookup.Provider registries = available();
         if (registries != null) return registries;
         // Built-in registries cannot encode data-driven content such as enchantments, so Retromod does not guess.
-        throw new IllegalStateException("Retromod found no registries for the old call " + call
+        throw new IllegalStateException("Backmod found no registries for the old call " + call
                 + ": no save or load is running on this thread, no server is running, and no world is loaded");
     }
 

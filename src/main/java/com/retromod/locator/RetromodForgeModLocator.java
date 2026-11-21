@@ -42,7 +42,7 @@ import net.minecraftforge.forgespi.locating.IModLocator;
  */
 public final class RetromodForgeModLocator implements IModLocator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Locator");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Locator");
 
     /** Subfolder of {@code mods/} this locator scans. */
     public static final String SUBFOLDER = "Retromod";
@@ -56,7 +56,7 @@ public final class RetromodForgeModLocator implements IModLocator {
         try {
             folder = resolveModFolder();
         } catch (RuntimeException e) {
-            LOGGER.warn("Could not find the Retromod mods folder, so Forge will not load "
+            LOGGER.warn("Could not find the Backmod mods folder, so Forge will not load "
                     + "transformed mods from it", e);
             return Collections.emptyList();
         }

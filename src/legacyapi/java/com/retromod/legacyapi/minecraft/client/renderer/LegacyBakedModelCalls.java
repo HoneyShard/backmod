@@ -304,7 +304,7 @@ public final class LegacyBakedModelCalls {
             } catch (NoSuchMethodException absent) {
                 return null;
             } catch (ReflectiveOperationException | RuntimeException | LinkageError closed) {
-                LegacyLog.warnOnce("legacy baked model member " + model.getName(), "Retromod could not call the old model members of "
+                LegacyLog.warnOnce("legacy baked model member " + model.getName(), "Backmod could not call the old model members of "
                         + model.getName() + ", so it answers them with neutral values: " + closed);
                 return null;
             }

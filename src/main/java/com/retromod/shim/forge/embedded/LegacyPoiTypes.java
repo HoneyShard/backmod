@@ -41,7 +41,7 @@ public final class LegacyPoiTypes {
             if (e.getCause() instanceof RuntimeException runtime) throw runtime;
             throw new IllegalStateException(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not register the block states of " + poi, e);
+            throw new IllegalStateException("Backmod could not register the block states of " + poi, e);
         }
     }
 }

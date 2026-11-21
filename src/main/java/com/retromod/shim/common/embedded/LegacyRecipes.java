@@ -84,7 +84,7 @@ public final class LegacyRecipes {
             return Class.forName(SERIALIZATION + "MapCodec", true, loader).getMethod("assumeMapUnsafe", codec)
                     .invoke(null, mapped);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build the codec of " + serializer.getClass().getName(), e);
+            throw new IllegalStateException("Backmod could not build the codec of " + serializer.getClass().getName(), e);
         }
     }
 
@@ -98,7 +98,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read a recipe of " + serializer.getClass().getName(), e);
+            throw new IllegalStateException("Backmod could not read a recipe of " + serializer.getClass().getName(), e);
         }
     }
 
@@ -121,7 +121,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not write a recipe of " + serializer.getClass().getName(), e);
+            throw new IllegalStateException("Backmod could not write a recipe of " + serializer.getClass().getName(), e);
         }
     }
 
@@ -180,7 +180,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not wrap recipes in holders", e);
+            throw new IllegalStateException("Backmod could not wrap recipes in holders", e);
         }
     }
 
@@ -211,7 +211,7 @@ public final class LegacyRecipes {
             HOLDER_IDS.put(recipe, id);
             return recipe;
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read a recipe holder", e);
+            throw new IllegalStateException("Backmod could not read a recipe holder", e);
         }
     }
 
@@ -234,7 +234,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not find the recipe manager", e);
+            throw new IllegalStateException("Backmod could not find the recipe manager", e);
         }
     }
 
@@ -244,7 +244,7 @@ public final class LegacyRecipes {
             return manager.getConstructor(Class.forName("net.minecraft.core.HolderLookup$Provider", true, loader()))
                     .newInstance(registries);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not make an empty recipe manager", e);
+            throw new IllegalStateException("Backmod could not make an empty recipe manager", e);
         }
     }
 
@@ -259,7 +259,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not check for a recipe", e);
+            throw new IllegalStateException("Backmod could not check for a recipe", e);
         }
     }
 
@@ -278,7 +278,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not look a recipe up", e);
+            throw new IllegalStateException("Backmod could not look a recipe up", e);
         }
     }
 
@@ -294,7 +294,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read a recipe with " + serializer, e);
+            throw new IllegalStateException("Backmod could not read a recipe with " + serializer, e);
         }
     }
 
@@ -309,7 +309,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read a recipe with " + serializer, e);
+            throw new IllegalStateException("Backmod could not read a recipe with " + serializer, e);
         }
     }
 
@@ -329,7 +329,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not write a recipe with " + serializer, e);
+            throw new IllegalStateException("Backmod could not write a recipe with " + serializer, e);
         }
     }
 
@@ -398,7 +398,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read a recipe input", e);
+            throw new IllegalStateException("Backmod could not read a recipe input", e);
         }
     }
 
@@ -408,7 +408,7 @@ public final class LegacyRecipes {
             Class<?> access = Class.forName("net.minecraft.core.RegistryAccess", true, loader());
             return access.isInstance(provider) ? provider : runningRegistries();
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not find the registries", e);
+            throw new IllegalStateException("Backmod could not find the registries", e);
         }
     }
 
@@ -425,7 +425,7 @@ public final class LegacyRecipes {
             for (Object entry : (Iterable<?>) json) parts.add(ingredientFromJson(entry));
             return compound(parts);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the ingredient " + json, e);
+            throw new IllegalStateException("Backmod could not read the ingredient " + json, e);
         }
     }
 
@@ -517,7 +517,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the item stack " + json, e);
+            throw new IllegalStateException("Backmod could not read the item stack " + json, e);
         }
     }
 
@@ -529,7 +529,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the count of " + json, e);
+            throw new IllegalStateException("Backmod could not read the count of " + json, e);
         }
     }
 
@@ -550,7 +550,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the item " + json, e);
+            throw new IllegalStateException("Backmod could not read the item " + json, e);
         }
     }
 
@@ -568,7 +568,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the " + what + " " + json, e);
+            throw new IllegalStateException("Backmod could not read the " + what + " " + json, e);
         }
     }
 
@@ -583,7 +583,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not write the " + what + " " + value, e);
+            throw new IllegalStateException("Backmod could not write the " + what + " " + value, e);
         }
     }
 
@@ -611,7 +611,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read from the buffer", e);
+            throw new IllegalStateException("Backmod could not read from the buffer", e);
         }
     }
 
@@ -622,7 +622,7 @@ public final class LegacyRecipes {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not write to the buffer", e);
+            throw new IllegalStateException("Backmod could not write to the buffer", e);
         }
     }
 
@@ -664,7 +664,7 @@ public final class LegacyRecipes {
         try {
             return Class.forName(type, true, loader()).getField(name).get(null);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not find " + type + "." + name, e);
+            throw new IllegalStateException("Backmod could not find " + type + "." + name, e);
         }
     }
 

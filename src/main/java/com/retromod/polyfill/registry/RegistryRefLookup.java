@@ -33,7 +33,7 @@ import java.util.Map;
  */
 public final class RegistryRefLookup {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-RegistryLookup");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-RegistryLookup");
 
     private static final String ENCHANTMENT_REGISTRY = "ENCHANTMENT";
     private static final String MOB_EFFECT_REGISTRY  = "MOB_EFFECT";

@@ -30,7 +30,7 @@ public final class KeyMappingShim {
             Object category = getOrCreateCategory(categoryString);
             return newConstructor.newInstance(translationKey, inputType, keyCode, category);
         } catch (Exception e) {
-            throw new RuntimeException("Retromod: Failed to create KeyMapping", e);
+            throw new RuntimeException("Backmod: Failed to create KeyMapping", e);
         }
     }
     
@@ -68,7 +68,7 @@ public final class KeyMappingShim {
                 }
             }
         } catch (Exception e) {
-            throw new RuntimeException("Retromod: Failed to initialize KeyMappingShim", e);
+            throw new RuntimeException("Backmod: Failed to initialize KeyMappingShim", e);
         }
     }
     
@@ -107,7 +107,7 @@ public final class KeyMappingShim {
     private static void registerCategory(Object category) {
         try {
         } catch (Exception e) {
-            System.err.println("Retromod: Could not register key category: " + e);
+            System.err.println("Backmod: Could not register key category: " + e);
         }
     }
 

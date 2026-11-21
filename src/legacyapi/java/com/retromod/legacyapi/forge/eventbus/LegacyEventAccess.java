@@ -213,6 +213,6 @@ public final class LegacyEventAccess {
     private static void unsupported(String action, Object event) {
         String type = event.getClass().getName();
         LegacyLog.warnOnce("legacy-event " + action + " " + type, "An old mod tried to " + action + " " + type
-                + ", which Retromod cannot do for this EventBus 7 event yet, so the call was ignored");
+                + ", which Backmod cannot do for this EventBus 7 event yet, so the call was ignored");
     }
 }

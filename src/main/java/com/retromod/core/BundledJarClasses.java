@@ -29,7 +29,7 @@ import java.util.stream.Stream;
 /** Lets frame joins and hierarchy walks read the classes of the jars a mod bundles (jar-in-jar). */
 public final class BundledJarClasses {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     /** The folders Forge and NeoForge (jarjar) and Fabric (jars) load bundled jars from. */
     private static final List<String> FOLDERS = List.of("META-INF/jarjar/", "META-INF/jars/");

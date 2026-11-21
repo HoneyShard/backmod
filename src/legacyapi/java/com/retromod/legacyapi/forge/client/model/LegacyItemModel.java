@@ -66,7 +66,7 @@ public final class LegacyItemModel implements ItemModel {
             passes = passes(stack, displayContext, level, owner, seed);
         } catch (RuntimeException | LinkageError failure) {
             LegacyLog.warnOnce("legacy item model " + model.getClass().getName(), "An old item model of "
-                    + model.getClass().getName() + " threw while Minecraft drew an item, so Retromod drew the item's own"
+                    + model.getClass().getName() + " threw while Minecraft drew an item, so Backmod drew the item's own"
                     + " model in its place: " + failure);
             passes = List.of();
         }
@@ -169,7 +169,7 @@ public final class LegacyItemModel implements ItemModel {
             return color.applyAsInt(stack, index);
         } catch (RuntimeException | LinkageError failure) {
             LegacyLog.warnOnce("item color " + color, "The old item color handler " + color + " threw " + failure
-                    + ", so Retromod draws its tint untinted");
+                    + ", so Backmod draws its tint untinted");
             return -1;
         }
     }

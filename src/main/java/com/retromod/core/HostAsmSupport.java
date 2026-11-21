@@ -24,7 +24,7 @@ public final class HostAsmSupport {
     public static String problem(ClassLoader gameLoader, String minecraftVersion) {
         String asm = "ASM " + asmVersion();
         if (!reads(FLOOR_CLASS_VERSION)) {
-            return "Retromod uses ASM 9.5 or newer, and this loader provides " + asm + ".";
+            return "Backmod uses ASM 9.5 or newer, and this loader provides " + asm + ".";
         }
         int needed = Math.max(FLOOR_CLASS_VERSION, minecraftClassVersion(gameLoader, minecraftVersion));
         if (!reads(needed)) {

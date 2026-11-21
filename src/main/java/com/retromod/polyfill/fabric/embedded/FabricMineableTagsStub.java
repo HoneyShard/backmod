@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricMineableTagsStub {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-MineableTags");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-MineableTags");
 
     // These fields are typed as Object but will hold TagKey<Block> instances
     // at runtime. The JVM allows this since old bytecode accesses them via

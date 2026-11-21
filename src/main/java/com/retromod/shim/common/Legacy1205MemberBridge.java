@@ -24,7 +24,7 @@ import java.util.List;
 /** Bridges entity, item, and level members that 1.20.5 renamed or removed. */
 public final class Legacy1205MemberBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/Legacy1205Members";
     /** The helper's cached lookup of a mob's own five-argument {@code finalizeSpawn}. */

@@ -172,14 +172,14 @@ final class LegacyItemGeometry implements Consumer<Consumer<SubmitNodeCollector>
     private void submitDeferred(SubmitNodeCollector collector) {
         if (DEPTH.get() > MAX_DEPTH) {
             LegacyLog.warnOnce("legacy draw depth", "An old renderer drew an item whose own renderer drew it again, " + MAX_DEPTH
-                    + " draws deep, so Retromod stopped there");
+                    + " draws deep, so Backmod stopped there");
             return;
         }
         try {
             for (Consumer<SubmitNodeCollector> submit : deferred) submit.accept(collector);
         } catch (RuntimeException | LinkageError failure) {
             LegacyLog.warnOnce("legacy deferred submit " + failure.getClass().getName(), "Minecraft could not take an item or entity"
-                    + " an old renderer drew, so Retromod skipped the rest of that draw: " + failure);
+                    + " an old renderer drew, so Backmod skipped the rest of that draw: " + failure);
         }
     }
 
@@ -383,7 +383,7 @@ final class LegacyItemGeometry implements Consumer<Consumer<SubmitNodeCollector>
             LegacyItemGeometry draw = owner;
             if (draw != null) return draw.buffer(type);
             LegacyLog.warnOnce("stale item renderer buffer source", "An old item renderer asked for a buffer after its draw had"
-                    + " ended, so Retromod dropped what it wrote");
+                    + " ended, so Backmod dropped what it wrote");
             return DISCARD;
         }
     }

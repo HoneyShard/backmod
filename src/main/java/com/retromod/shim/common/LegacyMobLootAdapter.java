@@ -36,7 +36,7 @@ import java.util.function.BiPredicate;
 /** Makes the host drop the table an old mob names with its own getDefaultLootTable(), which hosts from 1.20.5 never ask for. */
 public final class LegacyMobLootAdapter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private LegacyMobLootAdapter() {}
 

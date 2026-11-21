@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public final class SafeCrashHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-SafeCrash");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-SafeCrash");
 
     private static SafeCrashHandler instance;
 
@@ -86,7 +86,7 @@ public final class SafeCrashHandler {
     private void handleUncaughtException(Thread thread, Throwable error) {
         LOGGER.error("Uncaught exception on thread '{}': {}", thread.getName(), error.getMessage());
         LOGGER.error("Full stack trace:", error);
-        System.err.println("[Retromod] Uncaught exception on thread \"" + thread.getName() + "\": " + error);
+        System.err.println("[Backmod] Uncaught exception on thread \"" + thread.getName() + "\": " + error);
         error.printStackTrace(System.err);
 
         writeCrashLog(thread, error);
@@ -111,7 +111,7 @@ public final class SafeCrashHandler {
             java.nio.file.Path crashLog = crashLogDir.resolve("crash-log.txt");
 
             StringBuilder sb = new StringBuilder();
-            sb.append("=== Retromod Crash Log ===\n");
+            sb.append("=== Backmod Crash Log ===\n");
             sb.append("Time: ").append(java.time.LocalDateTime.now()).append("\n");
             sb.append("Thread: ").append(thread.getName()).append("\n");
             sb.append("Error: ").append(error.getClass().getName())
@@ -129,8 +129,8 @@ public final class SafeCrashHandler {
             sb.append("\nJava: ").append(System.getProperty("java.version")).append("\n");
             sb.append("OS: ").append(System.getProperty("os.name")).append(" ")
               .append(System.getProperty("os.version")).append("\n");
-            sb.append("Retromod: ").append(RetromodVersion.RETROMOD_VERSION).append("\n");
-            sb.append("\nPlease report this at: https://github.com/Bownlux/Retromod/issues\n");
+            sb.append("Backmod: ").append(RetromodVersion.RETROMOD_VERSION).append("\n");
+            sb.append("\nPlease report this at: https://github.com/HoneyShard/backmod/issues\n");
 
             java.nio.file.Files.writeString(crashLog, sb.toString());
             LOGGER.info("Crash details written to {}", crashLog.toAbsolutePath());
@@ -329,8 +329,8 @@ public final class SafeCrashHandler {
             ? "No error message was provided."
             : truncate(error.getMessage(), 160);
         String saveStatus = worldSaved
-            ? "Retromod saved the world before stopping."
-            : "Retromod could not confirm that the world was saved. Recent progress may be lost.";
+            ? "Backmod saved the world before stopping."
+            : "Backmod could not confirm that the world was saved. Recent progress may be lost.";
         String message = """
             A transformed mod caused a critical error.
 
@@ -377,7 +377,7 @@ public final class SafeCrashHandler {
     private void showConsoleCrashMessage(String modId, String message) {
         // A client without Swing lands here too, so the line names the side that stops.
         String side = EnvironmentDetector.isDedicatedServer() ? "the server" : "Minecraft";
-        LOGGER.error("Retromod is stopping {} after a mod compatibility error.", side);
+        LOGGER.error("Backmod is stopping {} after a mod compatibility error.", side);
         for (String line : message.split("\n")) {
             LOGGER.error("{}", line);
         }

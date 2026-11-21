@@ -32,7 +32,7 @@ public final class LegacyRemovedRegistrySupport {
             LegacyPublicMethods.method(registry.getClass(), "freeze").invoke(registry);
             return registry;
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build the empty minecraft:" + path
+            throw new IllegalStateException("Backmod could not build the empty minecraft:" + path
                     + " registry a mod built before its removal reads", e);
         }
     }
@@ -46,7 +46,7 @@ public final class LegacyRemovedRegistrySupport {
             return Class.forName("net.minecraft.resources.ResourceKey", true, loader)
                     .getMethod("createRegistryKey", identifier).invoke(null, id);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not name the removed minecraft:" + path + " registry", e);
+            throw new IllegalStateException("Backmod could not name the removed minecraft:" + path + " registry", e);
         }
     }
 

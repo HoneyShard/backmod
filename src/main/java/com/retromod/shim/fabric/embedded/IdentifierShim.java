@@ -45,7 +45,7 @@ public final class IdentifierShim {
                 "of", "parse");
 
         } catch (Exception e) {
-            throw new RuntimeException("Retromod: Failed to initialize IdentifierShim", e);
+            throw new RuntimeException("Backmod: Failed to initialize IdentifierShim", e);
         }
     }
     

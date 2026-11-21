@@ -55,7 +55,7 @@ public final class LegacyFlowerEffects {
             return Class.forName("net.minecraft.core.Registry", false, loader)
                     .getMethod("wrapAsHolder", Object.class).invoke(registry, effect);
         } catch (ReflectiveOperationException | RuntimeException | LinkageError e) {
-            throw new IllegalStateException("Retromod could not read the flower's stew effect", e);
+            throw new IllegalStateException("Backmod could not read the flower's stew effect", e);
         }
     }
 }

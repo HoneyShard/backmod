@@ -46,7 +46,7 @@ import net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes;
  */
 public final class RetromodModLocator implements IModFileCandidateLocator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Locator");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Locator");
 
     /** Subfolder of {@code mods/} this locator scans. */
     public static final String SUBFOLDER = "Retromod";
@@ -63,7 +63,7 @@ public final class RetromodModLocator implements IModFileCandidateLocator {
         try {
             folder = resolveModFolder(resolveGameDir(context));
         } catch (RuntimeException e) {
-            LOGGER.warn("Could not find the Retromod mods folder, so no transformed mods "
+            LOGGER.warn("Could not find the Backmod mods folder, so no transformed mods "
                     + "will be added", e);
             return;
         }

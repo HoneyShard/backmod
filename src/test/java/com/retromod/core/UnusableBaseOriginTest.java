@@ -59,7 +59,7 @@ class UnusableBaseOriginTest {
         String several = RetromodTransformer.unusableBaseOrigin(WEIGHTED_LIST,
                 List.of(SIMPLE_WEIGHTED_RANDOM_LIST, WEIGHTED_RANDOM_LIST));
 
-        assertEquals("No class move in Retromod's tables produces this name.", none);
+        assertEquals("No class move in Backmod's tables produces this name.", none);
         assertEquals("It came from the class move " + WEIGHTED_RANDOM_LIST + " -> " + WEIGHTED_LIST + ".", one);
         assertEquals("Several class moves produce this name: " + SIMPLE_WEIGHTED_RANDOM_LIST + ", "
                 + WEIGHTED_RANDOM_LIST + ".", several);
@@ -95,7 +95,7 @@ class UnusableBaseOriginTest {
             });
 
             assertTrue(errorLine(log, "mod/RarityFilter")
-                    .contains("No class move in Retromod's tables produces this name."), log);
+                    .contains("No class move in Backmod's tables produces this name."), log);
             assertTrue(errorLine(log, "mod/Loot").contains("Several class moves produce this name: "
                     + SIMPLE_WEIGHTED_RANDOM_LIST + ", " + WEIGHTED_RANDOM_LIST + "."), log);
             assertFalse(log.contains("removed it outright"), "both classes exist on the host:\n" + log);

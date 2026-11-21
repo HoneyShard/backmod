@@ -606,7 +606,7 @@ public final class ForgeEventBusSynthetics {
         h.visitVarInsn(ALOAD, 2);
         org.objectweb.asm.Label typed = new org.objectweb.asm.Label();
         h.visitJumpInsn(IFNONNULL, typed);
-        emitWarn(h, "[Retromod] Could not bridge IEventBus.addListener onto EventBus 7 (lambda "
+        emitWarn(h, "[Backmod] Could not bridge IEventBus.addListener onto EventBus 7 (lambda "
                 + "listeners carry no event type); setup listener soft-failed: ");
         h.visitInsn(RETURN);
         h.visitLabel(typed);
@@ -815,7 +815,7 @@ public final class ForgeEventBusSynthetics {
         }
         String logger = String.join("/", "org", "slf4j", "Logger");
         m.visitMethodInsn(INVOKESTATIC, "com/mojang/logging/LogUtils", "getLogger", "()L" + logger + ";", false);
-        m.visitLdcInsn("[Retromod] Hooked a listener onto EventBus 7 for {}");
+        m.visitLdcInsn("[Backmod] Hooked a listener onto EventBus 7 for {}");
         m.visitVarInsn(ALOAD, 1);
         m.visitMethodInsn(INVOKEINTERFACE, logger, "debug", "(Ljava/lang/String;" + L_OBJ + ")V", true);
         m.visitLabel(tryEnd);
@@ -823,7 +823,7 @@ public final class ForgeEventBusSynthetics {
         m.visitLabel(catchAll);
         m.visitVarInsn(ASTORE, 5);
         m.visitMethodInsn(INVOKESTATIC, "com/mojang/logging/LogUtils", "getLogger", "()L" + logger + ";", false);
-        m.visitLdcInsn("[Retromod] Could not hook a listener onto EventBus 7 for {}: {}");
+        m.visitLdcInsn("[Backmod] Could not hook a listener onto EventBus 7 for {}: {}");
         m.visitVarInsn(ALOAD, 1);
         m.visitVarInsn(ALOAD, 5);
         m.visitMethodInsn(INVOKEINTERFACE, logger, "warn", "(Ljava/lang/String;" + L_OBJ + L_OBJ + ")V", true);
@@ -948,7 +948,7 @@ public final class ForgeEventBusSynthetics {
         p.visitVarInsn(ALOAD, 4);
         org.objectweb.asm.Label ok = new org.objectweb.asm.Label();
         p.visitJumpInsn(IFNONNULL, ok);
-        emitWarn(p, "[Retromod] Could not bridge IEventBus.addListener(priority, ...) onto "
+        emitWarn(p, "[Backmod] Could not bridge IEventBus.addListener(priority, ...) onto "
                 + "EventBus 7 (lambda listeners carry no event type); listener soft-failed: ", 3);
         p.visitInsn(RETURN);
         p.visitLabel(ok);
@@ -1264,7 +1264,7 @@ public final class ForgeEventBusSynthetics {
         rf.visitInsn(RETURN);
         rf.visitLabel(fCatch);
         rf.visitInsn(POP);
-        emitWarn(rf, "[Retromod] EventBus 7 single-listener fallback failed for: ");
+        emitWarn(rf, "[Backmod] EventBus 7 single-listener fallback failed for: ");
         rf.visitInsn(RETURN);
         rf.visitMaxs(0, 0);
         rf.visitEnd();
@@ -1404,7 +1404,7 @@ public final class ForgeEventBusSynthetics {
         h.visitLabel(hCatch);
         h.visitVarInsn(ASTORE, 5);
         h.visitMethodInsn(INVOKESTATIC, "com/mojang/logging/LogUtils", "getLogger", "()L" + logger + ";", false);
-        h.visitLdcInsn("[Retromod] The old event handler {} could not be hooked onto EventBus 7 and will not run: {}");
+        h.visitLdcInsn("[Backmod] The old event handler {} could not be hooked onto EventBus 7 and will not run: {}");
         h.visitVarInsn(ALOAD, 1);
         h.visitVarInsn(ALOAD, 5);
         h.visitMethodInsn(INVOKEINTERFACE, logger, "warn", "(Ljava/lang/String;" + L_OBJ + L_OBJ + ")V", true);
@@ -1417,7 +1417,7 @@ public final class ForgeEventBusSynthetics {
                 "(" + L_OBJ + "Ljava/lang/Throwable;)V", null, null);
         w.visitCode();
         w.visitMethodInsn(INVOKESTATIC, "com/mojang/logging/LogUtils", "getLogger", "()L" + logger + ";", false);
-        w.visitLdcInsn("[Retromod] EventBus 7 refused the event handlers of {}, so the ones it did not add will not run: {}");
+        w.visitLdcInsn("[Backmod] EventBus 7 refused the event handlers of {}, so the ones it did not add will not run: {}");
         w.visitVarInsn(ALOAD, 0);
         w.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()" + L_CLASS, false);
         w.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getName", "()Ljava/lang/String;", false);
@@ -1530,7 +1530,7 @@ public final class ForgeEventBusSynthetics {
         m.visitVarInsn(ASTORE, 7);
         String logger = String.join("/", "org", "slf4j", "Logger");
         m.visitMethodInsn(INVOKESTATIC, "com/mojang/logging/LogUtils", "getLogger", "()L" + logger + ";", false);
-        m.visitLdcInsn("[Retromod] The old event handler {} could not be hooked onto EventBus 7 and will not run: {}");
+        m.visitLdcInsn("[Backmod] The old event handler {} could not be hooked onto EventBus 7 and will not run: {}");
         m.visitVarInsn(ALOAD, 0);
         m.visitLdcInsn(".");
         m.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "concat", "(Ljava/lang/String;)Ljava/lang/String;", false);
@@ -1647,7 +1647,7 @@ public final class ForgeEventBusSynthetics {
             // is built before the strip, while the class still names its own mod id.
             if (staticHandlers.size() == 1) {
                 companions.accept(companionName(cn.name), generateCompanion(cn, subscriber, staticHandlers.get(0)));
-                org.slf4j.LoggerFactory.getLogger("Retromod-EventBus7").debug(
+                org.slf4j.LoggerFactory.getLogger("Backmod-EventBus7").debug(
                         "Moved the one static handler of {} to a companion that hooks it onto EventBus 7", cn.name);
             }
             removeAnnotation(cn.visibleAnnotations);

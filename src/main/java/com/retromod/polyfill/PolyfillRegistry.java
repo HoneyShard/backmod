@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class PolyfillRegistry {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Polyfills");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Polyfills");
 
     // Batch and AOT runs register the same polyfills for every mod, so only the first pass in
     // a JVM prints the summary.

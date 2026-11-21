@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
  */
 public class ItemSafetyShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ItemSafety");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ItemSafety");
     private static volatile boolean warned = false;
 
     // Reflection: MC isn't on the compile classpath. Resolved lazily.

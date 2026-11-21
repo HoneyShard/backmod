@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class LegacyDyeColorBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacyDyeColors";
     static final String DYE_COLOR = "net/minecraft/world/item/DyeColor";

@@ -36,7 +36,7 @@ import java.util.function.Function;
 /** Points a refmap entry at the host method its finished {@code @Inject} handler fits. */
 public final class MixinRefmapTargetRepair {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Refmap");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Refmap");
     private static final String MIXIN_PACKAGE = "Lorg/spongepowered/asm/mixin/";
     private static final String MIXINEXTRAS_PACKAGE = "Lcom/llamalad7/mixinextras/";
     /** Member annotations Mixin resolves by the member's own name when they give none. */

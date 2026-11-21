@@ -76,7 +76,7 @@ public final class LegacyHandlerCapabilities {
             KINDS.put(capability, kind);
             return capability;
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not create the old " + kind + " handler capability", failure);
+            throw new IllegalStateException("Backmod could not create the old " + kind + " handler capability", failure);
         }
     }
 
@@ -133,7 +133,7 @@ public final class LegacyHandlerCapabilities {
             };
             return adapter.getConstructor(Object.class).newInstance(handler);
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not adapt an old handler", failure);
+            throw new IllegalStateException("Backmod could not adapt an old handler", failure);
         }
     }
 
@@ -156,7 +156,7 @@ public final class LegacyHandlerCapabilities {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not look up a block capability", failure);
+            throw new IllegalStateException("Backmod could not look up a block capability", failure);
         }
     }
 
@@ -204,7 +204,7 @@ public final class LegacyHandlerCapabilities {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not look up an item capability", failure);
+            throw new IllegalStateException("Backmod could not look up an item capability", failure);
         }
     }
 
@@ -230,7 +230,7 @@ public final class LegacyHandlerCapabilities {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not create a block capability cache", failure);
+            throw new IllegalStateException("Backmod could not create a block capability cache", failure);
         }
     }
 
@@ -494,7 +494,7 @@ public final class LegacyHandlerCapabilities {
                 case "getCapability" -> answer.apply(arguments);
                 case "hashCode" -> System.identityHashCode(proxy);
                 case "equals" -> proxy == arguments[0];
-                case "toString" -> "Retromod adapter for an old " + type;
+                case "toString" -> "Backmod adapter for an old " + type;
                 default -> throw new UnsupportedOperationException(method.getName());
             };
             return Proxy.newProxyInstance(provider.getClassLoader(), new Class<?>[]{provider}, handler);

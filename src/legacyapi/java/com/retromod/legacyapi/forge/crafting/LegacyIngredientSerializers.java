@@ -56,7 +56,7 @@ public final class LegacyIngredientSerializers {
         }
         // Forge 26.2 accepts entries only while it registers ingredient serializers, before any mod's setup.
         if (registered || closed().get()) {
-            LegacyLog.warnOnce("late ingredient serializer " + id, "Retromod did not register the old ingredient"
+            LegacyLog.warnOnce("late ingredient serializer " + id, "Backmod did not register the old ingredient"
                     + " serializer " + id + ", because Forge had already registered ingredient serializers.");
             return serializer;
         }
@@ -77,7 +77,7 @@ public final class LegacyIngredientSerializers {
         String copy = LegacyIngredientSerializers.class.getName();
         BusGroup group = busGroup();
         if (group == null) {
-            LegacyLog.warnOnce("ingredient serializer bus " + copy, "Retromod found no mod bus to register old"
+            LegacyLog.warnOnce("ingredient serializer bus " + copy, "Backmod found no mod bus to register old"
                     + " ingredient serializers from " + copy + ", so it registered none of them.");
             return;
         }
@@ -87,7 +87,7 @@ public final class LegacyIngredientSerializers {
             EventListener listener = bus.addListener(LegacyIngredientSerializers::onRegister);
             LegacyListenerSets.remember(group, LegacyIngredientSerializers.class, bus, listener);
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warnOnce("ingredient serializer listener " + copy, "Retromod could not listen for Forge's"
+            LegacyLog.warnOnce("ingredient serializer listener " + copy, "Backmod could not listen for Forge's"
                     + " ingredient serializer registration from " + copy
                     + ", so it registered none of its serializers: " + failure);
         }

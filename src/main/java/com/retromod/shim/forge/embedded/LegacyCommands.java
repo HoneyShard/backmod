@@ -367,7 +367,7 @@ public final class LegacyCommands {
         return switch (method.getName()) {
             case "hashCode" -> System.identityHashCode(proxy);
             case "equals" -> proxy == args[0];
-            case "toString" -> "Retromod legacy command";
+            case "toString" -> "Backmod legacy command";
             default -> null;
         };
     }

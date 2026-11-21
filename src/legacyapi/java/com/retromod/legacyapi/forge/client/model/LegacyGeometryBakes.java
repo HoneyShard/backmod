@@ -156,7 +156,7 @@ final class LegacyGeometryBakes {
         ModelBakery.BakingResult result = event.getResults();
         int blocks = swapBlocks(result.blockStateModels());
         int items = swapItems(result.itemStackModels());
-        LegacyLog.debug("Retromod put " + blocks + " block state and " + items + " item models of old geometry back in place.");
+        LegacyLog.debug("Backmod put " + blocks + " block state and " + items + " item models of old geometry back in place.");
     }
 
     private static int swapBlocks(Map<BlockState, BlockStateModel> models) {

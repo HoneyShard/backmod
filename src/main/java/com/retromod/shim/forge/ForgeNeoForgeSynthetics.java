@@ -53,7 +53,7 @@ import static org.objectweb.asm.Opcodes.*;
  */
 public final class ForgeNeoForgeSynthetics {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private ForgeNeoForgeSynthetics() {}
 

@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20MaterialBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String MATERIAL = "net/minecraft/class_3614";
     private static final String BLOCK_STATE = "net/minecraft/class_2680";

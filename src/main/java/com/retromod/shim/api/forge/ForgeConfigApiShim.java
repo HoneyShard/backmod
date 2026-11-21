@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ForgeConfigApiShim implements MinecraftVersionedApiShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ForgeConfigApiShim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ForgeConfigApiShim");
 
     @Override
     public String getShimName() {

@@ -371,7 +371,7 @@ public final class LegacyCancelBridge {
         // Sorted by version, so section() walks them oldest first.
         Map<String, Section> sections = new TreeMap<>(RetromodVersion::compareMcVersions);
         try (InputStream in = LegacyCancelBridge.class.getClassLoader().getResourceAsStream(TABLE)) {
-            if (in == null) throw new IllegalStateException("Retromod's jar is missing " + TABLE);
+            if (in == null) throw new IllegalStateException("Backmod's jar is missing " + TABLE);
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
             for (String line; (line = reader.readLine()) != null; ) {
                 if (line.isBlank() || line.startsWith("#")) continue;
@@ -390,7 +390,7 @@ public final class LegacyCancelBridge {
                 }
             }
         } catch (IOException failure) {
-            throw new UncheckedIOException("Retromod could not read " + TABLE, failure);
+            throw new UncheckedIOException("Backmod could not read " + TABLE, failure);
         }
         return sections;
     }

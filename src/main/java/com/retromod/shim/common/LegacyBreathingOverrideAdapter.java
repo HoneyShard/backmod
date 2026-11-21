@@ -40,7 +40,7 @@ import java.util.function.BiPredicate;
  */
 public final class LegacyBreathingOverrideAdapter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String LIVING = "net/minecraft/world/entity/LivingEntity";
     static final String NAME = "canBreatheUnderwater";

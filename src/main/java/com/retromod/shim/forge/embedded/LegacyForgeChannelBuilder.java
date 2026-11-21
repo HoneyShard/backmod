@@ -78,7 +78,7 @@ public final class LegacyForgeChannelBuilder {
                     (proxy, method, args) -> switch (method.getName()) {
                         case "accepts" -> predicate == null
                                 || predicate.test(legacyVersion(args, protocolVersion));
-                        case "toString" -> "Retromod legacy network version test";
+                        case "toString" -> "Backmod legacy network version test";
                         case "hashCode" -> System.identityHashCode(proxy);
                         case "equals" -> proxy == (args == null ? null : args[0]);
                         default -> throw new UnsupportedOperationException(method.toString());
@@ -144,7 +144,7 @@ public final class LegacyForgeChannelBuilder {
 
     private static IllegalStateException bridgeFailure(String action, ReflectiveOperationException e) {
         Throwable cause = e.getCause() == null ? e : e.getCause();
-        return new IllegalStateException("Retromod could not " + action
+        return new IllegalStateException("Backmod could not " + action
                 + " through Forge's current networking API", cause);
     }
 }

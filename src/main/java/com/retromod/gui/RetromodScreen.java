@@ -19,7 +19,7 @@ import java.util.concurrent.Executor;
 /** Updates mods picked in the native file picker or dropped on the screen, and shows the results. */
 public class RetromodScreen {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Screen");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Screen");
     // ConfirmScreen stacks its text above the buttons, so a long list pushes them off screen.
     private static final int MAX_LISTED_MODS = 10;
     // One update at a time: two quick drops would share the transformer's per-mod state.
@@ -61,7 +61,7 @@ public class RetromodScreen {
 
             @Override
             public void unavailable(String reason) {
-                LOGGER.warn("Retromod could not show a file picker: {}. It opens retromod-input/ "
+                LOGGER.warn("Backmod could not show a file picker: {}. It opens retromod-input/ "
                         + "instead.", reason);
                 showInputFolderInstead();
             }
@@ -74,7 +74,7 @@ public class RetromodScreen {
         for (Path path : dropped) names.add(path.toString());
         List<File> jars = NativeFilePicker.keepJars(names);
         if (jars.isEmpty()) {
-            LOGGER.info("Nothing dropped on the Retromod screen was a .jar file, so Retromod "
+            LOGGER.info("Nothing dropped on the Backmod screen was a .jar file, so Backmod "
                     + "updated nothing.");
             return;
         }
@@ -89,7 +89,7 @@ public class RetromodScreen {
         // A launcher sandbox can show a file it does not let the game read.
         List<String> unreadable = unreadableNames(jars);
         if (!unreadable.isEmpty()) {
-            LOGGER.warn("Retromod cannot read {} where it is, so it updated none of the chosen "
+            LOGGER.warn("Backmod cannot read {} where it is, so it updated none of the chosen "
                     + "jars. Put them in retromod-input/ and restart Minecraft.",
                     String.join(", ", unreadable));
             runOnClientThread(() -> MainScreenFactory.showUnreadableInstead(parentScreen, unreadable));
@@ -246,8 +246,8 @@ public class RetromodScreen {
             case TRANSLATED -> "Added " + fileName
                     + " to mods. Its translated copy loads after a restart.";
             case ALREADY_TRANSLATED -> "Added " + fileName
-                    + " to mods. Retromod already has a translated copy.";
-            case NEXT_LAUNCH -> "Added " + fileName + " to mods. Retromod translates it on "
+                    + " to mods. Backmod already has a translated copy.";
+            case NEXT_LAUNCH -> "Added " + fileName + " to mods. Backmod translates it on "
                     + "the next launch and then asks for one more restart.";
             case FAILED -> fileName + " could not be translated. logs/latest.log has the reason.";
         };

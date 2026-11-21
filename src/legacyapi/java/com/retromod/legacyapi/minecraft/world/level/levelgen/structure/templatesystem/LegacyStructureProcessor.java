@@ -47,10 +47,10 @@ public abstract class LegacyStructureProcessor implements StructureProcessor {
             answer.setAccessible(true);
             if (answer.invoke(type) instanceof MapCodec<?> codec) return (MapCodec<? extends StructureProcessor>) codec;
         } catch (ReflectiveOperationException | RuntimeException unreadable) {
-            throw new IllegalStateException("Retromod could not read the codec of structure processor "
+            throw new IllegalStateException("Backmod could not read the codec of structure processor "
                     + getClass().getName() + " from its type " + type, unreadable);
         }
-        throw new IllegalStateException("Retromod could not read the codec of structure processor "
+        throw new IllegalStateException("Backmod could not read the codec of structure processor "
                 + getClass().getName() + ": its type " + type + " does not answer a map codec");
     }
 }

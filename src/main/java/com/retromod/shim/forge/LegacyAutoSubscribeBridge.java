@@ -33,7 +33,7 @@ import java.util.function.Predicate;
 /** Subscribes an old mod's {@code @Mod.EventBusSubscriber} classes that FML 26.2 cannot from the end of its {@code @Mod} constructor. */
 public final class LegacyAutoSubscribeBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String SUBSCRIBER = RebuiltApiClasses.ROOT + "forge/eventbus/LegacyAutoSubscriber";
     static final String SUBSCRIBE_DESC = "(Ljava/lang/Object;Ljava/lang/String;)V";

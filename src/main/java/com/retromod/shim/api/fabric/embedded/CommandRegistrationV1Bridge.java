@@ -31,7 +31,7 @@ public final class CommandRegistrationV1Bridge {
 
     private CommandRegistrationV1Bridge() {}
 
-    private static final String TAG = "[Retromod] CommandRegistrationV1Bridge: ";
+    private static final String TAG = "[Backmod] CommandRegistrationV1Bridge: ";
 
     private static final String EVENT_FACTORY = "net.fabricmc.fabric.api.event.EventFactory";
     private static final String V2_CALLBACK   = "net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback";

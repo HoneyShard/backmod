@@ -26,7 +26,7 @@ import java.util.regex.*;
 /** Transforms Fabric mods to work on newer Minecraft versions. */
 public class FabricModTransformer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-FabricTransform");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-FabricTransform");
 
     /** Per-entry extraction cap (zip-bomb guard), shared with every other archive reader. */
     private static final long MAX_ENTRY_SIZE = ZipSecurity.DEFAULT_MAX_ENTRY_SIZE;
@@ -299,7 +299,7 @@ public class FabricModTransformer {
             }
 
             if (ModEnvironmentDetector.isServerOnly(sourceJar)) {
-                LOGGER.debug(RetromodLog.DETAIL, "{} is server-only. Joining clients do not need Retromod for this mod.",
+                LOGGER.debug(RetromodLog.DETAIL, "{} is server-only. Joining clients do not need Backmod for this mod.",
                     originalName);
             }
 
@@ -1664,7 +1664,7 @@ public class FabricModTransformer {
                 String relaxed = matcher.replaceAll("$1\"*\"");
 
                 if (!relaxed.equals(updated)) {
-                    LOGGER.debug(RetromodLog.DETAIL, "  Relaxed API dependency: {} → \"*\" (Retromod has shims)", modId);
+                    LOGGER.debug(RetromodLog.DETAIL, "  Relaxed API dependency: {} → \"*\" (Backmod has shims)", modId);
                     updated = relaxed;
                     relaxedCount++;
                 }

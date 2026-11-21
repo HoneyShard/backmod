@@ -147,7 +147,7 @@ public final class LegacyCapabilityRuntime {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException(cause);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not call " + method + " for a Forge capability", e);
+            throw new IllegalStateException("Backmod could not call " + method + " for a Forge capability", e);
         }
     }
 

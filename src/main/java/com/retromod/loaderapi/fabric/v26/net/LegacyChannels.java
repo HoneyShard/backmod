@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Old raw play channels (an id plus a byte buffer) on 26.x, as one raw payload type per channel id. */
 public final class LegacyChannels {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
 
     /** A connection phase that carries custom payloads. */
     enum Phase { PLAY, CONFIGURATION }

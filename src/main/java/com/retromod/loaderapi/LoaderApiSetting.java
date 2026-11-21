@@ -15,7 +15,7 @@ import java.util.Optional;
 /** Parses {@code loader_api_runtime} and decides whether the loader API runtime is on. */
 public final class LoaderApiSetting {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
 
     public static final String CONFIG_KEY = "loader_api_runtime";
     public static final String SYSTEM_PROPERTY = "retromod.loaderApiRuntime";

@@ -50,7 +50,7 @@ import java.util.function.Function;
 /** Converts stand-ins between copies where an addon calls or overrides a library that took another copy. */
 final class StandInAdapters {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final String OBJECT = "java/lang/Object";
     private static final String DELEGATE = "delegate";
     private static final String CACHE = "cache";
@@ -574,7 +574,7 @@ final class StandInAdapters {
         if (unsupported) {
             mv.visitTypeInsn(Opcodes.NEW, "java/lang/UnsupportedOperationException");
             mv.visitInsn(Opcodes.DUP);
-            mv.visitLdcInsn("Retromod cannot pass " + method.name + " between two mods' copies of "
+            mv.visitLdcInsn("Backmod cannot pass " + method.name + " between two mods' copies of "
                     + simpleName(held));
             mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/UnsupportedOperationException", "<init>",
                     "(Ljava/lang/String;)V", false);
@@ -652,10 +652,10 @@ final class StandInAdapters {
     /** The bytes of one of Retromod's own classes, which an addon gets a renamed copy of. */
     private static byte[] resource(String internalName) {
         try (InputStream in = StandInAdapters.class.getResourceAsStream("/" + internalName + ".class")) {
-            if (in == null) throw new IllegalStateException("Retromod is missing its own class " + internalName);
+            if (in == null) throw new IllegalStateException("Backmod is missing its own class " + internalName);
             return in.readAllBytes();
         } catch (IOException e) {
-            throw new IllegalStateException("Could not read Retromod's own class " + internalName, e);
+            throw new IllegalStateException("Could not read Backmod's own class " + internalName, e);
         }
     }
 

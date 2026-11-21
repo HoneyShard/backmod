@@ -10,7 +10,12 @@
     <packaging>jar</packaging>
 
     <name>Backmod</name>
-    <description>Helps older Minecraft mods run on newer versions</description>
+    <description>Backports Fabric mods built for Minecraft 26.2 so they load on 26.1.2</description>
+    <url>https://github.com/HoneyShard/backmod</url>
+    <scm>
+        <url>https://github.com/HoneyShard/backmod</url>
+        <connection>scm:git:https://github.com/HoneyShard/backmod.git</connection>
+    </scm>
     
     <developers>
         <developer>

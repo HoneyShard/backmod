@@ -16,7 +16,7 @@ import java.util.Optional;
 public final class ItemStackMembers {
 
     // Retromod's own runtime is not on a mod's class path, so the log goes through the JDK.
-    private static final System.Logger LOG = System.getLogger("Retromod");
+    private static final System.Logger LOG = System.getLogger("Backmod");
 
     private ItemStackMembers() {}
 

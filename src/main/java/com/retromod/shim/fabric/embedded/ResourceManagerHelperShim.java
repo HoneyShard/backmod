@@ -39,10 +39,10 @@ public class ResourceManagerHelperShim {
                 Method getMethod = helperClass.getMethod("get", resourceType.getClass());
                 realLoader = getMethod.invoke(null, resourceType);
             } catch (Exception ex) {
-                throw new RuntimeException("Retromod: Could not find resource loader API", ex);
+                throw new RuntimeException("Backmod: Could not find resource loader API", ex);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Retromod: Failed to get resource loader", e);
+            throw new RuntimeException("Backmod: Failed to get resource loader", e);
         }
     }
     
@@ -83,7 +83,7 @@ public class ResourceManagerHelperShim {
             throw new RuntimeException("Could not register reload listener - no compatible API found");
 
         } catch (Exception e) {
-            throw new RuntimeException("Retromod: Failed to register reload listener", e);
+            throw new RuntimeException("Backmod: Failed to register reload listener", e);
         }
     }
 
@@ -133,7 +133,7 @@ public class ResourceManagerHelperShim {
         } catch (NoSuchMethodException e) {
             // old API: no ordering support
         } catch (Exception e) {
-            throw new RuntimeException("Retromod: Failed to add reloader ordering", e);
+            throw new RuntimeException("Backmod: Failed to add reloader ordering", e);
         }
     }
 }

@@ -33,7 +33,7 @@ import java.util.function.Predicate;
  */
 public class ZineApiShim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Shim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Shim");
 
     static final String OLD_CODEC_UTIL = "com/eightsidedsquare/zine/common/util/network/PacketCodecUtil";
     static final String NEW_CODEC_UTIL = "com/eightsidedsquare/zine/common/util/network/StreamCodecUtil";

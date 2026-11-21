@@ -23,7 +23,7 @@ import java.util.Set;
 /** Registers classes Retromod rebuilt for APIs a host removed (built from {@code src/legacyapi}) as synthetics. */
 public final class RebuiltApiClasses {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     public static final String ROOT = "com/retromod/legacyapi/";
 
@@ -44,8 +44,8 @@ public final class RebuiltApiClasses {
             if (!seen.add(name) || t.getSyntheticClasses().containsKey(registered)) continue;
             byte[] bytes = read(name);
             if (bytes == null) {
-                LOGGER.warn("Retromod's rebuilt class {} is missing from its jar, so it was not added to "
-                        + "this mod. Report this line with the Retromod version.", name);
+                LOGGER.warn("Backmod's rebuilt class {} is missing from its jar, so it was not added to "
+                        + "this mod. Report this line with the Backmod version.", name);
                 continue;
             }
             // registerSyntheticClass renames Retromod's relocated Gson and SLF4J to the game's own.

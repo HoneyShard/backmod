@@ -23,10 +23,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public final class TransformationErrorHandler {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Error");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Error");
     
-    public static final String GITHUB_URL = "https://github.com/Bownlux/Retromod";
-    public static final String GITHUB_ISSUES_URL = "https://github.com/Bownlux/Retromod/issues/new?title=Bug%20Report";
+    public static final String GITHUB_URL = "https://github.com/HoneyShard/backmod";
+    public static final String GITHUB_ISSUES_URL = "https://github.com/HoneyShard/backmod/issues/new?title=Bug%20Report";
     
     private static final List<FailedMod> failedMods = new CopyOnWriteArrayList<>();
 
@@ -71,7 +71,7 @@ public final class TransformationErrorHandler {
         failedMods.add(failed);
         
         // The trace goes on the first line, since the default log level hides DEBUG.
-        LOGGER.error("Retromod could not update {} ({}): {}", modName, errorType, errorMessage, error);
+        LOGGER.error("Backmod could not update {} ({}): {}", modName, errorType, errorMessage, error);
         LOGGER.error("Loader: {}, source Minecraft: {}, mod ID: {}",
             known(modLoader), known(sourceVersion), known(modId));
         LOGGER.error("Report this failure at {} and attach logs/latest.log", GITHUB_ISSUES_URL);
@@ -81,7 +81,7 @@ public final class TransformationErrorHandler {
     /** The text of the failure dialog. */
     static String dialogMessage(FailedMod failed) {
         return String.format("""
-            Retromod could not update %s.
+            Backmod could not update %s.
 
             Error: %s
 
@@ -104,7 +104,7 @@ public final class TransformationErrorHandler {
             int choice = JOptionPane.showOptionDialog(
                 null,
                 message,
-                "Retromod could not update a mod",
+                "Backmod could not update a mod",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.ERROR_MESSAGE,
                 null,
@@ -163,7 +163,7 @@ public final class TransformationErrorHandler {
     /** Builds the report shown in the dialog and server log. */
     public static String generateBugReport(FailedMod failed) {
         return String.format("""
-            # Retromod Bug Report
+            # Backmod Bug Report
             
             ## Mod Information
             - **Mod Name:** %s
@@ -182,7 +182,7 @@ public final class TransformationErrorHandler {
             ```
             
             ## System Info
-            - **Retromod Version:** %s
+            - **Backmod Version:** %s
             - **Java Version:** %s
             - **OS:** %s
             
@@ -242,7 +242,7 @@ public final class TransformationErrorHandler {
     public static void showFailureSummary() {
         if (failedMods.isEmpty()) return;
         
-        LOGGER.error("Retromod could not update {} mod(s):", failedMods.size());
+        LOGGER.error("Backmod could not update {} mod(s):", failedMods.size());
         for (FailedMod mod : failedMods) {
             LOGGER.error("  - {}: {}", mod.modName(), mod.errorType());
         }

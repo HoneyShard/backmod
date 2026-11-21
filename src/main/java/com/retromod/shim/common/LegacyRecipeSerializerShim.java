@@ -256,7 +256,7 @@ public class LegacyRecipeSerializerShim implements MinecraftVersionedApiShim {
         m.visitJumpInsn(IFEQ, failed);
         GeneratedLog.pushLogger(m);
         GeneratedLog.pushDetailMarker(m);
-        m.visitLdcInsn("[Retromod] Registered the legacy recipe serializer ");
+        m.visitLdcInsn("[Backmod] Registered the legacy recipe serializer ");
         m.visitVarInsn(ALOAD, 0);
         m.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;",
                 false);
@@ -272,7 +272,7 @@ public class LegacyRecipeSerializerShim implements MinecraftVersionedApiShim {
         // Any other failure means a codec() that exists did not answer, which changes what loads.
         m.visitLabel(failed);
         GeneratedLog.pushLogger(m);
-        m.visitLdcInsn("[Retromod] Could not read the codecs of the legacy recipe serializer ");
+        m.visitLdcInsn("[Backmod] Could not read the codecs of the legacy recipe serializer ");
         m.visitVarInsn(ALOAD, 0);
         m.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;",
                 false);
@@ -280,7 +280,7 @@ public class LegacyRecipeSerializerShim implements MinecraftVersionedApiShim {
                 false);
         m.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "concat",
                 "(Ljava/lang/String;)Ljava/lang/String;", false);
-        m.visitLdcInsn(", so Retromod registered it without them");
+        m.visitLdcInsn(", so Backmod registered it without them");
         m.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "concat",
                 "(Ljava/lang/String;)Ljava/lang/String;", false);
         m.visitVarInsn(ALOAD, 4);
@@ -395,12 +395,12 @@ public class LegacyRecipeSerializerShim implements MinecraftVersionedApiShim {
         init.visitEnd();
         MethodVisitor get = cw.visitMethod(ACC_PUBLIC, "get", "()Ljava/lang/Object;", null, null);
         get.visitCode();
-        get.visitLdcInsn("Retromod: recipe serializer ");
+        get.visitLdcInsn("Backmod: recipe serializer ");
         get.visitVarInsn(ALOAD, 0);
         get.visitFieldInsn(GETFIELD, SAFE_CODEC, "serializer", "Ljava/lang/String;");
         get.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "concat",
                 "(Ljava/lang/String;)Ljava/lang/String;", false);
-        get.visitLdcInsn(" could not read this recipe, so Retromod left it out");
+        get.visitLdcInsn(" could not read this recipe, so Backmod left it out");
         get.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "concat",
                 "(Ljava/lang/String;)Ljava/lang/String;", false);
         get.visitInsn(ARETURN);
@@ -541,7 +541,7 @@ public class LegacyRecipeSerializerShim implements MinecraftVersionedApiShim {
         m.visitInsn(ICONST_1);
         m.visitFieldInsn(PUTFIELD, SAFE_CODEC, "reported", "Z");
         GeneratedLog.pushLogger(m);
-        m.visitLdcInsn("[Retromod] ");
+        m.visitLdcInsn("[Backmod] ");
         m.visitVarInsn(ALOAD, 0);
         m.visitMethodInsn(INVOKEVIRTUAL, SAFE_CODEC, "get", "()Ljava/lang/Object;", false);
         m.visitTypeInsn(CHECKCAST, "java/lang/String");

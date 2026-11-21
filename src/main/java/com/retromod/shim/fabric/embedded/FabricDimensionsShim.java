@@ -78,7 +78,7 @@ public final class FabricDimensionsShim {
             return entity;
 
         } catch (Exception e) {
-            throw new RuntimeException("Retromod: Failed to teleport entity", e);
+            throw new RuntimeException("Backmod: Failed to teleport entity", e);
         }
     }
     

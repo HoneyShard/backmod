@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20_5ParticleTypeBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String PARTICLE_TYPE = "net/minecraft/class_2396";
     static final String PARTICLE_OPTIONS = "net/minecraft/class_2394";

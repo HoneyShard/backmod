@@ -47,7 +47,7 @@ final class LegacyWorldPacks {
                     return switch (method.getName()) {
                         case "hashCode" -> System.identityHashCode(proxy);
                         case "equals" -> proxy == args[0];
-                        case "toString" -> "Retromod " + name + " listener";
+                        case "toString" -> "Backmod " + name + " listener";
                         default -> null;
                     };
                 }));

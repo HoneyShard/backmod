@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  */
 final class FlatteningTextureRenames {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     private static final String RESOURCE = "/retromod/flattening-texture-renames.tsv";
     /** A basename only: no directory, no extension, and nothing that could escape one. */
     private static final Pattern SAFE_NAME = Pattern.compile("[a-z0-9_]+");

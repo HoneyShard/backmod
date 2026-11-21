@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Maps Mojang member names to the SRG names a Forge 1.20 to 1.20.4 host runs with. */
 public final class TargetSrgMapper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-TargetSrg");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-TargetSrg");
     private static final String FULL_TABLE = "/retromod/target-srg-1.20.1.tsv";
     private static final Map<String, TargetSrgMapper> CACHE = new ConcurrentHashMap<>();
     private static final TargetSrgMapper EMPTY = new TargetSrgMapper(Map.of(), Map.of());

@@ -43,9 +43,9 @@ public final class LegacyTicketTypes {
                 }
             }
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not create the chunk ticket type " + name + " on this Minecraft version", e);
+            throw new IllegalStateException("Backmod could not create the chunk ticket type " + name + " on this Minecraft version", e);
         }
-        throw new IllegalStateException("Retromod found no chunk ticket type constructor it knows for " + name
-                + " on this Minecraft version. Report this line with the Retromod and Minecraft versions.");
+        throw new IllegalStateException("Backmod found no chunk ticket type constructor it knows for " + name
+                + " on this Minecraft version. Report this line with the Backmod and Minecraft versions.");
     }
 }

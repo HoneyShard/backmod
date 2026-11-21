@@ -25,7 +25,7 @@ public final class LegacyModelEvents {
             // The listeners name client classes, so a dedicated server never reaches them.
             LegacyModelEventHooks.attach();
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not set up the old model events of " + LegacyClientRenderBootstrap.namespaces()
+            LegacyLog.warn("Backmod did not set up the old model events of " + LegacyClientRenderBootstrap.namespaces()
                     + ": " + failure);
         }
     }

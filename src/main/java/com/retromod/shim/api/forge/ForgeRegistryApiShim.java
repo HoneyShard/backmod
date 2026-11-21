@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 /** Updates Forge registry calls: DeferredRegister, RegistryObject, and registry keys. */
 public class ForgeRegistryApiShim implements MinecraftVersionedApiShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ForgeRegistryApiShim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ForgeRegistryApiShim");
 
     @Override
     public String getShimName() {

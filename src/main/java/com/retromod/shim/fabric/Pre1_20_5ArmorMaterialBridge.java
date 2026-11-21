@@ -62,7 +62,7 @@ import java.util.List;
  */
 public final class Pre1_20_5ArmorMaterialBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String ARMOR_MATERIAL = "net/minecraft/class_1741";
     static final String ARMOR_MATERIALS = "net/minecraft/class_1740";

@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 /** Tells what a 1.12 item or entity id in mod data is called on a newer game. */
 final class LegacyItemIds {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     // 1.12 named many items by an id and a data value: minecraft:wool with data 14 is red wool.
     // 1.13 gave each value its own id and renamed others outright, and a few were renamed again
     // later, such as 1.13 rose_red becoming red_dye in 1.14.

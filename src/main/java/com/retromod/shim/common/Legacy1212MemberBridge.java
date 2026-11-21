@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 /** Bridges entity and recipe members 1.21.2 removed or made stricter, for mods built for 1.21.1 or older. */
 public final class Legacy1212MemberBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/Legacy1212Members";
 

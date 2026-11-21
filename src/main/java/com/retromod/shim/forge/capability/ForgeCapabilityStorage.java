@@ -30,7 +30,7 @@ import java.util.function.Supplier;
  */
 public final class ForgeCapabilityStorage {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     public static final String NAMESPACE = "retromod";
     public static final String PATH = "forge_capabilities";
 
@@ -57,7 +57,7 @@ public final class ForgeCapabilityStorage {
             // A host whose loader classes cannot be linked here has no mod bus to listen on either.
             LOGGER.debug("No NeoForge registry events here; Forge capability data is not saved");
         } catch (ReflectiveOperationException | RuntimeException e) {
-            LOGGER.warn("Retromod could not register Forge capability storage, so data that migrated "
+            LOGGER.warn("Backmod could not register Forge capability storage, so data that migrated "
                     + "Forge mods keep in capabilities will reset on restart: {}", e.toString());
         }
     }
@@ -85,7 +85,7 @@ public final class ForgeCapabilityStorage {
                 }
             }
         } catch (ReflectiveOperationException | RuntimeException e) {
-            LOGGER.warn("Retromod could not register Forge capability storage: {}", e.toString());
+            LOGGER.warn("Backmod could not register Forge capability storage: {}", e.toString());
         }
     }
 
@@ -123,7 +123,7 @@ public final class ForgeCapabilityStorage {
             builder = LegacyPublicMethods.method(builder.getClass(), "serialize", serializerType).invoke(builder, serializer);
             return LegacyPublicMethods.method(builder.getClass(), "build").invoke(builder);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build the Forge capability attachment", e);
+            throw new IllegalStateException("Backmod could not build the Forge capability attachment", e);
         }
     }
 

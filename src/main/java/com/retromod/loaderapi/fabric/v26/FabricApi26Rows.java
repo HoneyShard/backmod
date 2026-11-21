@@ -74,7 +74,7 @@ public final class FabricApi26Rows {
         try (InputStream in = FabricApi26Rows.class.getClassLoader()
                 .getResourceAsStream(RENAMES_RESOURCE)) {
             if (in == null) {
-                throw new IllegalStateException(RENAMES_RESOURCE + " is missing from the Retromod jar");
+                throw new IllegalStateException(RENAMES_RESOURCE + " is missing from the Backmod jar");
             }
             table = parse(in);
         } catch (IOException e) {

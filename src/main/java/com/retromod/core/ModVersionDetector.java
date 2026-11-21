@@ -21,7 +21,7 @@ import java.util.zip.*;
 public class ModVersionDetector {
 
     private static final org.slf4j.Logger LOGGER =
-            org.slf4j.LoggerFactory.getLogger("Retromod-Detector");
+            org.slf4j.LoggerFactory.getLogger("Backmod-Detector");
     private static final Gson GSON = new GsonBuilder().create();
     private static final int MAX_ARCHIVE_ENTRIES = 100_000;
     private static final long MAX_METADATA_SIZE = 2L * 1024 * 1024;

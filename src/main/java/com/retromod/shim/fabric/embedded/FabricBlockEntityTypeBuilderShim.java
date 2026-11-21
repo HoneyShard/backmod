@@ -54,7 +54,7 @@ public class FabricBlockEntityTypeBuilderShim<T> {
             }
 
         } catch (ClassNotFoundException e) {
-            System.err.println("Retromod: FabricBlockEntityTypeBuilder not found");
+            System.err.println("Backmod: FabricBlockEntityTypeBuilder not found");
         }
     }
     
@@ -89,7 +89,7 @@ public class FabricBlockEntityTypeBuilderShim<T> {
             try {
                 realBuilder = addBlockMethod.invoke(realBuilder, block);
             } catch (Exception e) {
-                System.err.println("Retromod: Failed to add block to builder: " + e);
+                System.err.println("Backmod: Failed to add block to builder: " + e);
             }
         }
         
@@ -141,9 +141,9 @@ public class FabricBlockEntityTypeBuilderShim<T> {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException("Retromod: Failed to create BlockEntityType via fallback", e);
+            throw new RuntimeException("Backmod: Failed to create BlockEntityType via fallback", e);
         }
 
-        throw new RuntimeException("Retromod: No BlockEntityType creation method available");
+        throw new RuntimeException("Backmod: No BlockEntityType creation method available");
     }
 }

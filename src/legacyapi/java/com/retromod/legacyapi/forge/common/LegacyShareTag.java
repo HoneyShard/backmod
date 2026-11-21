@@ -37,9 +37,9 @@ public final class LegacyShareTag {
         } catch (InvocationTargetException e) {
             if (e.getCause() instanceof RuntimeException runtime) throw runtime;
             if (e.getCause() instanceof Error error) throw error;
-            throw new IllegalStateException("Retromod could not run " + override, e.getCause());
+            throw new IllegalStateException("Backmod could not run " + override, e.getCause());
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not run " + override, e);
+            throw new IllegalStateException("Backmod could not run " + override, e);
         }
     }
 

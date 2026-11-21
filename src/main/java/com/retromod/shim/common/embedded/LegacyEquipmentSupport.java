@@ -229,7 +229,7 @@ public final class LegacyEquipmentSupport {
             OLD_RECORD_REPAIRS.put(record, repair == null ? List.of() : repair);
             return record;
         } catch (Exception failure) {
-            throw new IllegalStateException("Retromod could not build an old armor material", failure);
+            throw new IllegalStateException("Backmod could not build an old armor material", failure);
         }
     }
 
@@ -247,7 +247,7 @@ public final class LegacyEquipmentSupport {
             Class<?> idClass = Class.forName("net.minecraft.resources.Identifier", false, loader);
             return keyClass.getMethod("createRegistryKey", idClass).invoke(null, identifier(loader, REGISTRY_ID));
         } catch (Exception failure) {
-            throw new IllegalStateException("Retromod could not name the old armor material registry", failure);
+            throw new IllegalStateException("Backmod could not name the old armor material registry", failure);
         }
     }
 
@@ -282,12 +282,12 @@ public final class LegacyEquipmentSupport {
                 try {
                     register.invoke(event, registry);
                 } catch (ReflectiveOperationException failure) {
-                    throw new IllegalStateException("Retromod could not register the old armor material registry", failure);
+                    throw new IllegalStateException("Backmod could not register the old armor material registry", failure);
                 }
             });
             return registry;
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not rebuild the old armor material registry", failure);
+            throw new IllegalStateException("Backmod could not rebuild the old armor material registry", failure);
         }
     }
 
@@ -347,7 +347,7 @@ public final class LegacyEquipmentSupport {
                     }
                     case "hashCode" -> System.identityHashCode(proxy);
                     case "equals" -> proxy == arguments[0];
-                    case "toString" -> "Retromod armor components";
+                    case "toString" -> "Backmod armor components";
                     default -> java.lang.reflect.InvocationHandler.invokeDefault(proxy, method, arguments);
                 });
         LegacyPublicMethods.method(event.getClass(), "modify", itemLike, initializer).invoke(event, item, run);
@@ -466,7 +466,7 @@ public final class LegacyEquipmentSupport {
                     newModifier.newInstance(item.getField("BASE_ATTACK_SPEED_ID").get(null), (double) speed, addValue), mainHand);
             return LegacyPublicMethods.method(builder.getClass(), "build").invoke(builder);
         } catch (Exception failure) {
-            throw new IllegalStateException("Retromod could not build an old tool's attack attributes", failure);
+            throw new IllegalStateException("Backmod could not build an old tool's attack attributes", failure);
         }
     }
 
@@ -479,7 +479,7 @@ public final class LegacyEquipmentSupport {
             ClassLoader loader = tier.getClass().getClassLoader();
             return toolRecord(tier, Class.forName(TOOL_MATERIAL, false, loader), loader);
         } catch (Exception failure) {
-            throw new IllegalStateException("Retromod could not build a tool material from "
+            throw new IllegalStateException("Backmod could not build a tool material from "
                     + tier.getClass().getName(), failure);
         }
     }
@@ -531,7 +531,7 @@ public final class LegacyEquipmentSupport {
                     .getField("DYED_COLOR").get(null);
             LegacyPublicMethods.method(stack.getClass(), "set", componentType, Object.class).invoke(stack, type, value);
         } catch (Exception failure) {
-            throw new IllegalStateException("Retromod could not dye " + stack, failure);
+            throw new IllegalStateException("Backmod could not dye " + stack, failure);
         }
     }
 
@@ -612,7 +612,7 @@ public final class LegacyEquipmentSupport {
                     return call(record, accessor);
             }
         } catch (Throwable failure) {
-            throw new IllegalStateException("Retromod could not answer " + method + " for a vanilla material", failure);
+            throw new IllegalStateException("Backmod could not answer " + method + " for a vanilla material", failure);
         }
     }
 

@@ -158,7 +158,7 @@ final class LegacyItemStates {
                 }
             }
         } catch (ReflectiveOperationException | RuntimeException closed) {
-            LegacyLog.debug("Retromod could not read Minecraft's item layers, so old item models report no quads: " + closed);
+            LegacyLog.debug("Backmod could not read Minecraft's item layers, so old item models report no quads: " + closed);
         }
         fieldsRead = true;
     }

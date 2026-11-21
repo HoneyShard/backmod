@@ -27,7 +27,7 @@ import java.util.function.Function;
 /** Bridges block entity, item and world data NBT code from before 1.20.5, when saving began to take registries, for Mojang-named mods. */
 public final class LegacyRegistryNbtBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     public static final String HELPER = "com/retromod/generated/LegacyRegistryNbt";
     /** The registries of the save or load in progress, a rebuilt class every registry NBT bridge shares. */

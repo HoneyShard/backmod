@@ -57,7 +57,7 @@ public final class LegacyCreativeTabEvents {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not register the creative tab " + name, e);
+            throw new IllegalStateException("Backmod could not register the creative tab " + name, e);
         }
     }
 

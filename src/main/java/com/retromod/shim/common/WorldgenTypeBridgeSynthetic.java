@@ -349,12 +349,12 @@ public final class WorldgenTypeBridgeSynthetic {
         // from the processor class's <clinit>, which codec() triggers via GETSTATIC CODEC.
         m.visitVarInsn(ASTORE, 3);
         GeneratedLog.pushLogger(m);
-        m.visitLdcInsn("[Retromod] Could not read the codec of an old structure processor type");
+        m.visitLdcInsn("[Backmod] Could not read the codec of an old structure processor type");
         m.visitVarInsn(ALOAD, 3);
         GeneratedLog.warnWithCause(m);
         m.visitLabel(warn);
         GeneratedLog.pushLogger(m);
-        m.visitLdcInsn("[Retromod] Could not convert an old structure processor type to the codec this "
+        m.visitLdcInsn("[Backmod] Could not convert an old structure processor type to the codec this "
                 + "Minecraft version registers, and left it as it was: ");
         m.visitVarInsn(ALOAD, 1);
         m.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);

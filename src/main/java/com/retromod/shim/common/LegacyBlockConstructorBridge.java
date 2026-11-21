@@ -47,7 +47,7 @@ import java.util.function.Function;
  */
 public final class LegacyBlockConstructorBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String DROP_EXPERIENCE = "net/minecraft/world/level/block/DropExperienceBlock";
     static final String AMETHYST_CLUSTER = "net/minecraft/world/level/block/AmethystClusterBlock";

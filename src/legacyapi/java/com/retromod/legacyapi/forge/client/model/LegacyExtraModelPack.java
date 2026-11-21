@@ -47,9 +47,9 @@ final class LegacyExtraModelPack extends PathPackResources {
             case "openResources" -> Stream.of(new LegacyExtraModelPack((PackLocationInfo) args[0], folder));
             case "equals" -> proxy == args[0];
             case "hashCode" -> System.identityHashCode(proxy);
-            case "toString" -> "Retromod extra models in " + folder;
+            case "toString" -> "Backmod extra models in " + folder;
             default -> {
-                if (!method.isDefault()) throw new UnsupportedOperationException("Retromod's extra model pack has no " + method);
+                if (!method.isDefault()) throw new UnsupportedOperationException("Backmod's extra model pack has no " + method);
                 yield InvocationHandler.invokeDefault(proxy, method, args);
             }
         };

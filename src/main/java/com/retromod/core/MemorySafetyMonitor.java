@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class MemorySafetyMonitor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Performance");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Performance");
 
     private static MemorySafetyMonitor instance;
 
@@ -256,7 +256,7 @@ public class MemorySafetyMonitor {
         warningShown = true;
 
         StringBuilder message = new StringBuilder();
-        message.append("Retromod noticed a performance problem.\n\n");
+        message.append("Backmod noticed a performance problem.\n\n");
 
         switch (lastIssue) {
             case MEMORY_CRITICAL, MEMORY_WARNING -> {
@@ -328,7 +328,7 @@ public class MemorySafetyMonitor {
                 int choice = JOptionPane.showOptionDialog(
                     null,
                     message,
-                    "Retromod performance problem",
+                    "Backmod performance problem",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.ERROR_MESSAGE,
                     null,
@@ -348,7 +348,7 @@ public class MemorySafetyMonitor {
                 JOptionPane.showMessageDialog(
                     null,
                     message,
-                    "Retromod performance warning",
+                    "Backmod performance warning",
                     JOptionPane.WARNING_MESSAGE
                 );
                 warningShown = false;
@@ -358,13 +358,13 @@ public class MemorySafetyMonitor {
     
     private void showConsolePerformanceError(String message, boolean isCritical) {
         if (isCritical) {
-            LOGGER.error("Retromod detected a serious performance problem:");
+            LOGGER.error("Backmod detected a serious performance problem:");
             for (String line : message.split("\n")) {
                 LOGGER.error("{}", line);
             }
             LOGGER.error("The server will keep running, but you should review the items above.");
         } else {
-            LOGGER.warn("Retromod detected a performance problem:");
+            LOGGER.warn("Backmod detected a performance problem:");
             for (String line : message.split("\n")) {
                 LOGGER.warn("{}", line);
             }

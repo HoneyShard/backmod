@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class LegacyTreeGrowerBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String OLD_GROWER = "net/minecraft/world/level/block/grower/AbstractTreeGrower";
     static final String OLD_MEGA_GROWER = "net/minecraft/world/level/block/grower/AbstractMegaTreeGrower";

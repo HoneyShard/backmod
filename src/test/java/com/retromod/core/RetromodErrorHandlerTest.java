@@ -26,7 +26,7 @@ class RetromodErrorHandlerTest {
         RetromodErrorHandler.reset();
 
         long errorLines = log.lines()
-                .filter(line -> line.contains("ERROR Retromod - A mod entry point failed in "
+                .filter(line -> line.contains("ERROR Backmod - A mod entry point failed in "
                         + "com.example.BrokenClient"))
                 .count();
         long traceHeaders = log.lines()

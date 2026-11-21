@@ -23,7 +23,7 @@ import java.util.Set;
 /** Moves a 1.18.2 mod's jigsaw structures to the data format Minecraft 1.19 introduced. */
 public final class LegacyStructureDataMigrator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataMigrator");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataMigrator");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     // 1.18.2 defined structures here as a vanilla feature type such as minecraft:village with a

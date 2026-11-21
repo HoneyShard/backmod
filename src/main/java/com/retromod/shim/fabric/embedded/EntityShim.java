@@ -36,7 +36,7 @@ public class EntityShim {
                 } catch (NoSuchMethodException ignored) {}
             }
         } catch (Exception e) {
-            System.err.println("Retromod: EntityShim.getBlockPos error: " + e.getMessage());
+            System.err.println("Backmod: EntityShim.getBlockPos error: " + e.getMessage());
         }
         return null;
     }
@@ -63,7 +63,7 @@ public class EntityShim {
                 } catch (NoSuchMethodException ignored) {}
             }
         } catch (Exception e) {
-            System.err.println("Retromod: EntityShim.getWorld error: " + e.getMessage());
+            System.err.println("Backmod: EntityShim.getWorld error: " + e.getMessage());
         }
         return null;
     }
@@ -118,7 +118,7 @@ public class EntityShim {
 
             methodsInitialized = true;
         } catch (Exception e) {
-            System.err.println("Retromod: EntityShim init error: " + e.getMessage());
+            System.err.println("Backmod: EntityShim init error: " + e.getMessage());
         }
     }
     

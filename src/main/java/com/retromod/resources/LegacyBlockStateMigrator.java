@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
 /** Rewrites 1.12 blockstates and Forge's own blockstate format into the vanilla format newer games read. */
 public final class LegacyBlockStateMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-BlockStates");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-BlockStates");
     private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
     // 1.13 reads "" for 1.12's normal variant, full model paths (1.12's oldmod:ruby_ore meant

@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 /** Looks up the {@code c:} tag each Forge convention tag became. */
 final class ForgeConventionTags {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     // Some paths changed too, so the table names the path each tag moved to, from the version whose
     // newest loader build ships it. The file itself describes its rows and how they were checked.
     private static final String RESOURCE = "/retromod/forge-convention-tags.tsv";

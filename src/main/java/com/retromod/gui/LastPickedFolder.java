@@ -23,7 +23,7 @@ import java.util.Properties;
 /** Remembers the folder the file picker last took mods from, in retromod-cache/. */
 final class LastPickedFolder {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Screen");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Screen");
     // Not in config/: the path is personal, and modpack exports ship config/.
     static final Path FILE = Path.of(TranslatedModCache.CACHE_ROOT, "file-picker.properties");
     private static final String KEY = "last_folder";
@@ -65,7 +65,7 @@ final class LastPickedFolder {
             Path staged = Files.createTempFile(file.getParent(), ".file-picker.", ".tmp");
             try {
                 try (Writer writer = Files.newBufferedWriter(staged, StandardCharsets.UTF_8)) {
-                    saved.store(writer, "Retromod file picker");
+                    saved.store(writer, "Backmod file picker");
                 }
                 moveReplacing(staged, file);
             } finally {

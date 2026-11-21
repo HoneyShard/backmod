@@ -57,6 +57,6 @@ public final class LegacyPoiLookups {
                 // the other loader's helper
             }
         }
-        throw new IllegalStateException("Retromod could not find the loader's ObfuscationReflectionHelper");
+        throw new IllegalStateException("Backmod could not find the loader's ObfuscationReflectionHelper");
     }
 }

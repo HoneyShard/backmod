@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class MixinTargetRedirector {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-MixinRedirect");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-MixinRedirect");
     
     // Mapping: "OldClass.oldMethod" -> "NewClass.newMethod"
     // This is the "translation table" you described

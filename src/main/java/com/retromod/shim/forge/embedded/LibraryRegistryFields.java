@@ -105,7 +105,7 @@ public final class LibraryRegistryFields {
             }
         }
         throw new IncompatibleClassChangeError(describe(field) + " holds a " + value.getClass().getName()
-                + ", which a Forge mod cannot read as a RegistryObject. Retromod has no replacement for"
+                + ", which a Forge mod cannot read as a RegistryObject. Backmod has no replacement for"
                 + " this read yet. Report it with both mods and their versions.");
     }
 

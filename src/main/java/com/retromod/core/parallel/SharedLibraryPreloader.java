@@ -28,7 +28,7 @@ import java.util.jar.JarFile;
  */
 public final class SharedLibraryPreloader {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Parallel");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Parallel");
 
     /** One class per ASM package that both sides load lazily. */
     private static final String[] ANCHORS = {

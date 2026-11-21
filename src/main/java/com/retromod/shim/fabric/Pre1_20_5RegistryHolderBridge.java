@@ -49,7 +49,7 @@ import java.util.List;
  */
 public final class Pre1_20_5RegistryHolderBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacyRegistryHolders";
     static final String HOLDER = "net/minecraft/class_6880";

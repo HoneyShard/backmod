@@ -51,7 +51,7 @@ public final class LegacySpawns {
             WEIGHTS.put(entry, weight);
             return entry;
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build a spawn entry for " + entityType, e);
+            throw new IllegalStateException("Backmod could not build a spawn entry for " + entityType, e);
         }
     }
 
@@ -83,7 +83,7 @@ public final class LegacySpawns {
             }
             throw new NoSuchMethodException("MobSpawnSettings.Builder.addSpawn for " + category);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not add a spawn entry to a biome", e);
+            throw new IllegalStateException("Backmod could not add a spawn entry to a biome", e);
         }
     }
 
@@ -100,7 +100,7 @@ public final class LegacySpawns {
             }
             throw new NoSuchMethodException("StructureSpawnOverrideBuilder.addSpawn(entry, weight)");
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not add a spawn entry to a structure", e);
+            throw new IllegalStateException("Backmod could not add a spawn entry to a structure", e);
         }
     }
 
@@ -140,7 +140,7 @@ public final class LegacySpawns {
                 case "toString" -> {
                     return "spawns of " + category + ": " + entries(builder, category);
                 }
-                default -> throw new UnsupportedOperationException("Retromod's spawn list for " + category
+                default -> throw new UnsupportedOperationException("Backmod's spawn list for " + category
                         + " supports add and removeIf, not " + method.getName()
                         + ", because the host keeps biome spawns in a weighted list");
             }
@@ -217,7 +217,7 @@ public final class LegacySpawns {
         try {
             return valueOf(weightedEntry);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read a weighted spawn entry", e);
+            throw new IllegalStateException("Backmod could not read a weighted spawn entry", e);
         }
     }
 }

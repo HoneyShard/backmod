@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 /** Bridges arrow, mob effect and death loot members that 1.20.5 to 1.21.2 reshaped, for Mojang-named mods. */
 public final class Legacy1205GameplayBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     public static final String HELPER = "com/retromod/generated/Legacy1205Gameplay";
     static final String ARROW_MEMBERS = RebuiltApiClasses.ROOT + "minecraft/world/entity/projectile/LegacyArrowMembers";

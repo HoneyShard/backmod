@@ -65,7 +65,7 @@ public final class LegacyBrewingRecipes {
             }
             listening = true;
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod found no brewing event to add Forge brewing recipes to"
+            throw new IllegalStateException("Backmod found no brewing event to add Forge brewing recipes to"
                     + " (looked for Forge's BrewingRecipeRegisterEvent.BUS and NeoForge's RegisterBrewingRecipesEvent)", e);
         }
     }

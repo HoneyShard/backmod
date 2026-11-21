@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 /** Stand-in for Forge 1.20.1's {@code EventNetworkChannel}, backed by the event channel Forge 26.x builds. */
 public final class LegacyEventChannel {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final Map<String, LegacyEventChannel> CHANNELS = new ConcurrentHashMap<>();
     // Forge 26.x's NetworkDirection, and its constant for each old direction, resolved on the first packet.
     private static volatile Class<?> hostDirections;
@@ -48,7 +48,7 @@ public final class LegacyEventChannel {
             NetworkShim.ForgeChannels forge = NetworkShim.forgeChannels();
             if (forge == null) {
                 // NeoForge has payloads instead, and Retromod does not carry an event channel over them.
-                LOGGER.warn("Retromod did not connect the Forge event channel {} to this loader's networking, "
+                LOGGER.warn("Backmod did not connect the Forge event channel {} to this loader's networking, "
                         + "so messages on it are not sent or received.", channelId);
                 return new LegacyEventChannel(channelId, null, null);
             }
@@ -75,13 +75,13 @@ public final class LegacyEventChannel {
             Object channelId) {
         LegacyEventChannel channel = CHANNELS.get(String.valueOf(channelId));
         if (channel == null) {
-            throw new IllegalStateException("Retromod has no open Forge event channel " + channelId
+            throw new IllegalStateException("Backmod has no open Forge event channel " + channelId
                     + " to build a packet on.");
         }
         // The mod sends the packet itself, so there is no send to skip: a null or empty packet would fail later,
         // inside Minecraft's connection, with less to go on than this.
         if (channel.hostChannel == null) {
-            throw new IllegalStateException("Retromod did not connect the Forge event channel " + channelId
+            throw new IllegalStateException("Backmod did not connect the Forge event channel " + channelId
                     + " to this loader's networking, so it cannot build a packet on it.");
         }
         Object buffer = call(payloadAndIndex, "getLeft");
@@ -97,7 +97,7 @@ public final class LegacyEventChannel {
         } catch (InvocationTargetException e) {
             throw rethrown(e);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build a packet for Forge event channel "
+            throw new IllegalStateException("Backmod could not build a packet for Forge event channel "
                     + channelId, e);
         }
     }
@@ -159,7 +159,7 @@ public final class LegacyEventChannel {
         } catch (InvocationTargetException e) {
             throw rethrown(e);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not call " + name + " on "
+            throw new IllegalStateException("Backmod could not call " + name + " on "
                     + target.getClass().getName() + " for a Forge event channel", e);
         }
     }

@@ -34,7 +34,7 @@ public final class LegacyRegisterCapabilitiesEvent extends MutableEvent implemen
             if (!capability.isRegistered()) get.invoke(null, name, null, true);
         } catch (ReflectiveOperationException | RuntimeException | LinkageError failure) {
             Throwable cause = failure.getCause() != null ? failure.getCause() : failure;
-            LegacyLog.warnOnce("register capability " + name, "Retromod could not mark the capability " + name
+            LegacyLog.warnOnce("register capability " + name, "Backmod could not mark the capability " + name
                     + " registered: " + cause + ". Capability lookups do not depend on it");
         }
     }
@@ -63,12 +63,12 @@ public final class LegacyRegisterCapabilitiesEvent extends MutableEvent implemen
                 }
             }
             unreachable = true;
-            LegacyLog.warnOnce("capability registrar", "Retromod found no registering CapabilityManager.get on this"
+            LegacyLog.warnOnce("capability registrar", "Backmod found no registering CapabilityManager.get on this"
                     + " Forge, so capabilities from RegisterCapabilitiesEvent are not marked registered. Capability"
                     + " lookups do not depend on it");
         } catch (RuntimeException | LinkageError failure) {
             unreachable = true;
-            LegacyLog.warnOnce("capability registrar", "Retromod could not reach CapabilityManager.get on this Forge,"
+            LegacyLog.warnOnce("capability registrar", "Backmod could not reach CapabilityManager.get on this Forge,"
                     + " so capabilities from RegisterCapabilitiesEvent are not marked registered: " + failure
                     + ". Capability lookups do not depend on it");
         }

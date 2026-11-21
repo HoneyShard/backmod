@@ -24,7 +24,7 @@ import java.util.zip.*;
  */
 public class CrossModDependencyResolver {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Dependencies");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Dependencies");
     private static final long MAX_METADATA_SIZE = 2L * 1024 * 1024;
     private static final Pattern FORGE_MOD_ID = Pattern.compile(
             "^\\s*modId\\s*=\\s*\"([^\"]+)\"");

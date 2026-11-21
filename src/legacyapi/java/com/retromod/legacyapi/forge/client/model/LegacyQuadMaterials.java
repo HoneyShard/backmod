@@ -205,7 +205,7 @@ public final class LegacyQuadMaterials {
     }
 
     private static void note(String problem) {
-        LegacyLog.warnOnce(NOTE, "Retromod " + problem + ". Old mods' quads on this Minecraft version keep the"
+        LegacyLog.warnOnce(NOTE, "Backmod " + problem + ". Old mods' quads on this Minecraft version keep the"
                 + " material they were given, drawn in the solid layer when they had none.");
     }
 

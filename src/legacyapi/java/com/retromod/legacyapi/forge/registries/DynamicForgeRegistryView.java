@@ -279,7 +279,7 @@ public final class DynamicForgeRegistryView<V> implements IForgeRegistry<V> {
         try {
             return cast(standInFromKey.invoke(null, ResourceKey.create(key, registry.getKey(value))));
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not give an old mod the entry " + registry.getKey(value)
+            throw new IllegalStateException("Backmod could not give an old mod the entry " + registry.getKey(value)
                     + " of " + key.identifier(), e);
         }
     }
@@ -288,7 +288,7 @@ public final class DynamicForgeRegistryView<V> implements IForgeRegistry<V> {
         try {
             return field.get(owner);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not read the id of " + owner, e);
+            throw new IllegalStateException("Backmod could not read the id of " + owner, e);
         }
     }
 
@@ -296,7 +296,7 @@ public final class DynamicForgeRegistryView<V> implements IForgeRegistry<V> {
     private void refuse(String name) {
         LegacyLog.warnOnce("dynamic-registry-register " + key.identifier(), "An old mod registered " + name
                 + " in " + key.identifier() + " from code. Minecraft now loads that registry from data packs,"
-                + " so Retromod leaves the entry out and the game never has it.");
+                + " so Backmod leaves the entry out and the game never has it.");
     }
 
     private IllegalStateException missing(Object entry) {

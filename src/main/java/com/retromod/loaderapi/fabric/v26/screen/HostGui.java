@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** The host Minecraft and Fabric API members that serve old HUD, screen and tooltip calls, by 26.x name. */
 final class HostGui {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
 
     static final String IDENTIFIER = "net/minecraft/resources/Identifier";
     static final String MINECRAFT = "net/minecraft/client/Minecraft";

@@ -40,7 +40,7 @@ public final class LegacyToolRules {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not build an old tool component", failure);
+            throw new IllegalStateException("Backmod could not build an old tool component", failure);
         }
     }
 
@@ -54,7 +54,7 @@ public final class LegacyToolRules {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not build an old tool rule", failure);
+            throw new IllegalStateException("Backmod could not build an old tool rule", failure);
         }
     }
 

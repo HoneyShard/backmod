@@ -41,7 +41,7 @@ public class ModCompatibilityChecker {
     private static final java.util.regex.Pattern DOTTED_NUMBER =
             java.util.regex.Pattern.compile("\\d+\\.\\d+");
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private final Path modsFolder;
     private final Path backupsFolder;
     private final ModVersionDetector detector;
@@ -175,7 +175,7 @@ public class ModCompatibilityChecker {
 
         // A transformer returns null when the translation failed, so the GUI reports it as failed.
         if (transformed == null) {
-            throw new IOException("Retromod could not update " + sourceJar.getFileName()
+            throw new IOException("Backmod could not update " + sourceJar.getFileName()
                     + ". The reason is in logs/latest.log.");
         }
 

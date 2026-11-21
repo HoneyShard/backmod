@@ -52,7 +52,7 @@ import java.util.stream.Stream;
  */
 public final class LegacyRarityBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String RARITY = "net/minecraft/world/item/Rarity";
     static final String CHAT_FORMATTING = "net/minecraft/ChatFormatting";

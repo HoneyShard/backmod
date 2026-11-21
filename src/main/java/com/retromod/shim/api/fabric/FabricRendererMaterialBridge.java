@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricRendererMaterialBridge implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String OLD_RENDERER_ACCESS  = "net/fabricmc/fabric/api/renderer/v1/RendererAccess";
     private static final String OLD_RENDERER         = "net/fabricmc/fabric/api/renderer/v1/Renderer";
@@ -323,7 +323,7 @@ public class FabricRendererMaterialBridge implements AuxiliaryVersionShim {
         gr.visitInsn(Opcodes.ICONST_1);
         gr.visitFieldInsn(Opcodes.PUTSTATIC, IMPL_ACCESS, "warned", "Z");
         GeneratedLog.pushLogger(gr);
-        gr.visitLdcInsn("[Retromod] An old mod asked for the Fabric renderer through RendererAccess. Retromod "
+        gr.visitLdcInsn("[Backmod] An old mod asked for the Fabric renderer through RendererAccess. Backmod "
                 + "gives it an inactive stand-in, so that mod's custom rendering will not show.");
         GeneratedLog.warn(gr);
         gr.visitLabel(done);

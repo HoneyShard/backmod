@@ -68,7 +68,7 @@ public final class CrossModGapReport {
                 .comparingInt((AggregatedEntry e) -> -e.count())
                 .thenComparing(e -> e.reference.prettyPrint()));
 
-        out.append("=== Retromod cross-mod gap report ===\n");
+        out.append("=== Backmod cross-mod gap report ===\n");
         out.append("Target MC: ").append(targetMcVersion).append('\n');
         out.append("Mods scanned: ").append(Integer.toString(modsSeen.size())).append('\n');
         out.append("Classes scanned: ").append(Integer.toString(totalClassesScanned)).append('\n');

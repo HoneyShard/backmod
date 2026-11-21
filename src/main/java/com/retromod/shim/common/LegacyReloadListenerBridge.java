@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 /** Lets reload listeners written for an older {@code PreparableReloadListener.reload} shape run on hosts from 1.21.2. */
 public final class LegacyReloadListenerBridge implements Opcodes {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     /** Post-process flag for hosts from 1.21.2 to 1.21.8. */
     public static final String BARRIER_FLAG = "legacy-reload-listener-barrier";

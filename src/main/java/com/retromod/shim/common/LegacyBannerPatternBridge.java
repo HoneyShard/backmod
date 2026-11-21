@@ -107,7 +107,7 @@ public final class LegacyBannerPatternBridge {
         create.visitVarInsn(ASTORE, 5);
         // The pattern still works as an object, so the failure is a warning with its cause.
         GeneratedLog.pushLogger(create);
-        create.visitLdcInsn("[Retromod] Could not register the old banner pattern ");
+        create.visitLdcInsn("[Backmod] Could not register the old banner pattern ");
         create.visitVarInsn(ALOAD, 1);
         create.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "concat", "(Ljava/lang/String;)Ljava/lang/String;", false);
         create.visitVarInsn(ALOAD, 5);

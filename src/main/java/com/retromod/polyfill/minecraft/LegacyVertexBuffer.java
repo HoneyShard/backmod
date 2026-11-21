@@ -134,7 +134,7 @@ public final class LegacyVertexBuffer implements AutoCloseable {
             ByteBuffer buffer = ((ByteBuffer) call(meshData, "vertexBuffer")).duplicate()
                     .order(ByteOrder.nativeOrder());
             if (stride != 16 || !(topology.equals("QUADS") || topology.contains("LINES"))) {
-                warnOnce("Retromod: a legacy vertex buffer used " + topology + " with a " + stride
+                warnOnce("Backmod: a legacy vertex buffer used " + topology + " with a " + stride
                         + "-byte vertex; only POSITION_COLOR quads and lines are drawn on this version.");
                 positions = new float[0];
                 colors = new int[0];
@@ -158,7 +158,7 @@ public final class LegacyVertexBuffer implements AutoCloseable {
             positions = xyz;
             colors = argb;
         } catch (Throwable t) {
-            warnOnce("Retromod: could not copy a legacy vertex buffer (" + t + ").");
+            warnOnce("Backmod: could not copy a legacy vertex buffer (" + t + ").");
         } finally {
             try {
                 call(meshData, "close");
@@ -197,7 +197,7 @@ public final class LegacyVertexBuffer implements AutoCloseable {
                 if (PENDING.size() < MAX_PENDING_DRAWS) PENDING.add(new Draw(world, colors, lines));
             }
         } catch (Throwable t) {
-            warnOnce("Retromod: could not place a legacy vertex buffer (" + t + ").");
+            warnOnce("Backmod: could not place a legacy vertex buffer (" + t + ").");
         }
     }
 
@@ -228,7 +228,7 @@ public final class LegacyVertexBuffer implements AutoCloseable {
                 call(event, "register", listener);
                 listenerRegistered = true;
             } catch (Throwable t) {
-                warnOnce("Retromod: legacy vertex buffers cannot be drawn without Fabric API's "
+                warnOnce("Backmod: legacy vertex buffers cannot be drawn without Fabric API's "
                         + "level render events (" + t + ").");
             }
             return listenerRegistered;
@@ -265,7 +265,7 @@ public final class LegacyVertexBuffer implements AutoCloseable {
                         draw.lines() ? lineType : quadType, renderer);
             }
         } catch (Throwable t) {
-            warnOnce("Retromod: could not submit legacy vertex buffers (" + t + ").");
+            warnOnce("Backmod: could not submit legacy vertex buffers (" + t + ").");
         }
     }
 

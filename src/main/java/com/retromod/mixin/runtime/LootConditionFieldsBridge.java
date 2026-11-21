@@ -70,7 +70,7 @@ public final class LootConditionFieldsBridge {
             termsField.set(composite, holderSet);
             field(composite.getClass(), "composedPredicate").set(composite, composed);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not set the terms of " + composite.getClass().getName()
+            throw new IllegalStateException("Backmod could not set the terms of " + composite.getClass().getName()
                     + " on this Minecraft version", e);
         }
     }
@@ -85,7 +85,7 @@ public final class LootConditionFieldsBridge {
             Class<?> holderType = Class.forName("net.minecraft.core.Holder", false, holder.getClass().getClassLoader());
             return holderType.getMethod("value").invoke(holder);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read a loot condition holder", e);
+            throw new IllegalStateException("Backmod could not read a loot condition holder", e);
         }
     }
 
@@ -93,7 +93,7 @@ public final class LootConditionFieldsBridge {
         try {
             return field(owner.getClass(), name).get(owner);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read " + name + " from "
+            throw new IllegalStateException("Backmod could not read " + name + " from "
                     + owner.getClass().getName() + " on this Minecraft version", e);
         }
     }

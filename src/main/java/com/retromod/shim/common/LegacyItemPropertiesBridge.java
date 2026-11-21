@@ -20,7 +20,7 @@ import java.util.function.UnaryOperator;
 /** Rebuilds Minecraft 1.20.1's ItemProperties inside each old mod and adds the item property type Retromod's item definitions name. */
 public final class LegacyItemPropertiesBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     public static final String OLD_ITEM_PROPERTIES = "net/minecraft/client/renderer/item/ItemProperties";
     static final String OLD_FUNCTION = "net/minecraft/client/renderer/item/ItemPropertyFunction";
@@ -117,7 +117,7 @@ public final class LegacyItemPropertiesBridge {
                 LOGGER.debug(RetromodLog.DETAIL, "Added the item property type {} for old model overrides", TYPE_ID);
             }
         } catch (ReflectiveOperationException | LinkageError | RuntimeException failure) {
-            LOGGER.warn("Retromod did not add the item property type {}, which its item definitions for old model"
+            LOGGER.warn("Backmod did not add the item property type {}, which its item definitions for old model"
                     + " overrides name: {}", TYPE_ID, failure.toString());
         }
     }

@@ -349,7 +349,7 @@ public class RetromodCli {
         System.out.println("Score: " + complexityReport.score() + "/100");
         printRiskFactors(complexityReport.riskFactors());
         System.out.println("The score counts parts of the jar that translation often has to rebuild. "
-            + "Retromod translates the mod whatever the score. aot --skip-risky skips a mod that "
+            + "Backmod translates the mod whatever the score. aot --skip-risky skips a mod that "
             + "scores " + ModComplexityAnalyzer.SKIP_SCORE + " or more.");
     }
 
@@ -1100,13 +1100,13 @@ public class RetromodCli {
     /** Prints what an embed run wrote and returns the exit code. */
     static int printEmbedResult(ApiEmbedder.EmbedResult result, PrintStream out, PrintStream err) {
         if (result.outputJar() == null) {
-            out.println("This mod uses no removed API that Retromod can replace. No jar was written.");
+            out.println("This mod uses no removed API that Backmod can replace. No jar was written.");
             return 0;
         }
         out.println("Output: " + result.outputJar());
         // A jar with no replacement classes changes nothing, so it is not a success.
         if (result.embeddedClasses() == 0) {
-            err.println("Retromod found no archived classes for the removed APIs this mod uses, "
+            err.println("Backmod found no archived classes for the removed APIs this mod uses, "
                     + "so the output jar has none. Put the archive named in the log in "
                     + "config/retromod/api-archive/ and run embed again.");
             return 1;
@@ -3042,7 +3042,7 @@ public class RetromodCli {
             String current = ": built for Minecraft " + TARGET_MC_VERSION + ", or its version is unknown";
             // Retromod's own jar stays whatever the batch did with it, a failure included.
             if (isRetromodJar(entry.source(), entry.info())) {
-                left.add(name + ": Retromod or a jar it already translated");
+                left.add(name + ": Backmod or a jar it already translated");
             } else if (entry.status() == BatchStatus.FAILED) {
                 if (entry.info() == null || entry.info().needsTransformation(TARGET_MC_VERSION)) {
                     problems.add(name + ": could not be translated (" + entry.detail() + ")");
@@ -3884,9 +3884,9 @@ public class RetromodCli {
         String setup = com.retromod.inplace.CacheTools.loaderName(host.loader())
                 + " on Minecraft " + host.minecraft();
         return "Each exported jar is translated for " + setup + ". A game you share one "
-                + "with needs " + setup + " and Retromod for that loader and version, because "
-                + "a translated jar can call Retromod's code. Put it in that game's mods/ "
-                + "folder. Retromod loads it as it is.";
+                + "with needs " + setup + " and Backmod for that loader and version, because "
+                + "a translated jar can call Backmod's code. Put it in that game's mods/ "
+                + "folder. Backmod loads it as it is.";
     }
 
     /** Shows or clears the in-place cache of one game directory. */
@@ -3959,7 +3959,7 @@ public class RetromodCli {
                 + report.count(com.retromod.inplace.CacheEntry.Status.FAILED) + " failed");
         if (!report.consistent()) {
             System.out.println("  The next launch rebuilds this cache. It was written by "
-                    + "another Retromod build or setting.");
+                    + "another Backmod build or setting.");
         }
         for (com.retromod.inplace.CacheEntry entry : report.entries()) {
             String state = switch (entry.status()) {

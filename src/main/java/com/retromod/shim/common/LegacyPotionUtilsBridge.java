@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class LegacyPotionUtilsBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String POTION_UTILS = "net/minecraft/world/item/alchemy/PotionUtils";
     static final String GENERATED = "com/retromod/generated/LegacyPotionUtils";

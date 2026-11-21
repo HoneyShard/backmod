@@ -68,7 +68,7 @@ class CliPrepareCommandTest {
     }
 
     @Test
-    @DisplayName("a failed, a current, and a Retromod jar stay in mods/ as they were")
+    @DisplayName("a failed, a current, and a Backmod jar stay in mods/ as they were")
     void leavesFailedCurrentAndRetromodJarsAlone() throws Exception {
         Path game = game();
         Path broken = jar(game.resolve("mods/broken.jar"), Map.of(
@@ -109,7 +109,7 @@ class CliPrepareCommandTest {
     }
 
     @Test
-    @DisplayName("Retromod's own jar stays as it was even when the batch fails on it")
+    @DisplayName("Backmod's own jar stays as it was even when the batch fails on it")
     void retromodJarFailureIsNotAProblem() throws Exception {
         Path game = game();
         // Tagged for an older Minecraft, so only the Retromod check keeps it out of the problems.
@@ -119,7 +119,7 @@ class CliPrepareCommandTest {
         String output = CliHarness.prepareGame(game, "26.3");
 
         assertArrayEquals(before, Files.readAllBytes(retromod), output);
-        assertTrue(output.contains("retromod.jar: Retromod or a jar it already translated"), output);
+        assertTrue(output.contains("retromod.jar: Backmod or a jar it already translated"), output);
         assertFalse(output.contains("retromod.jar: could not be translated"), output);
         assertTrue(output.contains("is ready for Minecraft 26.3"), output);
     }
@@ -131,7 +131,7 @@ class CliPrepareCommandTest {
         fabricMod(game.resolve("mods/oldmod.jar"), "oldmod", "1.20.1");
         CliHarness.prepareGame(game, "26.3");
         assertFalse(Files.exists(game.resolve("config/fabric_loader_dependencies.json")),
-                "an override lets Fabric load an old jar Retromod did not translate");
+                "an override lets Fabric load an old jar Backmod did not translate");
 
         Path other = Files.createDirectories(directory.resolve("other"));
         Files.createDirectories(other.resolve("mods"));
@@ -173,7 +173,7 @@ class CliPrepareCommandTest {
     }
 
     @Test
-    @DisplayName("an installed Forge mod reads as Retromod output, so in-place loading keeps it")
+    @DisplayName("an installed Forge mod reads as Backmod output, so in-place loading keeps it")
     void installedForgeModIsTranslatedOutput() throws Exception {
         Path game = game();
         forgeMod(game.resolve("mods/Old Forge Mod 1.0.jar"));

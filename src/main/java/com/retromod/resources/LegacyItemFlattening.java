@@ -21,7 +21,7 @@ import java.util.Map;
 /** Names vanilla items and entities in a 1.12 mod's copied data the way the target game does. */
 final class LegacyItemFlattening implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataLayout");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataLayout");
 
     /** The first host whose items have no data values. */
     static final String FIRST_FLATTENED_HOST = "1.13";

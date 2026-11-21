@@ -31,9 +31,9 @@ public final class RetromodVersion {
             return;
         }
         bannerLogged = true;
-        logger.warn("Retromod is updating older mods at runtime.");
-        logger.warn("If a mod breaks, retry without Retromod before reporting it to that mod's author.");
-        logger.warn("Report Retromod problems at https://github.com/Bownlux/Retromod/issues");
+        logger.warn("Backmod is updating older mods at runtime.");
+        logger.warn("If a mod breaks, retry without Backmod before reporting it to that mod's author.");
+        logger.warn("Report Backmod problems at https://github.com/HoneyShard/backmod/issues");
     }
 
     /**

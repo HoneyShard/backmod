@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /** Maps Fabric intermediary names (class_N, field_N, method_N) to the Mojang names a 26.x host uses. */
 public class IntermediaryToMojangMapper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Mapping");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Mapping");
     // Old Fabric mods name Minecraft by intermediary ids in code, mixin targets, refmaps and access
     // wideners, and 26.1 dropped obfuscation. Each id keeps one name: the one it has on the 26.x
     // host, which the table's header explains how to change.
@@ -425,7 +425,7 @@ public class IntermediaryToMojangMapper {
             LOGGER.warn("Could not inspect the target's classes while applying class moves, so "
                     + "{} of them. Pass --mc-jar with a Mojang-named game jar for {} to apply "
                     + "exactly the moves that version made.",
-                    unobfFallback ? "Retromod applies all" : "Retromod applies none",
+                    unobfFallback ? "Backmod applies all" : "Backmod applies none",
                     com.retromod.core.RetromodVersion.TARGET_MC_VERSION);
         }
 

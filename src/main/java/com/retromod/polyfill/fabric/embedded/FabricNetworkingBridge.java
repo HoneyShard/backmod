@@ -63,7 +63,7 @@ public class FabricNetworkingBridge {
         delegate = runtime;
     }
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-NetworkBridge");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-NetworkBridge");
 
     // Cached reflection lookups, initialized once on first use.
     // We use reflection because the Fabric API classes aren't on Retromod's
@@ -174,7 +174,7 @@ public class FabricNetworkingBridge {
 
         if (!bridgeAvailable || serverRegisterMethod == null || serverContextClass == null) {
             LOGGER.warn("Could not bridge the old server receiver for '{}': the new networking API "
-                + "is not available, so Retromod did not register it.", channelStr);
+                + "is not available, so Backmod did not register it.", channelStr);
             return false;
         }
 
@@ -223,7 +223,7 @@ public class FabricNetworkingBridge {
 
         if (!bridgeAvailable || clientRegisterMethod == null || clientContextClass == null) {
             LOGGER.warn("Could not bridge the old client receiver for '{}': the new networking API "
-                + "is not available, so Retromod did not register it.", channelStr);
+                + "is not available, so Backmod did not register it.", channelStr);
             return false;
         }
 
@@ -465,7 +465,7 @@ public class FabricNetworkingBridge {
             return;
         }
         initialize();
-        LOGGER.warn("Dropped a packet sent with the old clientSend({}). Retromod has no replacement "
+        LOGGER.warn("Dropped a packet sent with the old clientSend({}). Backmod has no replacement "
             + "for channel-based sending on 26.1 yet.", channelId);
         // Release the ByteBuf if it's a Netty buffer to prevent leaks
         releaseBuf(buf);
@@ -481,7 +481,7 @@ public class FabricNetworkingBridge {
             return;
         }
         initialize();
-        LOGGER.warn("Dropped a packet sent with the old serverSend({}). Retromod has no replacement "
+        LOGGER.warn("Dropped a packet sent with the old serverSend({}). Backmod has no replacement "
             + "for channel-based sending on 26.1 yet.", channelId);
         releaseBuf(buf);
     }

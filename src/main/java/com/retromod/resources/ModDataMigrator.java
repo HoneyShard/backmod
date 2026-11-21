@@ -28,7 +28,7 @@ import com.google.gson.stream.JsonToken;
 /** Rewrites the data-pack JSON and functions a mod ships, which the bytecode pass never reaches. */
 public final class ModDataMigrator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataMigrate");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataMigrate");
     private static final int MAX_JSON_DEPTH = 256;
     private static final long MAX_MIGRATABLE_FILE_BYTES = 16L * 1024 * 1024;
 

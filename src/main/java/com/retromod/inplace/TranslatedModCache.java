@@ -68,7 +68,7 @@ import java.util.regex.Pattern;
  */
 public final class TranslatedModCache implements AutoCloseable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-InPlace");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-InPlace");
 
     /** Folder below the game directory that holds every Retromod cache. */
     public static final String CACHE_ROOT = "retromod-cache";
@@ -174,7 +174,7 @@ public final class TranslatedModCache implements AutoCloseable {
         try {
             if (!AotCacheStamp.ensureCurrentBelow(layout.gameDir, layout.jarsDir, stamp)) {
                 closeQuietly(lock);
-                return unavailable(layout, "translations from another Retromod build could not "
+                return unavailable(layout, "translations from another Backmod build could not "
                         + "be cleared. They are checked again on the next launch");
             }
             CacheIndex index = readIndex(layout.indexFile);
@@ -237,11 +237,11 @@ public final class TranslatedModCache implements AutoCloseable {
                     "another game is using the cache", index, false);
         }
         return unavailable(layout, "another game is using the cache, and its translations "
-                + "belong to a different Retromod build or setting");
+                + "belong to a different Backmod build or setting");
     }
 
     private static TranslatedModCache unavailable(Layout layout, String reason) {
-        LOGGER.warn("Retromod's translated mod cache is unavailable: {}", reason);
+        LOGGER.warn("Backmod's translated mod cache is unavailable: {}", reason);
         return new TranslatedModCache(layout, null, State.UNAVAILABLE, reason, null, false);
     }
 
@@ -633,7 +633,7 @@ public final class TranslatedModCache implements AutoCloseable {
             LOGGER.warn("Could not list {} for cleanup: {}", jarsDir, e.getMessage());
         }
         if (!failed.isEmpty()) {
-            LOGGER.info("Retromod could not remove {} old cache file(s); it will try again on "
+            LOGGER.info("Backmod could not remove {} old cache file(s); it will try again on "
                     + "the next launch", failed.size());
         }
         return new PruneReport(removed, deleted, List.copyOf(failed));
@@ -927,7 +927,7 @@ public final class TranslatedModCache implements AutoCloseable {
         for (Path component : absoluteRoot.relativize(absolute)) {
             current = current.resolve(component);
             if (Files.isSymbolicLink(current)) {
-                throw new IOException(current + " is a link. Retromod only uses real folders "
+                throw new IOException(current + " is a link. Backmod only uses real folders "
                         + "inside the game directory");
             }
             if (!Files.exists(current, LinkOption.NOFOLLOW_LINKS)) return;

@@ -23,7 +23,7 @@ import java.util.TreeMap;
 /** Keeps each old item model's textures in one atlas on 1.21.11 and newer, which stitch block and item textures apart. */
 public final class ItemModelAtlasAliases implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     // From 1.21.11 an item model fails to bake when its quads use both the blocks and the items atlas.
     // Minecraft looks a texture up in the items atlas first, then in the blocks atlas.
     static final String FIRST_SPLIT_HOST = ModTextureAtlasSources.FIRST_ITEMS_ATLAS_HOST;

@@ -22,7 +22,7 @@ public final class LegacyTierTags {
             return Class.forName("net.minecraft.tags.BlockTags", true, LegacyTierTags.class.getClassLoader())
                     .getField(field).get(null);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read BlockTags." + field, e);
+            throw new IllegalStateException("Backmod could not read BlockTags." + field, e);
         }
     }
 }

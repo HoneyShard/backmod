@@ -275,7 +275,7 @@ public final class LegacyItemConstructorBridge {
         warn.visitInsn(ICONST_1);
         warn.visitFieldInsn(PUTFIELD, BOAT_TYPE, "warned", "Z");
         GeneratedLog.pushLogger(warn);
-        warn.visitLdcInsn("[Retromod] Boat type ");
+        warn.visitLdcInsn("[Backmod] Boat type ");
         warn.visitVarInsn(ALOAD, 0);
         warn.visitFieldInsn(GETFIELD, BOAT_TYPE, "name", "Ljava/lang/String;");
         warn.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "concat",

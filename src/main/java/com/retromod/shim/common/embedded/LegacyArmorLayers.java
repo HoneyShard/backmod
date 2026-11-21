@@ -29,7 +29,7 @@ public final class LegacyArmorLayers {
             }
             throw new NoSuchMethodException("HumanoidArmorLayer(parent, models, equipment)");
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build an old armor layer", e);
+            throw new IllegalStateException("Backmod could not build an old armor layer", e);
         }
     }
 

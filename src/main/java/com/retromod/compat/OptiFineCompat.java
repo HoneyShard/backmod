@@ -24,7 +24,7 @@ import java.util.zip.ZipEntry;
  */
 public final class OptiFineCompat {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-OptiFine");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-OptiFine");
     private static final long MAX_METADATA_SIZE = 2L * 1024 * 1024;
     
     private static boolean optiFineDetected = false;
@@ -106,7 +106,7 @@ public final class OptiFineCompat {
         optiFineDetected = true;
         optiFineVersion = getOptiFineVersion(jarPath);
         
-        LOGGER.warn("OptiFine {} was detected. Retromod cannot reliably translate its renderer changes.",
+        LOGGER.warn("OptiFine {} was detected. Backmod cannot reliably translate its renderer changes.",
             optiFineVersion);
         LOGGER.warn("It may fail on a newer Minecraft version or conflict with another rendering mod.");
         LOGGER.warn("Compatibility notes: https://bownlux.github.io/Retromod/incompatible-mods/");
@@ -129,9 +129,9 @@ public final class OptiFineCompat {
             } catch (Exception ignored) {}
 
             String message = """
-                Retromod found OptiFine.
+                Backmod found OptiFine.
 
-                OptiFine replaces parts of Minecraft's renderer, so Retromod cannot
+                OptiFine replaces parts of Minecraft's renderer, so Backmod cannot
                 translate it reliably. Continuing may lead to missing features,
                 rendering problems, or a crash.
                 """;

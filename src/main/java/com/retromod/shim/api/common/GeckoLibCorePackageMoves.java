@@ -33,7 +33,7 @@ import java.util.function.Predicate;
  */
 public final class GeckoLibCorePackageMoves {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Shim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Shim");
     private static final String RESOURCE = "/retromod/geckolib-core-to-4.5-classes.tsv";
     static final String MERGED_CONTROLLER = "software/bernie/geckolib/animation/AnimationController";
     static final String CORE_CONTROLLER = "software/bernie/geckolib/core/animation/AnimationController";

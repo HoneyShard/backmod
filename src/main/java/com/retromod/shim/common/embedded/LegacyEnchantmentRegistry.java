@@ -146,7 +146,7 @@ public final class LegacyEnchantmentRegistry {
             if (e.getCause() instanceof RuntimeException runtime) throw runtime;
             throw new IllegalStateException(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not enchant an item for an old mod", e);
+            throw new IllegalStateException("Backmod could not enchant an item for an old mod", e);
         }
     }
 
@@ -277,7 +277,7 @@ public final class LegacyEnchantmentRegistry {
             // Frozen, so it never takes an entry and answers lookups the way a loaded registry does.
             built = LegacyPublicMethods.method(registry.getClass(), member("Registry.freeze")).invoke(registry);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build an empty enchantment registry", e);
+            throw new IllegalStateException("Backmod could not build an empty enchantment registry", e);
         }
         empty = built;
         return built;
@@ -321,7 +321,7 @@ public final class LegacyEnchantmentRegistry {
             try {
                 return LegacyPublicMethods.method(decoded.getClass(), "mapFirst", Function.class).invoke(decoded, value);
             } catch (ReflectiveOperationException e) {
-                throw new IllegalStateException("Retromod could not read a decoded enchantment", e);
+                throw new IllegalStateException("Backmod could not read a decoded enchantment", e);
             }
         };
         return LegacyPublicMethods.method(result.getClass(), "map", Function.class).invoke(result, pair);
@@ -406,7 +406,7 @@ public final class LegacyEnchantmentRegistry {
             if (!(key instanceof Optional<?> optional) || optional.isEmpty()) return value;
             return own.getMethod("fromKey", hostClass(RESOURCE_KEY)).invoke(null, optional.get());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not give an old mod the enchantment " + value, e);
+            throw new IllegalStateException("Backmod could not give an old mod the enchantment " + value, e);
         }
     }
 
@@ -422,7 +422,7 @@ public final class LegacyEnchantmentRegistry {
         try {
             return hostClass("net.minecraft.core.registries.Registries").getField(member("Registries.ENCHANTMENT")).get(null);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not name the enchantment registry", e);
+            throw new IllegalStateException("Backmod could not name the enchantment registry", e);
         }
     }
 
@@ -489,7 +489,7 @@ public final class LegacyEnchantmentRegistry {
 
     private static Class<?> hostClass(String name) {
         Class<?> type = optionalHostClass(hostName(name));
-        if (type == null) throw new IllegalStateException("Retromod could not find " + name + " for an old mod's enchantments");
+        if (type == null) throw new IllegalStateException("Backmod could not find " + name + " for an old mod's enchantments");
         return type;
     }
 

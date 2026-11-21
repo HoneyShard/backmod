@@ -109,7 +109,7 @@ public final class LegacyOverlayHub {
         try {
             endpoints().putIfAbsent(ModLoadingContext.get().getContainer().getModId(), ENDPOINT);
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warnOnce("hud endpoint " + copy, "Retromod did not list the old HUD overlays of " + copy
+            LegacyLog.warnOnce("hud endpoint " + copy, "Backmod did not list the old HUD overlays of " + copy
                     + " for the HUD coordinator: " + failure);
         }
         // The first copy on a client runs the one coordinator; a dedicated server loads none of its client classes,
@@ -120,7 +120,7 @@ public final class LegacyOverlayHub {
             LegacyHudCoordinator.start();
         } catch (LinkageError failure) {
             // The mod still constructs; only the old overlays go undrawn.
-            LegacyLog.warnOnce("hud coordinator " + copy, "Retromod could not start the HUD coordinator in " + copy
+            LegacyLog.warnOnce("hud coordinator " + copy, "Backmod could not start the HUD coordinator in " + copy
                     + ", so old HUD overlays are not drawn: " + failure);
         }
     }

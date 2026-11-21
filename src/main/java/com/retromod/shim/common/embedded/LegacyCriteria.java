@@ -110,7 +110,7 @@ public final class LegacyCriteria {
             return codec.getMethod("flatXmap", Function.class, Function.class)
                     .invoke(codec.getField("PASSTHROUGH").get(null), decode, encode);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build the codec of " + trigger.getClass().getName(), e);
+            throw new IllegalStateException("Backmod could not build the codec of " + trigger.getClass().getName(), e);
         }
     }
 
@@ -245,7 +245,7 @@ public final class LegacyCriteria {
             switch (method.getName()) {
                 case "hashCode": return System.identityHashCode(self);
                 case "equals": return self == args[0];
-                case "toString": return "Retromod criterion listener cleanup";
+                case "toString": return "Backmod criterion listener cleanup";
                 default:
                     action.accept(args);
                     return null;
@@ -372,7 +372,7 @@ public final class LegacyCriteria {
             }
             throw new NoSuchMethodException("ContextAwarePredicate.create");
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build an empty entity predicate", e);
+            throw new IllegalStateException("Backmod could not build an empty entity predicate", e);
         }
     }
 
@@ -413,7 +413,7 @@ public final class LegacyCriteria {
             Object empty = builder.getMethod("item").invoke(null);
             return builder.getMethod("build").invoke(empty);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build an empty item predicate", e);
+            throw new IllegalStateException("Backmod could not build an empty item predicate", e);
         }
     }
 
@@ -439,7 +439,7 @@ public final class LegacyCriteria {
             if (value.isPresent()) return value.get();
             throw new IllegalArgumentException("Could not read " + element + ": " + dataResult.getMethod("error").invoke(result));
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the predicate " + element, e);
+            throw new IllegalStateException("Backmod could not read the predicate " + element, e);
         }
     }
 
@@ -456,7 +456,7 @@ public final class LegacyCriteria {
             if (json.isPresent()) return json.get();
             return Class.forName(GSON + "JsonNull", true, loader).getField("INSTANCE").get(null);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not write the predicate " + value, e);
+            throw new IllegalStateException("Backmod could not write the predicate " + value, e);
         }
     }
 

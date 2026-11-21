@@ -41,7 +41,7 @@ public final class LegacyRecipeInternals {
         Field field = RESULT_FIELDS.computeIfAbsent(recipe.getClass(),
                 LegacyRecipeInternals::findResultField);
         if (field == null) {
-            throw new IllegalStateException("Retromod: " + recipe.getClass().getName()
+            throw new IllegalStateException("Backmod: " + recipe.getClass().getName()
                     + " has no recipe result field on this Minecraft version");
         }
         try {
@@ -55,7 +55,7 @@ public final class LegacyRecipeInternals {
             Method create = LegacyPublicMethods.method(value.getClass(), "create");
             return create.invoke(value);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod: could not read the result of "
+            throw new IllegalStateException("Backmod: could not read the result of "
                     + recipe.getClass().getName(), e);
         }
     }
@@ -72,13 +72,13 @@ public final class LegacyRecipeInternals {
         Field field = RESULT_FIELDS.computeIfAbsent(recipe.getClass(),
                 LegacyRecipeInternals::findResultField);
         if (field == null) {
-            throw new IllegalStateException("Retromod: " + recipe.getClass().getName()
+            throw new IllegalStateException("Backmod: " + recipe.getClass().getName()
                     + " has no recipe result field on this Minecraft version");
         }
         try {
             return field.get(recipe);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod: could not read the result of "
+            throw new IllegalStateException("Backmod: could not read the result of "
                     + recipe.getClass().getName(), e);
         }
     }
@@ -113,7 +113,7 @@ public final class LegacyRecipeInternals {
                     .getConstructor(int.class, int.class, java.util.List.class, java.util.Optional.class)
                     .newInstance(width, height, slots, java.util.Optional.empty());
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod: could not build a " + width + " by " + height + " recipe pattern", e);
+            throw new IllegalStateException("Backmod: could not build a " + width + " by " + height + " recipe pattern", e);
         }
     }
 
@@ -134,7 +134,7 @@ public final class LegacyRecipeInternals {
             Object items = list.getMethod("of", Object.class, Object[].class).invoke(null, empty, stacks.toArray());
             return withItems.newInstance(null, width, height, items);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod: could not hand a crafting grid to an old recipe", e);
+            throw new IllegalStateException("Backmod: could not hand a crafting grid to an old recipe", e);
         }
     }
 

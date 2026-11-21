@@ -201,7 +201,7 @@ public final class LegacyBrewingStore {
             if (!(packType instanceof Enum<?> type) || !type.name().equals("SERVER_DATA")) return;
             int format = LegacyDataPackSource.packFormat();
             write(root.resolve("pack.mcmeta"), "{\"pack\":{\"pack_format\":" + format + ",\"min_format\":" + format
-                    + ",\"max_format\":" + format + ",\"description\":\"Retromod legacy brewing\"}}");
+                    + ",\"max_format\":" + format + ",\"description\":\"Backmod legacy brewing\"}}");
             Object source = LegacyDataPackSource.create(root.getFileName().toString(), root);
             if (source == null) return;
             for (Method method : LegacyPublicMethods.methods(event.getClass())) {

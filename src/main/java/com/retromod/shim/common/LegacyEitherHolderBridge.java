@@ -471,7 +471,7 @@ public final class LegacyEitherHolderBridge {
         m.visitLabel(missing);
         m.visitTypeInsn(NEW, "java/lang/IllegalStateException");
         m.visitInsn(DUP);
-        m.visitLdcInsn("Retromod cannot build ");
+        m.visitLdcInsn("Backmod cannot build ");
         m.visitVarInsn(ALOAD, 1);
         concat(m);
         m.visitLdcInsn(" from the registry key ");
@@ -482,7 +482,7 @@ public final class LegacyEitherHolderBridge {
                 "(Ljava/lang/Object;)Ljava/lang/String;", false);
         concat(m);
         m.visitLdcInsn(": Minecraft 26.1 removed EitherHolder and this component now needs a loaded"
-                + " registry entry. Retromod has no replacement for this call yet. Report it with the"
+                + " registry entry. Backmod has no replacement for this call yet. Report it with the"
                 + " mod and its version.");
         concat(m);
         m.visitMethodInsn(INVOKESPECIAL, "java/lang/IllegalStateException", "<init>",
@@ -529,8 +529,8 @@ public final class LegacyEitherHolderBridge {
         m.visitCode();
         m.visitTypeInsn(NEW, "java/lang/UnsupportedOperationException");
         m.visitInsn(DUP);
-        m.visitLdcInsn("Retromod cannot provide EitherHolder." + name + ", which Minecraft 26.1 removed"
-                + " with no replacement. Retromod has no replacement for this call yet. Report it with"
+        m.visitLdcInsn("Backmod cannot provide EitherHolder." + name + ", which Minecraft 26.1 removed"
+                + " with no replacement. Backmod has no replacement for this call yet. Report it with"
                 + " the mod and its version.");
         m.visitMethodInsn(INVOKESPECIAL, "java/lang/UnsupportedOperationException", "<init>",
                 "(Ljava/lang/String;)V", false);

@@ -40,7 +40,7 @@ class LegacyRecipeSerializerLogTest {
 
         assertEquals("net.minecraft.world.item.crafting.RecipeSerializer", adapted.getClass().getName(),
                 "the serializer is still registered, as a host serializer");
-        assertEquals(List.of("debug " + RetromodLog.DETAIL_NAME + " [Retromod] Registered the legacy recipe serializer"
+        assertEquals(List.of("debug " + RetromodLog.DETAIL_NAME + " [Backmod] Registered the legacy recipe serializer"
                 + " mod.JsonSerializer without codecs, since it has no codec() method"), lines(run));
     }
 
@@ -51,8 +51,8 @@ class LegacyRecipeSerializerLogTest {
 
         run.call(LegacyRecipeSerializerShim.BRIDGE, "adapt", newObject(run, "mod.BrokenSerializer"));
 
-        assertEquals(List.of("warn [Retromod] Could not read the codecs of the legacy recipe serializer mod.BrokenSerializer,"
-                + " so Retromod registered it without them (java.lang.reflect.InvocationTargetException)"), lines(run));
+        assertEquals(List.of("warn [Backmod] Could not read the codecs of the legacy recipe serializer mod.BrokenSerializer,"
+                + " so Backmod registered it without them (java.lang.reflect.InvocationTargetException)"), lines(run));
     }
 
     // ---- the game ----

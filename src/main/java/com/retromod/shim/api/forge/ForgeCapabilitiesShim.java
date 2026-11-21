@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 /** Maps Forge's capability system onto NeoForge's rewrite: LazyOptional, ICapabilityProvider, CapabilityManager, the ForgeCapabilities fields, and the item/fluid/energy handlers. */
 public class ForgeCapabilitiesShim implements MinecraftVersionedApiShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ForgeCapabilitiesShim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ForgeCapabilitiesShim");
 
     @Override
     public String getShimName() {

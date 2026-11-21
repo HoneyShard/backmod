@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 /** Records the registries of each data pack load, so old code that reads the enchantment registry while one runs finds them. */
 public final class ReloadRegistryRecorder {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     // NeoForge renamed its reload event in 1.21.4; Forge kept its name.
     private static final String[] NEOFORGE_RELOAD = {
@@ -40,7 +40,7 @@ public final class ReloadRegistryRecorder {
                 LOGGER.debug(RetromodLog.DETAIL, "No NeoForge or Forge reload event found, so data pack loads are not recorded");
             }
         } catch (ReflectiveOperationException | RuntimeException | LinkageError e) {
-            LOGGER.warn("Retromod could not listen for data pack loads, so old mods that read the enchantment "
+            LOGGER.warn("Backmod could not listen for data pack loads, so old mods that read the enchantment "
                     + "registry while one runs find it empty: {}", e.toString());
         }
     }

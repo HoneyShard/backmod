@@ -27,7 +27,7 @@ import java.util.function.Predicate;
 /** The Minecraft class and member renames a Mojang-named mod needs on one host, from {@code mojang-renames.tsv}. */
 public final class MojangRenameTable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-MojangRenames");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-MojangRenames");
     private static final String RESOURCE = "/retromod/mojang-renames.tsv";
     private static final Map<String, MojangRenameTable> CACHE = new ConcurrentHashMap<>();
     private static final MojangRenameTable EMPTY = new MojangRenameTable(List.of());
@@ -233,7 +233,7 @@ public final class MojangRenameTable {
                         parts[7].equals("*") ? null : parts[7], parts[8]));
             }
         } catch (IOException | RuntimeException e) {
-            LOGGER.warn("Could not read Retromod's Minecraft rename table: {}", e.toString());
+            LOGGER.warn("Could not read Backmod's Minecraft rename table: {}", e.toString());
             return EMPTY;
         }
         LOGGER.debug(RetromodLog.DETAIL, "Loaded {} Minecraft renames for host {}", rows.size(), host);

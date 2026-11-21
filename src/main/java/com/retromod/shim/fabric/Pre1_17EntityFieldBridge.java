@@ -30,7 +30,7 @@ import org.objectweb.asm.Opcodes;
  */
 public final class Pre1_17EntityFieldBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String ENTITY = "net/minecraft/class_1297";
 

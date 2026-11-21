@@ -124,7 +124,7 @@ public final class LegacyHudCoordinator {
             AddGuiOverlayLayersEvent.BUS.addListener(Priority.LOW, LegacyHudCoordinator::buildLayers);
             RegisterKeyMappingsEvent.BUS.addListener(Priority.LOWEST, event -> registerOverlays());
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warnOnce("hud coordinator", "Retromod could not reach Forge's HUD layer events, so old HUD overlays "
+            LegacyLog.warnOnce("hud coordinator", "Backmod could not reach Forge's HUD layer events, so old HUD overlays "
                     + "are not drawn: " + failure);
         }
     }
@@ -153,7 +153,7 @@ public final class LegacyHudCoordinator {
             root.add(host(POST_SLEEP), own("legacy/top"), LegacyHudCoordinator::endFrame);
             plan();
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warnOnce("hud build", "Retromod could not place the old HUD overlays among Forge's HUD layers, so "
+            LegacyLog.warnOnce("hud build", "Backmod could not place the old HUD overlays among Forge's HUD layers, so "
                     + "they are not drawn: " + failure);
         }
     }
@@ -165,7 +165,7 @@ public final class LegacyHudCoordinator {
         ForgeLayeredDraw holder = root.getChild(stack);
         ForgeLayer original = holder == null ? null : holder.getLayer(host(path));
         if (original == null) {
-            LegacyLog.warnOnce("hud layer " + path, "Retromod found no HUD layer minecraft:" + path
+            LegacyLog.warnOnce("hud layer " + path, "Backmod found no HUD layer minecraft:" + path
                     + ", so the old overlay events around it are not posted.");
             return;
         }
@@ -181,7 +181,7 @@ public final class LegacyHudCoordinator {
         try {
             register();
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warnOnce("hud register", "Retromod could not post the old RegisterGuiOverlaysEvent, so old HUD "
+            LegacyLog.warnOnce("hud register", "Backmod could not post the old RegisterGuiOverlaysEvent, so old HUD "
                     + "overlays are not drawn: " + failure);
         }
     }
@@ -201,12 +201,12 @@ public final class LegacyHudCoordinator {
                 endpoint.apply(new Object[]{"register", container.getModBusGroup(), container.getNamespace()});
             } catch (RuntimeException | LinkageError failure) {
                 LegacyLog.warn("The RegisterGuiOverlaysEvent listener of " + container.getModId() + " threw: " + failure
-                        + ". Retromod kept the overlays it registered before that and went on with the other mods.");
+                        + ". Backmod kept the overlays it registered before that and went on with the other mods.");
             }
         });
         copies = List.copyOf(found);
         if (built == null) {
-            LegacyLog.warnOnce("hud unbuilt", "Retromod found no Forge HUD layers to draw the old HUD overlays into.");
+            LegacyLog.warnOnce("hud unbuilt", "Backmod found no Forge HUD layers to draw the old HUD overlays into.");
         } else {
             noteReplacedWrappers(built);
         }
@@ -223,7 +223,7 @@ public final class LegacyHudCoordinator {
                 ForgeLayeredDraw holder = root.getChild(host(LegacyOverlayHub.HOST_STACKS.get(path)));
                 if (holder != null && holder.getLayer(host(path)) == station.wrappers[i]) continue;
                 LegacyLog.debug("Another mod replaced the HUD layer minecraft:" + path + " or put it behind a condition after "
-                        + "Retromod wrapped it, so the old overlay events for it run with the next layer when it does not draw.");
+                        + "Backmod wrapped it, so the old overlay events for it run with the next layer when it does not draw.");
             }
         }
     }
@@ -401,11 +401,11 @@ public final class LegacyHudCoordinator {
             } catch (LinkageError missing) {
                 // Every frame would fail the same way.
                 BROKEN.add(id);
-                LegacyLog.warn("Retromod stopped drawing the HUD overlay " + id + " of " + entry[LegacyOverlayHub.OWNER]
+                LegacyLog.warn("Backmod stopped drawing the HUD overlay " + id + " of " + entry[LegacyOverlayHub.OWNER]
                         + ", which uses " + missing + ". The rest of the HUD keeps drawing. Report this line with the mod and its version.");
             } catch (RuntimeException failure) {
                 LegacyLog.warnOnce("hud overlay " + id, "The HUD overlay " + id + " threw while drawing: " + failure
-                        + ". Retromod went on with the rest of the HUD.");
+                        + ". Backmod went on with the rest of the HUD.");
             }
         }
         post("post", id, graphics);
@@ -426,7 +426,7 @@ public final class LegacyHudCoordinator {
             } catch (RuntimeException | LinkageError failure) {
                 // A listener that throws neither cancels nor uncancels, and the HUD goes on.
                 LegacyLog.warnOnce("hud listener " + copy.modId() + " " + name, "A " + eventName(name) + " listener of "
-                        + copy.modId() + " threw: " + failure + ". Retromod treated that post as not cancelled and went on "
+                        + copy.modId() + " threw: " + failure + ". Backmod treated that post as not cancelled and went on "
                         + "drawing the HUD. Report this line with the mod and its version.");
             }
         }
@@ -456,7 +456,7 @@ public final class LegacyHudCoordinator {
             try {
                 if (Boolean.TRUE.equals(copy.endpoint().apply(new Object[]{"listens"}))) found.add(copy);
             } catch (RuntimeException | LinkageError failure) {
-                LegacyLog.warnOnce("hud listens " + copy.modId(), "Retromod could not ask " + copy.modId()
+                LegacyLog.warnOnce("hud listens " + copy.modId(), "Backmod could not ask " + copy.modId()
                         + " for its HUD listeners, so they are not called: " + failure);
             }
         }
@@ -467,7 +467,7 @@ public final class LegacyHudCoordinator {
     private static void notePartialCancel(Station station, List<Identifier> shown) {
         String key = station.layers + " " + station.cancelled;
         if (!NOTED.add(key)) return;
-        LegacyLog.debug("Retromod still drew the HUD layers " + String.join(", ", station.layers) + " although a mod cancelled "
+        LegacyLog.debug("Backmod still drew the HUD layers " + String.join(", ", station.layers) + " although a mod cancelled "
                 + station.cancelled + ", because Forge draws " + shown + " in them together.");
     }
 

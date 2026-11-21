@@ -77,7 +77,7 @@ public final class LegacyEnchantmentSupport {
             }
             throw new NoSuchMethodException("ResourceKey.create");
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not name the enchantment " + id, e);
+            throw new IllegalStateException("Backmod could not name the enchantment " + id, e);
         }
     }
 
@@ -88,7 +88,7 @@ public final class LegacyEnchantmentSupport {
             try {
                 return legacyClass.getConstructor(String.class).newInstance(key);
             } catch (ReflectiveOperationException e) {
-                throw new IllegalStateException("Retromod could not stand in for the enchantment " + key, e);
+                throw new IllegalStateException("Backmod could not stand in for the enchantment " + key, e);
             }
         });
     }
@@ -131,7 +131,7 @@ public final class LegacyEnchantmentSupport {
             InvocationHandler handler = (proxy, method, args) -> answer(entry, enchantment, proxy, method, args);
             return Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[] {type}, handler);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not register an old enchantment through Architectury", e);
+            throw new IllegalStateException("Backmod could not register an old enchantment through Architectury", e);
         }
     }
 
@@ -164,7 +164,7 @@ public final class LegacyEnchantmentSupport {
             if (e.getCause() instanceof RuntimeException runtime) throw runtime;
             throw new IllegalStateException(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not call Architectury's DeferredRegister.register", e);
+            throw new IllegalStateException("Backmod could not call Architectury's DeferredRegister.register", e);
         }
     }
 
@@ -196,7 +196,7 @@ public final class LegacyEnchantmentSupport {
                 return proxy == args[0];
             }
             case "toString" -> {
-                return "RegistrySupplier[" + publicCall(entry, "getId") + " (Retromod legacy enchantment)]";
+                return "RegistrySupplier[" + publicCall(entry, "getId") + " (Backmod legacy enchantment)]";
             }
             default -> {
                 // Default methods such as ifPresent and toOptional build on the answers above.
@@ -370,7 +370,7 @@ public final class LegacyEnchantmentSupport {
         }
         if (enchantments.isEmpty()) return 0;
         write(root.resolve("pack.mcmeta"), "{\"pack\":{\"pack_format\":" + packFormat + ",\"min_format\":"
-                + packFormat + ",\"max_format\":" + packFormat + ",\"description\":\"Retromod legacy enchantments\"}}");
+                + packFormat + ",\"max_format\":" + packFormat + ",\"description\":\"Backmod legacy enchantments\"}}");
         Map<String, List<Object>> tags = new LinkedHashMap<>();
         int written = 0;
         for (Map.Entry<String, Object> entry : enchantments.entrySet()) {
@@ -667,7 +667,7 @@ public final class LegacyEnchantmentSupport {
     }
 
     private static void log(String message) {
-        System.out.println("[Retromod] Legacy enchantments: " + message);
+        System.out.println("[Backmod] Legacy enchantments: " + message);
     }
 
     /** Clears recorded state. Tests only. */

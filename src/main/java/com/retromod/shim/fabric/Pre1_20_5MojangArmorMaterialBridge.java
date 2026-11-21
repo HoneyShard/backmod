@@ -47,7 +47,7 @@ import java.util.Map;
  */
 public final class Pre1_20_5MojangArmorMaterialBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String ARMOR_MATERIAL = "net/minecraft/world/item/ArmorMaterial";
     static final String ARMOR_MATERIALS = "net/minecraft/world/item/ArmorMaterials";

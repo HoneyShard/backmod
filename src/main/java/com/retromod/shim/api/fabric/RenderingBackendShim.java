@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RenderingBackendShim implements MinecraftVersionedApiShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-RenderBackend");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-RenderBackend");
 
     @Override
     public String getShimName() {

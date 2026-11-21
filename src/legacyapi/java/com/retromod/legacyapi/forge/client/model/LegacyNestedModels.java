@@ -114,7 +114,7 @@ final class LegacyNestedModels {
     }
 
     private static void note(Identifier id, String why) {
-        LegacyLog.warnOnce("legacy nested model " + id, "An old model names the model " + id + ", which Retromod could not"
+        LegacyLog.warnOnce("legacy nested model " + id, "An old model names the model " + id + ", which Backmod could not"
                 + " read (" + why + "), so the missing model stands in for it.");
     }
 

@@ -98,7 +98,7 @@ public record EventHolderSpec(String name, List<EventField> fields) {
         mv.visitInsn(Opcodes.SWAP);
         mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/Throwable", "toString",
                 "()Ljava/lang/String;", false);
-        mv.visitLdcInsn("[Retromod] Could not connect " + name.substring(name.lastIndexOf('/') + 1)
+        mv.visitLdcInsn("[Backmod] Could not connect " + name.substring(name.lastIndexOf('/') + 1)
                 + "." + field.field() + " to " + field.hostOwner() + "." + field.hostField()
                 + "; mods using this event will not receive it: ");
         mv.visitInsn(Opcodes.SWAP);

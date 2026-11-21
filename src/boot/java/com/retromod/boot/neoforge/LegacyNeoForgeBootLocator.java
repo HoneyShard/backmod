@@ -65,13 +65,13 @@ public final class LegacyNeoForgeBootLocator implements IModLocator {
             Object runtimeLocator = LoaderHooks.buildFolderLocator(LoaderHooks.NEOFORGE_SPI,
                     prepared.get().runtimeDirectory(), "retromod runtime");
             List<?> located = ((IModLocator) runtimeLocator).scanMods();
-            log.info("Loading Retromod " + prepared.get().source().version() + " from "
+            log.info("Loading Backmod " + prepared.get().source().version() + " from "
                     + BootCore.displayPath(gameDir, prepared.get().runtimeJar()));
             return located;
         } catch (Throwable failure) {
             // A bootstrap failure must never stop the loader. The game starts without Retromod.
-            log.error("Retromod could not start: " + LoaderHooks.unwrap(failure)
-                    + ". Retromod is inactive for this launch. Please report this with "
+            log.error("Backmod could not start: " + LoaderHooks.unwrap(failure)
+                    + ". Backmod is inactive for this launch. Please report this with "
                     + "logs/latest.log." + System.lineSeparator() + LoaderHooks.describe(failure));
             return List.of();
         }

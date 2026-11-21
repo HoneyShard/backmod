@@ -39,7 +39,7 @@ public final class LegacyParticleSupport {
         Object deserializer = deserializerOf(type);
         if (deserializer == null) {
             throw new IllegalStateException("Particle type " + type + " has no pre-1.20.5 "
-                    + "deserializer, so Retromod cannot read it from the network");
+                    + "deserializer, so Backmod cannot read it from the network");
         }
         return invoke(deserializer, FROM_NETWORK, type, buf);
     }
@@ -56,7 +56,7 @@ public final class LegacyParticleSupport {
         if (isParticleOptions(type)) {
             return type;
         }
-        throw new IllegalArgumentException("Retromod cannot parse old command-style options for "
+        throw new IllegalArgumentException("Backmod cannot parse old command-style options for "
                 + "particle type " + type + ". Only simple particles and particles from "
                 + "pre-1.20.5 mods support this format.");
     }

@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ForgeCorePolyfill implements PolyfillProvider {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final String MINECRAFT_FORGE = "net/minecraftforge/common/MinecraftForge";
 
     @Override

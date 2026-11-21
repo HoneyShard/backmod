@@ -35,7 +35,7 @@ import java.util.stream.Stream;
  */
 final class GeckoLib3Coexistence {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ForgeTransform");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ForgeTransform");
 
     static final String DEMO_PACKAGE = "software/bernie/example/";
     static final String RELOCATED_DEMO_PACKAGE = "software/bernie/geckolib3/example/";

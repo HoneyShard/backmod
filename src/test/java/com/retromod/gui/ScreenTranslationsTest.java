@@ -26,12 +26,12 @@ class ScreenTranslationsTest {
     // The en_us text each translation was last checked against. When the English changes, every
     // other lang file needs that key updated or deleted, so Minecraft falls back to English.
     private static final Map<String, String> CHECKED_ENGLISH = Map.ofEntries(
-            entry("retromod.main.title", "Retromod"),
+            entry("retromod.main.title", "Backmod"),
             entry("retromod.main.subtitle", "Choose old mod jars to update for this Minecraft version"),
             entry("retromod.main.add_mods", "Choose Mods…"),
             entry("retromod.main.open_folder", "Open retromod-input/"),
             entry("retromod.main.inplace_status", "%s from cache, %s after restart, %s failed"),
-            entry("retromod.settings.title", "Retromod Settings"),
+            entry("retromod.settings.title", "Backmod Settings"),
             entry("retromod.settings.done", "Done"),
             entry("retromod.settings.on", "§aOn"),
             entry("retromod.settings.off", "§cOff"),
@@ -42,7 +42,7 @@ class ScreenTranslationsTest {
             entry("retromod.settings.write_translated_jars", "Write translated jars to mods/"),
             entry("retromod.settings.status.verified", "§aVerified build§r"),
             entry("retromod.settings.status.modified", "§eModified / unofficial build§r"),
-            entry("retromod.settings.status.impostor", "§cNot Retromod (manifest mismatch)§r"),
+            entry("retromod.settings.status.impostor", "§cNot Backmod (manifest mismatch)§r"),
             entry("retromod.settings.status.unknown", "§7Authenticity unknown§r"),
             entry("retromod.restart.converted", "Mods converted for this Minecraft version: %s\n"
                     + "Restart Minecraft to load the converted mods.\n\n"
@@ -95,7 +95,7 @@ class ScreenTranslationsTest {
     void everyKeyTheScreensShowIsChecked() throws Exception {
         // A new row, or a later use of an unused key, must not reach players unchecked.
         for (String key : LangKeysTest.keysTheGuiRequests()) {
-            assertTrue(CHECKED_ENGLISH.containsKey(key), key + " is shown by Retromod's screens but "
+            assertTrue(CHECKED_ENGLISH.containsKey(key), key + " is shown by Backmod's screens but "
                     + "has no checked English. Check its translations, then add it to CHECKED_ENGLISH.");
         }
     }

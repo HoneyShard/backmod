@@ -38,7 +38,7 @@ import java.util.function.Predicate;
  */
 public final class DirectionPropertyLookup {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DirectionProperty");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DirectionProperty");
 
     private static final String ENUM_PROPERTY =
             "net.minecraft.world.level.block.state.properties.EnumProperty";

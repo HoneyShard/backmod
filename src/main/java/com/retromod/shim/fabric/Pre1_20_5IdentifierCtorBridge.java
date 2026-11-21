@@ -28,7 +28,7 @@ import org.objectweb.asm.tree.ClassNode;
  */
 public final class Pre1_20_5IdentifierCtorBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String IDENTIFIER = "net/minecraft/class_2960";
     private static final String L_IDENTIFIER = "L" + IDENTIFIER + ";";
@@ -98,7 +98,7 @@ public final class Pre1_20_5IdentifierCtorBridge {
             int required = Opcodes.ACC_STATIC | Opcodes.ACC_PUBLIC;
             if ((m.access & required) != required || !m.desc.equals(descriptor)) continue;
             if (match != null) {
-                LOGGER.warn("Found two possible Identifier factories, {} and {}. Retromod will "
+                LOGGER.warn("Found two possible Identifier factories, {} and {}. Backmod will "
                                 + "leave this constructor unchanged because it cannot choose safely.",
                         match, m.name);
                 return null;

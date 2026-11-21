@@ -49,7 +49,7 @@ Follow the transform all the way to the affected feature. A clean CLI run does n
 5. **Run it in game.** Deploy and launch:
    - Copy mod to `retromod-input/` in game directory
    - Launch with the target MC version + loader
-   - Check `logs/latest.log` for Retromod transform messages
+   - Check `logs/latest.log` for Backmod transform messages
    - Check if the mod appears in the mod list
    - Wait past mod initialization and confirm no new crash report was created
    - Exercise the feature involved in the original report
@@ -82,7 +82,7 @@ Follow the transform all the way to the affected feature. A clean CLI run does n
 ```
 .minecraft/
 ├── mods/
-│   ├── retromod-1.0.0-rc.1+26.1.jar    (Retromod itself)
+│   ├── retromod-1.0.0-rc.1+26.1.jar    (Backmod itself)
 │   ├── retromod-input/                      (Drop old mods here)
 │   │   ├── old-mod-1.20.jar
 │   │   └── processed/                       (Originals moved here after transform)
@@ -92,7 +92,7 @@ Follow the transform all the way to the affected feature. A clean CLI run does n
 │   ├── fabric-loader-0.18.4-26.1-pre-2/
 │   └── neoforge-26.1.0.0-alpha.6+snapshot-2/
 ├── logs/
-│   └── latest.log                           (Check for [Retromod] messages)
+│   └── latest.log                           (Check for [Backmod] messages)
 └── config/
     └── retromod/
         ├── config.json

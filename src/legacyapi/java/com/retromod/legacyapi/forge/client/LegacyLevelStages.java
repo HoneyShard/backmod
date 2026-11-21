@@ -59,7 +59,7 @@ public final class LegacyLevelStages {
             // The pass and the event name client classes, so a dedicated server never reaches them.
             LegacyLevelStagePass.attach();
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not set up the old RenderLevelStageEvent of "
+            LegacyLog.warn("Backmod did not set up the old RenderLevelStageEvent of "
                     + LegacyClientRenderBootstrap.namespaces() + ": " + failure);
         }
     }

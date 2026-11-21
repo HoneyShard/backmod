@@ -44,7 +44,7 @@ public final class LegacyCauldronInteractions {
             return dispatcher(Class.forName(DISPATCHER, true, loader), interaction,
                     Class.forName(ITEM, false, loader), legacy);
         } catch (ReflectiveOperationException | RuntimeException | LinkageError e) {
-            throw new IllegalStateException("Retromod could not build the interactions of an old cauldron block", e);
+            throw new IllegalStateException("Backmod could not build the interactions of an old cauldron block", e);
         }
     }
 
@@ -81,7 +81,7 @@ public final class LegacyCauldronInteractions {
             }
             return (Map<?, ?>) LegacyPublicMethods.method(table.getClass(), "map").invoke(table);
         } catch (ReflectiveOperationException | RuntimeException | LinkageError e) {
-            throw new IllegalStateException("Retromod could not find the vanilla cauldron table " + name, e);
+            throw new IllegalStateException("Backmod could not find the vanilla cauldron table " + name, e);
         }
     }
 

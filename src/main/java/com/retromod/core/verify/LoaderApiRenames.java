@@ -42,7 +42,7 @@ import java.util.Set;
  */
 public final class LoaderApiRenames {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApiRenames");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApiRenames");
 
     private static final String RESOURCE_PATH = "/retromod/loader-api-renames.json";
 

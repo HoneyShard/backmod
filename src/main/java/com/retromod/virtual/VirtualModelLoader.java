@@ -18,20 +18,20 @@ public class VirtualModelLoader {
     public static void setCustomModelResourceLocation(Object item, int metadata, 
             Object resourceLocation) {
         CUSTOM_MODELS.add(new ModelRegistration(item, metadata, resourceLocation));
-        System.out.println("Retromod: Custom model registration queued - modern MC uses automatic model loading");
+        System.out.println("Backmod: Custom model registration queued - modern MC uses automatic model loading");
     }
     
     public static void setCustomMeshDefinition(Object item, Object meshDefinition) {
         MESH_DEFINITIONS.add(meshDefinition);
-        System.out.println("Retromod: Custom mesh definition queued");
+        System.out.println("Backmod: Custom mesh definition queued");
     }
     
     public static void registerItemVariants(Object item, Object... variants) {
-        System.out.println("Retromod: Item variant registration - handled by model JSON");
+        System.out.println("Backmod: Item variant registration - handled by model JSON");
     }
     
     public static void setBucketModelDefinition(Object item) {
-        System.out.println("Retromod: Bucket model - handled by modern fluid rendering");
+        System.out.println("Backmod: Bucket model - handled by modern fluid rendering");
     }
     
     public static List<ModelRegistration> getCustomModels() {

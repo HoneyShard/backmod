@@ -3,12 +3,12 @@
   "id": "retromod",
   "version": "${project.version}",
   "name": "Backmod",
-  "description": "Helps older Minecraft mods run on newer versions by updating their bytecode, mixins, and loader metadata.",
+  "description": "Backports Fabric mods built for Minecraft 26.2 so they load on 26.1.2, by rewriting their bytecode, mixins, and loader metadata. Fork of Retromod.",
   "authors": ["Bownlux"],
   "contact": {
-    "homepage": "https://modrinth.com/mod/retromod",
-    "sources": "https://github.com/Bownlux/Retromod",
-    "issues": "https://github.com/Bownlux/Retromod/issues"
+    "homepage": "https://github.com/HoneyShard/backmod",
+    "sources": "https://github.com/HoneyShard/backmod",
+    "issues": "https://github.com/HoneyShard/backmod/issues"
   },
   "license": "MIT",
   "icon": "assets/retromod/icon.png",
@@ -30,8 +30,8 @@
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.discord": "https://github.com/Bownlux/Retromod",
-        "modmenu.issues": "https://github.com/Bownlux/Retromod/issues"
+        "modmenu.discord": "https://github.com/HoneyShard/backmod",
+        "modmenu.issues": "https://github.com/HoneyShard/backmod/issues"
       }
     }
   }

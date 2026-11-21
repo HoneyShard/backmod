@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /** Loading polyfills writes one INFO summary, once per JVM, and lists each provider only as detail. */
 class PolyfillRegistryLoggingTest {
 
-    private static final String INFO_LINE = " INFO Retromod-Polyfills - ";
+    private static final String INFO_LINE = " INFO Backmod-Polyfills - ";
     private static final String SUMMARY = INFO_LINE + "Loaded ";
 
     @AfterEach

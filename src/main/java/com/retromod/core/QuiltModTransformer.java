@@ -24,7 +24,7 @@ import java.util.jar.*;
  */
 public class QuiltModTransformer {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Quilt");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Quilt");
     private static final int MAX_ENTRY_COUNT = 100_000;
     
     private final String targetMcVersion;

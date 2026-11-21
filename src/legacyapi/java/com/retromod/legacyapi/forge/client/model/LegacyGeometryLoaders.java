@@ -37,7 +37,7 @@ public final class LegacyGeometryLoaders {
             // The listeners name client classes, so a dedicated server never reaches them.
             LegacyGeometryHooks.attach();
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not set up the old geometry loaders of " + LegacyClientRenderBootstrap.namespaces()
+            LegacyLog.warn("Backmod did not set up the old geometry loaders of " + LegacyClientRenderBootstrap.namespaces()
                     + ": " + failure);
         }
     }
@@ -46,7 +46,7 @@ public final class LegacyGeometryLoaders {
     public static void register(ModelEvent.RegisterGeometryLoaders event, String name, LegacyGeometryLoader<?> loader) {
         String namespace = namespaceFor(WALKER.getCallerClass());
         if (namespace == null) {
-            LegacyLog.warnOnce("legacy geometry loader " + name, "Retromod could not tell which mod registered the geometry"
+            LegacyLog.warnOnce("legacy geometry loader " + name, "Backmod could not tell which mod registered the geometry"
                     + " loader " + name + ", so models that name it draw the missing model.");
             return;
         }

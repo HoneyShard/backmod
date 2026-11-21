@@ -311,7 +311,7 @@ public final class LegacyModelDataCalls {
     private static void fail(BlockStateModel model, Throwable failure, boolean placed) {
         if (placed) BROKEN.add(model);
         LegacyLog.warnOnce("legacy model data " + model.getClass().getName(), "The old model " + model.getClass().getName()
-                + " threw while Minecraft drew it, so Retromod draws nothing in its place: " + failure);
+                + " threw while Minecraft drew it, so Backmod draws nothing in its place: " + failure);
     }
 
     // Each lookup is typed to take the model and up to five arguments as Objects, so one call shape serves every member.
@@ -357,7 +357,7 @@ public final class LegacyModelDataCalls {
             } catch (NoSuchMethodException absent) {
                 return Optional.empty();
             } catch (ReflectiveOperationException | RuntimeException | LinkageError closed) {
-                LegacyLog.warnOnce("legacy model data member " + model.getName(), "Retromod could not call the model data members of "
+                LegacyLog.warnOnce("legacy model data member " + model.getName(), "Backmod could not call the model data members of "
                         + model.getName() + ", so it answers them as NeoForge 1.21.1 did by default: " + closed);
                 return Optional.empty();
             }

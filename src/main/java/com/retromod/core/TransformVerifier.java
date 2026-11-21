@@ -29,7 +29,7 @@ import java.util.jar.*;
  */
 public final class TransformVerifier {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     /** Prefixes that are always on the classpath and should not be flagged. */
     private static final String[] SAFE_PREFIXES = {
@@ -782,7 +782,7 @@ public final class TransformVerifier {
             Path reportFile = reportDir.resolve(safeName + ".txt");
 
             StringBuilder sb = new StringBuilder();
-            sb.append("Retromod transform check\n\n");
+            sb.append("Backmod transform check\n\n");
             sb.append("Mod:     ").append(result.modName()).append('\n');
             sb.append("Target:  MC ").append(result.targetVersion()).append('\n');
             sb.append("Time:    ").append(

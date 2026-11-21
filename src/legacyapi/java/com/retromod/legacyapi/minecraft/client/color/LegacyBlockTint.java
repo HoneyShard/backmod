@@ -53,7 +53,7 @@ public final class LegacyBlockTint implements BlockTintSource {
         } catch (RuntimeException | LinkageError failure) {
             // Old handlers now run while the game draws, and one can reach a vanilla API a later Minecraft removed.
             LegacyLog.warnOnce("block color " + handler.getClass().getName(), "The old block color handler "
-                    + handler.getClass().getName() + " threw " + failure + ", so Retromod draws its tint untinted");
+                    + handler.getClass().getName() + " threw " + failure + ", so Backmod draws its tint untinted");
             return -1;
         }
     }

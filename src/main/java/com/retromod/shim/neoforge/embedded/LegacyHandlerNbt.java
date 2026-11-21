@@ -80,7 +80,7 @@ public final class LegacyHandlerNbt {
             return Class.forName("net.minecraft.nbt.IntTag", true, loader()).getMethod("valueOf", int.class)
                     .invoke(null, (int) call(storage, "getEnergyStored"));
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not save an old energy storage", failure);
+            throw new IllegalStateException("Backmod could not save an old energy storage", failure);
         }
     }
 
@@ -99,7 +99,7 @@ public final class LegacyHandlerNbt {
             call(compound, "putInt", "energy", energy.get());
             load(storage, provider, compound);
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not load an old energy storage", failure);
+            throw new IllegalStateException("Backmod could not load an old energy storage", failure);
         }
     }
 
@@ -116,7 +116,7 @@ public final class LegacyHandlerNbt {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not save an old handler", failure);
+            throw new IllegalStateException("Backmod could not save an old handler", failure);
         }
     }
 
@@ -132,7 +132,7 @@ public final class LegacyHandlerNbt {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not load an old handler", failure);
+            throw new IllegalStateException("Backmod could not load an old handler", failure);
         }
     }
 

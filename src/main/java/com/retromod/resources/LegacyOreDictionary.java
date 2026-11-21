@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 /** Looks up what replaced a Forge 1.12 ore dictionary name: an item tag, or a vanilla item. */
 final class LegacyOreDictionary {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     // 1.13 replaced the ore dictionary with tags, and the loaders later moved their shared tags from
     // forge: to c:, renaming some paths (forge:string is c:strings). So the table keeps one answer per
     // family, and every tag or item in it is one the loaders or vanilla ship themselves.

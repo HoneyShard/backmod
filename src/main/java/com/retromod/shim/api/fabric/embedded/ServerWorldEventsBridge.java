@@ -26,7 +26,7 @@ public final class ServerWorldEventsBridge {
 
     private ServerWorldEventsBridge() {}
 
-    private static final String TAG = "[Retromod] ServerWorldEventsBridge: ";
+    private static final String TAG = "[Backmod] ServerWorldEventsBridge: ";
 
     private static final String SERVER_LEVEL_EVENTS = "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents";
     private static final String EVENT_FACTORY       = "net.fabricmc.fabric.api.event.EventFactory";

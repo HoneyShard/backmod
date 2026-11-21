@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
  */
 public final class FontBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-FontBridge");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-FontBridge");
 
     // MC handles resolved via reflection (MC isn't on the compile classpath). DCL with
     // volatile: text rendering runs on the render thread after mod init.

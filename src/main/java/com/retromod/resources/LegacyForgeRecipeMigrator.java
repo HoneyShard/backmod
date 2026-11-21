@@ -25,7 +25,7 @@ import java.util.Set;
 /** Translates the Forge 1.12 recipe features no later loader reads, in a 1.12 mod's copied recipes. */
 final class LegacyForgeRecipeMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataLayout");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataLayout");
 
     /** The first host without the ore dictionary, the ore recipe types and recipe constants. */
     static final String FIRST_TAG_HOST = "1.13";

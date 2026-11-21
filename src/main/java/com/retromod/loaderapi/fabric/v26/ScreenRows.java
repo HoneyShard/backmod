@@ -18,7 +18,7 @@ import java.util.List;
 /** Registers batch S1: old HUD callbacks, screen render events, item tooltips and the 1.21.4 to 1.21.8 HUD and debug APIs. */
 public final class ScreenRows {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
     private static final String API = "net/fabricmc/fabric/api/";
     private static final String SCREEN = "com/retromod/loaderapi/fabric/v26/screen/";
     private static final String SHARED = SCREEN + "shared/";
@@ -105,7 +105,7 @@ public final class ScreenRows {
         // The layer type is Minecraft's, so its spec stands back if the Minecraft side redirects it.
         for (BoundaryTypeSpec spec : SHARED_TYPES) {
             if (!spec.register(registration)) {
-                LOGGER.debug("{} stays with Retromod's Minecraft side, which redirects it", spec.oldName());
+                LOGGER.debug("{} stays with Backmod's Minecraft side, which redirects it", spec.oldName());
             }
         }
         for (HostSamSpec spec : HOST_TYPES) spec.register(registration);

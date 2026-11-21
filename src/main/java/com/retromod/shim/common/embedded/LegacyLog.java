@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Writes Retromod's notes about an old mod to the game's log, so they reach latest.log on every loader. */
 public final class LegacyLog {
 
-    private static final String PREFIX = "[Retromod] ";
+    private static final String PREFIX = "[Backmod] ";
     private static final Set<String> WARNED = ConcurrentHashMap.newKeySet();
     // Plain levels rather than an enum, so the copy inside each mod stays one class.
     private static final int WARN = 0;
@@ -77,7 +77,7 @@ public final class LegacyLog {
             warnMethod = loggerType.getMethod("warn", String.class);
             infoMethod = loggerType.getMethod("info", String.class);
             debugMethod = loggerType.getMethod("debug", String.class);
-            logger = factory.getMethod("getLogger", String.class).invoke(null, "Retromod");
+            logger = factory.getMethod("getLogger", String.class).invoke(null, "Backmod");
             return logger != null;
         } catch (ReflectiveOperationException | LinkageError | RuntimeException missing) {
             unavailable = true;

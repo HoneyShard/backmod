@@ -33,7 +33,7 @@ public final class LegacyWorldRenderContext {
             }
             return accessor.invoke(renderer);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod could not reach the main camera for a legacy "
+            throw new IllegalStateException("Backmod could not reach the main camera for a legacy "
                     + "world render callback", e);
         }
     }
@@ -43,7 +43,7 @@ public final class LegacyWorldRenderContext {
         try {
             return call(camera(context), "getCullFrustum");
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not reach the culling frustum for a legacy "
+            throw new IllegalStateException("Backmod could not reach the culling frustum for a legacy "
                     + "world render callback", e);
         }
     }
@@ -56,7 +56,7 @@ public final class LegacyWorldRenderContext {
             Object client = minecraft.getMethod("getInstance").invoke(null);
             return minecraft.getField("level").get(client);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not reach the client level for a legacy "
+            throw new IllegalStateException("Backmod could not reach the client level for a legacy "
                     + "world render callback", e);
         }
     }
@@ -69,7 +69,7 @@ public final class LegacyWorldRenderContext {
             Object client = minecraft.getMethod("getInstance").invoke(null);
             return minecraft.getMethod("getDeltaTracker").invoke(client);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not reach the delta tracker for a legacy "
+            throw new IllegalStateException("Backmod could not reach the delta tracker for a legacy "
                     + "world render callback", e);
         }
     }
@@ -83,7 +83,7 @@ public final class LegacyWorldRenderContext {
             float fov = (Float) call(camera, "getFov");
             return LegacyPublicMethods.method(camera.getClass(), "getNearPlane", float.class).invoke(camera, fov);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not compute the camera near plane", e);
+            throw new IllegalStateException("Backmod could not compute the camera near plane", e);
         }
     }
 

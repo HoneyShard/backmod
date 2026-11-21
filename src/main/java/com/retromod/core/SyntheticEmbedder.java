@@ -44,7 +44,7 @@ import java.util.Set;
  */
 public final class SyntheticEmbedder {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final int MAX_ARCHIVE_ENTRIES = 100_000;
     /** Retromod-owned package root for embedded synthetics. */
     public static final String PREFIX = "com/retromod/embedded/";
@@ -362,9 +362,9 @@ public final class SyntheticEmbedder {
         Files.deleteIfExists(jarPath);
         String cause = failure == null ? "it was left unrelocated"
                 : failure.getMessage() != null ? failure.getMessage() : failure.getClass().getSimpleName();
-        throw new IOException(jarPath.getFileName() + " still uses Retromod's compatibility class "
+        throw new IOException(jarPath.getFileName() + " still uses Backmod's compatibility class "
                 + leftover.replace('/', '.') + ", which could not be added to it (" + cause
-                + "). Retromod removed this translated jar rather than keep one that names a missing class.");
+                + "). Backmod removed this translated jar rather than keep one that names a missing class.");
     }
 
     /** The first registered stand-in a class in {@code jarPath} names, or null. */

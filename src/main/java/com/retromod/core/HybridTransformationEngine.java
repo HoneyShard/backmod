@@ -24,7 +24,7 @@ import java.util.jar.JarFile;
 /** Builds transformed classes in the background and handles early class loads at runtime. */
 public final class HybridTransformationEngine {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Hybrid");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Hybrid");
 
     private static volatile HybridTransformationEngine instance;
 

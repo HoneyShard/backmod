@@ -19,7 +19,7 @@ import net.minecraft.server.packs.resources.PreparableReloadListener;
 /** Minecraft 1.20.1's TextureAtlasHolder: a mod's own sprite atlas, stitched on every resource reload, which 1.21.11 and 26.x lack. */
 public class LegacyTextureAtlasHolder implements PreparableReloadListener, AutoCloseable {
 
-    private static final System.Logger LOG = System.getLogger("Retromod");
+    private static final System.Logger LOG = System.getLogger("Backmod");
 
     private final TextureAtlas textureAtlas;
     private final Identifier atlasInfoLocation;

@@ -69,7 +69,7 @@ public final class LegacyLootSerializers {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read an old loot function's conditions", e);
+            throw new IllegalStateException("Backmod could not read an old loot function's conditions", e);
         }
     }
 
@@ -119,7 +119,7 @@ public final class LegacyLootSerializers {
                 field.setAccessible(true);
                 return field.get(entry);
             } catch (ReflectiveOperationException e) {
-                throw new IllegalStateException("Retromod could not read " + name + " from the loot entry "
+                throw new IllegalStateException("Backmod could not read " + name + " from the loot entry "
                         + entry.getClass().getName() + " on this Minecraft version", e);
             }
         }
@@ -144,7 +144,7 @@ public final class LegacyLootSerializers {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the " + type.substring(type.lastIndexOf('.') + 1)
+            throw new IllegalStateException("Backmod could not read the " + type.substring(type.lastIndexOf('.') + 1)
                     + " held by " + holder + " for a mod built before 26.3", e);
         }
     }
@@ -215,7 +215,7 @@ public final class LegacyLootSerializers {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not pass an old loot condition or function list", e);
+            throw new IllegalStateException("Backmod could not pass an old loot condition or function list", e);
         }
     }
 
@@ -281,7 +281,7 @@ public final class LegacyLootSerializers {
             return Class.forName(SERIALIZATION + "MapCodec", true, loader).getMethod("assumeMapUnsafe", codec)
                     .invoke(null, mapped);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not adapt the old loot serializer "
+            throw new IllegalStateException("Backmod could not adapt the old loot serializer "
                     + serializer.getClass().getName(), e);
         }
     }
@@ -439,7 +439,7 @@ public final class LegacyLootSerializers {
         return switch (method.getName()) {
             case "hashCode" -> System.identityHashCode(proxy);
             case "equals" -> proxy == args[0];
-            case "toString" -> "Retromod loot serializer context";
+            case "toString" -> "Backmod loot serializer context";
             default -> throw new UnsupportedOperationException(method.getName());
         };
     }

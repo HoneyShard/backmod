@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 /** Builds Minecraft translatable and literal text through reflection. */
 public final class McI18n {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     // Retromod has no compile-time Minecraft classpath, so Text or Component is found at runtime.
     private static volatile Class<?> textClass;

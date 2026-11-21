@@ -21,11 +21,11 @@ import java.nio.file.Paths;
 @Environment(EnvType.CLIENT)
 public class RetromodClient implements ClientModInitializer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Client");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Client");
 
     @Override
     public void onInitializeClient() {
-        LOGGER.debug(RetromodLog.DETAIL, "Starting Retromod on the client.");
+        LOGGER.debug(RetromodLog.DETAIL, "Starting Backmod on the client.");
 
         EnvironmentDetector.setEnvironment(true, false);
         // Old mods' item properties reach their item definitions through a property type added before the first reload.
@@ -39,7 +39,7 @@ public class RetromodClient implements ClientModInitializer {
         initializeGui();
         registerClientCrashHandler();
 
-        LOGGER.debug(RetromodLog.DETAIL, "Retromod client setup is ready.");
+        LOGGER.debug(RetromodLog.DETAIL, "Backmod client setup is ready.");
     }
     
     /** Adds the title screen button (loader auto-detected); needs Fabric API on Fabric. */
@@ -47,9 +47,9 @@ public class RetromodClient implements ClientModInitializer {
         try {
             // register() logs why the button is missing, so this only points to the other ways in.
             if (TitleScreenButtonInjector.register()) {
-                LOGGER.debug(RetromodLog.DETAIL, "Retromod is available from the title screen.");
+                LOGGER.debug(RetromodLog.DETAIL, "Backmod is available from the title screen.");
             } else {
-                LOGGER.info("Retromod has no title screen button in this game. Put old mods in "
+                LOGGER.info("Backmod has no title screen button in this game. Put old mods in "
                         + "retromod-input/, or use the CLI.");
             }
         } catch (Exception e) {

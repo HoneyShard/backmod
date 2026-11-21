@@ -40,7 +40,7 @@ public final class LegacyBlockRandomTickBridge {
                     && invocation.getCause() != null
                     ? invocation.getCause() : e;
             throw new IllegalStateException(
-                    "Retromod could not refresh the random-tick state cache for "
+                    "Backmod could not refresh the random-tick state cache for "
                             + block.getClass().getName(), cause);
         }
     }

@@ -171,7 +171,7 @@ public final class LegacyBlockCodecBridge {
         get.visitTypeInsn(Opcodes.NEW, "java/lang/UnsupportedOperationException");
         get.visitInsn(Opcodes.DUP);
         get.visitLdcInsn("A block codec from a mod built before Minecraft 26.3 was asked to decode a"
-                + " block. Minecraft 26.3 removed block codecs, so Retromod keeps this one only so the"
+                + " block. Minecraft 26.3 removed block codecs, so Backmod keeps this one only so the"
                 + " block can load. The mod needs a version built for 26.3 to read blocks from data.");
         get.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/UnsupportedOperationException", "<init>",
                 "(Ljava/lang/String;)V", false);

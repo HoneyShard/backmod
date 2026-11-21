@@ -119,7 +119,7 @@ public final class LegacyBiomeEffects {
             LegacyPublicMethods.method(biomeBuilder.getClass(), "setAttribute", attributeType, Object.class)
                     .invoke(biomeBuilder, field.get(null), converted);
         } catch (ReflectiveOperationException | LinkageError e) {
-            System.out.println("[Retromod] Legacy biome effects: could not set " + name.toLowerCase()
+            System.out.println("[Backmod] Legacy biome effects: could not set " + name.toLowerCase()
                     + " on a biome, so it keeps the default: " + e);
         }
     }
@@ -171,7 +171,7 @@ public final class LegacyBiomeEffects {
                     .newInstance(Optional.ofNullable(pending.get(LOOP)), Optional.ofNullable(pending.get(MOOD)),
                             pending.containsKey(ADDITIONS) ? List.of(pending.get(ADDITIONS)) : List.of());
         } catch (ReflectiveOperationException | LinkageError e) {
-            System.out.println("[Retromod] Legacy biome effects: could not build a biome's ambient sounds,"
+            System.out.println("[Backmod] Legacy biome effects: could not build a biome's ambient sounds,"
                     + " so it keeps the default: " + e);
             return null;
         }

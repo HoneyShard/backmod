@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 /** Writes the equipment assets that worn armor renders from since 1.21.2. */
 public final class EquipmentAssetMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
 
     /** The first host that reads {@code equipment/}. 1.21.2 and 1.21.3 read {@code models/equipment/}. */
     static final String FIRST_EQUIPMENT_FOLDER_HOST = "1.21.4";

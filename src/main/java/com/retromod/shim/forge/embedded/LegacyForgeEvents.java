@@ -45,7 +45,7 @@ import java.util.function.Supplier;
  */
 public final class LegacyForgeEvents {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Legacy1122");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Legacy1122");
 
     /** Lower-case mod id of the mod this copy is embedded in; the default name namespace. */
     static volatile String modId = "minecraft";

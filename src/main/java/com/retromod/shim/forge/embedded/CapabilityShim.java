@@ -45,7 +45,7 @@ public final class CapabilityShim {
                     "net.minecraftforge.common.util.LazyOptional"
                 );
             } catch (ClassNotFoundException e2) {
-                System.err.println("Retromod: No capability system found");
+                System.err.println("Backmod: No capability system found");
             }
         }
     }
@@ -105,7 +105,7 @@ public final class CapabilityShim {
                         blockCapabilityClass, pos.getClass(), Object.class);
                     return getCapMethod.invoke(level, capability, pos, side);
                 } catch (Exception e2) {
-                    System.err.println("Retromod: Could not get block capability: " + e2);
+                    System.err.println("Backmod: Could not get block capability: " + e2);
                 }
             }
         }

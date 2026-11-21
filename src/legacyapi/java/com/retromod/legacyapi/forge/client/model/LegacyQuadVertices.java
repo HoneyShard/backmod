@@ -243,7 +243,7 @@ public final class LegacyQuadVertices {
             int index = vertex * STRIDE + COLOR;
             if (index >= vertices.length || vertices[index] == WHITE) continue;
             LegacyLog.warnOnce("legacy quad color " + LegacyQuadVertices.class.getName(), "Baked quads in Minecraft"
-                    + " 26.2 and newer keep no vertex colors, so Retromod drew an old mod's colored quads white."
+                    + " 26.2 and newer keep no vertex colors, so Backmod drew an old mod's colored quads white."
                     + " Tinting through block and item colors still works.");
             return;
         }

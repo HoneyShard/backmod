@@ -28,7 +28,7 @@ import java.util.List;
 @net.neoforged.fml.common.Mod("retromod")
 public class RetromodNeoForge {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     
     public RetromodNeoForge() {
         RetromodVersion.logPresenceBanner(LOGGER);
@@ -38,13 +38,13 @@ public class RetromodNeoForge {
             RetromodVersion.TARGET_MC_VERSION = mcVersion;
         } else {
             // The shim gate needs the host version to decide which API changes are safe to apply.
-            LOGGER.error("Retromod could not detect the NeoForge Minecraft version. It will "
+            LOGGER.error("Backmod could not detect the NeoForge Minecraft version. It will "
                     + "use {} and skip shims for newer versions, so some mods may not work. "
                     + "Please report your NeoForge and FML versions.",
                     RetromodVersion.TARGET_MC_VERSION);
         }
 
-        LOGGER.info("Starting Retromod {} on NeoForge for Minecraft {}",
+        LOGGER.info("Starting Backmod {} on NeoForge for Minecraft {}",
                 RetromodVersion.RETROMOD_VERSION, RetromodVersion.TARGET_MC_VERSION);
         // A jar built for several loaders is read through the metadata NeoForge reads.
         ModVersionDetector.setDefaultPreferredLoader("neoforge");
@@ -196,10 +196,10 @@ public class RetromodNeoForge {
                     + "(see security notes in Retromod.java).");
         }
 
-        LOGGER.debug(RetromodLog.DETAIL, "Retromod initialized.");
+        LOGGER.debug(RetromodLog.DETAIL, "Backmod initialized.");
         
         if (isServer) {
-            LOGGER.debug(RetromodLog.DETAIL, "Retromod is running in NeoForge server mode.");
+            LOGGER.debug(RetromodLog.DETAIL, "Backmod is running in NeoForge server mode.");
             LOGGER.debug(RetromodLog.DETAIL, "Bytecode transforms, ahead-of-time compilation, and Forge migration are enabled.");
             LOGGER.debug(RetromodLog.DETAIL, "GUI features are unavailable on a headless server.");
         }
@@ -519,7 +519,7 @@ public class RetromodNeoForge {
             });
         } catch (Exception e) {
             // The old jar stays in mods/, so latest.log has to say why it was not updated.
-            LOGGER.warn("Could not translate {} in mods/: {}. Retromod tries again on the next "
+            LOGGER.warn("Could not translate {} in mods/: {}. Backmod tries again on the next "
                     + "launch.", fileName, e.toString());
             return false;
         }
@@ -554,7 +554,7 @@ public class RetromodNeoForge {
 
     /** Recommends the earlier offline path when startup had to update jars in place. */
     private void recommendAotFlow(int inPlaceCount) {
-        LOGGER.info("Retromod updated {} mod(s) during NeoForge startup.", inPlaceCount);
+        LOGGER.info("Backmod updated {} mod(s) during NeoForge startup.", inPlaceCount);
         LOGGER.debug(RetromodLog.DETAIL, "For future setup, `retromod prepare <minecraft-dir> --target {} --target-loader "
             + "neoforge` is more reliable because it updates jars before NeoForge builds its module "
             + "layer.", RetromodVersion.TARGET_MC_VERSION);

@@ -41,7 +41,7 @@ import java.util.Set;
  */
 public final class ReferenceVerifier {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Verifier");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Verifier");
 
     private final McSymbolIndex index;
     private final LoaderApiRenames loaderRenames;

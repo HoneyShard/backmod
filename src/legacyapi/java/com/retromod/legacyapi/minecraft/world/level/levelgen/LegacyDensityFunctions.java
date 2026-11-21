@@ -522,6 +522,6 @@ public final class LegacyDensityFunctions {
     private static IllegalStateException outsideWorldGeneration(String function) {
         return new IllegalStateException("A mod computed the density function " + function + " through the old"
                 + " compute, outside world generation. It reads a noise or a random value, and Minecraft 26.3 creates"
-                + " those only while it builds a world's samplers, so Retromod has no seed to sample it with.");
+                + " those only while it builds a world's samplers, so Backmod has no seed to sample it with.");
     }
 }

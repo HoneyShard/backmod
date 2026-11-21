@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricHudRenderCallbackShim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String OLD = "net/fabricmc/fabric/api/client/rendering/v1/HudRenderCallback";
     private static final String SYNTH = "com/retromod/generated/legacyhud/HudRenderCallback";
@@ -49,7 +49,7 @@ public class FabricHudRenderCallbackShim implements AuxiliaryVersionShim {
     public void registerRedirects(RetromodTransformer transformer) {
         if (!com.retromod.core.RetromodVersion.isUnobfuscatedTarget(
                 com.retromod.core.RetromodVersion.TARGET_MC_VERSION)) {
-            LOGGER.debug("[Retromod] HudRenderCallback bridge skipped (host {} < 26.1 - old API still present)",
+            LOGGER.debug("[Backmod] HudRenderCallback bridge skipped (host {} < 26.1 - old API still present)",
                     com.retromod.core.RetromodVersion.TARGET_MC_VERSION);
             return;
         }

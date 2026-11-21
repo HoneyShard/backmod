@@ -40,7 +40,7 @@ import java.util.function.Predicate;
 /** Keeps a mod's block entity and entity save code working on hosts that save through ValueOutput and ValueInput. */
 public final class LegacyValueIoOverrideAdapter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String COMPOUND = "net/minecraft/nbt/CompoundTag";
     static final String PROVIDER = "net/minecraft/core/HolderLookup$Provider";

@@ -26,7 +26,7 @@ public final class ClientTickCallbackBridge {
 
     private ClientTickCallbackBridge() {}
 
-    private static final String TAG = "[Retromod] ClientTickCallbackBridge: ";
+    private static final String TAG = "[Backmod] ClientTickCallbackBridge: ";
 
     private static final String EVENT_FACTORY   = "net.fabricmc.fabric.api.event.EventFactory";
     private static final String EVENT           = "net.fabricmc.fabric.api.event.Event";

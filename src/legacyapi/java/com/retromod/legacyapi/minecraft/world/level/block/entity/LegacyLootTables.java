@@ -194,6 +194,6 @@ public final class LegacyLootTables {
     }
 
     private static IllegalStateException failure(String action, Object target, Exception cause) {
-        return new IllegalStateException("Retromod could not " + action + " " + target, cause);
+        return new IllegalStateException("Backmod could not " + action + " " + target, cause);
     }
 }

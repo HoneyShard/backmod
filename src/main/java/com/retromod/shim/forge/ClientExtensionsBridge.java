@@ -26,7 +26,7 @@ import java.util.function.Consumer;
  */
 public final class ClientExtensionsBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final String EVENT =
             "net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent";
 
@@ -56,7 +56,7 @@ public final class ClientExtensionsBridge {
         } catch (ClassNotFoundException e) {
             LOGGER.debug("No RegisterClientExtensionsEvent on this host; Forge client hooks need no routing");
         } catch (ReflectiveOperationException | RuntimeException e) {
-            LOGGER.warn("Retromod could not listen for NeoForge client extensions, so Forge items "
+            LOGGER.warn("Backmod could not listen for NeoForge client extensions, so Forge items "
                     + "with custom renderers or armor models will render as plain items: {}", e.toString());
         }
     }

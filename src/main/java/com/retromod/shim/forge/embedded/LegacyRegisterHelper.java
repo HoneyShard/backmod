@@ -31,7 +31,7 @@ public final class LegacyRegisterHelper {
             if (failed.getCause() instanceof RuntimeException runtime) throw runtime;
             throw new IllegalStateException("Could not register " + name, failed.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not register " + name + " through NeoForge", e);
+            throw new IllegalStateException("Backmod could not register " + name + " through NeoForge", e);
         }
     }
 

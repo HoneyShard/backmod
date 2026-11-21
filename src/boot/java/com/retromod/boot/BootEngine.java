@@ -35,7 +35,7 @@ public final class BootEngine {
         try {
             return run(new URL[] {runtimeJar.toUri().toURL()}, request, log);
         } catch (java.net.MalformedURLException e) {
-            log.error("Retromod's in-place pass could not start: " + e);
+            log.error("Backmod's in-place pass could not start: " + e);
             return Optional.empty();
         }
     }
@@ -74,8 +74,8 @@ public final class BootEngine {
         } catch (Throwable failure) {
             // The trace goes in as text: the engine loader is already closed here, and a logger
             // that renders a Throwable itself may try to load classes from it.
-            log.error("Retromod's in-place pass could not start: "
-                    + LoaderHooks.unwrap(failure) + ". Old mods load as if Retromod's "
+            log.error("Backmod's in-place pass could not start: "
+                    + LoaderHooks.unwrap(failure) + ". Old mods load as if Backmod's "
                     + "in-place mode were off. Please report this with logs/latest.log."
                     + System.lineSeparator() + LoaderHooks.describe(failure));
             return Optional.empty();
@@ -159,7 +159,7 @@ public final class BootEngine {
             for (String prefix : REFUSED) {
                 if (name.startsWith(prefix)) {
                     throw new ClassNotFoundException(name + " is not available during "
-                            + "Retromod's discovery pass");
+                            + "Backmod's discovery pass");
                 }
             }
             // ASM is the one library borrowed from the host.

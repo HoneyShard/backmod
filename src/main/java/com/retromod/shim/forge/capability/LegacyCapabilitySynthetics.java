@@ -34,7 +34,7 @@ import static org.objectweb.asm.Opcodes.*;
  */
 public final class LegacyCapabilitySynthetics {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String PKG = "com/retromod/shim/forge/capability/";
     public static final String RUNTIME = PKG + "LegacyCapabilityRuntime";

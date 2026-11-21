@@ -40,7 +40,7 @@ import java.util.function.Function;
  */
 public final class RetromodExecutors {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Parallel");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Parallel");
 
     /** Resolved once at class init so the pool size stays stable for the session. */
     private static final int PARALLELISM = resolveParallelism();
@@ -70,7 +70,7 @@ public final class RetromodExecutors {
                     new NamedDaemonForkJoinWorkerThreadFactory("retromod-worker-"),
                     (t, e) -> LOGGER.warn("Worker {} died: {}", t.getName(), e.getMessage()),
                     true);
-            LOGGER.debug(RetromodLog.DETAIL, "Retromod parallel executor initialized with {} threads", PARALLELISM);
+            LOGGER.debug(RetromodLog.DETAIL, "Backmod parallel executor initialized with {} threads", PARALLELISM);
             return sharedPool;
         }
     }

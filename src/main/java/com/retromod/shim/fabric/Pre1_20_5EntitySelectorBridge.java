@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20_5EntitySelectorBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String FACTORY = "com/retromod/generated/LegacyEntitySelectors";
     static final String FACTORY_METHOD = "entitySelector";

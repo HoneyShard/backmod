@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_18_2BiomeCategoryBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     /** Intermediary internal name of {@code Biome.Category}. */
     private static final String BIOME_CATEGORY = "net/minecraft/class_1959$class_1961";

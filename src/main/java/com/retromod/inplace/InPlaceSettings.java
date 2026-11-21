@@ -28,7 +28,7 @@ import java.util.Properties;
  */
 public final class InPlaceSettings {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-InPlace");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-InPlace");
 
     /** Config key in {@code config/retromod/config.json}. */
     public static final String KEY = "write_translated_jars";

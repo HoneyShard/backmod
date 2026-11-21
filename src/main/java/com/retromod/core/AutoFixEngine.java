@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
  */
 public class AutoFixEngine {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-AutoFix");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-AutoFix");
 
     // Relative to the working dir; symlink-guarded at write time in persistFixes.
     private static final Path FIXES_FILE = Path.of("config/retromod/auto-fixes.json");
@@ -647,7 +647,7 @@ public class AutoFixEngine {
                         "or the API module was removed. Check polyfill providers.";
                 } else {
                     action = "Missing mod dependency. User must install the required library " +
-                        "mod. Retromod cannot fix missing third-party dependencies.";
+                        "mod. Backmod cannot fix missing third-party dependencies.";
                 }
 
                 return new AppliedFix(
@@ -886,7 +886,7 @@ public class AutoFixEngine {
                 return new AppliedFix(
                     "MissingModDependency",
                     "Mod '" + requiringMod + "' requires '" + missingMod + "' (not installed)",
-                    "The user must install the '" + missingMod + "' mod. Retromod cannot " +
+                    "The user must install the '" + missingMod + "' mod. Backmod cannot " +
                         "fix missing third-party mod dependencies. Check Modrinth or CurseForge " +
                         "for a compatible version.",
                     "dep_missing:" + missingMod + ":" + requiringMod

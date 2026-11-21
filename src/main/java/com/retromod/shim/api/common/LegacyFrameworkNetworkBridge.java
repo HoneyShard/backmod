@@ -45,7 +45,7 @@ import java.util.function.Predicate;
  */
 public final class LegacyFrameworkNetworkBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Shim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Shim");
 
     private static final String FW = "com/mrcrayfish/framework/";
     static final String BUILDER = FW + "api/network/FrameworkNetworkBuilder";

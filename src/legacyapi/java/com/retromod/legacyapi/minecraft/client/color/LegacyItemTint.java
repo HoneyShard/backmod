@@ -47,7 +47,7 @@ public final class LegacyItemTint implements ItemTintSource {
         } catch (RuntimeException | LinkageError failure) {
             // Old handlers now run while the game draws, and one can reach a vanilla API a later Minecraft removed.
             LegacyLog.warnOnce("item color " + handler, "The old item color handler " + handler + " threw " + failure
-                    + ", so Retromod draws its tint untinted");
+                    + ", so Backmod draws its tint untinted");
             return -1;
         }
     }

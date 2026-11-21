@@ -61,7 +61,7 @@ public class WorldRenderEventsShim {
                 try {
                     invokeListener(listener, args);
                 } catch (Exception e) {
-                    System.err.println("Retromod: Error invoking world render listener: " + e.getMessage());
+                    System.err.println("Backmod: Error invoking world render listener: " + e.getMessage());
                 }
             }
         }

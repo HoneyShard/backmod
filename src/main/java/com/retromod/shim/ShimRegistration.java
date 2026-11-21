@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public final class ShimRegistration {
 
     // The logger the entry points use, so the warning lands beside their summary lines.
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private ShimRegistration() {}
 

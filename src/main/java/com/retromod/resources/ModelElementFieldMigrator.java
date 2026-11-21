@@ -17,7 +17,7 @@ import java.util.Map;
 /** Moves two model fields that 26.x stopped reading to the fields that replaced them. */
 public final class ModelElementFieldMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     // The first release whose element deserializer reads no shade, only shade_direction_override.
     // The 26.2 deserializer still reads shade.
     static final String SHADE_OVERRIDE_HOST = "26.3";

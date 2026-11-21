@@ -13,6 +13,6 @@ public class VirtualPreInitEvent {
     public Object getModMetadata() { return modMetadata; }
     
     public void registerServerCommand(Object command) {
-        System.out.println("Retromod: Server command registration deferred");
+        System.out.println("Backmod: Server command registration deferred");
     }
 }

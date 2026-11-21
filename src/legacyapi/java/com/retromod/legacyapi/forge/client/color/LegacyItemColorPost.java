@@ -65,7 +65,7 @@ final class LegacyItemColorPost {
                 try {
                     copy.apply(new Object[]{"post", mod, blockColors});
                 } catch (RuntimeException | LinkageError failure) {
-                    LegacyLog.warn("An old item color listener of " + mod + " threw; Retromod went on with the next mod: "
+                    LegacyLog.warn("An old item color listener of " + mod + " threw; Backmod went on with the next mod: "
                             + failure);
                 }
             }
@@ -106,7 +106,7 @@ final class LegacyItemColorPost {
                 }
             } catch (ReflectiveOperationException | RuntimeException | LinkageError failure) {
                 // Retromod's item definitions for this mod name the type, so each tinted one fails to parse.
-                LegacyLog.warn("Retromod could not add the item tint type " + namespace + ":" + LegacyItemColors.TINT_TYPE
+                LegacyLog.warn("Backmod could not add the item tint type " + namespace + ":" + LegacyItemColors.TINT_TYPE
                         + " (" + failure + "), so the tinted item models of " + namespace + " will not load and show the"
                         + " missing model");
             }

@@ -38,7 +38,7 @@ public final class LegacyConfigSpecs {
             Path file = config instanceof FileConfig opened ? opened.getNioPath() : null;
             spec.acceptConfig(loaded(config, file, owner(spec, file)));
         } catch (ReflectiveOperationException | RuntimeException failed) {
-            LegacyLog.warnOnce("setConfig " + spec.getClass().getName(), "Retromod could not hand a mod's own config"
+            LegacyLog.warnOnce("setConfig " + spec.getClass().getName(), "Backmod could not hand a mod's own config"
                     + " file to its config spec (" + failed + "); the spec reads its values once NeoForge loads it.");
         }
     }

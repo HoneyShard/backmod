@@ -24,7 +24,7 @@ import java.util.TreeSet;
 /** Runs every resource converter, in order, on a mod's resources. */
 public final class ModResourceMigrations {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
 
     // The runtime loaders, the CLI, the AOT compiler and their nested-jar loops all run this one
     // list, so a fix reaches every path. The order matters, as each step below says.

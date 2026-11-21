@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
 /** Writes and repairs client item definitions for mods whose item models predate 1.21.4. */
 public final class ClientItemDefinitionMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
 
     /** The first host that reads client item definitions and ignores model overrides. */
     static final String FIRST_DEFINITION_HOST = "1.21.4";
@@ -788,7 +788,7 @@ public final class ClientItemDefinitionMigrator implements ModResourceConverter 
             }
             if (!eggs.isEmpty()) {
                 long colored = eggs.stream().filter(eggColors::containsKey).count();
-                LOGGER.debug(RetromodLog.DETAIL, "Gave {} spawn egg(s) Retromod's egg model, {} with the colors from the mod's code "
+                LOGGER.debug(RetromodLog.DETAIL, "Gave {} spawn egg(s) Backmod's egg model, {} with the colors from the mod's code "
                         + "and the rest in a neutral color", eggs.size(), colored);
             }
             if (!ownEggArt.isEmpty()) {

@@ -160,8 +160,8 @@ public class LegacyItemStackRenderer {
     static void noteOutside() {
         if (notedOutside) return;
         notedOutside = true;
-        LegacyLog.debug("An old mod drew an item outside any renderer Retromod runs, where 26.x has no buffer to draw into,"
-                + " so Retromod skipped it");
+        LegacyLog.debug("An old mod drew an item outside any renderer Backmod runs, where 26.x has no buffer to draw into,"
+                + " so Backmod skipped it");
     }
 
     /** One item to submit: its resolved model and a copy of the pose it was drawn at. */

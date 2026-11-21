@@ -7,6 +7,6 @@ package com.retromod.virtual;
 /** Virtual Initialization event. */
 public class VirtualInitEvent {
     public void registerServerCommand(Object command) {
-        System.out.println("Retromod: Server command registration deferred");
+        System.out.println("Backmod: Server command registration deferred");
     }
 }

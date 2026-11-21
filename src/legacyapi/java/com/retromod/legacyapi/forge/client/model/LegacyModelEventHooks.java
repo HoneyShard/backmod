@@ -72,7 +72,7 @@ final class LegacyModelEventHooks {
             Pack pack = pack(folder);
             if (pack != null) sink.accept(pack);
         } catch (IOException | RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not add the extra models of " + LegacyClientRenderBootstrap.namespaces()
+            LegacyLog.warn("Backmod did not add the extra models of " + LegacyClientRenderBootstrap.namespaces()
                     + ", so ModelManager.getModel answers the missing model for them: " + failure);
         }
     }
@@ -87,7 +87,7 @@ final class LegacyModelEventHooks {
         try {
             writeItems(folder, postRegisterAdditional());
         } catch (IOException | RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not add the extra models of " + LegacyClientRenderBootstrap.namespaces()
+            LegacyLog.warn("Backmod did not add the extra models of " + LegacyClientRenderBootstrap.namespaces()
                     + ", so ModelManager.getModel answers the missing model for them: " + failure);
         }
     }
@@ -128,7 +128,7 @@ final class LegacyModelEventHooks {
             try {
                 LegacyEvents.post(group, new LegacyRegisterAdditional(models));
             } catch (RuntimeException | LinkageError failure) {
-                LegacyLog.warn("A RegisterAdditional listener of " + mod + " threw; Retromod went on with the next mod: "
+                LegacyLog.warn("A RegisterAdditional listener of " + mod + " threw; Backmod went on with the next mod: "
                         + failure);
             }
         }
@@ -151,7 +151,7 @@ final class LegacyModelEventHooks {
             try {
                 LegacyModelMaps.Extra extra = LegacyModelMaps.registerAdditional(location);
                 if (extra == null) {
-                    note(location, "Retromod reads the extra model " + location + " from its block state, as Forge 1.20.1"
+                    note(location, "Backmod reads the extra model " + location + " from its block state, as Forge 1.20.1"
                             + " did, so it writes no item model for it.");
                     continue;
                 }
@@ -160,7 +160,7 @@ final class LegacyModelEventHooks {
                 write(folder.resolve("assets").resolve(item.getNamespace()).resolve("items").resolve(item.getPath() + ".json"),
                         "{\"model\":{\"type\":\"minecraft:model\",\"model\":\"" + extra.model() + "\"}}");
             } catch (IOException | RuntimeException failure) {
-                LegacyLog.warnOnce("legacy extra model " + location, "Retromod did not add the extra model " + location
+                LegacyLog.warnOnce("legacy extra model " + location, "Backmod did not add the extra model " + location
                         + ", so ModelManager.getModel answers the missing model for it: " + failure);
             }
         }
@@ -168,12 +168,12 @@ final class LegacyModelEventHooks {
 
     private static Pack pack(Path folder) {
         try {
-            PackLocationInfo location = new PackLocationInfo(packId(), Component.literal("Retromod extra models"),
+            PackLocationInfo location = new PackLocationInfo(packId(), Component.literal("Backmod extra models"),
                     PackSource.BUILT_IN, Optional.empty());
             return Pack.readMetaAndCreate(location, LegacyExtraModelPack.supplier(folder), PackType.CLIENT_RESOURCES,
                     new PackSelectionConfig(true, Pack.Position.TOP, false));
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod could not open its extra model pack " + folder + ": " + failure);
+            LegacyLog.warn("Backmod could not open its extra model pack " + folder + ": " + failure);
             return null;
         }
     }

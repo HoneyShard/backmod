@@ -34,7 +34,7 @@ import java.util.function.Function;
  */
 public final class LegacyProtectedBlockCallBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     /**
      * The classes the bridge names, in one namespace, and how a method name reads across classes.

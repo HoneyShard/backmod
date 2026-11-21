@@ -42,7 +42,7 @@ import java.util.regex.Pattern;
 /** Rebuilds armor and tools from mods written before they became item components. */
 public final class LegacyEquipmentBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     // 1.21.2 turned ArmorMaterial and Tier into records, so an old material enum that implements
     // them fails with IncompatibleClassChangeError at load. In a jar written against the old

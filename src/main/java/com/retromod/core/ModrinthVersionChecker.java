@@ -26,7 +26,7 @@ import java.util.zip.ZipEntry;
  */
 public class ModrinthVersionChecker {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Modrinth");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Modrinth");
 
     private static final String MODRINTH_API = "https://api.modrinth.com/v2";
     private static final String USER_AGENT = "Retromod/" + RetromodVersion.RETROMOD_VERSION

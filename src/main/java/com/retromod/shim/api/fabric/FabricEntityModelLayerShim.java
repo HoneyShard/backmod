@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricEntityModelLayerShim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String GEN = "com/retromod/generated/legacymodellayer/";
     private static final String HOLDER   = GEN + "EntityModelLayerRegistry";
@@ -51,7 +51,7 @@ public class FabricEntityModelLayerShim implements AuxiliaryVersionShim {
         // Mojang types that don't resolve on an intermediary runtime.
         if (!com.retromod.core.RetromodVersion.isUnobfuscatedTarget(
                 com.retromod.core.RetromodVersion.TARGET_MC_VERSION)) {
-            LOGGER.debug("[Retromod] EntityModelLayerRegistry bridge skipped (host {} < 26.1 - old API still present)",
+            LOGGER.debug("[Backmod] EntityModelLayerRegistry bridge skipped (host {} < 26.1 - old API still present)",
                     com.retromod.core.RetromodVersion.TARGET_MC_VERSION);
             return;
         }

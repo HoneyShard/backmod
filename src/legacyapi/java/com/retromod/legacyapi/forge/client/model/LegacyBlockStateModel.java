@@ -137,7 +137,7 @@ public final class LegacyBlockStateModel implements BlockStateModel {
     private void fail(String doing, Throwable failure) {
         broken = true;
         LegacyLog.warnOnce("legacy block model " + model.getClass().getName(), "An old block model of "
-                + model.getClass().getName() + " threw while Minecraft " + doing + ", so Retromod drew the block's own"
+                + model.getClass().getName() + " threw while Minecraft " + doing + ", so Backmod drew the block's own"
                 + " model in its place from then on: " + failure);
     }
 

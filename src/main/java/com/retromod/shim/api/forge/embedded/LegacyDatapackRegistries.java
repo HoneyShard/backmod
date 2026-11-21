@@ -53,7 +53,7 @@ public final class LegacyDatapackRegistries {
                         case "key" -> key;
                         case "hashCode" -> System.identityHashCode(proxy);
                         case "equals" -> proxy == args[0];
-                        case "toString" -> "Retromod stand-in for the " + keyField + " datapack registry";
+                        case "toString" -> "Backmod stand-in for the " + keyField + " datapack registry";
                         default -> throw new UnsupportedOperationException(keyField.toLowerCase()
                                 + " entries come from datapacks since Minecraft " + dataSince + ", so a mod"
                                 + " built before that cannot register or look them up from code ("

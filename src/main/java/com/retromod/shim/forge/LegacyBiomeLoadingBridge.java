@@ -32,7 +32,7 @@ import static org.objectweb.asm.Opcodes.*;
 /** Posts a pre-1.19 mod's {@code BiomeLoadingEvent} again, through a Forge biome modifier. */
 public final class LegacyBiomeLoadingBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-BiomeLoading");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-BiomeLoading");
 
     // Forge 1.19 replaced the event with data-driven biome modifiers, so the spawns and features a
     // 1.16 to 1.18 mod added from its handler were silently dropped. The handler stays subscribed
@@ -217,7 +217,7 @@ public final class LegacyBiomeLoadingBridge {
         mv.visitJumpInsn(GOTO, done);
         mv.visitLabel(handler);
         mv.visitVarInsn(ASTORE, 0);
-        report(mv, "[Retromod] Could not register the biome modifier for an old BiomeLoadingEvent handler");
+        report(mv, "[Backmod] Could not register the biome modifier for an old BiomeLoadingEvent handler");
         mv.visitLabel(done);
         mv.visitInsn(RETURN);
         mv.visitMaxs(0, 0);
@@ -283,7 +283,7 @@ public final class LegacyBiomeLoadingBridge {
         mv.visitFieldInsn(PUTSTATIC, MODIFIER, "warned", "Z");
         mv.visitVarInsn(ALOAD, 7);
         mv.visitVarInsn(ASTORE, 0);
-        report(mv, "[Retromod] An old BiomeLoadingEvent handler failed, so some of its spawns or features "
+        report(mv, "[Backmod] An old BiomeLoadingEvent handler failed, so some of its spawns or features "
                 + "may be missing");
         mv.visitLabel(skip);
         mv.visitInsn(RETURN);

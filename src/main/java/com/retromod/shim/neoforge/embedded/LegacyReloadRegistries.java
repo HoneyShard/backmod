@@ -29,12 +29,12 @@ public final class LegacyReloadRegistries {
             InvocationHandler forward = (proxy, method, arguments) -> switch (method.getName()) {
                 case "hashCode" -> System.identityHashCode(proxy);
                 case "equals" -> proxy == arguments[0];
-                case "toString" -> "Retromod registry access for an old reload listener";
+                case "toString" -> "Backmod registry access for an old reload listener";
                 default -> invoke(method, current(loader), arguments);
             };
             return Proxy.newProxyInstance(access.getClassLoader(), new Class<?>[]{access}, forward);
         } catch (ClassNotFoundException failure) {
-            throw new IllegalStateException("Retromod could not stand in for the reload registry access", failure);
+            throw new IllegalStateException("Backmod could not stand in for the reload registry access", failure);
         }
     }
 

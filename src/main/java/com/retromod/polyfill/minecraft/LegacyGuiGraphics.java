@@ -82,7 +82,7 @@ public final class LegacyGuiGraphics {
             Object buffers = minecraft.getMethod("renderBuffers").invoke(game);
             return buffers.getClass().getMethod("bufferSource").invoke(buffers);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not find the GUI buffer source", e);
+            throw new IllegalStateException("Backmod could not find the GUI buffer source", e);
         }
     }
 
@@ -123,7 +123,7 @@ public final class LegacyGuiGraphics {
             }
             blit = found;
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not find the GUI draw methods of "
+            throw new IllegalStateException("Backmod could not find the GUI draw methods of "
                     + owner.getName() + " for an old mod's blit", e);
         }
     }
@@ -153,7 +153,7 @@ public final class LegacyGuiGraphics {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException(cause);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not call " + method, e);
+            throw new IllegalStateException("Backmod could not call " + method, e);
         }
     }
 

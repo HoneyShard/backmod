@@ -1,5 +1,5 @@
 name: Compatibility report
-description: Report how well a mod runs through Retromod - it gets added to the Compatibility DB on the docs site.
+description: Report how well a mod runs through Backmod - it gets added to the Compatibility DB on the docs site.
 title: "[Compat] <mod name> <mod version> on <host MC>"
 labels: ["compat-report"]
 body:
@@ -80,7 +80,7 @@ body:
   - type: input
     id: retromod_version
     attributes:
-      label: Retromod version used
+      label: Backmod version used
       placeholder: e.g. 1.1.0
     validations:
       required: true
@@ -123,6 +123,6 @@ body:
     id: other_mods
     attributes:
       label: Other mods in the instance (optional)
-      description: Helps tell mod-vs-mod conflicts apart from Retromod issues.
+      description: Helps tell mod-vs-mod conflicts apart from Backmod issues.
     validations:
       required: false

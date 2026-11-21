@@ -51,7 +51,7 @@ import java.util.function.BiPredicate;
  */
 public final class LegacyItemAttributeOverrideAdapter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacyItemAttributes";
 

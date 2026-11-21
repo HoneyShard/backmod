@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 /** Shows a Minecraft screen through whichever screen setter the running game has. */
 final class McScreens {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-GUI");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-GUI");
 
     private McScreens() {}
 
@@ -30,7 +30,7 @@ final class McScreens {
                 "net.minecraft.client.gui.screens.Screen", // mojang
                 "net.minecraft.class_437");                // intermediary
         if (minecraft == null || screenClass == null) {
-            LOGGER.warn("Retromod could not open its screen because Minecraft's client or Screen "
+            LOGGER.warn("Backmod could not open its screen because Minecraft's client or Screen "
                     + "class was not found.");
             return false;
         }
@@ -38,13 +38,13 @@ final class McScreens {
             Method getInstance = McReflect.findMethod(minecraft, "getInstance", "method_1551");
             Object client = getInstance != null ? getInstance.invoke(null) : null;
             if (client == null) {
-                LOGGER.warn("Retromod could not open its screen because the Minecraft client "
+                LOGGER.warn("Backmod could not open its screen because the Minecraft client "
                         + "is not running yet.");
                 return false;
             }
             return show(client, screenClass, screen);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            LOGGER.warn("Retromod could not reach the Minecraft client to open its screen: {}",
+            LOGGER.warn("Backmod could not reach the Minecraft client to open its screen: {}",
                     describe(e));
             return false;
         }
@@ -72,11 +72,11 @@ final class McScreens {
                 return true;
             }
 
-            LOGGER.warn("Retromod could not open its screen: this Minecraft version has neither "
+            LOGGER.warn("Backmod could not open its screen: this Minecraft version has neither "
                     + "Minecraft.setScreen nor Gui.setScreen.");
             return false;
         } catch (ReflectiveOperationException | RuntimeException e) {
-            LOGGER.warn("Retromod could not open its screen: {}", describe(e));
+            LOGGER.warn("Backmod could not open its screen: {}", describe(e));
             return false;
         }
     }

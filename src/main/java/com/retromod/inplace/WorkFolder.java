@@ -23,7 +23,7 @@ import java.util.List;
 /** Where transformers stage temporary work: the game folder in game, the system temp folder otherwise. */
 public final class WorkFolder {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-InPlace");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-InPlace");
 
     /** Below the cache root; each launch works in its own folder, named after its process id. */
     static final String WORK = "work";
@@ -64,7 +64,7 @@ public final class WorkFolder {
             launchFolder = folder;
         } catch (IOException | RuntimeException e) {
             // The system temp folder still works, it is only off the game's file system.
-            LOGGER.warn("Retromod stages its work in the system temp folder because it cannot use "
+            LOGGER.warn("Backmod stages its work in the system temp folder because it cannot use "
                     + "{}: {}", root != null ? root : gameDir, e.getMessage());
         }
     }
@@ -119,7 +119,7 @@ public final class WorkFolder {
             failures.add(root + " (" + e.getMessage() + ")");
         }
         if (!failures.isEmpty()) {
-            LOGGER.warn("Retromod could not remove {} leftover work folder(s) and tries again on "
+            LOGGER.warn("Backmod could not remove {} leftover work folder(s) and tries again on "
                     + "the next start: {}", failures.size(), String.join(", ", failures));
         }
     }

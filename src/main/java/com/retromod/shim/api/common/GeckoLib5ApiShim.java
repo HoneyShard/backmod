@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 /** Moves GeckoLib 4 class names to {@code com.geckolib} where the installed GeckoLib uses that package. */
 public class GeckoLib5ApiShim implements MinecraftVersionedApiShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Shim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Shim");
     private static final String RESOURCE = "/retromod/geckolib-4-to-5-classes.tsv";
     private static final Pattern INTERNAL_NAME = Pattern.compile("[A-Za-z0-9_$/]+");
 

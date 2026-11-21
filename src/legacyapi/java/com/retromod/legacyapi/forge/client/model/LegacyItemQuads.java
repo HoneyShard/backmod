@@ -49,7 +49,7 @@ final class LegacyItemQuads {
                 return true;
             }
         } catch (ReflectiveOperationException | RuntimeException failure) {
-            LegacyLog.warnOnce("legacy item quads give " + LegacyItemQuads.class.getName(), "Retromod could not hand an"
+            LegacyLog.warnOnce("legacy item quads give " + LegacyItemQuads.class.getName(), "Backmod could not hand an"
                     + " old item model's quads to Minecraft, so those items draw empty: " + failure);
         }
         return false;

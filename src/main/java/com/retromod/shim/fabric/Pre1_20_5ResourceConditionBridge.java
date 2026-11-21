@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20_5ResourceConditionBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String CONDITIONS = "net/fabricmc/fabric/api/resource/conditions/v1/ResourceConditions";
     static final String CONDITION_TYPE = "net/fabricmc/fabric/api/resource/conditions/v1/ResourceConditionType";

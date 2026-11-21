@@ -80,9 +80,9 @@ public final class LegacyRecipeIntrospection {
                 return (Collection<?>) invoke(method, manager);
             }
         }
-        throw new IllegalStateException("Retromod could not list recipes: " + manager.getClass().getName()
+        throw new IllegalStateException("Backmod could not list recipes: " + manager.getClass().getName()
                 + " has neither recipeMap() nor a getRecipes() that returns a collection."
-                + " Report it to Retromod with your loader and Minecraft version.");
+                + " Report it to Backmod with your loader and Minecraft version.");
     }
 
     /** {@code manager.byKey(id)}: a recipe is keyed by a resource key now. */
@@ -94,7 +94,7 @@ public final class LegacyRecipeIntrospection {
             Object key = keyClass.getMethod("create", keyClass, id.getClass()).invoke(null, recipes, id);
             return call(manager, "byKey", key);
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not look up the recipe " + id, failure);
+            throw new IllegalStateException("Backmod could not look up the recipe " + id, failure);
         }
     }
 
@@ -150,7 +150,7 @@ public final class LegacyRecipeIntrospection {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not ask whether an ingredient is empty", e);
+            throw new IllegalStateException("Backmod could not ask whether an ingredient is empty", e);
         }
     }
 
@@ -198,7 +198,7 @@ public final class LegacyRecipeIntrospection {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod could not build an empty ingredient", e);
+            throw new IllegalStateException("Backmod could not build an empty ingredient", e);
         }
     }
 
@@ -215,7 +215,7 @@ public final class LegacyRecipeIntrospection {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not read a recipe's result", failure);
+            throw new IllegalStateException("Backmod could not read a recipe's result", failure);
         }
     }
 

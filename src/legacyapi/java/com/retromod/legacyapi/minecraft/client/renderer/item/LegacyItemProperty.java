@@ -44,7 +44,7 @@ public final class LegacyItemProperty implements RangeSelectItemModelProperty {
             return (float) function.applyAsDouble(new Object[]{stack, level, entity, seed});
         } catch (RuntimeException | LinkageError failure) {
             LegacyLog.warnOnce("item property " + key, "The old item property " + key + " threw " + failure
-                    + ", so Retromod shows its items as if no override on it held");
+                    + ", so Backmod shows its items as if no override on it held");
             return Float.NEGATIVE_INFINITY;
         }
     }

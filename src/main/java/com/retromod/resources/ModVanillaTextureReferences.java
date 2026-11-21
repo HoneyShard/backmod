@@ -18,7 +18,7 @@ import java.util.Map;
 /** Points a mod's models at vanilla textures under the names the host ships them as. */
 public final class ModVanillaTextureReferences implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     /** The Flattening, which renamed the texture folders and most block and item textures. */
     static final String FLATTENING = "1.13";
 

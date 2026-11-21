@@ -64,7 +64,7 @@ public abstract class LegacyLootPoolSingletonContainer extends SingleEntryContai
         } catch (InvocationTargetException e) {
             throw e.getCause() instanceof RuntimeException failure ? failure : new IllegalStateException(e.getCause());
         } catch (ReflectiveOperationException | ClassCastException e) {
-            throw new IllegalStateException("The loot entry " + getClass().getName() + " names no codec Retromod can"
+            throw new IllegalStateException("The loot entry " + getClass().getName() + " names no codec Backmod can"
                     + " read: it overrides neither codec() nor getType(). Report it with the mod's name and version.", e);
         }
     }

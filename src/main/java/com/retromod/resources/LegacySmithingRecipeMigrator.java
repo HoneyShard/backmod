@@ -24,7 +24,7 @@ import java.util.Map;
 /** Moves a pre-1.20 mod's smithing recipes to the smithing transform recipe 1.20 introduced. */
 public final class LegacySmithingRecipeMigrator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataMigrator");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataMigrator");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     // Up to 1.19.4 an upgrade recipe was minecraft:smithing with a base, an addition and a result.

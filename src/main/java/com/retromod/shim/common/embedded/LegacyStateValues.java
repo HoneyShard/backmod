@@ -46,7 +46,7 @@ public final class LegacyStateValues {
             ACCESSORS.put(type, found);
             return found;
         } catch (NoSuchMethodException e) {
-            throw new IllegalStateException("Retromod cannot read the block state property entry "
+            throw new IllegalStateException("Backmod cannot read the block state property entry "
                     + type.getName() + ", which has no property() and value() accessors", e);
         }
     }
@@ -56,7 +56,7 @@ public final class LegacyStateValues {
         try {
             return accessor.invoke(entry);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod cannot call " + accessor + " on a block state property", e);
+            throw new IllegalStateException("Backmod cannot call " + accessor + " on a block state property", e);
         } catch (InvocationTargetException e) {
             Throwable cause = e.getCause();
             if (cause instanceof RuntimeException runtime) throw runtime;

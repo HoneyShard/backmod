@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricConventionTagsShim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String V1 = "net/fabricmc/fabric/api/tag/convention/v1/";
     private static final String V2 = "net/fabricmc/fabric/api/tag/convention/v2/";

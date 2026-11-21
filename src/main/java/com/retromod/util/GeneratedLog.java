@@ -21,7 +21,7 @@ public final class GeneratedLog {
 
     /** Pushes the {@code Retromod} logger where {@code GETSTATIC System.err} stood, in the same one stack slot. */
     public static void pushLogger(MethodVisitor mv) {
-        mv.visitLdcInsn("Retromod");
+        mv.visitLdcInsn("Backmod");
         mv.visitMethodInsn(Opcodes.INVOKESTATIC, LOGGER_FACTORY, "getLogger",
                 "(Ljava/lang/String;)L" + LOGGER + ";", false);
     }

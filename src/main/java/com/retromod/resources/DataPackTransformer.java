@@ -20,7 +20,7 @@ import java.util.Map;
 /** Updates data packs to work on newer Minecraft versions. */
 public class DataPackTransformer {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataPacks");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataPacks");
     private static final long MAX_TRANSFORMED_JSON_BYTES = 16L * 1024 * 1024;
     
     // Loot table changes

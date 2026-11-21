@@ -55,7 +55,7 @@ public final class LegacyRenderLayers {
             // Forge 1.20.1 stopped the game here; a layer that reaches an API Minecraft removed now leaves its entity undecorated.
             BROKEN.add(layer);
             LegacyLog.warnOnce("render layer " + layer.getClass().getName(), "The old render layer " + layer.getClass().getName()
-                    + " threw " + failure + ", so Retromod stops drawing it until the next resource reload");
+                    + " threw " + failure + ", so Backmod stops drawing it until the next resource reload");
         } finally {
             // What a layer that threw wrote is dropped, so a half-drawn layer never reaches the frame.
             geometry.finish(drawn);

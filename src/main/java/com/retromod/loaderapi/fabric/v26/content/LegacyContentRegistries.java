@@ -24,7 +24,7 @@ import java.util.function.Predicate;
 /** Serves the old Fabric API content registries on hosts that moved their jobs to data and item components. */
 public final class LegacyContentRegistries {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
     private static final Set<String> REPORTED = ConcurrentHashMap.newKeySet();
 
     private static final String BLOCK = "Lnet/minecraft/world/level/block/Block;";

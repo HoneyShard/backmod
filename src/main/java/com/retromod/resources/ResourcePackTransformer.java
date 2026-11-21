@@ -21,7 +21,7 @@ import java.util.Map;
 /** Converts resource packs (texture packs) to work on newer Minecraft versions. */
 public class ResourcePackTransformer {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     
     // Texture path renames between versions (old -> new)
     static final Map<String, String> TEXTURE_RENAMES = new HashMap<>();

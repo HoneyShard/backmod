@@ -46,7 +46,7 @@ public final class LegacyFeatureSupport {
             };
             return mapCodec.getMethod("xmap", Function.class, Function.class).invoke(map, decode, encode);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build the codec for " + feature.getClass().getName(), e);
+            throw new IllegalStateException("Backmod could not build the codec for " + feature.getClass().getName(), e);
         }
     }
 
@@ -58,7 +58,7 @@ public final class LegacyFeatureSupport {
             Object unit = mapCodec.getMethod("unit", Object.class).invoke(null, value);
             return mapCodec.getMethod("codec").invoke(unit);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build the empty feature configuration codec", e);
+            throw new IllegalStateException("Backmod could not build the empty feature configuration codec", e);
         }
     }
 
@@ -89,7 +89,7 @@ public final class LegacyFeatureSupport {
                 if (predicate.test(lookup.apply(relative.invoke(pos, side)))) return true;
             }
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read a feature's neighbors", e);
+            throw new IllegalStateException("Backmod could not read a feature's neighbors", e);
         }
         return false;
     }

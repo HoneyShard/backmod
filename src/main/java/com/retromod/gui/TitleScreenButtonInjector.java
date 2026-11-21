@@ -26,7 +26,7 @@ import java.util.function.Consumer;
  */
 public final class TitleScreenButtonInjector {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-TitleButton");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-TitleButton");
     private static boolean registered = false;
 
     // cached after first successful lookup
@@ -45,7 +45,7 @@ public final class TitleScreenButtonInjector {
         if (registered) return true;
 
         if (!resolveMcClasses()) {
-            LOGGER.warn("Retromod could not find Minecraft's title screen classes, so its title "
+            LOGGER.warn("Backmod could not find Minecraft's title screen classes, so its title "
                     + "screen button is unavailable.");
             return false;
         }
@@ -70,7 +70,7 @@ public final class TitleScreenButtonInjector {
         } else if (McReflect.isFabric()
                 && !McReflect.classExists("net.fabricmc.fabric.api.client.screen.v1.ScreenEvents")) {
             // Fabric and Quilt add the button through Fabric API's screen events.
-            LOGGER.warn("Retromod's title screen button needs Fabric API, which is not installed. "
+            LOGGER.warn("Backmod's title screen button needs Fabric API, which is not installed. "
                     + "Install Fabric API to get the button.");
         } else {
             LOGGER.info("Title screen button not available (no supported event system found)");
@@ -323,11 +323,11 @@ public final class TitleScreenButtonInjector {
                 new Class<?>[]{pressActionClass},
                 (proxy, method, args) -> {
                     if (method.getDeclaringClass() != Object.class) {
-                        LOGGER.debug("Opening the Retromod screen from the title menu");
+                        LOGGER.debug("Opening the Backmod screen from the title menu");
                         try {
                             MainScreenFactory.open(screen);
                         } catch (Throwable t) {
-                            LOGGER.warn("Could not open the Retromod screen: {}",
+                            LOGGER.warn("Could not open the Backmod screen: {}",
                                     t.getMessage(), t);
                         }
                     }
@@ -338,7 +338,7 @@ public final class TitleScreenButtonInjector {
             // A text button works on versions where custom sprite registration is unreliable.
             Object button = buildPlainTextButton(buttonX, buttonY, pressAction, pressActionClass);
             if (button == null) {
-                LOGGER.warn("Could not create the Retromod title screen button");
+                LOGGER.warn("Could not create the Backmod title screen button");
                 return;
             }
 
@@ -349,14 +349,14 @@ public final class TitleScreenButtonInjector {
             if (addMethod != null) {
                 addMethod.setAccessible(true);
                 addMethod.invoke(screen, button);
-                LOGGER.debug("Added the Retromod title button with {} at ({}, {})",
+                LOGGER.debug("Added the Backmod title button with {} at ({}, {})",
                         addMethod.getName(), buttonX, buttonY);
             } else {
-                LOGGER.warn("Could not find a supported Screen method for adding the Retromod button");
+                LOGGER.warn("Could not find a supported Screen method for adding the Backmod button");
             }
 
         } catch (Exception e) {
-            LOGGER.warn("Could not add the Retromod title screen button: {}", e.getMessage(), e);
+            LOGGER.warn("Could not add the Backmod title screen button: {}", e.getMessage(), e);
         }
     }
 
@@ -370,16 +370,16 @@ public final class TitleScreenButtonInjector {
             Method literal = McReflect.findMethod(textClass,
                 new Class[]{String.class}, "literal", "method_43470");
             if (literal == null) {
-                LOGGER.warn("Could not create the Retromod button label because "
+                LOGGER.warn("Could not create the Backmod button label because "
                         + "Component.literal was not found");
                 return null;
             }
-            Object text = literal.invoke(null, "Retromod");
+            Object text = literal.invoke(null, "Backmod");
 
             Method builder = McReflect.findMethod(buttonWidgetClass,
                 new Class[]{textClass, pressActionClass}, "builder", "method_46430");
             if (builder == null) {
-                LOGGER.warn("Could not create the Retromod button because Button.builder was not found");
+                LOGGER.warn("Could not create the Backmod button because Button.builder was not found");
                 return null;
             }
             Object b = builder.invoke(null, text, pressAction);
@@ -393,7 +393,7 @@ public final class TitleScreenButtonInjector {
             Method build = McReflect.findMethod(b.getClass(), "build", "method_46431");
             return build != null ? build.invoke(b) : null;
         } catch (Exception e) {
-            LOGGER.warn("Could not build the Retromod title screen button: {}", e.getMessage(), e);
+            LOGGER.warn("Could not build the Backmod title screen button: {}", e.getMessage(), e);
             return null;
         }
     }
@@ -469,7 +469,7 @@ public final class TitleScreenButtonInjector {
             Method literal = McReflect.findMethod(textClass,
                 new Class[]{String.class}, "literal");
             if (literal == null) return null;
-            Object message = literal.invoke(null, "Retromod");
+            Object message = literal.invoke(null, "Backmod");
 
             Method builderMethod = McReflect.findMethod(sib,
                 new Class[]{textClass, pressActionClass, boolean.class}, "builder");
@@ -547,7 +547,7 @@ public final class TitleScreenButtonInjector {
                 }
             }
 
-            LOGGER.debug("Retromod settings button added to title screen");
+            LOGGER.debug("Backmod settings button added to title screen");
         } catch (Exception e) {
             LOGGER.debug("Could not add settings button: {}", e.getMessage());
         }
@@ -582,7 +582,7 @@ public final class TitleScreenButtonInjector {
             retroScreen.open();
 
         } catch (Exception e) {
-            LOGGER.error("Could not open Retromod manager", e);
+            LOGGER.error("Could not open Backmod manager", e);
         }
     }
 

@@ -30,7 +30,7 @@ import java.util.Optional;
  */
 public final class VersionSpoofer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-VersionSpoofer");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-VersionSpoofer");
 
     private static final String SPOOF_RESOURCE = "/retromod/version-spoofs.json";
 

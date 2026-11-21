@@ -162,7 +162,7 @@ public final class LegacyQuadDraws {
             if (!notedNoGlint) {
                 notedNoGlint = true;
                 LegacyLog.debug("An old renderer asked for a glint buffer that is no item sheet, which Minecraft 26.3 draws inside"
-                        + " each item render type, so Retromod gave it the plain buffer");
+                        + " each item render type, so Backmod gave it the plain buffer");
             }
             return null;
         }

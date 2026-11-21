@@ -26,7 +26,7 @@ public class GameRegistryShim {
         String typeName = type == null ? "null" : type.getName();
         LegacyLog.warnOnce("GameRegistry." + method + ":" + typeName, "An old mod called GameRegistry."
                 + method + " for " + typeName + ". It has no equivalent on this loader, so nothing was "
-                + "registered. Retromod has no replacement for this call yet. If the mod breaks, report "
+                + "registered. Backmod has no replacement for this call yet. If the mod breaks, report "
                 + "this line with the mod and its version.");
     }
 

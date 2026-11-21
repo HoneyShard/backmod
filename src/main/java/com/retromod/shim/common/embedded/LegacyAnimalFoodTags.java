@@ -148,7 +148,7 @@ public final class LegacyAnimalFoodTags {
             VIEWS.add(view);
             return view;
         } catch (ReflectiveOperationException | LinkageError e) {
-            throw new IllegalStateException("Retromod could not read the item tag minecraft:" + tag
+            throw new IllegalStateException("Backmod could not read the item tag minecraft:" + tag
                     + " that replaced an old food field: " + cause(e), e);
         }
     }
@@ -243,7 +243,7 @@ public final class LegacyAnimalFoodTags {
     static void writePack(Path root, int packFormat) throws IOException {
         deleteTree(root);
         write(root.resolve("pack.mcmeta"), "{\"pack\":{\"pack_format\":" + packFormat + ",\"min_format\":"
-                + packFormat + ",\"max_format\":" + packFormat + ",\"description\":\"Retromod legacy item tags\"}}");
+                + packFormat + ",\"max_format\":" + packFormat + ",\"description\":\"Backmod legacy item tags\"}}");
         String folder = packFormat >= FIRST_SINGULAR_TAG_FORMAT ? "item" : "items";
         for (Map.Entry<String, Set<String>> tag : ADDED.entrySet()) {
             StringBuilder values = new StringBuilder();
@@ -296,7 +296,7 @@ public final class LegacyAnimalFoodTags {
             return switch (method.getName()) {
                 case "hashCode" -> System.identityHashCode(proxy);
                 case "equals" -> proxy == args[0];
-                case "toString" -> "Retromod villager food " + nutrition;
+                case "toString" -> "Backmod villager food " + nutrition;
                 default -> InvocationHandler.invokeDefault(proxy, method, args);
             };
         };
@@ -396,7 +396,7 @@ public final class LegacyAnimalFoodTags {
             Object mods = modList.getMethod("get").invoke(null);
             Object found = LegacyPublicMethods.method(mods.getClass(), "getModContainerById", String.class).invoke(mods, "retromod");
             Object container = found instanceof Optional<?> optional ? optional.orElse(null) : null;
-            if (container == null) throw new IllegalStateException("Retromod's mod container is missing");
+            if (container == null) throw new IllegalStateException("Backmod's mod container is missing");
             Object bus = LegacyPublicMethods.method(container.getClass(), "getEventBus").invoke(container);
             Class<?> priority = firstClass("net.neoforged.bus.api.EventPriority", "net.minecraftforge.eventbus.api.EventPriority");
             Class<?> event = firstClass("net.neoforged.neoforge.event.AddPackFindersEvent", "net.minecraftforge.event.AddPackFindersEvent");
@@ -414,7 +414,7 @@ public final class LegacyAnimalFoodTags {
         try {
             Object packType = LegacyPublicMethods.method(event.getClass(), "getPackType").invoke(event);
             if (!(packType instanceof Enum<?> type) || !type.name().equals("SERVER_DATA")) return;
-            Object source = LegacyDataPackSource.create(packId(), packRoot(), "Retromod legacy item tags");
+            Object source = LegacyDataPackSource.create(packId(), packRoot(), "Backmod legacy item tags");
             if (source == null) return;
             for (Method method : LegacyPublicMethods.methods(event.getClass())) {
                 if (method.getName().equals("addRepositorySource") && method.getParameterCount() == 1) {

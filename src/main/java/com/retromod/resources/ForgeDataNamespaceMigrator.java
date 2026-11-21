@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 /** Moves a Forge mod's data to the names NeoForge reads, and to the names newer Forge reads. */
 final class ForgeDataNamespaceMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
     // NeoForge renamed Forge's data when it forked, and never reads the old names. A Forge mod's ores

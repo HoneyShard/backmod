@@ -82,7 +82,7 @@ public final class BootCore {
 
         /** A short label for log lines. */
         public String describe() {
-            return path.getFileName() + " (Retromod " + version + " for " + loader + " "
+            return path.getFileName() + " (Backmod " + version + " for " + loader + " "
                     + targetMinecraft + ")";
         }
     }
@@ -117,8 +117,8 @@ public final class BootCore {
             }
         }
         if (candidates.isEmpty()) {
-            log.error("Retromod could not find its own file in " + modsDir + ". Retromod is "
-                    + "inactive for this launch. Reinstall the Retromod jar for this loader "
+            log.error("Backmod could not find its own file in " + modsDir + ". Backmod is "
+                    + "inactive for this launch. Reinstall the Backmod jar for this loader "
                     + "into mods/.");
             return Optional.empty();
         }
@@ -129,7 +129,7 @@ public final class BootCore {
         String claim = chosen.path() + "|" + chosen.version();
         Object previous = properties.putIfAbsent(OWNER_PROPERTY, claim);
         if (previous != null) {
-            log.info("Another Retromod bootstrap already loaded Retromod (" + previous
+            log.info("Another Backmod bootstrap already loaded Backmod (" + previous
                     + "); this one does nothing.");
             return Optional.empty();
         }
@@ -143,14 +143,14 @@ public final class BootCore {
                 if (names.length() > 0) names.append(", ");
                 names.append(other.path().getFileName());
             }
-            log.warn("Found more than one Retromod file in mods/. Using "
+            log.warn("Found more than one Backmod file in mods/. Using "
                     + chosen.describe() + ". Delete the others: " + names + ".");
         }
         // Warn when the jar targets another Minecraft. hostMinecraft is null when the loader
         // does not report it.
         if (hostMinecraft != null && !hostMinecraft.equals(chosen.targetMinecraft())) {
-            log.warn("This Retromod file is built for Minecraft " + chosen.targetMinecraft()
-                    + ", but the game is Minecraft " + hostMinecraft + ". Install the Retromod "
+            log.warn("This Backmod file is built for Minecraft " + chosen.targetMinecraft()
+                    + ", but the game is Minecraft " + hostMinecraft + ". Install the Backmod "
                     + "jar for " + hostMinecraft + ".");
         }
 
@@ -160,22 +160,22 @@ public final class BootCore {
         try {
             runtime = extractRuntime(gameDir, chosen);
         } catch (DamagedRuntimeException e) {
-            log.error("Retromod could not unpack its runtime: " + e.getMessage()
-                    + ". Retromod is inactive for this launch.");
+            log.error("Backmod could not unpack its runtime: " + e.getMessage()
+                    + ". Backmod is inactive for this launch.");
             return Optional.empty();
         } catch (IOException | RuntimeException e) {
             // Retromod sitting in mods/ always loaded before the bootstrap existed, whatever
             // retromod-cache/ was. The rewrite mode and the in-place report both need it.
             try {
                 runtime = extractRuntimeToTemporaryFolder(chosen);
-                log.warn("Retromod could not unpack its runtime into " + CACHE_ROOT + "/"
+                log.warn("Backmod could not unpack its runtime into " + CACHE_ROOT + "/"
                         + RUNTIME_FOLDER + "/: " + e.getMessage() + ". It runs from "
                         + runtime.getParent() + " for this launch.");
             } catch (IOException | RuntimeException fallback) {
-                log.error("Retromod could not unpack its runtime from "
+                log.error("Backmod could not unpack its runtime from "
                         + chosen.path().getFileName() + " into " + CACHE_ROOT + "/"
                         + RUNTIME_FOLDER + "/ (" + e.getMessage() + ") or into a temporary "
-                        + "folder (" + fallback.getMessage() + "). Retromod is inactive for "
+                        + "folder (" + fallback.getMessage() + "). Backmod is inactive for "
                         + "this launch. Check that both are writable and have free space, "
                         + "then restart.");
                 return Optional.empty();
@@ -546,7 +546,7 @@ public final class BootCore {
         for (Path component : absoluteRoot.relativize(absolute)) {
             current = current.resolve(component);
             if (Files.isSymbolicLink(current)) {
-                throw new IOException(current + " is a link; Retromod only uses real folders "
+                throw new IOException(current + " is a link; Backmod only uses real folders "
                         + "inside the game directory");
             }
             if (!Files.exists(current, LinkOption.NOFOLLOW_LINKS)) return;

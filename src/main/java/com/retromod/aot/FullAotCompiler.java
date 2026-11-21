@@ -31,7 +31,7 @@ import java.util.zip.*;
 /** Transforms every class in the given mods once and caches it, so later launches skip the work. */
 public class FullAotCompiler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-FullAOT");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-FullAOT");
 
     private static final String CACHE_DIR = "retromod-cache/full-aot";
     private static final int MAX_ARCHIVE_ENTRIES = 100_000;
@@ -847,7 +847,7 @@ public class FullAotCompiler {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception ignored) {}
             
-            JDialog dialog = new JDialog((Frame) null, "Retromod: preparing mods", true);
+            JDialog dialog = new JDialog((Frame) null, "Backmod: preparing mods", true);
             dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
             
             JPanel panel = new JPanel(new BorderLayout(10, 10));
@@ -911,7 +911,7 @@ public class FullAotCompiler {
                         JOptionPane.showMessageDialog(
                             null,
                             String.format("""
-                                Retromod finished precompiling your mods.
+                                Backmod finished precompiling your mods.
 
                                 Classes prepared: %d
                                 Time: %.1f seconds

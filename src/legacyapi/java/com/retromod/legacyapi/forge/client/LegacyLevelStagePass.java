@@ -82,7 +82,7 @@ public final class LegacyLevelStagePass implements FramePassManager.PassDefiniti
                 ForgeHooksClient.addFramePass(id, new LegacyLevelStagePass());
             }
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not add its frame pass, so the old RenderLevelStageEvent listeners of "
+            LegacyLog.warn("Backmod did not add its frame pass, so the old RenderLevelStageEvent listeners of "
                     + owners() + " are not called: " + failure);
         }
     }
@@ -101,7 +101,7 @@ public final class LegacyLevelStagePass implements FramePassManager.PassDefiniti
                 try {
                     copy.apply(new Object[]{"register", mod});
                 } catch (RuntimeException | LinkageError failure) {
-                    LegacyLog.warn("A RegisterStageEvent listener of " + mod + " threw; Retromod went on with the next"
+                    LegacyLog.warn("A RegisterStageEvent listener of " + mod + " threw; Backmod went on with the next"
                             + " mod. " + stackTrace(failure));
                 }
             }
@@ -162,7 +162,7 @@ public final class LegacyLevelStagePass implements FramePassManager.PassDefiniti
             frame = frame(state, rotation);
         } catch (RuntimeException | LinkageError failure) {
             if (NOTED.add("frame " + failure.getClass().getName())) {
-                LegacyLog.warn("Retromod could not build the frame old RenderLevelStageEvent listeners of " + owners()
+                LegacyLog.warn("Backmod could not build the frame old RenderLevelStageEvent listeners of " + owners()
                         + " get, so they are not called: " + stackTrace(failure));
             }
             return;
@@ -189,7 +189,7 @@ public final class LegacyLevelStagePass implements FramePassManager.PassDefiniti
                         flush.run();
                     } catch (RuntimeException | LinkageError failure) {
                         if (NOTED.add("flush " + flush.getClass().getName())) {
-                            LegacyLog.warn("Retromod could not end a buffer batch after an old render stage: "
+                            LegacyLog.warn("Backmod could not end a buffer batch after an old render stage: "
                                     + stackTrace(failure));
                         }
                     }
@@ -215,7 +215,7 @@ public final class LegacyLevelStagePass implements FramePassManager.PassDefiniti
             if (NOTED.add(System.identityHashCode(copy) + " " + failure.getClass().getName())) {
                 String stage = request.length > 1 ? " at " + RenderLevelStageEvent.stageName((Integer) request[1]) : "";
                 LegacyLog.warn("An old RenderLevelStageEvent listener of " + ownersOf(copy) + " threw" + stage
-                        + "; Retromod went on with the other mods' listeners. " + stackTrace(failure));
+                        + "; Backmod went on with the other mods' listeners. " + stackTrace(failure));
             }
             return null;
         }
@@ -291,7 +291,7 @@ public final class LegacyLevelStagePass implements FramePassManager.PassDefiniti
             projection.mul(tilt.last().pose());
         } catch (ReflectiveOperationException | RuntimeException | LinkageError failure) {
             bobUnavailable = true;
-            LegacyLog.warn("Retromod could not add the hurt tilt and view bobbing to the projection old render stage"
+            LegacyLog.warn("Backmod could not add the hurt tilt and view bobbing to the projection old render stage"
                     + " listeners get, so what they place on screen can drift while the camera bobs: " + failure);
         }
     }
@@ -312,7 +312,7 @@ public final class LegacyLevelStagePass implements FramePassManager.PassDefiniti
             return found;
         } catch (ReflectiveOperationException | RuntimeException | LinkageError failure) {
             bobUnavailable = true;
-            LegacyLog.warn("Retromod found no hurt tilt or view bobbing on this GameRenderer, so the projection old render"
+            LegacyLog.warn("Backmod found no hurt tilt or view bobbing on this GameRenderer, so the projection old render"
                     + " stage listeners get leaves them out: " + failure);
             return null;
         }

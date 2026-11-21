@@ -85,7 +85,7 @@ public enum LegacyEventResult {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException(cause);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not call " + method + " on " + target, e);
+            throw new IllegalStateException("Backmod could not call " + method + " on " + target, e);
         }
     }
 }

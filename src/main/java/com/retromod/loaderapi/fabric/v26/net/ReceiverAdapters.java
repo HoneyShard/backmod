@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Host payload handlers that call old mod handlers, and the way back from one to the other. */
 final class ReceiverAdapters {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
     private static final Map<String, Method> RECEIVE_METHODS = new ConcurrentHashMap<>();
 
     /** Hands one received payload and its host context to an old handler. */

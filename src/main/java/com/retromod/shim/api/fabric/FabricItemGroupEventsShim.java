@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricItemGroupEventsShim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String GEN = "com/retromod/generated/legacyitemgroup/";
     private static final String HOLDER            = GEN + "ItemGroupEvents";
@@ -87,7 +87,7 @@ public class FabricItemGroupEventsShim implements AuxiliaryVersionShim {
         // shadow a working API and reference types that don't resolve.
         if (!com.retromod.core.RetromodVersion.isUnobfuscatedTarget(
                 com.retromod.core.RetromodVersion.TARGET_MC_VERSION)) {
-            LOGGER.debug("[Retromod] item-group events v1 bridge skipped (host {} < 26.1 - old API still present)",
+            LOGGER.debug("[Backmod] item-group events v1 bridge skipped (host {} < 26.1 - old API still present)",
                     com.retromod.core.RetromodVersion.TARGET_MC_VERSION);
             return;
         }

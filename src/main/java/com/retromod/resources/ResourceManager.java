@@ -19,7 +19,7 @@ import java.util.*;
  */
 public class ResourceManager {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     private static final String README_NAME = "README.txt";
     private static final String PROCESSED_NAME = "processed";
     private static final String INSTRUCTIONS_NAME = "INSTRUCTIONS.txt";
@@ -75,10 +75,10 @@ public class ResourceManager {
     private void createReadme(Path folder, String type) throws IOException {
         Path readme = folder.resolve(README_NAME);
         createManagedTextFile(readme, String.format("""
-            Retromod %s input
+            Backmod %s input
 
             Put old %s here as zip files or unpacked folders.
-            Retromod updates them for Minecraft %s, copies the results to
+            Backmod updates them for Minecraft %s, copies the results to
             the appropriate output folder, and keeps the originals in processed/.
             """, type, type.toLowerCase(), targetMcVersion));
     }
@@ -196,7 +196,7 @@ public class ResourceManager {
             Files.createDirectories(outputDir);
             
             createManagedTextFile(outputDir.resolve(INSTRUCTIONS_NAME), """
-                Retromod data pack output
+                Backmod data pack output
 
                 Copy the updated packs to your world's datapacks folder:
                    .minecraft/saves/[YourWorld]/datapacks/
@@ -395,7 +395,7 @@ public class ResourceManager {
         String name = pack.getFileName().toString().toLowerCase(Locale.ROOT);
         if (name.startsWith(PUBLICATION_STAGE_PREFIX)
                 || name.startsWith(TRANSACTION_PREFIX)) {
-            throw new IOException("Staged pack name uses a reserved Retromod workflow prefix: "
+            throw new IOException("Staged pack name uses a reserved Backmod workflow prefix: "
                 + pack.getFileName());
         }
     }

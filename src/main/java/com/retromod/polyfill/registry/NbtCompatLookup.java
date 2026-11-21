@@ -18,7 +18,7 @@ import java.util.UUID;
 /** Answers the NBT getters, UUID helpers, and tag text and number reads that 1.21.5 removed, renamed, or made {@code Optional}. */
 public final class NbtCompatLookup {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-NbtCompat");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-NbtCompat");
 
     /** Resolved methods cached after first lookup. */
     private static final java.util.concurrent.ConcurrentHashMap<String, Method> METHOD_CACHE =
@@ -288,7 +288,7 @@ public final class NbtCompatLookup {
         Method method = resolveMethod(receiver.getClass(), name, returnType, NO_PARAMS);
         if (method == null) {
             throw new IllegalStateException("This host's " + receiver.getClass().getName() + " has no " + name
-                    + "(), so Retromod cannot answer the old NBT call that needs it");
+                    + "(), so Backmod cannot answer the old NBT call that needs it");
         }
         return invoke(method, receiver);
     }

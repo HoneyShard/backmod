@@ -36,7 +36,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class FuzzyMatchReport {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Fuzzy");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Fuzzy");
 
     public static final String BAND_AUTO = "AUTO";
     public static final String BAND_NEAR = "NEAR";
@@ -95,7 +95,7 @@ public final class FuzzyMatchReport {
                         Files.createDirectories(outputFile.getParent());
                     }
                     Files.writeString(outputFile,
-                            "# Retromod fuzzy-resolver report: one row per distinct unresolved "
+                            "# Backmod fuzzy-resolver report: one row per distinct unresolved "
                             + "reference; NEAR rows are shim-bridge candidates\n"
                             + "# kind\tband\tscore\towner\tname\tdescriptor\tcandidateOwner\t"
                             + "candidateName\tcandidateDescriptor\n",
@@ -108,7 +108,7 @@ public final class FuzzyMatchReport {
                 // Name the report once per run, as given, so no home path lands in shared logs.
                 if (!announced) {
                     announced = true;
-                    LOGGER.debug(RetromodLog.DETAIL, "Retromod lists fuzzy matches, applied and not applied, in {}",
+                    LOGGER.debug(RetromodLog.DETAIL, "Backmod lists fuzzy matches, applied and not applied, in {}",
                             outputFile);
                 }
             } catch (IOException e) {

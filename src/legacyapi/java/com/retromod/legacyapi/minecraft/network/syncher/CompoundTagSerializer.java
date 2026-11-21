@@ -46,10 +46,10 @@ public final class CompoundTagSerializer implements EntityDataSerializer<Compoun
         // every client, so the serializer's number does not depend on when a mod first reads the field.
         try {
             if (listenOnForge() || listenOnNeoForge()) return;
-            LegacyLog.warnOnce("compound tag serializer bus", "Retromod found no mod bus to register the old compound"
+            LegacyLog.warnOnce("compound tag serializer bus", "Backmod found no mod bus to register the old compound"
                     + " tag entity data serializer from, so entities that sync one cannot be sent to clients.");
         } catch (ReflectiveOperationException | LinkageError | RuntimeException failure) {
-            LegacyLog.warnOnce("compound tag serializer listener", "Retromod could not listen for the loader's entity"
+            LegacyLog.warnOnce("compound tag serializer listener", "Backmod could not listen for the loader's entity"
                     + " data serializer registration, so entities that sync a compound tag cannot be sent: " + failure);
         }
     }
@@ -105,7 +105,7 @@ public final class CompoundTagSerializer implements EntityDataSerializer<Compoun
             }
             throw new NoSuchMethodException("RegisterEvent.register(key, id, supplier)");
         } catch (ReflectiveOperationException | RuntimeException failure) {
-            LegacyLog.warnOnce("compound tag serializer register", "Retromod could not register the old compound"
+            LegacyLog.warnOnce("compound tag serializer register", "Backmod could not register the old compound"
                     + " tag entity data serializer, so entities that sync one cannot be sent: " + failure);
         }
     }

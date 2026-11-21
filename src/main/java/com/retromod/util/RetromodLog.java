@@ -62,7 +62,7 @@ public final class RetromodLog {
         try {
             if (configFile == null || !Files.isRegularFile(configFile)) return false;
             String json = JsonSecurity.readUtf8(configFile, MAX_CONFIG_BYTES,
-                    JsonSecurity.DEFAULT_MAX_DEPTH, "Retromod config");
+                    JsonSecurity.DEFAULT_MAX_DEPTH, "Backmod config");
             JsonElement root = JsonParser.parseString(json);
             JsonElement level = root.isJsonObject() ? root.getAsJsonObject().get("log_level") : null;
             return level != null && level.isJsonPrimitive() && isDebug(level.getAsString());

@@ -89,7 +89,7 @@ public final class AttributeSupplierBuilderBridge {
                 return method.invoke(builder, arguments);
             } catch (ReflectiveOperationException | RuntimeException e) {
                 throw new UnsupportedOperationException(
-                        "Retromod could not reach the attribute builder's " + name + " method", e);
+                        "Backmod could not reach the attribute builder's " + name + " method", e);
             }
         }
     }

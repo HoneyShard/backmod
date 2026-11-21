@@ -41,7 +41,7 @@ public final class LegacyBlockModel implements UnbakedModel, BlockModel {
         UnbakedGeometry geometry = elements == null || elements.isEmpty() ? null : new UnbakedCuboidGeometry(elements);
         if (overrides != null && !overrides.isEmpty()) {
             LegacyLog.warnOnce("legacy block model overrides " + LegacyBlockModel.class.getName(), "An old mod built a"
-                    + " model with item overrides; Minecraft 26.2 reads them from item definitions, so Retromod left them out.");
+                    + " model with item overrides; Minecraft 26.2 reads them from item definitions, so Backmod left them out.");
         }
         return new LegacyBlockModel(new CuboidModel(geometry, guiLight, ambientOcclusion, transforms,
                 TextureSlots.parseTextureMap(textureJson(textures)), parent));

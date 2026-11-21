@@ -35,7 +35,7 @@ import java.util.List;
  */
 public final class Pre1_20_5LootDeserializersBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String DESERIALIZERS = "net/minecraft/class_5270";
     static final String LOOT_POOL = "net/minecraft/class_55";

@@ -21,7 +21,7 @@ import java.util.Optional;
 /** Gives a block whose model inherits {@code builtin/entity} a model the host can still load. */
 public final class LegacyBuiltinEntityBlockModels implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Resources");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Resources");
     // The first release whose model loader no longer knows builtin/entity. The 1.21.2 client's
     // models still use it, and the 1.21.4 client neither ships nor names it.
     static final String REMOVED_IN = "1.21.4";

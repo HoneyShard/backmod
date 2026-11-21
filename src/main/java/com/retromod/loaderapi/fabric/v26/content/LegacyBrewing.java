@@ -34,7 +34,7 @@ import static com.retromod.loaderapi.fabric.v26.content.LegacyContentRegistries.
 /** Serves the old Fabric API brewing registries: through Fabric API's builder where it exists, as recipe data on 26.3. */
 public final class LegacyBrewing {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     /** The world data pack the recipes go into. */
@@ -106,7 +106,7 @@ public final class LegacyBrewing {
             writeOnServerStart();
         } catch (RuntimeException e) {
             // The mod's class setup reads this event, so a host refusal must not fail it.
-            LOGGER.warn("Retromod cannot write the brewing recipes old mods add on this host: {}", e.toString());
+            LOGGER.warn("Backmod cannot write the brewing recipes old mods add on this host: {}", e.toString());
         }
         return buildEvent;
     }
@@ -189,7 +189,7 @@ public final class LegacyBrewing {
                         }
                         case "hashCode" -> System.identityHashCode(proxy);
                         case "equals" -> proxy == args[0];
-                        default -> "Retromod legacy brewing listener";
+                        default -> "Backmod legacy brewing listener";
                     });
             call(HostLink.require(LegacyContentRegistries.REGISTER_LISTENER), call(HostLink.require(HOST_BUILD)), listener);
             replaying = true;
@@ -349,7 +349,7 @@ public final class LegacyBrewing {
     static int write(Path root, List<Map<String, Object>> recipes, int packFormat) throws IOException {
         LegacyWorldPacks.deleteTree(root.resolve("data"));
         if (recipes.isEmpty()) return 0;
-        LegacyWorldPacks.writePackMeta(root, packFormat, "Retromod: brewing recipes from old mods");
+        LegacyWorldPacks.writePackMeta(root, packFormat, "Backmod: brewing recipes from old mods");
         Path folder = root.resolve("data").resolve(LegacyWorldPacks.NAMESPACE).resolve("recipe").resolve("legacy_brewing");
         for (int i = 0; i < recipes.size(); i++) {
             LegacyWorldPacks.writeFile(folder.resolve(i + ".json"), GSON.toJson(recipes.get(i)));

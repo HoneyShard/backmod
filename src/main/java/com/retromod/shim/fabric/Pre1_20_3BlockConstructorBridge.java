@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20_3BlockConstructorBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String FACTORY = "com/retromod/generated/LegacyBlockConstructors";
     static final String DROP_EXPERIENCE_BASE = "com/retromod/generated/LegacyDropExperienceBlock";

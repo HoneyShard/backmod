@@ -10,12 +10,12 @@ Past audits are published once the fixing release is out: [1.3.0](docs-dev/secur
 
 Please do not open a public issue for a security problem.
 
-Use [GitHub's private vulnerability reporting](https://github.com/Bownlux/Retromod/security/advisories/new) or email **security@revivalsmp.net**.
+Use [GitHub's private vulnerability reporting](https://github.com/HoneyShard/backmod/security/advisories/new) or email **security@revivalsmp.net**.
 
 Include:
 
 - what you found and why it matters
-- the Retromod version and loader
+- the Backmod version and loader
 - steps or a small sample that reproduces it
 - any suggested fix, if you have one
 
@@ -23,11 +23,11 @@ We aim to acknowledge a report within 48 hours and share an initial assessment w
 
 ## In Scope
 
-- unsafe bytecode or class injection caused by Retromod
+- unsafe bytecode or class injection caused by Backmod
 - path traversal, zip slip, or unsafe jar extraction
-- cache poisoning or writes outside Retromod's game-directory paths
+- cache poisoning or writes outside Backmod's game-directory paths
 - malicious mapping or metadata input that crosses a security boundary
-- flaws in Retromod's update or download handling
+- flaws in Backmod's update or download handling
 - release automation or dependency-workflow flaws that could publish unreviewed artifacts
 
 ## Out of Scope
@@ -39,12 +39,12 @@ We aim to acknowledge a report within 48 hours and share an initial assessment w
 
 ## Design Notes
 
-Retromod treats every mod jar as untrusted input. Archive paths are checked before writing, security-sensitive archive reads have decompressed-size limits, and replacement classes come from the installed Retromod build rather than the network.
+Backmod treats every mod jar as untrusted input. Archive paths are checked before writing, security-sensitive archive reads have decompressed-size limits, and replacement classes come from the installed Backmod build rather than the network.
 
 Runtime writes stay inside the selected game directory. The normal paths are `retromod-input/`, `retromod-input/processed/`, `retromod-backups/`, `mods/retromod-backups/`, `config/retromod/`, and `retromod-cache/`. The standalone CLI accepts caller-selected input and output paths. It initializes the input, backup, and API-archive folders under its current working directory; commands create caches and reports there when needed. It is not a filesystem sandbox.
 
-Normal transformation makes no network request. The optional native-version lookup is off by default and queries Modrinth metadata only after the user opts in. CLI API-archive downloads use fixed loader repositories and require an explicit command plus consent, or an explicit `--yes` for automation. Retromod does not silently download replacement mod jars.
+Normal transformation makes no network request. The optional native-version lookup is off by default and queries Modrinth metadata only after the user opts in. CLI API-archive downloads use fixed loader repositories and require an explicit command plus consent, or an explicit `--yes` for automation. Backmod does not silently download replacement mod jars.
 
-Mods still run with the same trust as any other Minecraft mod. Retromod does not sandbox or audit their behavior.
+Mods still run with the same trust as any other Minecraft mod. Backmod does not sandbox or audit their behavior.
 
 Official builds include a hash of every class except the loader-provided ASM classes, loader-variant annotation stubs, and the verifier itself. The hash also covers ServiceLoader descriptors and bundled transformation data. This can reveal accidental changes or a casual repack, but it is not a digital signature. For a real download check, compare the whole jar against `SHA256SUMS.txt` from the same release. See [Authenticity](docs/authenticity.md).

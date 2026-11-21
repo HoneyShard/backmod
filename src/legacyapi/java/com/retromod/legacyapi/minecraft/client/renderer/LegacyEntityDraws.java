@@ -55,8 +55,8 @@ public final class LegacyEntityDraws {
     private static void noteOutside() {
         if (notedOutside) return;
         notedOutside = true;
-        LegacyLog.debug("An old mod drew an entity outside any block entity or entity renderer Retromod runs, where 26.x has no"
-                + " buffer to draw into, so Retromod skipped it");
+        LegacyLog.debug("An old mod drew an entity outside any block entity or entity renderer Backmod runs, where 26.x has no"
+                + " buffer to draw into, so Backmod skipped it");
     }
 
     /** One entity to submit: its state, the frame's camera and a copy of the pose it was drawn at. */

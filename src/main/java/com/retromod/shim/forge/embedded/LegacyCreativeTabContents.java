@@ -216,6 +216,6 @@ public final class LegacyCreativeTabContents {
     }
 
     private static void log(String message) {
-        System.out.println("[Retromod] Legacy creative tabs: " + message);
+        System.out.println("[Backmod] Legacy creative tabs: " + message);
     }
 }

@@ -42,7 +42,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Moves an old mod's classes off Forge 1.20.1's event base onto Retromod's rebuilt one, before the remap. */
 public final class LegacyEventBaseAdapter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String EVENT = "net/minecraftforge/eventbus/api/Event";
     static final String GENERIC_EVENT = "net/minecraftforge/eventbus/api/GenericEvent";

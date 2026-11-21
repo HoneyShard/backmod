@@ -157,7 +157,7 @@ public final class LegacySurfaceRules {
             if (!(source.server() instanceof MinecraftServer server)) return null;
             return (Registry) server.registryAccess().lookup((ResourceKey) Registries.BIOME).orElse(null);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod could not ask the loader for the running server's biomes", e);
+            throw new IllegalStateException("Backmod could not ask the loader for the running server's biomes", e);
         }
     }
 
@@ -177,7 +177,7 @@ public final class LegacySurfaceRules {
                 return new ServerSource(game, instance.invoke(null),
                         publicMethod("net.minecraft.client.Minecraft", "getSingleplayerServer"));
             } catch (ReflectiveOperationException e) {
-                throw new IllegalStateException("Retromod could not reach Fabric Loader to find the running server", e);
+                throw new IllegalStateException("Backmod could not reach Fabric Loader to find the running server", e);
             }
         }
 
@@ -207,7 +207,7 @@ public final class LegacySurfaceRules {
             }
             return (Set<?>) field.get(context);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod could not read the surface rule context's biomes on this host", e);
+            throw new IllegalStateException("Backmod could not read the surface rule context's biomes on this host", e);
         }
     }
 
@@ -222,7 +222,7 @@ public final class LegacySurfaceRules {
             }
             return getter.invoke(context);
         } catch (ReflectiveOperationException | RuntimeException e) {
-            throw new IllegalStateException("Retromod could not read the surface rule context's biome on this host", e);
+            throw new IllegalStateException("Backmod could not read the surface rule context's biome on this host", e);
         }
     }
 }

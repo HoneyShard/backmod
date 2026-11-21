@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Keeps repeated non-fatal mod errors from flooding the log and freezing the game. */
 public final class RetromodErrorHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final int MAX_SEEN_ERRORS = 500;
     private static final Set<String> seenErrors = ConcurrentHashMap.newKeySet();
 

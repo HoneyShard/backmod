@@ -62,7 +62,7 @@ public final class LoaderTypeKinds {
     private static Map<String, String> readTable() {
         Map<String, String> table = new HashMap<>();
         try (InputStream in = LoaderTypeKinds.class.getClassLoader().getResourceAsStream(FORGE_TABLE)) {
-            if (in == null) throw new IllegalStateException("Retromod's jar is missing " + FORGE_TABLE);
+            if (in == null) throw new IllegalStateException("Backmod's jar is missing " + FORGE_TABLE);
             BufferedReader lines = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
             for (String line; (line = lines.readLine()) != null; ) {
                 if (line.isBlank() || line.startsWith("#")) continue;
@@ -71,7 +71,7 @@ public final class LoaderTypeKinds {
                 table.put(columns[1], columns[0]);
             }
         } catch (IOException failure) {
-            throw new UncheckedIOException("Retromod could not read " + FORGE_TABLE, failure);
+            throw new UncheckedIOException("Backmod could not read " + FORGE_TABLE, failure);
         }
         return Map.copyOf(table);
     }

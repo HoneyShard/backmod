@@ -103,7 +103,7 @@ public final class LoaderApiRegistration {
     public void registerPerModSynthetic(String internalName, byte[] classBytes) {
         if (LoaderApiRuntime.isSharedTypeName(internalName)) {
             throw new IllegalArgumentException(internalName + " is a shared type. Shared types are "
-                    + "compiled into Retromod so every mod sees one class.");
+                    + "compiled into Backmod so every mod sees one class.");
         }
         claim(RedirectKey.type(internalName));
         transformer.registerSyntheticClass(internalName, classBytes);

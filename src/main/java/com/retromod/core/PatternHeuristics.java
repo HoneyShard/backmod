@@ -22,7 +22,7 @@ public class PatternHeuristics {
 
     // Never reference Retromod here: the standalone CLI uses this class without Fabric on the
     // classpath.
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Patterns");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Patterns");
 
     /**
      * Result of a successful pattern match.

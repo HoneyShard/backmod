@@ -68,7 +68,7 @@ public final class ForgeBootLocator implements IModLocator {
             Object runtimeLocator = LoaderHooks.buildFolderLocator(LoaderHooks.FORGE_SPI,
                     prepared.get().runtimeDirectory(), "retromod runtime");
             List<Object> located = new ArrayList<>(((IModLocator) runtimeLocator).scanMods());
-            log.info("Loading Retromod " + prepared.get().source().version() + " from "
+            log.info("Loading Backmod " + prepared.get().source().version() + " from "
                     + BootCore.displayPath(gameDir, prepared.get().runtimeJar()));
             // Served copies call into Retromod's runtime, so they only go in beside it.
             if (!located.isEmpty()) {
@@ -77,8 +77,8 @@ public final class ForgeBootLocator implements IModLocator {
             return located;
         } catch (Throwable failure) {
             // A bootstrap failure must never stop the loader. The game starts without Retromod.
-            log.error("Retromod could not start: " + LoaderHooks.unwrap(failure)
-                    + ". Retromod is inactive for this launch. Please report this with "
+            log.error("Backmod could not start: " + LoaderHooks.unwrap(failure)
+                    + ". Backmod is inactive for this launch. Please report this with "
                     + "logs/latest.log." + System.lineSeparator() + LoaderHooks.describe(failure));
             return List.of();
         }
@@ -109,7 +109,7 @@ public final class ForgeBootLocator implements IModLocator {
                     serveFolder, "retromod cache");
             return ((IModLocator) cacheLocator).scanMods();
         } catch (Throwable failure) {
-            log.error("Could not load Retromod's translated mods from " + serveFolder + ": "
+            log.error("Could not load Backmod's translated mods from " + serveFolder + ": "
                     + LoaderHooks.unwrap(failure) + ". Please report this with logs/latest.log.");
             return List.of();
         }

@@ -255,7 +255,7 @@ public final class LegacyModelLocations {
             return make.newInstance(namespace, path);
         } catch (ReflectiveOperationException | RuntimeException | LinkageError unavailable) {
             exactUnavailable = true;
-            LegacyLog.warnOnce("legacy model location " + LegacyModelLocations.class.getName(), "Retromod could not keep"
+            LegacyLog.warnOnce("legacy model location " + LegacyModelLocations.class.getName(), "Backmod could not keep"
                     + " old model locations in their namespace:path#variant form (" + unavailable + "), so they print"
                     + " with " + MARKER + " in place of #.");
             return null;

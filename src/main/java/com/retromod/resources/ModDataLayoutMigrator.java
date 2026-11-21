@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 /** Copies a mod's data to the folders a newer game reads it from. */
 public final class ModDataLayoutMigrator implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataLayout");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataLayout");
 
     /** The first host that reads mod data from {@code data/} instead of {@code assets/}. */
     static final String FIRST_DATA_FOLDER_HOST = "1.13";

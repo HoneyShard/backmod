@@ -45,6 +45,6 @@ public final class LegacyNamedLootTable extends SingleEntryContainerBase {
     @Override
     public MapCodec<? extends SingleEntryContainerBase> codec() {
         throw new UnsupportedOperationException("The loot table reference to " + table + " was built by name in code"
-                + " by a mod built before 26.3, so Retromod can roll it but cannot write it to data.");
+                + " by a mod built before 26.3, so Backmod can roll it but cannot write it to data.");
     }
 }

@@ -90,7 +90,7 @@ import java.util.function.Function;
  */
 public final class BridgeMethodSynthesizer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-BridgeSynth");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-BridgeSynth");
 
     /**
      * Function the synthesizer queries to find method renames. The function

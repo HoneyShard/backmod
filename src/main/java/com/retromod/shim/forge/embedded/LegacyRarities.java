@@ -40,7 +40,7 @@ public final class LegacyRarities {
                     + sameColor + ", the vanilla rarity of its color, or the first one when no color matches");
             return sameColor;
         } catch (ReflectiveOperationException | LinkageError e) {
-            throw new IllegalStateException("Retromod could not find the rarity " + name, e);
+            throw new IllegalStateException("Backmod could not find the rarity " + name, e);
         }
     }
 

@@ -36,7 +36,7 @@ public final class LegacyExplosionFinisher {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not finish an old explosion", failure);
+            throw new IllegalStateException("Backmod could not finish an old explosion", failure);
         }
     }
 
@@ -107,7 +107,7 @@ public final class LegacyExplosionFinisher {
         } catch (InvocationTargetException e) {
             throw rethrow(e.getCause());
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not collect an explosion drop", failure);
+            throw new IllegalStateException("Backmod could not collect an explosion drop", failure);
         }
     }
 

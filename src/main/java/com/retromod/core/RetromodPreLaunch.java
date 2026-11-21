@@ -37,7 +37,7 @@ import java.util.regex.*;
  */
 public class RetromodPreLaunch implements PreLaunchEntrypoint {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     
     private static final String PRIMARY_INPUT = "retromod-input";
     private static final String SECONDARY_INPUT = "mods/retromod-input";
@@ -69,7 +69,7 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
     
     @Override
     public void onPreLaunch() {
-        LOGGER.info("Starting Retromod {} on Fabric for Minecraft {}", RetromodVersion.RETROMOD_VERSION,
+        LOGGER.info("Starting Backmod {} on Fabric for Minecraft {}", RetromodVersion.RETROMOD_VERSION,
                 getMinecraftVersion());
         RetromodVersion.logPresenceBanner(LOGGER);
 
@@ -82,7 +82,7 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
         // ship one that cannot read Java 25 class files, so stop here instead of failing partway.
         String asmProblem = HostAsmSupport.problem(RetromodPreLaunch.class.getClassLoader(), getMinecraftVersion());
         if (asmProblem != null) {
-            LOGGER.error("{} Retromod translated no mods this launch. Fabric Loader 0.16.14 and Quilt Loader 0.29.0 "
+            LOGGER.error("{} Backmod translated no mods this launch. Fabric Loader 0.16.14 and Quilt Loader 0.29.0 "
                     + "ship ASM 9.8, which reads Java 25 class files.", asmProblem);
             return;
         }
@@ -187,11 +187,11 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
                 com.retromod.gui.RestartPrompt.markPending(totalTransformed);
             }
 
-            LOGGER.debug(RetromodLog.DETAIL, "Retromod finished its Fabric pre-launch work");
+            LOGGER.debug(RetromodLog.DETAIL, "Backmod finished its Fabric pre-launch work");
             
         } catch (Exception e) {
             // Nothing else reports this failure, so the log carries its type and stack trace.
-            LOGGER.error("Retromod pre-launch error: {}", e.toString(), e);
+            LOGGER.error("Backmod pre-launch error: {}", e.toString(), e);
         }
     }
     
@@ -523,14 +523,14 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
 
     private String inputFolderReadme() {
         return """
-            Retromod input folder
+            Backmod input folder
 
             Put old mod jars directly in this folder, then start Minecraft.
-            Retromod will update them and ask you to restart so Fabric can load
+            Backmod will update them and ask you to restart so Fabric can load
             the new jars.
 
             Updated jars go to mods/. Originals are kept in processed/.
-            Do not put new mods inside processed/, because Retromod skips it.
+            Do not put new mods inside processed/, because Backmod skips it.
 
             You can use either of these input folders:
               retromod-input/
@@ -551,25 +551,28 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
     
     private void createModsFolderGuide(Path modsFolder) {
         try {
-            Path guide = modsFolder.resolve("!RETROMOD-READ-ME-FIRST!.txt");
+            Path guide = modsFolder.resolve("!BACKMOD-READ-ME-FIRST!.txt");
+
+            // Remove the guide an older build wrote under the previous project name.
+            Files.deleteIfExists(modsFolder.resolve("!RETROMOD-READ-ME-FIRST!.txt"));
 
             // Refresh this file so installation instructions stay current.
             Files.writeString(guide, """
-                Retromod on Fabric
+                Backmod on Fabric
 
-                Keep Retromod and mods made for this Minecraft version here.
+                Keep Backmod and mods made for this Minecraft version here.
 
                 Put older mods directly in one of these folders instead:
                   ../retromod-input/
                   retromod-input/
 
-                Start Minecraft after adding them, then restart when Retromod asks.
-                Fabric scans mods before Retromod runs, so the updated jars can only
+                Start Minecraft after adding them, then restart when Backmod asks.
+                Fabric scans mods before Backmod runs, so the updated jars can only
                 load on the next launch.
 
-                Retromod keeps the originals in retromod-input/processed/.
+                Backmod keeps the originals in retromod-input/processed/.
 
-                Help: https://github.com/Bownlux/Retromod/issues
+                Help: https://github.com/HoneyShard/backmod/issues
                 """);
             
         } catch (Exception e) {
@@ -627,7 +630,7 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
 
                     if (isFabricApiJar(modJar)) {
                         if (!hostFabricApiLoaded) {
-                            LOGGER.warn("Keeping {} in {}. Retromod does not translate Fabric API itself. "
+                            LOGGER.warn("Keeping {} in {}. Backmod does not translate Fabric API itself. "
                                     + "Install Fabric API for Minecraft {} in mods/, then retry the other mods.",
                                     fileName, inputFolder.getFileName(), targetVersion);
                             continue;
@@ -636,7 +639,7 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
                         Files.move(modJar, processedFolder.resolve(fileName),
                                 StandardCopyOption.REPLACE_EXISTING);
                         LOGGER.info("Archived staged Fabric API {} in processed/. The host already loaded "
-                                + "its Fabric API, so Retromod did not create a duplicate copy.", fileName);
+                                + "its Fabric API, so Backmod did not create a duplicate copy.", fileName);
                         continue;
                     }
 
@@ -690,7 +693,7 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
                             transformedMods.add(fileName);
                             completed = true;
                         } else {
-                            LOGGER.warn("Retromod could not update {}", fileName);
+                            LOGGER.warn("Backmod could not update {}", fileName);
                         }
                     }
 
@@ -863,14 +866,14 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
     /** Explains which jars belong in the CurseForge export folder. */
     private void createCfExportReadme(Path folder) {
         writeReadmeIfMissing(folder, """
-            Retromod CurseForge export folder
+            Backmod CurseForge export folder
 
-            This folder is for Retromod and jars that are already ready for the
+            This folder is for Backmod and jars that are already ready for the
             current Minecraft version. CurseForge includes them as pack overrides.
 
             Put old, unconverted mods in retromod-input/ instead.
 
-            On Fabric, Retromod moves these jars into mods/ and asks for one restart.
+            On Fabric, Backmod moves these jars into mods/ and asks for one restart.
             Pack authors can load them in place with:
               -Dfabric.addMods=<game-directory>/mods/Retromod
             """);
@@ -950,11 +953,11 @@ public class RetromodPreLaunch implements PreLaunchEntrypoint {
     
     /** Logs the same restart request shown later in game. */
     private void showRestartMessage() {
-        LOGGER.info("Retromod updated {} mod(s). Restart Minecraft to load them:",
+        LOGGER.info("Backmod updated {} mod(s). Restart Minecraft to load them:",
             totalTransformed);
         for (String mod : transformedMods) {
             LOGGER.debug(RetromodLog.DETAIL, "  - {}", mod);
         }
-        LOGGER.info("Fabric scans mods before Retromod runs, so this one restart is expected.");
+        LOGGER.info("Fabric scans mods before Backmod runs, so this one restart is expected.");
     }
 }

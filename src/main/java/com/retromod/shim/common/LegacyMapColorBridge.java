@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 /** Bridges {@code MapColor.calculateRGBColor}, which 1.21.2 replaced with {@code calculateARGBColor}. */
 public final class LegacyMapColorBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacyMapColors";
     static final String MAP_COLOR = "net/minecraft/world/level/material/MapColor";

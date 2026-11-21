@@ -30,7 +30,7 @@ import java.util.zip.ZipInputStream;
 /** Lists a jar's manifest {@code MixinConfigs} in its neoforge.mods.toml for NeoForge hosts that read only the toml. */
 public final class TomlMixinConfigs {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     // Through 1.21.8 NeoForge ran on ModLauncher, whose Mixin plugin read the manifest attribute
     // beside FML's [[mixins]] list. 1.21.9 dropped ModLauncher, so only the toml is read from then on.
@@ -135,7 +135,7 @@ public final class TomlMixinConfigs {
         }
         if (added.length() == 0) return toml;
         String separator = toml.endsWith("\n") ? "" : "\n";
-        return toml + separator + "\n# Listed from the manifest's MixinConfigs by Retromod: NeoForge 1.21.9 and newer"
+        return toml + separator + "\n# Listed from the manifest's MixinConfigs by Backmod: NeoForge 1.21.9 and newer"
                 + " read mixin configs only here." + added;
     }
 

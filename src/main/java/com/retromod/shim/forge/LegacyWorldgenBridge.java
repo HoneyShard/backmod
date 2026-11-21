@@ -275,7 +275,7 @@ public final class LegacyWorldgenBridge {
         org.objectweb.asm.tree.MethodNode log = new org.objectweb.asm.tree.MethodNode();
         com.retromod.util.GeneratedLog.pushLogger(log);
         log.visitInsn(SWAP);
-        log.visitLdcInsn("[Retromod] Legacy worldgen: " + owner.replace('/', '.')
+        log.visitLdcInsn("[Backmod] Legacy worldgen: " + owner.replace('/', '.')
                 + " could not add its biomes to the overworld on this Minecraft version, so the overworld keeps"
                 + " vanilla's biomes");
         log.visitInsn(SWAP);

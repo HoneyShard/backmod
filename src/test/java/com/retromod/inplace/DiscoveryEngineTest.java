@@ -236,7 +236,7 @@ class DiscoveryEngineTest {
                 ForgeModMetadata.FORGE_TOML, DiscoveryEngine.ServeStyle.FOLDER, new Properties());
 
         assertEquals(List.of(boundLoader, boundLibrary), outcome.hide(),
-                "Forge refuses both at discovery, before Retromod could translate them");
+                "Forge refuses both at discovery, before Backmod could translate them");
         assertFalse(status(outcome).isHidden(open));
     }
 
@@ -389,7 +389,7 @@ class DiscoveryEngineTest {
         DiscoveryEngine.Outcome second = forge(game);
 
         InPlaceStatus status = status(second);
-        assertEquals(List.of(), status.pending(), "a failure waits for a new Retromod or file");
+        assertEquals(List.of(), status.pending(), "a failure waits for a new Backmod or file");
         assertEquals(1, status.failed().size());
         assertTrue(status.failed().get(0).hidden(),
                 "a refused original stays away from the loader so it cannot crash the game");
@@ -559,7 +559,7 @@ class DiscoveryEngineTest {
     }
 
     @Test
-    @DisplayName("jars Retromod already translated, including in-game picker output, are left alone")
+    @DisplayName("jars Backmod already translated, including in-game picker output, are left alone")
     void legacyTranslatedJarsAreLeftAlone() throws IOException {
         Path game = game();
         TestModJars.stampedForgeMod(game.resolve("mods/rewritten.jar"), "rewritten",
@@ -622,7 +622,7 @@ class DiscoveryEngineTest {
 
         assertEquals(List.of(), outcome.hide(), "a warning only; the jar is not held back");
         assertTrue(log.stream().anyMatch(line -> line.startsWith("warn: shared-retromod.jar was "
-                + "translated by Retromod for Minecraft 1.19.2")), log.toString());
+                + "translated by Backmod for Minecraft 1.19.2")), log.toString());
         assertTrue(log.stream().noneMatch(line -> line.contains("here-retromod.jar was")),
                 "a jar translated for this version is not mentioned");
     }
@@ -642,7 +642,7 @@ class DiscoveryEngineTest {
         assertEquals(List.of(copy), forge(game, client).hide(),
                 "its client-only methods are gone, so a client would fail on them later");
         assertTrue(log.stream().anyMatch(line -> line.startsWith("warn: server-retromod.jar was translated "
-                + "by Retromod on a dedicated server")), log.toString());
+                + "by Backmod on a dedicated server")), log.toString());
         assertEquals(List.of(), forge(game, server).hide());
         assertEquals(List.of(), forge(game).hide(), "a launch that does not know its side changes nothing");
     }
@@ -715,7 +715,7 @@ class DiscoveryEngineTest {
     }
 
     @Test
-    @DisplayName("an older plain Retromod jar in mods/ is kept out in both modes")
+    @DisplayName("an older plain Backmod jar in mods/ is kept out in both modes")
     void staleRetromodRuntimeIsHidden() throws IOException {
         Path game = game();
         Path stale = TestModJars.forgeMod(game.resolve("mods/retromod-1.3.4+1.20.1.jar"),
@@ -757,7 +757,7 @@ class DiscoveryEngineTest {
         DiscoveryEngine.Outcome outcome = forge(game, rewrite);
 
         assertEquals(List.of(refused), outcome.hide(),
-                "without this the loader stops before Retromod can rewrite the file");
+                "without this the loader stops before Backmod can rewrite the file");
         assertFalse(outcome.hide().contains(accepted));
     }
 

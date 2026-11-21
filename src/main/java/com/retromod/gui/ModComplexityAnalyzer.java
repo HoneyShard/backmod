@@ -19,7 +19,7 @@ import java.util.jar.*;
 /** Counts the parts of a mod jar that translation often has to rebuild, for the debug log and {@code aot --skip-risky}. */
 public class ModComplexityAnalyzer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Complexity");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Complexity");
 
     /** The score at which {@code aot --skip-risky} skips a mod. Nothing else acts on the score. */
     public static final int SKIP_SCORE = 60;

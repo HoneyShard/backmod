@@ -119,7 +119,7 @@ record PackFormat(int major, int minor) implements Comparable<PackFormat> {
         }
         if (formats == null) {
             throw new IllegalArgumentException("Unsupported Minecraft pack target: "
-                + minecraftVersion + ". Use a published Retromod host version.");
+                + minecraftVersion + ". Use a published Backmod host version.");
         }
         return formats;
     }

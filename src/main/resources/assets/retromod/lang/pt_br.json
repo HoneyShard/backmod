@@ -1,21 +1,21 @@
 {
-  "retromod.title_screen.button": "Retromod",
+  "retromod.title_screen.button": "Backmod",
   "retromod.title_screen.settings": "\u2699",
 
-  "retromod.main.title": "Retromod",
+  "retromod.main.title": "Backmod",
   "retromod.main.subtitle": "Escolha JARs de mods antigos para adaptar a esta vers\u00e3o do Minecraft",
   "retromod.main.add_mods": "Adicionar mods\u2026",
   "retromod.main.open_folder": "Abrir retromod-input/",
   "retromod.main.inplace_status": "%s do cache, %s ap\u00f3s reiniciar, %s com falha",
 
-  "retromod.screen.title": "Retromod - Gerenciador de mods",
+  "retromod.screen.title": "Backmod - Gerenciador de mods",
   "retromod.screen.add_mods": "Adicionar mods para transformar",
   "retromod.screen.full_aot": "Modo AOT completo (compila\u00e7\u00e3o mais lenta, jogo mais r\u00e1pido)",
   "retromod.screen.transform_complete": "Transforma\u00e7\u00e3o conclu\u00edda! Reinicie o Minecraft para aplicar as mudan\u00e7as.",
   "retromod.screen.no_mods": "Nenhum mod selecionado.",
   "retromod.screen.transforming": "Transformando: %s",
 
-  "retromod.settings.title": "Configura\u00e7\u00f5es do Retromod",
+  "retromod.settings.title": "Configura\u00e7\u00f5es do Backmod",
   "retromod.settings.done": "Pronto",
   "retromod.settings.add_mods": "Abrir pasta de mods",
   "retromod.settings.on": "\u00a7aATIVADO",
@@ -34,13 +34,13 @@
   "retromod.settings.next_launch": "Vale a partir da pr\u00f3xima inicializa\u00e7\u00e3o",
   "retromod.settings.status.verified": "\u00a7aVers\u00e3o verificada\u00a7r",
   "retromod.settings.status.modified": "\u00a7eVers\u00e3o modificada / n\u00e3o oficial\u00a7r",
-  "retromod.settings.status.impostor": "\u00a7cN\u00e3o \u00e9 o Retromod (manifesto n\u00e3o confere)\u00a7r",
+  "retromod.settings.status.impostor": "\u00a7cN\u00e3o \u00e9 o Backmod (manifesto n\u00e3o confere)\u00a7r",
   "retromod.settings.status.unknown": "\u00a77Autenticidade desconhecida\u00a7r",
 
   "retromod.restart.converted": "Mods transformados para esta vers\u00e3o do Minecraft: %s\nReinicie o Minecraft para carregar os mods transformados.\n\nClique em Sim para fechar o Minecraft e depois abra-o de novo pelo seu launcher.",
   "retromod.restart.cache": "Mods traduzidos para esta vers\u00e3o do Minecraft: %s\nReinicie o Minecraft para carregar os mods traduzidos. Seus arquivos em mods/ n\u00e3o foram alterados.\n\nClique em Sim para fechar o Minecraft e depois abra-o de novo pelo seu launcher.",
 
-  "retromod.filepicker.title": "Retromod: Selecione os JARs dos mods para transformar",
+  "retromod.filepicker.title": "Backmod: Selecione os JARs dos mods para transformar",
 
   "retromod.result.success": "Transformado",
   "retromod.result.skipped": "J\u00e1 compat\u00edvel",

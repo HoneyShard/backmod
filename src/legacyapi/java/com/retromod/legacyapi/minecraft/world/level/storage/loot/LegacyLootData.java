@@ -52,15 +52,15 @@ public final class LegacyLootData {
     public static void trigger(Object trigger, ServerPlayer player, Identifier id) {
         // The trigger's package moved in 26.1 and again in 26.2, so it is reached by name.
         Method method = TRIGGERS.get(trigger.getClass());
-        if (method == null) throw new IllegalStateException("Retromod found no trigger(player, table) on " + trigger);
+        if (method == null) throw new IllegalStateException("Backmod found no trigger(player, table) on " + trigger);
         try {
             method.invoke(trigger, player, key(id));
         } catch (InvocationTargetException e) {
             if (e.getCause() instanceof RuntimeException runtime) throw runtime;
             if (e.getCause() instanceof Error error) throw error;
-            throw new IllegalStateException("Retromod could not run " + method, e.getCause());
+            throw new IllegalStateException("Backmod could not run " + method, e.getCause());
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not run " + method, e);
+            throw new IllegalStateException("Backmod could not run " + method, e);
         }
     }
 

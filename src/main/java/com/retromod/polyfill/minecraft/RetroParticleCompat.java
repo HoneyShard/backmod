@@ -41,7 +41,7 @@ public final class RetroParticleCompat {
             return Class.forName("net.minecraft.client.particle.ParticleRenderType")
                     .getConstructor(String.class).newInstance(name);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not create the particle render type "
+            throw new IllegalStateException("Backmod could not create the particle render type "
                     + name + " for a pre-26.1 mod: " + e, e);
         }
     }

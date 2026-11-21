@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_21_2InteractionResultBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String INTERACTION_RESULT = "net/minecraft/class_1269";
 

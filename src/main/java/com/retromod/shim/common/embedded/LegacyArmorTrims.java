@@ -506,7 +506,7 @@ public final class LegacyArmorTrims {
             case "hashCode":
                 return System.identityHashCode(proxy);
             case "toString":
-                return "Retromod armor trim atlas definition";
+                return "Backmod armor trim atlas definition";
             default:
                 throw new UnsupportedOperationException(method.getName());
         }

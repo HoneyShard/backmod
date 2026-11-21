@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 /** Keeps data that {@link ModDataLayoutMigrator} copied from stopping a world from loading. */
 final class DataLoadGate implements ModResourceConverter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-DataLayout");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-DataLayout");
     private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
     /** The first host that loads recipes, loot tables and advancements with the registries. */

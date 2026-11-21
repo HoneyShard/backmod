@@ -43,7 +43,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public final class ClassShapeMatcher {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-PatternMatcher");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-PatternMatcher");
 
     private final List<ClassPattern> patterns;
 

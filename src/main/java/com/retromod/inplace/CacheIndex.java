@@ -86,7 +86,7 @@ final class CacheIndex {
 
     static CacheIndex read(Path file) throws IOException {
         String json = JsonSecurity.readUtf8(file, MAX_INDEX_BYTES,
-                JsonSecurity.DEFAULT_MAX_DEPTH, "Retromod cache index");
+                JsonSecurity.DEFAULT_MAX_DEPTH, "Backmod cache index");
         JsonElement parsed = JsonParser.parseString(json);
         if (!parsed.isJsonObject()) throw new IOException("Cache index is not a JSON object");
         JsonObject root = parsed.getAsJsonObject();

@@ -141,7 +141,7 @@ public final class VerificationReport {
      * or WARN-level logging. Output is stable across runs so it can be diffed.
      */
     public void writeTo(Appendable out) throws IOException {
-        out.append("=== Retromod verification - ").append(modId).append(" ===\n");
+        out.append("=== Backmod verification - ").append(modId).append(" ===\n");
         out.append("Target MC: ").append(targetMcVersion).append('\n');
         out.append("Classes scanned: ").append(Integer.toString(classesScanned)).append('\n');
         out.append("Unresolved references: ").append(Integer.toString(totalUnresolved())).append('\n');
@@ -161,7 +161,7 @@ public final class VerificationReport {
 
         if (bridgesSynthesized > 0) {
             out.append("BRIDGES SYNTHESIZED: ").append(Integer.toString(bridgesSynthesized)).append('\n');
-            out.append("  (Retromod added bridge methods for mod classes overriding renamed MC methods)\n");
+            out.append("  (Backmod added bridge methods for mod classes overriding renamed MC methods)\n");
             out.append('\n');
         }
     }

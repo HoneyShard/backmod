@@ -46,7 +46,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_19TextBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String TRANSLATABLE = "net/minecraft/class_2588";
     private static final String LITERAL = "net/minecraft/class_2585";

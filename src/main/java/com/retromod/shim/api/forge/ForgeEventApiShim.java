@@ -30,7 +30,7 @@ import java.util.Map;
  */
 public class ForgeEventApiShim implements MinecraftVersionedApiShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ForgeEventApiShim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ForgeEventApiShim");
     
     @Override
     public String getShimName() {

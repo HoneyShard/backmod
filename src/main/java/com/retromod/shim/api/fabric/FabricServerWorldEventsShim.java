@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricServerWorldEventsShim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String GEN = "com/retromod/generated/legacylifecycle/";
     private static final String HOLDER = GEN + "ServerWorldEvents";
@@ -51,7 +51,7 @@ public class FabricServerWorldEventsShim implements AuxiliaryVersionShim {
         // SAM's Mojang-named ServerLevel won't resolve on an intermediary runtime.
         if (!com.retromod.core.RetromodVersion.isUnobfuscatedTarget(
                 com.retromod.core.RetromodVersion.TARGET_MC_VERSION)) {
-            LOGGER.debug("[Retromod] ServerWorldEvents bridge skipped (host {} < 26.1 - old API still present)",
+            LOGGER.debug("[Backmod] ServerWorldEvents bridge skipped (host {} < 26.1 - old API still present)",
                     com.retromod.core.RetromodVersion.TARGET_MC_VERSION);
             return;
         }

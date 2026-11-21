@@ -54,10 +54,10 @@ public final class NeoForgeBootLocator implements IModFileCandidateLocator {
             Optional<?> added = pipeline.addPath(runtime, ModFileDiscoveryAttributes.DEFAULT,
                     IncompatibleFileReporting.ERROR);
             if (added.isEmpty()) {
-                log.warn("NeoForge did not accept the Retromod runtime at " + runtime
+                log.warn("NeoForge did not accept the Backmod runtime at " + runtime
                         + ". The loading screen or log lists the reason.");
             } else {
-                log.info("Loading Retromod " + prepared.get().source().version() + " from "
+                log.info("Loading Backmod " + prepared.get().source().version() + " from "
                         + BootCore.displayPath(gameDir, runtime));
                 // In-place mode runs only once the runtime is in.
                 applyInPlace(context, pipeline, prepared.get(), gameDir, modsDir, hostMinecraft,
@@ -65,8 +65,8 @@ public final class NeoForgeBootLocator implements IModFileCandidateLocator {
             }
         } catch (Throwable failure) {
             // A bootstrap failure must never stop the loader. The game starts without Retromod.
-            log.error("Retromod could not start: " + LoaderHooks.unwrap(failure)
-                    + ". Retromod is inactive for this launch. Please report this with "
+            log.error("Backmod could not start: " + LoaderHooks.unwrap(failure)
+                    + ". Backmod is inactive for this launch. Please report this with "
                     + "logs/latest.log." + System.lineSeparator() + LoaderHooks.describe(failure));
         }
     }
@@ -97,11 +97,11 @@ public final class NeoForgeBootLocator implements IModFileCandidateLocator {
                 Optional<?> added = pipeline.addPath(copy, ModFileDiscoveryAttributes.DEFAULT,
                         IncompatibleFileReporting.WARN_ALWAYS);
                 if (added.isEmpty()) {
-                    log.warn("NeoForge did not accept Retromod's translation " + copy
+                    log.warn("NeoForge did not accept Backmod's translation " + copy
                             + ". The loading screen or log lists the reason.");
                 }
             } catch (Throwable failure) {
-                log.error("Could not load Retromod's translation " + copy + ": "
+                log.error("Could not load Backmod's translation " + copy + ": "
                         + LoaderHooks.unwrap(failure));
             }
         }
@@ -122,8 +122,8 @@ public final class NeoForgeBootLocator implements IModFileCandidateLocator {
                 addLocated.invoke(context, jar.path());
             }
         } catch (Throwable failure) {
-            log.warn("Could not keep extra Retromod files out of the mod list: "
-                    + LoaderHooks.unwrap(failure) + ". Delete the older Retromod files from "
+            log.warn("Could not keep extra Backmod files out of the mod list: "
+                    + LoaderHooks.unwrap(failure) + ". Delete the older Backmod files from "
                     + "mods/.");
         }
     }

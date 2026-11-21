@@ -47,7 +47,7 @@ final class LegacySetupGate {
             return false;
         }
         if (commonSetupDone()) return true;
-        if (loadingValid()) LegacyLog.warn("Forge's common setup did not finish in 10 minutes, so Retromod did not ask old mods for"
+        if (loadingValid()) LegacyLog.warn("Forge's common setup did not finish in 10 minutes, so Backmod did not ask old mods for"
                 + " their extra models during this resource reload");
         return false;
     }

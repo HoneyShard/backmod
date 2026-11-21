@@ -41,7 +41,7 @@ import java.util.List;
  */
 public final class Pre1_20_5LootTableEventsBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String LOOT_DATA_MANAGER = "net/minecraft/class_60";
     static final String LOOT_DATA_STAND_IN = "com/retromod/generated/LegacyLootDataManager";
@@ -274,7 +274,7 @@ public final class Pre1_20_5LootTableEventsBridge {
         // One warning in the game log, so other threads logging while data packs load cannot
         // split it. The callback's class names the mod it came from.
         GeneratedLog.pushLogger(call);
-        call.visitLdcInsn("[Retromod] The pre-1.20.5 loot table " + callback.sam() + " callback ");
+        call.visitLdcInsn("[Backmod] The pre-1.20.5 loot table " + callback.sam() + " callback ");
         call.visitVarInsn(Opcodes.ALOAD, 0);
         call.visitFieldInsn(Opcodes.GETFIELD, adapter, "delegate", delegateDesc);
         call.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);

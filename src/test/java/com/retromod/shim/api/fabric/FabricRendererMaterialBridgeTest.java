@@ -59,7 +59,7 @@ class FabricRendererMaterialBridgeTest {
         });
 
         // The test logger puts its thread, level, and logger name before each message.
-        List<String> lines = err.lines().filter(line -> line.contains("[Retromod]")).toList();
+        List<String> lines = err.lines().filter(line -> line.contains("[Backmod]")).toList();
         assertEquals(1, lines.size(), "a mod that asks for the renderer gets one warning: " + err);
         assertTrue(lines.get(0).contains("WARN") && lines.get(0).contains("RendererAccess"),
                 "the warning says which API the mod used: " + lines.get(0));

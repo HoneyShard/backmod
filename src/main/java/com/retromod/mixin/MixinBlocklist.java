@@ -49,7 +49,7 @@ import java.util.Set;
  */
 public final class MixinBlocklist {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-MixinBlocklist");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-MixinBlocklist");
 
     private static final String BUNDLED_RESOURCE = "/retromod/mixin-blocklist.json";
     private static final Path USER_FILE = Path.of("config/retromod/mixin-blocklist.json");

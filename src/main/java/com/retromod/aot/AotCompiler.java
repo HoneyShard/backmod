@@ -1412,7 +1412,7 @@ public class AotCompiler {
             Set<String> obfuscatedClasses) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("# Retromod AOT Compilation Metadata\n");
+        sb.append("# Backmod AOT Compilation Metadata\n");
         sb.append("aot_version=").append(AOT_VERSION).append("\n");
         sb.append("retromod_self_hash=").append(currentSelfHash()).append("\n");
         sb.append("source_mc_version=")

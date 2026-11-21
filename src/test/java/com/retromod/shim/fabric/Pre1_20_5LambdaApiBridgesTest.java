@@ -425,7 +425,7 @@ class Pre1_20_5LambdaApiBridgesTest {
 
         String report = captureErr(() -> fire.invoke(readsDataManager, null, null));
 
-        assertTrue(report.contains("[Retromod]") && report.contains("NullPointerException"),
+        assertTrue(report.contains("[Backmod]") && report.contains("NullPointerException"),
                 "the skipped callback must be reported with its cause: " + report);
     }
 
@@ -469,7 +469,7 @@ class Pre1_20_5LambdaApiBridgesTest {
         assertSame(resourceManager, received.get(0)[0], "the resource manager is passed through");
         assertNull(received.get(0)[1], "the removed LootDataManager has no current value");
         // The test logger puts its thread, level, and logger name before each message.
-        List<String> lines = report.lines().filter(line -> line.contains("[Retromod]")).toList();
+        List<String> lines = report.lines().filter(line -> line.contains("[Backmod]")).toList();
         assertEquals(2, lines.size(),
                 "each broken callback is reported once, and one must not hide another: " + report);
         assertTrue(lines.get(0).contains("class_5270") && lines.get(1).contains("class_60"), report);

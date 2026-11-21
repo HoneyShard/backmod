@@ -41,7 +41,7 @@ public final class LegacyAttachListeners {
         if (kind == null) {
             String name = holder == null ? "no class" : holder.getName();
             LegacyLog.warnOnce("attach listener " + name, "The capability listener " + listener.getClass().getName()
-                    + " asks for " + name + ", which Forge never attaches capabilities to, so Retromod did not add it");
+                    + " asks for " + name + ", which Forge never attaches capabilities to, so Backmod did not add it");
             return;
         }
         EventBus<?> bus = busOf(kind);
@@ -98,7 +98,7 @@ public final class LegacyAttachListeners {
             Field field = kind.getField("BUS");
             return field.get(null) instanceof EventBus<?> bus ? bus : null;
         } catch (ReflectiveOperationException | LinkageError unreadable) {
-            LegacyLog.warnOnce("attach bus " + kind.getName(), "Retromod could not read the event bus of "
+            LegacyLog.warnOnce("attach bus " + kind.getName(), "Backmod could not read the event bus of "
                     + kind.getName() + ", so old capability listeners for it were not added: " + unreadable);
             return null;
         }

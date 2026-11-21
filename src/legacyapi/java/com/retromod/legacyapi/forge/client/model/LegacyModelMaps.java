@@ -67,7 +67,7 @@ public final class LegacyModelMaps {
     public static Map<Identifier, BakedModel> getModels(ModelEvent.BakingCompleted event) {
         ModelBakery.BakingResult result = latest();
         if (result == null) {
-            LegacyLog.warnOnce("legacy baking completed " + LegacyModelMaps.class.getName(), "Retromod saw no model"
+            LegacyLog.warnOnce("legacy baking completed " + LegacyModelMaps.class.getName(), "Backmod saw no model"
                     + " bake before BakingCompleted, so an old mod read an empty model map.");
             return Collections.emptyMap();
         }
@@ -284,7 +284,7 @@ public final class LegacyModelMaps {
             }
             if (named == null || model == null || named.missing()) {
                 LegacyLog.warnOnce("legacy model put " + key, "An old mod put a model under " + key + ", which names no"
-                        + " block state, item or registered model, so Retromod skipped it.");
+                        + " block state, item or registered model, so Backmod skipped it.");
                 return null;
             }
             BakedModel previous = get(key);
@@ -297,7 +297,7 @@ public final class LegacyModelMaps {
             } catch (UnsupportedOperationException readOnly) {
                 // Minecraft hands a bake of zero or one models over as an unchangeable map.
                 LegacyLog.warnOnce("legacy model put read-only " + LegacyModelMaps.class.getName(), "An old mod replaced"
-                        + " the model " + key + ", but Minecraft's baked model map could not be changed, so Retromod"
+                        + " the model " + key + ", but Minecraft's baked model map could not be changed, so Backmod"
                         + " skipped it.");
                 return previous;
             }
@@ -307,7 +307,7 @@ public final class LegacyModelMaps {
         @Override
         public BakedModel remove(Object key) {
             LegacyLog.warnOnce("legacy model remove " + LegacyModelMaps.class.getName(), "An old mod removed the model "
-                    + key + "; Minecraft 26.2 needs a model for every block state and item, so Retromod kept it.");
+                    + key + "; Minecraft 26.2 needs a model for every block state and item, so Backmod kept it.");
             return null;
         }
 

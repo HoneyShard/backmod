@@ -307,7 +307,7 @@ public final class Forge1122LifecycleSynthetics {
         // [logger, "Mod <modid> failed in its 1.12.2 handler <name>...", t]; the loop goes on.
         GeneratedLog.pushLogger(o);
         o.visitInsn(SWAP);
-        o.visitLdcInsn("[Retromod] Mod ");
+        o.visitLdcInsn("[Backmod] Mod ");
         o.visitVarInsn(ALOAD, 1);
         o.visitMethodInsn(INVOKESTATIC, "java/lang/String", "valueOf", "(Ljava/lang/Object;)Ljava/lang/String;", false);
         o.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "concat", "(Ljava/lang/String;)Ljava/lang/String;", false);

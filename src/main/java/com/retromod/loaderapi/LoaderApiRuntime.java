@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** The loader API runtime switch and the one hook every transform path calls first. */
 public final class LoaderApiRuntime {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
 
     /** Manifest attribute naming the runtime rows a Fabric jar was translated with. */
     public static final String MANIFEST_ATTRIBUTE = "Retromod-Loader-Api-Runtime";

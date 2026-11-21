@@ -40,7 +40,7 @@ public final class LegacyPoseGui {
             GRAPHICS.put(pose, graphics);
             return pose;
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not give an old GUI handler its pose stack", e);
+            throw new IllegalStateException("Backmod could not give an old GUI handler its pose stack", e);
         }
     }
 

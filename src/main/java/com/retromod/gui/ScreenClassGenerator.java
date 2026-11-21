@@ -49,7 +49,7 @@ import java.util.function.Consumer;
  */
 public final class ScreenClassGenerator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final String GEN_CLASS_NAME = "com.retromod.gui.RetromodGenScreen";
     private static final String GEN_CLASS_INTERNAL = "com/retromod/gui/RetromodGenScreen";
 
@@ -161,7 +161,7 @@ public final class ScreenClassGenerator {
             callback.accept(screen, paths);
             return true;
         } catch (Throwable t) {
-            LOGGER.warn("Retromod could not take the dropped files: {}", t.getMessage());
+            LOGGER.warn("Backmod could not take the dropped files: {}", t.getMessage());
             return false;
         }
     }
@@ -184,7 +184,7 @@ public final class ScreenClassGenerator {
                 "net.minecraft.class_2561"
             );
             if (screenBase == null || textClass == null) {
-                LOGGER.warn("Retromod cannot open its screen because Minecraft's Screen or "
+                LOGGER.warn("Backmod cannot open its screen because Minecraft's Screen or "
                         + "Component class was not found");
                 return null;
             }
@@ -200,7 +200,7 @@ public final class ScreenClassGenerator {
                 LOGGER.debug("Generated {} as a subclass of {}",
                         GEN_CLASS_NAME, screenBase.getName());
             } catch (Throwable e) {
-                LOGGER.warn("Could not create the Retromod screen class: {}",
+                LOGGER.warn("Could not create the Backmod screen class: {}",
                         e.getMessage(), e);
                 return null;
             }
@@ -214,7 +214,7 @@ public final class ScreenClassGenerator {
         String init = noArgMethodName(screenBase, "init", "method_25426");
         String onClose = noArgMethodName(screenBase, "onClose", "method_25419");
         if (init == null || onClose == null) {
-            LOGGER.warn("Retromod cannot open its screen because {} has no init() or onClose() "
+            LOGGER.warn("Backmod cannot open its screen because {} has no init() or onClose() "
                     + "it can override. Put old mods in retromod-input/ instead.",
                     screenBase.getName());
             return null;

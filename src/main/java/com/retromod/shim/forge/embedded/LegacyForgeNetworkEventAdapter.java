@@ -21,7 +21,7 @@ public final class LegacyForgeNetworkEventAdapter {
                 Throwable cause = e instanceof InvocationTargetException && e.getCause() != null
                         ? e.getCause() : e;
                 throw new IllegalStateException(
-                        "Retromod could not read Forge's custom-payload context", cause);
+                        "Backmod could not read Forge's custom-payload context", cause);
             }
         };
     }

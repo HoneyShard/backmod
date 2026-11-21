@@ -32,7 +32,7 @@ import java.util.function.Consumer;
 /** Registers one offline transform's redirects in the order a running game registers them. */
 public final class OfflineRegistration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Shim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Shim");
 
     private static final String SERVICES = "META-INF/services/" + VersionShim.class.getName();
 

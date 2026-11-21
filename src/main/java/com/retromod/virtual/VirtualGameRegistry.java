@@ -55,28 +55,28 @@ public class VirtualGameRegistry {
     }
     
     public static void registerWorldGenerator(Object generator, int weight) {
-        System.out.println("Retromod: World generator - modern MC uses data-driven world gen");
+        System.out.println("Backmod: World generator - modern MC uses data-driven world gen");
     }
     
     public static void addRecipe(Object output, Object... params) {
-        System.out.println("Retromod: Recipe registration - modern MC uses data-driven recipes");
+        System.out.println("Backmod: Recipe registration - modern MC uses data-driven recipes");
     }
     
     public static void addSmelting(Object input, Object output, float xp) {
-        System.out.println("Retromod: Smelting recipe - modern MC uses data-driven recipes");
+        System.out.println("Backmod: Smelting recipe - modern MC uses data-driven recipes");
     }
     
     public static void addShapedRecipe(Object output, Object... params) {
-        System.out.println("Retromod: Shaped recipe - modern MC uses data-driven recipes");
+        System.out.println("Backmod: Shaped recipe - modern MC uses data-driven recipes");
     }
     
     public static void addShapelessRecipe(Object output, Object... params) {
-        System.out.println("Retromod: Shapeless recipe - modern MC uses data-driven recipes");
+        System.out.println("Backmod: Shapeless recipe - modern MC uses data-driven recipes");
     }
     
     private static void bridgeToModernRegistry(String type, String name, Object object) {
         // Will be connected at runtime via reflection
-        System.out.println("Retromod: Queued " + type + " registration: " + name);
+        System.out.println("Backmod: Queued " + type + " registration: " + name);
     }
     
     public static Object findBlock(String modId, String name) {

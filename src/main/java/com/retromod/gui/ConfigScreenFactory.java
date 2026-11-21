@@ -32,7 +32,7 @@ import java.util.Properties;
 /** In-game settings screen for Retromod: a grid of ON/OFF toggle rows and a Done button. */
 public final class ConfigScreenFactory {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final Path CONFIG_PATH = Path.of("config/retromod/config.json");
     private static final long MAX_CONFIG_BYTES = 1024L * 1024;
 
@@ -73,7 +73,7 @@ public final class ConfigScreenFactory {
     /** Opens the in-game settings screen and returns to {@code parentScreen} on close. */
     public static void open(Object parentScreen) {
         if (!resolveClasses()) {
-            LOGGER.warn("Cannot open Retromod settings because the required Minecraft GUI "
+            LOGGER.warn("Cannot open Backmod settings because the required Minecraft GUI "
                     + "classes are unavailable");
             return;
         }
@@ -348,7 +348,7 @@ public final class ConfigScreenFactory {
             Files.createDirectories(folder);
             String existing = Files.exists(configPath)
                     ? JsonSecurity.readUtf8(configPath, MAX_CONFIG_BYTES,
-                            JsonSecurity.DEFAULT_MAX_DEPTH, "Retromod config")
+                            JsonSecurity.DEFAULT_MAX_DEPTH, "Backmod config")
                     : "";
             String merged = mergeConfigJson(existing, Map.of(key, value));
             // Write a temporary file first, so a failed write never leaves half a config.
@@ -365,7 +365,7 @@ public final class ConfigScreenFactory {
                 Files.deleteIfExists(temp);
             }
         } catch (Exception e) {
-            LOGGER.warn("Retromod could not save {} to {}: {}. Check that the folder is writable, "
+            LOGGER.warn("Backmod could not save {} to {}: {}. Check that the folder is writable, "
                     + "or set the value in the file by hand.", key, configPath, e.getMessage());
         }
     }
@@ -375,7 +375,7 @@ public final class ConfigScreenFactory {
         if (existing != null && !existing.isBlank()) {
             try {
                 JsonSecurity.validate(existing, MAX_CONFIG_BYTES,
-                        JsonSecurity.DEFAULT_MAX_DEPTH, "Retromod config");
+                        JsonSecurity.DEFAULT_MAX_DEPTH, "Backmod config");
                 var parsed = JsonParser.parseString(existing);
                 if (parsed.isJsonObject()) root = parsed.getAsJsonObject();
             } catch (Exception ignored) {
@@ -384,7 +384,7 @@ public final class ConfigScreenFactory {
         }
         if (!root.has("_comment")) {
             root.addProperty("_comment",
-                    "Retromod Configuration - https://github.com/Bownlux/Retromod");
+                    "Backmod Configuration - https://github.com/HoneyShard/backmod");
         }
         for (var entry : config.entrySet()) {
             root.addProperty(entry.getKey(), entry.getValue());

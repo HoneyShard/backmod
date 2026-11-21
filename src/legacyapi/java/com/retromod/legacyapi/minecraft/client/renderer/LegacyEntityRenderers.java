@@ -89,7 +89,7 @@ public final class LegacyEntityRenderers {
             // Minecraft 1.20.1 stopped the game here; a renderer that reaches an API Minecraft removed now leaves its entity undrawn.
             BROKEN.add(renderer);
             LegacyLog.warnOnce("entity renderer " + renderer.getClass().getName(), "The old entity renderer " + renderer.getClass().getName()
-                    + " threw " + failure + ", so Retromod stops drawing it until the next resource reload");
+                    + " threw " + failure + ", so Backmod stops drawing it until the next resource reload");
         } finally {
             // What a renderer that threw wrote is dropped, so a half-drawn entity never reaches the frame.
             geometry.finish(drawn);

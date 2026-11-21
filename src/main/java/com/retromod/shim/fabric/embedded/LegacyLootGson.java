@@ -92,7 +92,7 @@ public final class LegacyLootGson implements InvocationHandler {
             }
             return builder;
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build the pre-1.20.5 loot table Gson "
+            throw new IllegalStateException("Backmod could not build the pre-1.20.5 loot table Gson "
                     + "serializers on this Minecraft version: " + e, e);
         }
     }
@@ -109,7 +109,7 @@ public final class LegacyLootGson implements InvocationHandler {
             case "equals":
                 return proxy == args[0];
             case "toString":
-                return "Retromod loot codec adapter for " + codec;
+                return "Backmod loot codec adapter for " + codec;
             default:
                 throw new UnsupportedOperationException(method.getName());
         }

@@ -21,7 +21,7 @@ public final class RetroRenderTargets {
         // An off-screen target can no longer be bound. Fail the way the removed method did.
         throw new NoSuchMethodError("RenderTarget.bindWrite(boolean) on " + target.getClass().getName()
                 + ": since Minecraft 1.21.5 a draw reaches an off-screen render target only through"
-                + " a render pass. Retromod has no replacement for this call yet. Report it with the"
+                + " a render pass. Backmod has no replacement for this call yet. Report it with the"
                 + " mod and its version.");
     }
 

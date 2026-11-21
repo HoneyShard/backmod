@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 /** Logging for bootstrap code, which may only reference the JDK. */
 public final class BootLog {
 
-    private static final String LOGGER_NAME = "Retromod Boot";
+    private static final String LOGGER_NAME = "Backmod Boot";
 
     private final Object logger;
     private final Method info;

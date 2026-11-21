@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricNetworkingV0Bridge implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String OLD_PACKET_CONTEXT  = "net/fabricmc/fabric/api/network/PacketContext";
     private static final String OLD_PACKET_CONSUMER = "net/fabricmc/fabric/api/network/PacketConsumer";
@@ -246,13 +246,13 @@ public class FabricNetworkingV0Bridge implements AuxiliaryVersionShim {
         m.visitFieldInsn(Opcodes.PUTSTATIC, owner, "warned", "Z");
         // The channel id is local 1; String.valueOf keeps the message free of Minecraft types.
         GeneratedLog.pushLogger(m);
-        m.visitLdcInsn("[Retromod] An old mod registered the Fabric networking v0 channel ");
+        m.visitLdcInsn("[Backmod] An old mod registered the Fabric networking v0 channel ");
         m.visitVarInsn(Opcodes.ALOAD, 1);
         m.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/String", "valueOf",
                 "(Ljava/lang/Object;)Ljava/lang/String;", false);
         m.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/String", "concat",
                 "(Ljava/lang/String;)Ljava/lang/String;", false);
-        m.visitLdcInsn(". Retromod has no working replacement for that API, so packets on this channel are ignored.");
+        m.visitLdcInsn(". Backmod has no working replacement for that API, so packets on this channel are ignored.");
         m.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/String", "concat",
                 "(Ljava/lang/String;)Ljava/lang/String;", false);
         GeneratedLog.warn(m);

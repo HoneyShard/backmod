@@ -16,7 +16,7 @@ import java.awt.GraphicsEnvironment;
  */
 public class EnvironmentDetector {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Env");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Env");
 
     private static Boolean isClient = null;
     private static Boolean isHeadless = null;

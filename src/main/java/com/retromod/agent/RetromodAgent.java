@@ -17,18 +17,18 @@ public final class RetromodAgent {
 
     /** Attached at JVM startup via -javaagent. */
     public static void premain(String agentArgs, Instrumentation inst) {
-        System.out.println("[Retromod Agent] Installing the runtime class transformer");
+        System.out.println("[Backmod Agent] Installing the runtime class transformer");
 
         instrumentation = inst;
         inst.addTransformer(RetromodTransformer.getInstance(), true);
         System.setProperty("retromod.agent.class", RetromodAgent.class.getName());
 
-        System.out.println("[Retromod Agent] The runtime class transformer is ready");
+        System.out.println("[Backmod Agent] The runtime class transformer is ready");
     }
 
     /** Attached to a running JVM via the Attach API. */
     public static void agentmain(String agentArgs, Instrumentation inst) {
-        System.out.println("[Retromod Agent] Attaching the runtime class transformer");
+        System.out.println("[Backmod Agent] Attaching the runtime class transformer");
 
         instrumentation = inst;
         inst.addTransformer(RetromodTransformer.getInstance(), true);
@@ -36,7 +36,7 @@ public final class RetromodAgent {
         retransformLoadedClasses(inst);
         System.setProperty("retromod.agent.class", RetromodAgent.class.getName());
 
-        System.out.println("[Retromod Agent] The runtime class transformer is ready");
+        System.out.println("[Backmod Agent] The runtime class transformer is ready");
     }
 
     private static void retransformLoadedClasses(Instrumentation inst) {
@@ -46,7 +46,7 @@ public final class RetromodAgent {
                 try {
                     inst.retransformClasses(clazz);
                 } catch (Exception e) {
-                    System.err.println("[Retromod Agent] Could not update the loaded class "
+                    System.err.println("[Backmod Agent] Could not update the loaded class "
                             + name + ": " + e.getMessage());
                 }
             }

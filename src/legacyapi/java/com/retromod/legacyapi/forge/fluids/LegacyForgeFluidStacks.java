@@ -66,7 +66,7 @@ public final class LegacyForgeFluidStacks {
         Object result = invoke(host.encode, host.codec, stack, ops, new CompoundTag());
         Optional<?> written = (Optional<?>) invoke(host.result, result);
         if (written.isEmpty() || !(written.get() instanceof CompoundTag saved) || saved.get("id") == null || saved.get("amount") == null) {
-            throw new IllegalStateException("Retromod could not save the fluid stack " + stack + ": " + result);
+            throw new IllegalStateException("Backmod could not save the fluid stack " + stack + ": " + result);
         }
         tag.put(FLUID_NAME, saved.get("id"));
         tag.put(AMOUNT, saved.get("amount"));
@@ -127,7 +127,7 @@ public final class LegacyForgeFluidStacks {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException(cause);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not call " + method + " on a fluid stack", e);
+            throw new IllegalStateException("Backmod could not call " + method + " on a fluid stack", e);
         }
     }
 
@@ -165,7 +165,7 @@ public final class LegacyForgeFluidStacks {
                 parse = Class.forName("com.mojang.serialization.Decoder", true, loader).getMethod("parse", ops, Object.class);
                 result = Class.forName("com.mojang.serialization.DataResult", true, loader).getMethod("result");
             } catch (ReflectiveOperationException e) {
-                throw new IllegalStateException("Retromod could not find NeoForge's FluidStack members", e);
+                throw new IllegalStateException("Backmod could not find NeoForge's FluidStack members", e);
             }
         }
     }

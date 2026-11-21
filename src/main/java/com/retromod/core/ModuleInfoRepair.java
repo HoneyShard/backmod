@@ -27,7 +27,7 @@ import java.util.zip.ZipOutputStream;
 /** Removes a root module-info.class that names packages its jar lacks, which strict module loaders refuse. */
 public final class ModuleInfoRepair {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final String MODULE_INFO = "module-info.class";
 
     private ModuleInfoRepair() {}

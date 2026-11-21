@@ -123,7 +123,7 @@ public class Retromod implements ModInitializer {
     public void onInitialize() {
         instance = this;
         RetromodVersion.logPresenceBanner(LOGGER);
-        LOGGER.debug(RetromodLog.DETAIL, "Starting Retromod on Fabric for Minecraft {}", TARGET_MC_VERSION);
+        LOGGER.debug(RetromodLog.DETAIL, "Starting Backmod on Fabric for Minecraft {}", TARGET_MC_VERSION);
 
         EnvironmentDetector.logEnvironment();
 
@@ -140,7 +140,7 @@ public class Retromod implements ModInitializer {
             }
             ensureRetromodFolders(gameDir);
         } catch (Exception e) {
-            LOGGER.warn("Could not create Retromod folders", e);
+            LOGGER.warn("Could not create Backmod folders", e);
             gameDir = Path.of(".");
         }
 
@@ -302,7 +302,7 @@ public class Retromod implements ModInitializer {
                     + "(see security notes in Retromod.java).");
         }
 
-        LOGGER.debug(RetromodLog.DETAIL, "Retromod is ready with {} method redirects and {} class redirects",
+        LOGGER.debug(RetromodLog.DETAIL, "Backmod is ready with {} method redirects and {} class redirects",
                 RetromodTransformer.getInstance().getMethodRedirectCount(),
                 RetromodTransformer.getInstance().getClassRedirectCount());
     }
@@ -347,16 +347,16 @@ public class Retromod implements ModInitializer {
 
     private String getReadmeContent() {
         return """
-            Retromod input folder
+            Backmod input folder
 
-            Put old mod jars directly in this folder. Retromod will update them
+            Put old mod jars directly in this folder. Backmod will update them
             for this Minecraft version, install the results in mods/, and move
             the originals to processed/.
 
             Mods already made for this Minecraft version can go straight in mods/.
 
             Help and bug reports:
-            https://github.com/Bownlux/Retromod/issues
+            https://github.com/HoneyShard/backmod/issues
             """;
     }
     

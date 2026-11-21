@@ -33,7 +33,7 @@ public final class LegacyPaintings {
             }
             return widest.newInstance(args);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not build an old painting variant", e);
+            throw new IllegalStateException("Backmod could not build an old painting variant", e);
         }
     }
 

@@ -1,5 +1,5 @@
 name: Bug report
-description: A mod doesn't transform, crashes on load, or behaves wrong after Retromod runs.
+description: A mod doesn't transform, crashes on load, or behaves wrong after Backmod runs.
 title: "[Bug] "
 labels: ["bug"]
 body:
@@ -13,7 +13,7 @@ body:
   - type: input
     id: retromod-version
     attributes:
-      label: Retromod version
+      label: Backmod version
       description: Visible in the in-game UI or the JAR filename.
       placeholder: 1.0.0-beta.6
     validations:
@@ -99,5 +99,5 @@ body:
       options:
         - label: I checked the [Troubleshooting page](https://bownlux.github.io/Retromod/troubleshooting) and didn't find this issue.
           required: true
-        - label: The source mod isn't opted out of Retromod transformation (no `META-INF/retromod-opt-out` marker in the mod JAR).
+        - label: The source mod isn't opted out of Backmod transformation (no `META-INF/retromod-opt-out` marker in the mod JAR).
           required: false

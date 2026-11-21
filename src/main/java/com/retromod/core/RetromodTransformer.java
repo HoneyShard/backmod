@@ -33,7 +33,7 @@ public class RetromodTransformer implements ClassFileTransformer {
 
     // Never reference Retromod here: it implements ModInitializer, and this class also runs in the
     // standalone CLI, where Fabric classes are not on the classpath.
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Transformer");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Transformer");
     private static final RetromodTransformer INSTANCE = new RetromodTransformer();
     static final long MAX_HIERARCHY_CLASS_BYTES = ZipSecurity.DEFAULT_MAX_ENTRY_SIZE;
 
@@ -594,7 +594,7 @@ public class RetromodTransformer implements ClassFileTransformer {
             return;
         }
         if (finalOverrideHostNoted.compareAndSet(false, true)) {
-            LOGGER.warn("No Minecraft classes could be read, so Retromod left overrides of methods Minecraft made "
+            LOGGER.warn("No Minecraft classes could be read, so Backmod left overrides of methods Minecraft made "
                     + "final as they are. Pass --mc-jar to check them.");
         }
     }
@@ -6618,7 +6618,7 @@ public class RetromodTransformer implements ClassFileTransformer {
     /** Where an unusable base name came from, told only from Retromod's own move table. */
     static String unusableBaseOrigin(String base, List<String> sources) {
         if (sources.isEmpty()) {
-            return "No class move in Retromod's tables produces this name.";
+            return "No class move in Backmod's tables produces this name.";
         }
         if (sources.size() == 1) {
             return "It came from the class move " + sources.get(0) + " -> " + base + ".";
@@ -6780,7 +6780,7 @@ public class RetromodTransformer implements ClassFileTransformer {
             if (finalBaseReason != null) {
                 // FinalBaseConstructionAdapter keeps the classes that build such an object
                 // loadable, so only the subclass itself is lost.
-                LOGGER.warn("{} extends {}, which is final on this Minecraft version. {}. Retromod "
+                LOGGER.warn("{} extends {}, which is final on this Minecraft version. {}. Backmod "
                         + "has no replacement for it yet, so {} may fail when the game loads it, and "
                         + "code that builds one of these objects reports this reason. If the mod "
                         + "breaks, report this line with the mod and its version.",
@@ -6789,7 +6789,7 @@ public class RetromodTransformer implements ClassFileTransformer {
             }
 
             // A guess, not a certainty: the class may never load, or a later pass may fix it.
-            LOGGER.warn("{} extends {}, which {} on this Minecraft version. {} Retromod has no "
+            LOGGER.warn("{} extends {}, which {} on this Minecraft version. {} Backmod has no "
                     + "replacement for it yet, so {} may fail when the game loads it. If the mod "
                     + "breaks, report this line with the mod and its version. Other classes that "
                     + "extend the same base are not listed again.",
@@ -8196,7 +8196,7 @@ public class RetromodTransformer implements ClassFileTransformer {
                     FuzzyMethodResolver.MethodInfo fuzzyMatch =
                             resolver.resolveMethod(owner, name, descriptor, callers(), this::callerMayExtend);
                     if (fuzzyMatch != null) {
-                        LOGGER.debug("[Retromod-Fuzzy] Resolved {}.{}{} -> {}.{}{} (confidence: {}%)",
+                        LOGGER.debug("[Backmod-Fuzzy] Resolved {}.{}{} -> {}.{}{} (confidence: {}%)",
                                 owner, name, descriptor,
                                 fuzzyMatch.owner(), fuzzyMatch.name(), fuzzyMatch.descriptor(),
                                 fuzzyMatch.score());
@@ -8413,7 +8413,7 @@ public class RetromodTransformer implements ClassFileTransformer {
                     // A name the host still has is not stale, as the fuzzy resolver also checks.
                     if (patternMatch != null && patternMatch.confidence() >= 0.6
                             && !hostHasMethod(owner, name, descriptor)) {
-                        LOGGER.debug("[Retromod-Pattern] Resolved {}.{}{} -> {}.{}{} (rule: {}, confidence: {})",
+                        LOGGER.debug("[Backmod-Pattern] Resolved {}.{}{} -> {}.{}{} (rule: {}, confidence: {})",
                                 owner, name, descriptor,
                                 patternMatch.newOwner(), patternMatch.newName(), patternMatch.newDescriptor(),
                                 patternMatch.rule(), patternMatch.confidence());
@@ -8434,7 +8434,7 @@ public class RetromodTransformer implements ClassFileTransformer {
                             resolver.resolveMethod(owner, name, descriptor, callers(), this::callerMayExtend);
                     if (fuzzyMatch != null) {
                         // Fuzzy match found with confidence >= 70%; apply the redirect
-                        LOGGER.debug("[Retromod-Fuzzy] Resolved {}.{}{} -> {}.{}{} (confidence: {}%)",
+                        LOGGER.debug("[Backmod-Fuzzy] Resolved {}.{}{} -> {}.{}{} (confidence: {}%)",
                                 owner, name, descriptor,
                                 fuzzyMatch.owner(), fuzzyMatch.name(), fuzzyMatch.descriptor(),
                                 fuzzyMatch.score());
@@ -8854,7 +8854,7 @@ public class RetromodTransformer implements ClassFileTransformer {
                             opcode == Opcodes.GETSTATIC || opcode == Opcodes.PUTSTATIC, callers(),
                             this::callerMayExtend);
                     if (fuzzyMatch != null) {
-                        LOGGER.debug("[Retromod-Fuzzy] Resolved field {}.{} {} -> {}.{} {} (confidence: {}%)",
+                        LOGGER.debug("[Backmod-Fuzzy] Resolved field {}.{} {} -> {}.{} {} (confidence: {}%)",
                                 owner, name, descriptor,
                                 fuzzyMatch.owner(), fuzzyMatch.name(), fuzzyMatch.descriptor(),
                                 fuzzyMatch.score());

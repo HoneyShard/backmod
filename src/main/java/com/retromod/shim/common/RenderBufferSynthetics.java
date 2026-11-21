@@ -223,7 +223,7 @@ public final class RenderBufferSynthetics {
         m.visitInsn(ICONST_1);
         m.visitFieldInsn(PUTSTATIC, BS, "warned", "Z");
         GeneratedLog.pushLogger(m);
-        m.visitLdcInsn("[Retromod] An old mod drew through MultiBufferSource, which Retromod cannot draw on "
+        m.visitLdcInsn("[Backmod] An old mod drew through MultiBufferSource, which Backmod cannot draw on "
                 + "this Minecraft version yet, so that mod's custom geometry does not show.");
         GeneratedLog.warn(m);
         m.visitLabel(skip);

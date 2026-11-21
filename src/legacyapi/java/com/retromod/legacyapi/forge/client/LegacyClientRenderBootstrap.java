@@ -43,7 +43,7 @@ public final class LegacyClientRenderBootstrap {
                 if (!MODS.containsKey(namespace)) MODS.put(namespace, container.getModBusGroup());
             }
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warnOnce("client render install " + LegacyClientRenderBootstrap.class.getName(), "Retromod did not"
+            LegacyLog.warnOnce("client render install " + LegacyClientRenderBootstrap.class.getName(), "Backmod did not"
                     + " set up the old client rendering of " + (namespace == null ? "a mod" : namespace) + ": " + failure);
         }
     }

@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class ShimRegistry {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Shim");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Shim");
 
     /** Maps intermediate MC versions to the milestone shim that covers their release line. */
     private static final Map<String, String> VERSION_ALIASES;

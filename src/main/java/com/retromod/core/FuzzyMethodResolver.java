@@ -33,7 +33,7 @@ import java.util.jar.JarFile;
  */
 public class FuzzyMethodResolver {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Fuzzy");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Fuzzy");
 
     /** Points awarded when the candidate method is on the exact same class. */
     private static final int SCORE_EXACT_CLASS = 40;
@@ -684,7 +684,7 @@ public class FuzzyMethodResolver {
             FuzzyMatchReport.record("METHOD", FuzzyMatchReport.BAND_SUPPRESSED, bestInaccessible.score(),
                     owner, name, descriptor,
                     bestInaccessible.owner(), bestInaccessible.name(), bestInaccessible.descriptor());
-            LOGGER.debug("[Retromod-Fuzzy] Declined {}.{}{} -> {}.{}{}: {} cannot access it", owner, name, descriptor,
+            LOGGER.debug("[Backmod-Fuzzy] Declined {}.{}{} -> {}.{}{}: {} cannot access it", owner, name, descriptor,
                     bestInaccessible.owner(), bestInaccessible.name(), bestInaccessible.descriptor(), callers);
             boundedCachePut(methodResolveCache, cacheKey, EMPTY_METHOD_INFO);
             return null;
@@ -695,7 +695,7 @@ public class FuzzyMethodResolver {
             // versions (AnimationUtils.swingWeaponDown Mob -> HumanoidArm in 1.21.11); redirecting
             // there would push the old type into a slot typed for the new one -> VerifyError at load.
             if (!isRedirectStackSafe(unresolvedParams, unresolvedReturn, bestMatch.descriptor())) {
-                LOGGER.debug("[Retromod-Fuzzy] Suppressed type-incompatible redirect "
+                LOGGER.debug("[Backmod-Fuzzy] Suppressed type-incompatible redirect "
                         + "{}.{}{} -> {}.{}{} (would VerifyError; left unresolved)",
                         owner, name, descriptor,
                         bestMatch.owner(), bestMatch.name(), bestMatch.descriptor());
@@ -705,7 +705,7 @@ public class FuzzyMethodResolver {
                 boundedCachePut(methodResolveCache, cacheKey, EMPTY_METHOD_INFO);
                 return null;
             }
-            LOGGER.debug("[Retromod-Fuzzy] Resolved {}.{}{} -> {}.{}{} (confidence: {}%)",
+            LOGGER.debug("[Backmod-Fuzzy] Resolved {}.{}{} -> {}.{}{} (confidence: {}%)",
                     owner, name, descriptor,
                     bestMatch.owner(), bestMatch.name(), bestMatch.descriptor(),
                     bestScore);
@@ -720,14 +720,14 @@ public class FuzzyMethodResolver {
             if (FuzzyMatchReport.record("METHOD", FuzzyMatchReport.BAND_NEAR, bestScore,
                     owner, name, descriptor,
                     bestMatch.owner(), bestMatch.name(), bestMatch.descriptor())) {
-                LOGGER.debug("[Retromod-Fuzzy] Possible match for {}.{}{} -> {}.{}{} " +
+                LOGGER.debug("[Backmod-Fuzzy] Possible match for {}.{}{} -> {}.{}{} " +
                         "(confidence: {}% - below auto-apply threshold of {}%)",
                         owner, name, descriptor,
                         bestMatch.owner(), bestMatch.name(), bestMatch.descriptor(),
                         bestScore, THRESHOLD_AUTO_APPLY);
             }
         } else if (bestMatch != null) {
-            LOGGER.debug("[Retromod-Fuzzy] Low confidence match for {}.{}{} -> {}.{}{} ({}%)",
+            LOGGER.debug("[Backmod-Fuzzy] Low confidence match for {}.{}{} -> {}.{}{} ({}%)",
                     owner, name, descriptor,
                     bestMatch.owner(), bestMatch.name(), bestMatch.descriptor(),
                     bestScore);
@@ -972,7 +972,7 @@ public class FuzzyMethodResolver {
             FuzzyMatchReport.record("FIELD", FuzzyMatchReport.BAND_SUPPRESSED, bestInaccessible.score(),
                     owner, name, descriptor,
                     bestInaccessible.owner(), bestInaccessible.name(), bestInaccessible.descriptor());
-            LOGGER.debug("[Retromod-Fuzzy] Declined field {}.{} -> {}.{}: {} cannot access it", owner, name,
+            LOGGER.debug("[Backmod-Fuzzy] Declined field {}.{} -> {}.{}: {} cannot access it", owner, name,
                     bestInaccessible.owner(), bestInaccessible.name(), callers);
             boundedCachePut(fieldResolveCache, cacheKey, EMPTY_FIELD_INFO);
             return null;
@@ -984,7 +984,7 @@ public class FuzzyMethodResolver {
             FuzzyMatchReport.record("FIELD", FuzzyMatchReport.BAND_SUPPRESSED, bestScore,
                     owner, name, descriptor,
                     bestMatch.owner(), bestMatch.name(), bestMatch.descriptor());
-            LOGGER.debug("[Retromod-Fuzzy] Declined field {}.{} -> {}.{}: its type arguments {} are not the only "
+            LOGGER.debug("[Backmod-Fuzzy] Declined field {}.{} -> {}.{}: its type arguments {} are not the only "
                     + "ones its class uses for {}", owner, name, bestMatch.owner(), bestMatch.name(),
                     fieldSignatures.get(bestMatch.owner() + "." + bestMatch.name()), descriptor);
             boundedCachePut(fieldResolveCache, cacheKey, EMPTY_FIELD_INFO);
@@ -996,14 +996,14 @@ public class FuzzyMethodResolver {
             FuzzyMatchReport.record("FIELD", FuzzyMatchReport.BAND_SUPPRESSED, bestScore,
                     owner, name, descriptor,
                     bestMatch.owner(), bestMatch.name(), bestMatch.descriptor());
-            LOGGER.debug("[Retromod-Fuzzy] Declined tag {}.{} -> {}.{}: a renamed tag key is another tag",
+            LOGGER.debug("[Backmod-Fuzzy] Declined tag {}.{} -> {}.{}: a renamed tag key is another tag",
                     owner, name, bestMatch.owner(), bestMatch.name());
             boundedCachePut(fieldResolveCache, cacheKey, EMPTY_FIELD_INFO);
             return null;
         }
 
         if (bestMatch != null && bestScore >= THRESHOLD_AUTO_APPLY) {
-            LOGGER.debug("[Retromod-Fuzzy] Resolved field {}.{} {} -> {}.{} {} (confidence: {}%)",
+            LOGGER.debug("[Backmod-Fuzzy] Resolved field {}.{} {} -> {}.{} {} (confidence: {}%)",
                     owner, name, descriptor,
                     bestMatch.owner(), bestMatch.name(), bestMatch.descriptor(),
                     bestScore);
@@ -1017,7 +1017,7 @@ public class FuzzyMethodResolver {
             if (FuzzyMatchReport.record("FIELD", FuzzyMatchReport.BAND_NEAR, bestScore,
                     owner, name, descriptor,
                     bestMatch.owner(), bestMatch.name(), bestMatch.descriptor())) {
-                LOGGER.debug("[Retromod-Fuzzy] Possible field match for {}.{} {} -> {}.{} {} " +
+                LOGGER.debug("[Backmod-Fuzzy] Possible field match for {}.{} {} -> {}.{} {} " +
                         "(confidence: {}% - below auto-apply threshold of {}%)",
                         owner, name, descriptor,
                         bestMatch.owner(), bestMatch.name(), bestMatch.descriptor(),

@@ -136,7 +136,7 @@ public final class CacheTools {
         if (matching.size() == 1) return matching.get(0);
         if (all.isEmpty()) {
             throw new IOException("No translated mods were found in " + gameDir
-                    + ". Launch the game once with Retromod in in-place mode first.");
+                    + ". Launch the game once with Backmod in in-place mode first.");
         }
         StringBuilder choices = new StringBuilder();
         for (Host host : all) {
@@ -176,8 +176,8 @@ public final class CacheTools {
         Report report = report(gameDir, host);
         if (!report.consistent()) {
             throw new IOException("The " + host.displayName() + " cache was written by "
-                    + "another Retromod build or is incomplete. Launch the game once so "
-                    + "Retromod rebuilds it, then export again.");
+                    + "another Backmod build or is incomplete. Launch the game once so "
+                    + "Backmod rebuilds it, then export again.");
         }
         TranslatedModCache.HostPaths paths = TranslatedModCache.hostPaths(gameDir,
                 host.loader(), host.minecraft());
@@ -185,7 +185,7 @@ public final class CacheTools {
         Path cacheRoot = paths.cacheRoot();
         if (output.startsWith(cacheRoot) || resolvedStartsWith(output, cacheRoot)) {
             throw new IOException("Choose an export folder outside " + cacheRoot
-                    + ". Retromod cleans that folder on every launch.");
+                    + ". Backmod cleans that folder on every launch.");
         }
 
         Set<String> wanted = new LinkedHashSet<>();

@@ -22,7 +22,7 @@ cat ~/Library/Application\ Support/minecraft/crash-reports/crash-*.txt | tail -1
 ## Step 2: Identify the Error Type
 
 ### `NoSuchMethodError: <class>.<method>`
-**Cause:** A method was renamed/removed and Retromod didn't have a redirect for it.
+**Cause:** A method was renamed/removed and Backmod didn't have a redirect for it.
 **Fix:** Add a method redirect to the appropriate version shim:
 ```java
 transformer.registerMethodRedirect(
@@ -60,7 +60,7 @@ transformer.registerMethodRedirect(
 
 ### `UnsupportedClassVersionError`
 **Cause:** Mod was compiled for a newer Java version than what's running.
-**Fix:** Retromod cannot lower another mod's bytecode version. Report the required Java version clearly. MC 26.1 requires Java 25.
+**Fix:** Backmod cannot lower another mod's bytecode version. Report the required Java version clearly. MC 26.1 requires Java 25.
 
 ## Step 3: Enable Debug Logging
 
@@ -73,7 +73,7 @@ Edit `config/retromod/config.json`:
 }
 ```
 
-This creates bytecode dumps in `config/retromod/bytecode-dump/` showing exactly what Retromod transformed.
+This creates bytecode dumps in `config/retromod/bytecode-dump/` showing exactly what Backmod transformed.
 
 ## Step 4: Analyze the Mod
 
@@ -107,6 +107,6 @@ Verify the shim chain exists from the mod's source version to the target version
 ## Key Debugging Files
 - Crash log: `logs/latest.log`
 - Crash reports: `crash-reports/crash-*.txt`
-- Retromod crash log: `config/retromod/crash-log.txt`
+- Backmod crash log: `config/retromod/crash-log.txt`
 - Bytecode dumps: `config/retromod/bytecode-dump/`
 - AOT cache: `config/retromod/aot-cache/`

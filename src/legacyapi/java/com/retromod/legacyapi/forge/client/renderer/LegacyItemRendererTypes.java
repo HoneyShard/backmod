@@ -40,7 +40,7 @@ final class LegacyItemRendererTypes {
                 }
             } catch (ReflectiveOperationException | RuntimeException | LinkageError failure) {
                 // Retromod's item definitions for this mod name the type, so the game reads those items without it.
-                LegacyLog.warn("Retromod did not add the item model type " + namespace + ":" + LegacyItemRenderers.MODEL_TYPE
+                LegacyLog.warn("Backmod did not add the item model type " + namespace + ":" + LegacyItemRenderers.MODEL_TYPE
                         + ", which its item definitions for the old item renderers of " + namespace + " name: " + failure);
             }
         }

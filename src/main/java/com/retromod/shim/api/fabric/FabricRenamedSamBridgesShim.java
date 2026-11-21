@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FabricRenamedSamBridgesShim implements AuxiliaryVersionShim {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String GEN = "com/retromod/generated/legacyevents/";
     private static final String FAPI = "net/fabricmc/fabric/api/";
@@ -32,7 +32,7 @@ public class FabricRenamedSamBridgesShim implements AuxiliaryVersionShim {
     public void registerRedirects(RetromodTransformer t) {
         if (!com.retromod.core.RetromodVersion.isUnobfuscatedTarget(
                 com.retromod.core.RetromodVersion.TARGET_MC_VERSION)) {
-            LOGGER.debug("[Retromod] renamed-SAM bridges skipped (host {} < 26.1 - old APIs still present)",
+            LOGGER.debug("[Backmod] renamed-SAM bridges skipped (host {} < 26.1 - old APIs still present)",
                     com.retromod.core.RetromodVersion.TARGET_MC_VERSION);
             return;
         }

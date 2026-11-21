@@ -67,7 +67,7 @@ final class LegacyColorEventPost {
                 try {
                     bus.post(phase, event);
                 } catch (RuntimeException | LinkageError failure) {
-                    LegacyLog.warn("An old color listener on the bus of " + mod.getNamespace() + " threw; Retromod went on"
+                    LegacyLog.warn("An old color listener on the bus of " + mod.getNamespace() + " threw; Backmod went on"
                             + " with the next one: " + failure);
                 }
             }
@@ -81,7 +81,7 @@ final class LegacyColorEventPost {
                 // NeoForge maps a codec to one id, so each namespace gets its own.
                 event.register(Identifier.fromNamespaceAndPath(namespace, LegacyItemColorTable.TINT_TYPE), LegacyItemTint.newType());
             } catch (RuntimeException | LinkageError failure) {
-                LegacyLog.warn("Retromod could not add the item tint type " + namespace + ":" + LegacyItemColorTable.TINT_TYPE
+                LegacyLog.warn("Backmod could not add the item tint type " + namespace + ":" + LegacyItemColorTable.TINT_TYPE
                         + " (" + failure + "), so the item definitions of " + namespace + " that name it show the missing model");
             }
         }

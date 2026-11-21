@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Pre1_20_5AttributeModifierBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String MODIFIER = "net/minecraft/class_1322";
     static final String OPERATION = "net/minecraft/class_1322$class_1323";

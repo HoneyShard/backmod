@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class FabricModNioResourcePackBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String PACK = "net/fabricmc/fabric/impl/resource/loader/ModNioResourcePack";
     static final String FACTORY = "com/retromod/generated/LegacyModNioResourcePacks";

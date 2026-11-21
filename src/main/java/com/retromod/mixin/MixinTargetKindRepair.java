@@ -20,7 +20,7 @@ import java.util.function.Function;
 /** Drops the targets a mixin can no longer apply to because the host changed them between class and interface. */
 final class MixinTargetKindRepair {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     private static final String MIXIN_DESC = "Lorg/spongepowered/asm/mixin/Mixin;";
     private static final String ACCESSOR_DESC = "Lorg/spongepowered/asm/mixin/gen/Accessor;";

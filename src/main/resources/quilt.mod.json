@@ -5,15 +5,15 @@
     "id": "retromod",
     "version": "${project.version}",
     "metadata": {
-      "name": "Retromod",
+      "name": "Backmod",
       "description": "Helps older Minecraft mods run on newer versions by updating their bytecode, mixins, and loader metadata.",
       "contributors": {
         "Bownlux": "Owner"
       },
       "contact": {
-        "homepage": "https://modrinth.com/mod/retromod",
-        "sources": "https://github.com/Bownlux/Retromod",
-        "issues": "https://github.com/Bownlux/Retromod/issues"
+        "homepage": "https://github.com/HoneyShard/backmod",
+        "sources": "https://github.com/HoneyShard/backmod",
+        "issues": "https://github.com/HoneyShard/backmod/issues"
       },
       "icon": "assets/retromod/icon.png",
       "license": "MIT"

@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /** Old block, item and fluid render layer calls on 26.x, where the host picks each layer itself. */
 public final class LegacyRenderLayers {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
 
     // A put with no layer (a server, where no render type exists) is still recorded.
     private static final Object NO_LAYER = new Object();

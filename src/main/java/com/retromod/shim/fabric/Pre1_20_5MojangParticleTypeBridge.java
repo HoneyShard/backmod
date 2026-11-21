@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public final class Pre1_20_5MojangParticleTypeBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String PARTICLE_TYPE = "net/minecraft/core/particles/ParticleType";
     static final String OLD_DESERIALIZER = "net/minecraft/core/particles/ParticleOptions$Deserializer";

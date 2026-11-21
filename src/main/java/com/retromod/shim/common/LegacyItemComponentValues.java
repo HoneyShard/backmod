@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Builds the 26.3 compost and fuel item components from an old compost chance or burn time. */
 public final class LegacyItemComponentValues {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final Set<String> REPORTED = ConcurrentHashMap.newKeySet();
 
     private static final String COMPONENT_TYPE = "Lnet/minecraft/core/component/DataComponentType;";

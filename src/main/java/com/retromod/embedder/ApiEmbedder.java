@@ -39,7 +39,7 @@ import java.util.zip.*;
  */
 public class ApiEmbedder {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Embedder");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Embedder");
     private static final int MAX_ARCHIVE_ENTRIES = 100_000;
 
     // Location of archived mod loader sources (extracted from old versions)
@@ -307,7 +307,7 @@ public class ApiEmbedder {
             // Add a marker file indicating this JAR has been processed
             String markerName = registerGeneratedEntry(
                     "retromod_embedded/RETROMOD_PROCESSED", outputNames);
-            byte[] marker = ("Processed by Retromod v1.0\n" +
+            byte[] marker = ("Processed by Backmod v1.0\n" +
                     "Embedded APIs: " + classesToEmbed.size() + "\n")
                     .getBytes(StandardCharsets.UTF_8);
             outputBudget.reserveEntry(marker, markerName);
@@ -589,11 +589,11 @@ public class ApiEmbedder {
     private static String registerGeneratedEntry(String entryName, Set<String> names)
             throws IOException {
         if (names.size() >= MAX_ARCHIVE_ENTRIES) {
-            throw new IOException("Retromod output has too many entries");
+            throw new IOException("Backmod output has too many entries");
         }
         String name = validateEntryName(entryName, false);
         if (!names.add(name)) {
-            throw new IOException("Retromod output entry collides with an existing entry: "
+            throw new IOException("Backmod output entry collides with an existing entry: "
                     + name);
         }
         return name;

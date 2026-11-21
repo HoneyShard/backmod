@@ -51,7 +51,7 @@ import java.util.List;
  */
 public final class LegacyAttributeApiBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String HELPER = "com/retromod/generated/LegacyAttributeApi";
     static final String ID_NAMESPACE = "retromod";

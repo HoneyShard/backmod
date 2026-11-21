@@ -70,9 +70,9 @@ public final class KeyBindingShim {
     }
 
     private static RuntimeException creationFailed(String translationKey, String categoryString, Exception cause) {
-        return new RuntimeException("Retromod could not create the key binding '" + translationKey
+        return new RuntimeException("Backmod could not create the key binding '" + translationKey
                 + "' in category '" + categoryString + "' on this Minecraft version. Report it at "
-                + "https://github.com/Bownlux/Retromod/issues with the mod and Minecraft version.", cause);
+                + "https://github.com/HoneyShard/backmod/issues with the mod and Minecraft version.", cause);
     }
 
     // Production Fabric before 26.1 runs intermediary names, which McReflect tries like the others.
@@ -160,7 +160,7 @@ public final class KeyBindingShim {
 
         } catch (Exception e) {
             initFailed = true;
-            System.err.println("Retromod: KeyBindingShim init warning: " + e.getMessage());
+            System.err.println("Backmod: KeyBindingShim init warning: " + e.getMessage());
         }
     }
 
@@ -213,7 +213,7 @@ public final class KeyBindingShim {
                 return factory.invoke(null, namespace, path);
             }
         }
-        throw new NoSuchMethodException("Retromod found no static (String, String) factory on "
+        throw new NoSuchMethodException("Backmod found no static (String, String) factory on "
                 + idClass.getName() + " for the key category " + namespace + ":" + path
                 + ". It looked for " + String.join(", ", ID_FACTORY_NAMES) + ".");
     }

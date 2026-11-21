@@ -38,7 +38,7 @@ import java.util.List;
  */
 public final class Pre1_20_5ItemStackTagBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
 
     static final String ITEM_STACK = "net/minecraft/class_1799";
     static final String HELPER = "com/retromod/generated/LegacyItemStackTags";
@@ -252,7 +252,7 @@ public final class Pre1_20_5ItemStackTagBridge {
         mv.visitTypeInsn(Opcodes.NEW, "java/lang/UnsupportedOperationException");
         mv.visitInsn(Opcodes.DUP);
         mv.visitLdcInsn("ItemStack.enchant(Enchantment, int) was removed in Minecraft 1.21, where "
-                + "enchantments are data pack entries reached through a registry holder. Retromod "
+                + "enchantments are data pack entries reached through a registry holder. Backmod "
                 + "has no replacement for this call yet. Report it with the mod and its version.");
         mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/UnsupportedOperationException", "<init>",
                 "(Ljava/lang/String;)V", false);

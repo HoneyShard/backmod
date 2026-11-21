@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class ForgeNeoForgeApiBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-ForgeNeoApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-ForgeNeoApi");
 
     private static final String FORGE = "net/minecraftforge/";
     private static final String NEO = "net/neoforged/neoforge/";

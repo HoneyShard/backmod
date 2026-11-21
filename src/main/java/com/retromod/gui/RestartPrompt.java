@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 /** Shows the in-game "mods converted, restart to apply" prompt on the title screen (#33). */
 public final class RestartPrompt {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-Restart");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-Restart");
 
     // Retromod converts old mods during pre-launch, after the loader already scanned mods/, so
     // they only load on the next launch. Each loader's pre-launch or constructor path records the
@@ -67,7 +67,7 @@ public final class RestartPrompt {
         try {
             // The text comes from the player's language, with the count in its %s slot.
             Object msg = McI18n.translatable(messageKey(translatedIntoCache), n);
-            shown = InGameScreenFactory.showRestartConfirm(titleScreen, "Retromod", msg,
+            shown = InGameScreenFactory.showRestartConfirm(titleScreen, "Backmod", msg,
                     RestartPrompt::stopClient);
         } catch (Throwable t) {
             LOGGER.warn("Could not show restart prompt: {}", t.getMessage());
@@ -76,7 +76,7 @@ public final class RestartPrompt {
         if (shown) {
             LOGGER.info("Showed in-game restart prompt for {} converted mod(s)", n);
         } else {
-            LOGGER.warn("Retromod could not open its restart prompt. Restart Minecraft to load "
+            LOGGER.warn("Backmod could not open its restart prompt. Restart Minecraft to load "
                     + "the {} mod(s) it prepared.", n);
         }
         return shown;

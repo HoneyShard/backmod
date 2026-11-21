@@ -160,7 +160,7 @@ public final class LegacyRegistryAccess {
             Field root = builtIn.getField("REGISTRY");
             return valueByName(root.get(null), name);
         } catch (ReflectiveOperationException e) {
-            throw new IllegalStateException("Retromod could not read the root registry: " + e, e);
+            throw new IllegalStateException("Backmod could not read the root registry: " + e, e);
         }
     }
 
@@ -187,7 +187,7 @@ public final class LegacyRegistryAccess {
             method = findMethod(target.getClass(), names[i], shape, args);
         }
         if (method == null) {
-            throw new IllegalStateException("Retromod could not find " + String.join(" or ", names)
+            throw new IllegalStateException("Backmod could not find " + String.join(" or ", names)
                     + " on " + target.getClass().getName() + " for a Forge registry call");
         }
         String name = method.getName();
@@ -199,7 +199,7 @@ public final class LegacyRegistryAccess {
             if (cause instanceof Error error) throw error;
             throw new IllegalStateException(cause);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException("Retromod could not call " + name + ": " + e, e);
+            throw new IllegalStateException("Backmod could not call " + name + ": " + e, e);
         }
     }
 

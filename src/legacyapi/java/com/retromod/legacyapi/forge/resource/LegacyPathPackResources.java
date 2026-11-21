@@ -145,7 +145,7 @@ public class LegacyPathPackResources extends PathPackResources {
         } catch (ReflectiveOperationException | RuntimeException failure) {
             rootUnreadable = true;
             LegacyLog.warnOnce("path-pack-root", "An old mod asked a resource pack for its folder (getSource), but "
-                    + "Retromod could not read it on this Minecraft (" + failure + "). The mod gets no folder for "
+                    + "Backmod could not read it on this Minecraft (" + failure + "). The mod gets no folder for "
                     + "that pack and may skip it.");
             return null;
         }

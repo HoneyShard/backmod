@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 /** Old Fabric API (1.16.5 to 1.21.11) on Fabric and Quilt hosts for Minecraft 26.1 and newer. */
 public final class FabricApi26Provider implements LoaderApiProvider {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod-LoaderApi");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod-LoaderApi");
 
     public static final String ID = "fabric-26x";
 

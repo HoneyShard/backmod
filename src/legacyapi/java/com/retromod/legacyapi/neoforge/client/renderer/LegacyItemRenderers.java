@@ -22,7 +22,7 @@ public final class LegacyItemRenderers {
             // Client classes are reached only from here, so a dedicated server never loads them.
             LegacyItemModelTypes.listen();
         } catch (RuntimeException | LinkageError failure) {
-            LegacyLog.warn("Retromod did not set up the old item renderers of the mod constructing now: " + failure);
+            LegacyLog.warn("Backmod did not set up the old item renderers of the mod constructing now: " + failure);
         }
     }
 

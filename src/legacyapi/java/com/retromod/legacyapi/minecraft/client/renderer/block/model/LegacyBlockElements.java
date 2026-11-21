@@ -159,7 +159,7 @@ public final class LegacyBlockElements {
             // On 26.3 an unshaded element lights every face like an upward one, and a shaded one has no override.
             return shadeOverride.invoke(element) == null;
         } catch (IllegalAccessException | InvocationTargetException failure) {
-            throw new IllegalStateException("Retromod could not read an element's shading on this host", failure);
+            throw new IllegalStateException("Backmod could not read an element's shading on this host", failure);
         }
     }
 
@@ -173,7 +173,7 @@ public final class LegacyBlockElements {
         try {
             return (CuboidModelElement) constructor.newInstance(from, to, faces, rotation, shading, 0);
         } catch (ReflectiveOperationException failure) {
-            throw new IllegalStateException("Retromod could not build a model element on this host", failure);
+            throw new IllegalStateException("Backmod could not build a model element on this host", failure);
         }
     }
 
@@ -193,7 +193,7 @@ public final class LegacyBlockElements {
                     constructor = type.getConstructor(Vector3fc.class, Vector3fc.class, Map.class, CuboidRotation.class,
                             Direction.class, int.class);
                 } catch (NoSuchMethodException unknownHost) {
-                    throw new IllegalStateException("Retromod does not know this host's model element", unknownHost);
+                    throw new IllegalStateException("Backmod does not know this host's model element", unknownHost);
                 }
             }
             shapeRead = true;

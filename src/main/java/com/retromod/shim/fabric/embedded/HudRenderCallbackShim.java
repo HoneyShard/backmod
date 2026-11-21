@@ -51,7 +51,7 @@ public interface HudRenderCallbackShim {
             }
 
             if (addLastMethod == null) {
-                System.err.println("Retromod: HudElementRegistry.addLast not found");
+                System.err.println("Backmod: HudElementRegistry.addLast not found");
                 return;
             }
 
@@ -74,7 +74,7 @@ public interface HudRenderCallbackShim {
         } catch (ClassNotFoundException e) {
             // old Fabric API without HudElementRegistry, nothing to bridge
         } catch (Exception e) {
-            System.err.println("Retromod: Failed to bridge HUD callbacks: " + e.getMessage());
+            System.err.println("Backmod: Failed to bridge HUD callbacks: " + e.getMessage());
         }
     }
 }

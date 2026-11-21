@@ -49,7 +49,7 @@ import java.util.zip.ZipEntry;
 /** Carries old NeoForge fuel and compost data maps into the item components NeoForge 26.3 uses instead. */
 public final class LegacyDataMapComponentBridge {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("Retromod");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Backmod");
     private static final Set<String> REPORTED = ConcurrentHashMap.newKeySet();
 
     static final String FUEL_FILE = "data/neoforge/data_maps/item/furnace_fuels.json";
@@ -128,7 +128,7 @@ public final class LegacyDataMapComponentBridge {
             Consumer<Object> listener = posted -> modifyComponents(posted, gate);
             addListener.invoke(bus, normal, event, listener);
         } catch (ReflectiveOperationException | RuntimeException | LinkageError e) {
-            LOGGER.warn("Retromod could not listen for NeoForge's default item components, so fuel and "
+            LOGGER.warn("Backmod could not listen for NeoForge's default item components, so fuel and "
                     + "compost data maps from translated mods are not applied: {}", e.toString());
         }
     }
@@ -150,7 +150,7 @@ public final class LegacyDataMapComponentBridge {
             tables.forEach((kind, table) -> LOGGER.debug(RetromodLog.DETAIL, "Applying {} from {} translated mod(s) as item "
                     + "components, because this NeoForge no longer reads it", kind.file, table.files.size()));
         } catch (RuntimeException | LinkageError e) {
-            LOGGER.warn("Retromod could not apply the fuel and compost data maps of translated mods, so "
+            LOGGER.warn("Backmod could not apply the fuel and compost data maps of translated mods, so "
                     + "their items do not burn or compost on this NeoForge: {}", e.toString());
         }
     }
@@ -461,7 +461,7 @@ public final class LegacyDataMapComponentBridge {
         if (method.getName().equals("hashCode") && noArgs) return System.identityHashCode(proxy);
         if (method.getName().equals("toString") && noArgs) return "Retromod legacy data map components";
         if (method.isDefault()) return InvocationHandler.invokeDefault(proxy, method, args);
-        throw new UnsupportedOperationException("Retromod's data map bridge has no answer for " + method.getName());
+        throw new UnsupportedOperationException("Backmod's data map bridge has no answer for " + method.getName());
     }
 
     private static Object call(MethodHandle handle, Object... args) {
